@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Sitio web de la Junta de Acción Comunal Vereda Santa Bárbara actualmente en construcción."
+    >
+
+    <title>
+        Sitio en Construcción | JAC Vereda Santa Bárbara
+    </title>
+
+
+    <!-- =====================================================
+         TIPOGRAFÍAS
+    ====================================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           VARIABLES
+        ===================================================== */
+
+        :root {
+
+            --yellow: #f5b914;
+
+            --yellow-dark: #dfa000;
+
+            --black: #191919;
+
+            --dark: #111111;
+
+            --white: #ffffff;
+
+            --gray: #f5f5f5;
+
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+
+        html,
+        body {
+
+            width: 100%;
+
+            min-height: 100%;
+
+        }
+
+
+        body {
+
+            font-family:
+                "Inter",
+                Arial,
+                sans-serif;
+
+            background: var(--white);
+
+            color: var(--black);
+
+            overflow-x: hidden;
+
+        }
+
+
+        /* =====================================================
+           CONTENEDOR PRINCIPAL
+        ===================================================== */
+
+        .construction-page {
+
+            width: 100%;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+        }
+
+
+        /* =====================================================
+           FRANJA DE SEGURIDAD SUPERIOR
+        ===================================================== */
+
+        .warning-top {
+
+            width: 100%;
+
+            height: 40px;
+
+            flex-shrink: 0;
+
+            background:
+                repeating-linear-gradient(
+                    -45deg,
+                    var(--yellow) 0,
+                    var(--yellow) 38px,
+                    var(--black) 38px,
+                    var(--black) 76px
+                );
+
+        }
+
+
+        /* =====================================================
+           BANNER
+        ===================================================== */
+
+        .hero {
+
+            position: relative;
+
+            width: 100%;
+
+            min-height:
+                calc(100vh - 80px);
+
+            display: flex;
+
+            align-items: center;
+
+            overflow: hidden;
+
+            background:
+                var(--white);
+
+        }
+
+
+        /*
+         * IMAGEN PRINCIPAL
+         *
+         * La imagen ocupa TODO el banner.
+         */
+
+        .hero-background {
+
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background-image:
+                url("assets/fondo-construccion.png");
+
+            background-position:
+                center center;
+
+            background-repeat:
+                no-repeat;
+
+            background-size:
+                cover;
+
+            z-index: 1;
+
+        }
+
+
+        /* =====================================================
+           CAPA DE PROTECCIÓN
+        ===================================================== */
+
+        .hero-overlay {
+
+            position: absolute;
+
+            inset: 0;
+
+            z-index: 2;
+
+            pointer-events: none;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.12) 0%,
+                    rgba(255,255,255,.02) 45%,
+                    rgba(255,255,255,0) 100%
+                );
+
+        }
+
+
+        /* =====================================================
+           CONTENIDO
+        ===================================================== */
+
+        .hero-content {
+
+            position: relative;
+
+            z-index: 3;
+
+            width: 100%;
+
+            max-width: 1450px;
+
+            margin: auto;
+
+            padding:
+                60px
+                7%;
+
+            display: flex;
+
+            align-items: center;
+
+        }
+
+
+        /*
+         * IMPORTANTE:
+         *
+         * Dejamos espacio para que el texto
+         * coincida con el lado izquierdo
+         * de la imagen.
+         */
+
+        .message {
+
+            width: 47%;
+
+            max-width: 650px;
+
+        }
+
+
+        /* =====================================================
+           ICONO
+        ===================================================== */
+
+        .construction-icon {
+
+            width: 68px;
+
+            height: 68px;
+
+            margin-bottom: 28px;
+
+            color: var(--yellow);
+
+        }
+
+
+        .construction-icon svg {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: block;
+
+        }
+
+
+        /* =====================================================
+           TÍTULO
+        ===================================================== */
+
+        .message h1 {
+
+            font-family:
+                "Montserrat",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    48px,
+                    5.5vw,
+                    88px
+                );
+
+            font-weight: 900;
+
+            line-height: .94;
+
+            letter-spacing:
+                -.045em;
+
+            text-transform:
+                uppercase;
+
+            color: var(--black);
+
+        }
+
+
+        .message h1 span {
+
+            display: block;
+
+            margin-top: 8px;
+
+            color: var(--yellow);
+
+        }
+
+
+        /* =====================================================
+           SEPARADOR
+        ===================================================== */
+
+        .warning-line {
+
+            width: 205px;
+
+            height: 7px;
+
+            margin:
+                35px
+                0
+                30px;
+
+            background:
+                repeating-linear-gradient(
+                    -45deg,
+                    var(--yellow) 0,
+                    var(--yellow) 14px,
+                    var(--black) 14px,
+                    var(--black) 28px
+                );
+
+        }
+
+
+        /* =====================================================
+           DESCRIPCIÓN
+        ===================================================== */
+
+        .description {
+
+            max-width: 510px;
+
+            font-size:
+                clamp(
+                    17px,
+                    1.5vw,
+                    24px
+                );
+
+            line-height: 1.55;
+
+            color: #252525;
+
+        }
+
+
+        /* =====================================================
+           MENSAJE FINAL
+        ===================================================== */
+
+        .coming-soon {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            margin-top: 38px;
+
+            font-family:
+                "Montserrat",
+                sans-serif;
+
+            font-size:
+                clamp(
+                    17px,
+                    1.5vw,
+                    22px
+                );
+
+            font-weight: 800;
+
+        }
+
+
+        /* =====================================================
+           CÍRCULO DEL RELOJ
+        ===================================================== */
+
+        .clock {
+
+            width: 48px;
+
+            height: 48px;
+
+            flex: 0 0 48px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 50%;
+
+            background:
+                var(--yellow);
+
+        }
+
+
+        .clock svg {
+
+            width: 26px;
+
+            height: 26px;
+
+        }
+
+
+        /* =====================================================
+           FRANJA INFERIOR
+        ===================================================== */
+
+        .warning-bottom {
+
+            width: 100%;
+
+            height: 40px;
+
+            flex-shrink: 0;
+
+            background:
+                repeating-linear-gradient(
+                    -45deg,
+                    var(--yellow) 0,
+                    var(--yellow) 38px,
+                    var(--black) 38px,
+                    var(--black) 76px
+                );
+
+        }
+
+
+        /* =====================================================
+           ANIMACIÓN SUTIL
+        ===================================================== */
+
+        .construction-icon {
+
+            animation:
+                floating 3s ease-in-out infinite;
+
+        }
+
+
+        @keyframes floating {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-5px);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE TABLET
+        ===================================================== */
+
+        @media (max-width: 1000px) {
+
+            .hero {
+
+                min-height:
+                    calc(100vh - 80px);
+
+            }
+
+
+            .hero-content {
+
+                align-items:
+                    flex-start;
+
+                padding:
+                    80px 6%;
+
+            }
+
+
+            .message {
+
+                width: 55%;
+
+            }
+
+
+            .message h1 {
+
+                font-size:
+                    clamp(
+                        45px,
+                        7vw,
+                        68px
+                    );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE MÓVIL
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .warning-top,
+            .warning-bottom {
+
+                height: 25px;
+
+            }
+
+
+            .hero {
+
+                min-height:
+                    calc(100vh - 50px);
+
+                align-items:
+                    flex-start;
+
+            }
+
+
+            .hero-background {
+
+                background-position:
+                    64% center;
+
+            }
+
+
+            /*
+             * En móvil ponemos una capa
+             * blanca suave detrás del texto.
+             */
+
+            .hero-overlay {
+
+                background:
+                    linear-gradient(
+                        90deg,
+                        rgba(255,255,255,.94) 0%,
+                        rgba(255,255,255,.86) 55%,
+                        rgba(255,255,255,.25) 100%
+                    );
+
+            }
+
+
+            .hero-content {
+
+                padding:
+                    70px 28px;
+
+            }
+
+
+            .message {
+
+                width: 100%;
+
+                max-width: 560px;
+
+            }
+
+
+            .construction-icon {
+
+                width: 54px;
+
+                height: 54px;
+
+                margin-bottom: 22px;
+
+            }
+
+
+            .message h1 {
+
+                font-size:
+                    clamp(
+                        42px,
+                        13vw,
+                        62px
+                    );
+
+            }
+
+
+            .warning-line {
+
+                width: 165px;
+
+                height: 6px;
+
+                margin:
+                    27px 0
+                    24px;
+
+            }
+
+
+            .description {
+
+                font-size: 16px;
+
+                max-width: 440px;
+
+            }
+
+
+            .coming-soon {
+
+                margin-top: 30px;
+
+                font-size: 16px;
+
+            }
+
+
+            .clock {
+
+                width: 43px;
+
+                height: 43px;
+
+                flex-basis: 43px;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           MÓVILES PEQUEÑOS
+        ===================================================== */
+
+        @media (max-width: 430px) {
+
+            .hero-background {
+
+                background-position:
+                    66% center;
+
+            }
+
+
+            .hero-content {
+
+                padding:
+                    55px 22px;
+
+            }
+
+
+            .message h1 {
+
+                font-size: 40px;
+
+            }
+
+
+            .description {
+
+                font-size: 15px;
+
+            }
+
+
+            .coming-soon {
+
+                gap: 12px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="construction-page">
+
+
+        <!-- =================================================
+             FRANJA SUPERIOR
+        ================================================== -->
+
+        <div class="warning-top"></div>
+
+
+        <!-- =================================================
+             BANNER PRINCIPAL
+        ================================================== -->
+
+        <main class="hero">
+
+
+            <!-- IMAGEN -->
+
+            <div class="hero-background"></div>
+
+
+            <!-- CAPA -->
+
+            <div class="hero-overlay"></div>
+
+
+            <!-- CONTENIDO -->
+
+            <div class="hero-content">
+
+                <div class="message">
+
+
+                    <!-- ICONO -->
+
+                    <div class="construction-icon">
+
+                        <svg
+                            viewBox="0 0 100 100"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+
+                            <rect
+                                x="18"
+                                y="25"
+                                width="64"
+                                height="45"
+                                rx="4"
+                                stroke="currentColor"
+                                stroke-width="6"
+                            />
+
+                            <path
+                                d="M30 78H70"
+                                stroke="currentColor"
+                                stroke-width="6"
+                                stroke-linecap="round"
+                            />
+
+                            <circle
+                                cx="50"
+                                cy="47"
+                                r="10"
+                                stroke="currentColor"
+                                stroke-width="5"
+                            />
+
+                            <path
+                                d="M50 40V47L55 51"
+                                stroke="currentColor"
+                                stroke-width="5"
+                                stroke-linecap="round"
+                            />
+
+                        </svg>
+
+                    </div>
+
+
+                    <!-- TÍTULO -->
+
+                    <h1>
+
+                        Sitio Web
+
+                        <span>
+                            En Construcción
+                        </span>
+
+                    </h1>
+
+
+                    <!-- FRANJA -->
+
+                    <div class="warning-line"></div>
+
+
+                    <!-- DESCRIPCIÓN -->
+
+                    <p class="description">
+
+                        Estamos trabajando para ofrecerte
+                        una mejor experiencia.
+
+                    </p>
+
+
+                    <!-- PRÓXIMAMENTE -->
+
+                    <div class="coming-soon">
+
+                        <div class="clock">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+
+                                <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="9"
+                                    stroke="#111"
+                                    stroke-width="2"
+                                />
+
+                                <path
+                                    d="M12 7V12L15 14"
+                                    stroke="#111"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+
+                            </svg>
+
+                        </div>
+
+
+                        <span>
+
+                            ¡Muy pronto estaremos en línea!
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+
+        <!-- =================================================
+             FRANJA INFERIOR
+        ================================================== -->
+
+        <div class="warning-bottom"></div>
+
+
+    </div>
+
+
+</body>
+
+</html>

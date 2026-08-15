@@ -1,0 +1,4151 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gestión PQRS | JAC Vereda Santa Bárbara</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --green:#0f5b35;
+    --green2:#1f7a45;
+    --green-soft:#eaf5ee;
+    --blue:#0d2c54;
+    --gold:#e3ad20;
+    --ink:#15221b;
+    --muted:#66756c;
+    --bg:#f5f8f6;
+    --white:#ffffff;
+    --border:#dce7df;
+    --red:#b42318;
+    --red-soft:#fff1f0;
+    --orange:#b86b00;
+    --orange-soft:#fff7e6;
+    --shadow:0 15px 40px rgba(13,44,84,.08);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:"Inter",Arial,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.5;
+}
+
+button,input,select,textarea{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+button:disabled{
+    cursor:not-allowed;
+    opacity:.6;
+}
+
+.container{
+    width:min(1250px,94%);
+    margin:auto;
+}
+
+/* TOPBAR */
+
+.topbar{
+    background:var(--blue);
+    color:white;
+    font-size:13px;
+}
+
+.topbar-content{
+    min-height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+/* HEADER */
+
+header{
+    background:rgba(255,255,255,.97);
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:100;
+    backdrop-filter:blur(12px);
+}
+
+.navbar{
+    min-height:78px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.brand{
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:var(--green);
+    font-weight:800;
+    font-size:13px;
+    line-height:1.2;
+}
+
+.brand img{
+    width:55px;
+    height:55px;
+    object-fit:contain;
+}
+
+.brand-text{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+}
+
+.navigation{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-size:12px;
+    font-weight:700;
+    color:#34443b;
+}
+
+.navigation a{
+    text-decoration:none;
+    padding:8px 0;
+}
+
+.navigation a:hover,
+.navigation .active{
+    color:var(--green);
+}
+
+.menu-button{
+    display:none;
+    border:0;
+    background:var(--green);
+    color:white;
+    border-radius:10px;
+    padding:10px 13px;
+    font-size:18px;
+}
+
+/* MAIN */
+
+main{
+    padding:50px 0 80px;
+}
+
+.admin-login{
+    width:min(520px,94%);
+    margin:0 auto;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    box-shadow:var(--shadow);
+    padding:30px;
+}
+
+.admin-login[hidden],
+.admin-app[hidden]{
+    display:none;
+}
+
+.admin-login h1{
+    font-family:"Montserrat",sans-serif;
+    color:var(--blue);
+    font-size:30px;
+    margin:10px 0 8px;
+}
+
+.admin-login p{
+    color:var(--muted);
+    font-size:14px;
+    margin-bottom:22px;
+}
+
+.login-field{
+    margin-bottom:16px;
+}
+
+.login-field label{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    font-weight:800;
+    margin-bottom:7px;
+    text-transform:uppercase;
+}
+
+.login-field input{
+    width:100%;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:12px 13px;
+    outline:none;
+    font-size:14px;
+}
+
+.login-field input:focus{
+    border-color:var(--green);
+    box-shadow:0 0 0 3px rgba(15,91,53,.08);
+}
+
+.login-message{
+    min-height:20px;
+    color:var(--red);
+    font-size:13px;
+    font-weight:700;
+    margin-top:12px;
+}
+
+.admin-session{
+    display:flex;
+    justify-content:flex-end;
+    margin-bottom:15px;
+}
+
+.eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    color:var(--green);
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    font-size:12px;
+}
+
+.eyebrow::before{
+    content:"";
+    width:25px;
+    height:3px;
+    background:var(--gold);
+    border-radius:5px;
+}
+
+.page-header{
+    margin-bottom:30px;
+}
+
+.page-header h1{
+    font-family:"Montserrat",sans-serif;
+    color:var(--blue);
+    font-size:clamp(32px,4vw,48px);
+    margin:12px 0 8px;
+}
+
+.page-header p{
+    color:var(--muted);
+    max-width:780px;
+}
+
+/* ESTADISTICAS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:14px;
+    margin-bottom:25px;
+}
+
+.stat{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:17px;
+    padding:20px;
+}
+
+.stat span{
+    display:block;
+    color:var(--muted);
+    font-size:12px;
+    margin-bottom:6px;
+}
+
+.stat strong{
+    font-family:"Montserrat",sans-serif;
+    color:var(--blue);
+    font-size:27px;
+}
+
+/* PANEL */
+
+.panel{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:22px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+}
+
+.panel-header{
+    padding:25px 28px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.panel-title h2{
+    font-family:"Montserrat",sans-serif;
+    color:var(--blue);
+    font-size:22px;
+    margin-bottom:4px;
+}
+
+.panel-title p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* CONTROLES */
+
+.controls{
+    width:100%;
+    display:grid;
+    grid-template-columns:minmax(240px,1.5fr) repeat(3,minmax(150px,.6fr)) auto auto;
+    gap:10px;
+}
+
+.control{
+    width:100%;
+    border:1px solid var(--border);
+    background:white;
+    border-radius:10px;
+    padding:11px 13px;
+    outline:none;
+    font-size:13px;
+}
+
+.control:focus{
+    border-color:var(--green);
+    box-shadow:0 0 0 3px rgba(15,91,53,.08);
+}
+
+.btn{
+    border:none;
+    border-radius:10px;
+    padding:11px 16px;
+    font-weight:800;
+    transition:.2s ease;
+    white-space:nowrap;
+}
+
+.btn:hover{
+    transform:translateY(-1px);
+}
+
+.btn-primary{
+    background:var(--green);
+    color:white;
+}
+
+.btn-primary:hover{
+    background:var(--green2);
+}
+
+.btn-light{
+    background:#eef3f8;
+    color:var(--blue);
+}
+
+.btn-danger{
+    background:var(--red-soft);
+    color:var(--red);
+}
+
+/* TABLA */
+
+.table-wrapper{
+    width:100%;
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1200px;
+}
+
+thead{
+    background:#f3f7f4;
+}
+
+th{
+    text-align:left;
+    color:var(--blue);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    padding:15px 14px;
+    border-bottom:1px solid var(--border);
+    white-space:nowrap;
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid #edf2ee;
+    font-size:13px;
+    vertical-align:middle;
+}
+
+tbody tr:hover{
+    background:#fafcfb;
+}
+
+/* RADICADO */
+
+.radicado{
+    font-weight:800;
+    color:var(--green);
+    white-space:nowrap;
+}
+
+/* ESTADOS */
+
+.status{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    border-radius:30px;
+    padding:6px 10px;
+    font-size:10px;
+    font-weight:800;
+    white-space:nowrap;
+}
+
+.status::before{
+    content:"";
+    width:7px;
+    height:7px;
+    border-radius:50%;
+}
+
+.status-recibida{
+    background:#eef3f8;
+    color:var(--blue);
+}
+
+.status-recibida::before{
+    background:var(--blue);
+}
+
+.status-revision{
+    background:var(--orange-soft);
+    color:var(--orange);
+}
+
+.status-revision::before{
+    background:#e3a008;
+}
+
+.status-tramite{
+    background:#fff6dc;
+    color:#856000;
+}
+
+.status-tramite::before{
+    background:var(--gold);
+}
+
+.status-respondida{
+    background:var(--green-soft);
+    color:var(--green);
+}
+
+.status-respondida::before{
+    background:var(--green);
+}
+
+.status-cerrada{
+    background:#e9eceb;
+    color:#49554e;
+}
+
+.status-cerrada::before{
+    background:#49554e;
+}
+
+/* ACCIONES */
+
+.actions{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+.action{
+    border:none;
+    border-radius:8px;
+    padding:8px 10px;
+    font-size:11px;
+    font-weight:800;
+}
+
+.action-view{
+    background:#eef3f8;
+    color:var(--blue);
+}
+
+/* MENSAJES */
+
+.message{
+    padding:55px 20px;
+    text-align:center;
+    color:var(--muted);
+}
+
+.message strong{
+    display:block;
+    color:var(--blue);
+    font-size:18px;
+    margin-bottom:7px;
+}
+
+.spinner{
+    width:35px;
+    height:35px;
+    border:4px solid #dfeae3;
+    border-top-color:var(--green);
+    border-radius:50%;
+    margin:0 auto 15px;
+    animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* PAGINACION */
+
+.pagination{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    padding:18px 25px;
+    border-top:1px solid var(--border);
+}
+
+.page-info{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.page-buttons{
+    display:flex;
+    gap:6px;
+}
+
+.page-btn{
+    min-width:34px;
+    height:34px;
+    border:1px solid var(--border);
+    background:white;
+    border-radius:8px;
+    font-weight:700;
+}
+
+.page-btn.active{
+    background:var(--green);
+    color:white;
+    border-color:var(--green);
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(8,31,56,.58);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:500;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(1180px,100%);
+    max-height:92vh;
+    background:white;
+    border-radius:18px;
+    box-shadow:0 25px 70px rgba(0,0,0,.2);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+.modal-header{
+    padding:22px 25px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.modal-header h3{
+    font-family:"Montserrat",sans-serif;
+    color:var(--blue);
+}
+
+.close{
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:50%;
+    background:#f1f4f2;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.modal-content{
+    padding:22px;
+    overflow:auto;
+}
+
+/* DETALLE */
+
+.modal-detail-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1.08fr) minmax(340px,.78fr);
+    gap:16px;
+    align-items:start;
+}
+
+.detail-section,
+.management-form{
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:#fff;
+    overflow:hidden;
+}
+
+.detail-section-header{
+    padding:15px 18px;
+    border-bottom:1px solid var(--border);
+    background:#f7faf8;
+}
+
+.detail-section-header h4{
+    margin:0;
+    color:var(--blue);
+    font-family:"Montserrat",sans-serif;
+    font-size:15px;
+}
+
+.detail-section-header p{
+    margin:3px 0 0;
+    color:var(--muted);
+    font-size:12px;
+}
+
+.detail-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(180px,1fr));
+    gap:9px;
+    padding:12px;
+    align-items:start;
+}
+
+.detail{
+    background:#f7faf8;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:12px 14px;
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.detail.full{
+    grid-column:1 / -1;
+}
+
+.detail label{
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    text-transform:uppercase;
+    font-weight:800;
+    margin:0;
+}
+
+.detail strong{
+    display:block;
+    color:var(--ink);
+    font-size:14px;
+    line-height:1.35;
+    font-weight:600;
+    white-space:normal;
+    overflow-wrap:anywhere;
+    min-height:0;
+}
+
+.detail strong .status{
+    width:max-content;
+    max-width:100%;
+}
+
+.detail-description{
+    color:#223129;
+    font-size:13px;
+    font-weight:500;
+    line-height:1.55;
+    white-space:pre-line;
+    max-height:180px;
+    overflow:auto;
+}
+
+/* FORMULARIO */
+
+.management-form{
+    margin-top:0;
+    padding:16px;
+    position:sticky;
+    top:0;
+}
+
+.form-field{
+    margin-bottom:13px;
+}
+
+.form-field label{
+    display:block;
+    font-size:11px;
+    font-weight:800;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:6px;
+}
+
+.form-field select,
+.form-field textarea{
+    width:100%;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:11px 13px;
+    outline:none;
+    font-size:13px;
+}
+
+.form-field textarea{
+    min-height:112px;
+    resize:vertical;
+}
+
+.form-field select:focus,
+.form-field textarea:focus{
+    border-color:var(--green);
+    box-shadow:0 0 0 3px rgba(15,91,53,.08);
+}
+
+/* ARCHIVO PDF */
+
+.pdf-upload{
+    border:1px dashed #b9cfc1;
+    background:#f7faf8;
+    border-radius:12px;
+    padding:14px;
+    margin-top:14px;
+}
+
+.pdf-upload-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--blue);
+    font-weight:800;
+    font-size:13px;
+    margin-bottom:6px;
+}
+
+.pdf-icon{
+    width:34px;
+    height:34px;
+    border-radius:9px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--red-soft);
+    color:var(--red);
+    font-weight:900;
+    font-size:11px;
+}
+
+.pdf-upload-description{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.45;
+    margin-bottom:12px;
+}
+
+.pdf-file-input{
+    width:100%;
+    border:1px solid var(--border);
+    background:white;
+    border-radius:10px;
+    padding:9px;
+    font-size:13px;
+}
+
+.pdf-file-input::file-selector-button{
+    border:0;
+    border-radius:8px;
+    background:#eef3f8;
+    color:var(--blue);
+    font-weight:800;
+    margin-right:10px;
+    padding:8px 10px;
+}
+
+.pdf-file-input:focus{
+    outline:none;
+    border-color:var(--green);
+}
+
+.pdf-selected{
+    display:none;
+    margin-top:10px;
+    padding:10px 12px;
+    border-radius:9px;
+    background:var(--green-soft);
+    color:var(--green);
+    font-size:12px;
+    font-weight:700;
+    overflow-wrap:anywhere;
+}
+
+.pdf-selected.show{
+    display:block;
+}
+
+.pdf-remove{
+    margin-left:8px;
+    border:none;
+    background:transparent;
+    color:var(--red);
+    font-weight:800;
+}
+
+/* MODAL ACTIONS */
+
+.modal-actions{
+    margin-top:18px;
+    padding-top:18px;
+    border-top:1px solid var(--border);
+    display:flex;
+    gap:10px;
+    justify-content:flex-end;
+    flex-wrap:wrap;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    max-width:380px;
+    background:var(--blue);
+    color:white;
+    padding:14px 18px;
+    border-radius:12px;
+    box-shadow:0 15px 40px rgba(0,0,0,.18);
+    transform:translateY(120px);
+    opacity:0;
+    transition:.25s ease;
+    z-index:1000;
+    font-size:13px;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+.toast.success{
+    background:var(--green);
+}
+
+.toast.error{
+    background:var(--red);
+}
+
+/* FOOTER */
+
+footer{
+    background:#081f38;
+    color:#b8c5d3;
+    padding:30px 0;
+}
+
+.footer-content{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+    font-size:12px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1050px){
+
+    .controls{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .modal-detail-layout{
+        grid-template-columns:1fr;
+    }
+
+    .management-form{
+        position:static;
+    }
+
+}
+
+@media(max-width:900px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .menu-button{
+        display:block;
+    }
+
+    .navigation{
+        display:none;
+    }
+
+    .controls{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .controls{
+        grid-template-columns:1fr;
+    }
+
+    .detail-grid{
+        grid-template-columns:1fr;
+    }
+
+    .modal-content{
+        padding:16px;
+    }
+
+    .modal-header{
+        padding:18px;
+    }
+
+    .detail.full{
+        grid-column:auto;
+    }
+
+    .pagination{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .page-buttons{
+        justify-content:center;
+    }
+
+    .topbar-content{
+        justify-content:center;
+        text-align:center;
+    }
+
+    .topbar-content span:last-child{
+        display:none;
+    }
+
+    main{
+        padding:35px 0 55px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+    <div class="container topbar-content">
+        <span>
+            Junta de Acción Comunal · Vereda Santa Bárbara
+        </span>
+
+        <span>
+            Municipio de El Bagre · Antioquia
+        </span>
+    </div>
+</div>
+
+<!-- HEADER -->
+
+<header>
+    <div class="container navbar">
+
+        <a href="index.html" class="brand">
+
+            <img
+                src="assets/logo.png"
+                alt="Logo JAC Vereda Santa Bárbara"
+            >
+
+            <div class="brand-text">
+                <span>JUNTA DE ACCIÓN COMUNAL</span>
+                <span>VEREDA SANTA BÁRBARA</span>
+            </div>
+
+        </a>
+
+        <nav class="navigation">
+            <a href="index.html">Inicio</a>
+            <a href="nosotro.html">Nosotros</a>
+            <a href="afiliados.html">Afiliados</a>
+            <a href="certificados.html">Certificados</a>
+            <a href="pqrs.html">PQRS</a>
+            <a href="gestion-pqrs.html" class="active">Gestión PQRS</a>
+            <a href="admincertificado.html">Admin Cert.</a>
+            <a href="politicas.html">Políticas</a>
+        </nav>
+
+        <button
+            class="menu-button"
+            onclick="toggleMenu()"
+            type="button"
+            aria-label="Abrir menú"
+        >
+            ☰
+        </button>
+
+    </div>
+</header>
+
+<!-- MAIN -->
+
+<main>
+
+<section
+    class="admin-login"
+    id="adminLogin"
+>
+
+    <div class="eyebrow">
+        Acceso restringido
+    </div>
+
+    <h1>
+        Gestión PQRS
+    </h1>
+
+    <p>
+        Ingresa la clave administrativa para consultar y gestionar
+        las solicitudes recibidas por la Junta.
+    </p>
+
+    <form id="adminLoginForm">
+
+        <div class="login-field">
+            <label for="adminPassword">
+                Clave de administrador
+            </label>
+
+            <input
+                id="adminPassword"
+                type="password"
+                autocomplete="current-password"
+                required
+            >
+        </div>
+
+        <button
+            class="btn btn-primary"
+            id="btnLogin"
+            type="submit"
+        >
+            Ingresar
+        </button>
+
+        <div
+            class="login-message"
+            id="loginMessage"
+            role="alert"
+        ></div>
+
+    </form>
+
+</section>
+
+<div
+    class="container admin-app"
+    id="adminApp"
+    hidden
+>
+
+    <div class="admin-session">
+        <button
+            class="btn btn-light"
+            id="btnCerrarSesion"
+            type="button"
+        >
+            Cerrar sesión
+        </button>
+    </div>
+
+    <section class="page-header">
+
+        <div class="eyebrow">
+            Gestión institucional
+        </div>
+
+        <h1>
+            Bandeja de PQRS
+        </h1>
+
+        <p>
+            Busca, revisa, gestiona y da seguimiento a las
+            Peticiones, Quejas, Reclamos y Sugerencias
+            recibidas por la Junta.
+        </p>
+
+    </section>
+
+    <!-- ESTADÍSTICAS -->
+
+    <div class="stats">
+
+        <div class="stat">
+            <span>Total PQRS</span>
+            <strong id="statTotal">0</strong>
+        </div>
+
+        <div class="stat">
+            <span>Recibidas</span>
+            <strong id="statRecibidas">0</strong>
+        </div>
+
+        <div class="stat">
+            <span>En revisión</span>
+            <strong id="statRevision">0</strong>
+        </div>
+
+        <div class="stat">
+            <span>En trámite</span>
+            <strong id="statTramite">0</strong>
+        </div>
+
+        <div class="stat">
+            <span>Respondidas</span>
+            <strong id="statRespondidas">0</strong>
+        </div>
+
+    </div>
+
+    <!-- PANEL -->
+
+    <section class="panel">
+
+        <div class="panel-header">
+
+            <div class="panel-title">
+
+                <h2>
+                    Solicitudes recibidas
+                </h2>
+
+                <p id="lastUpdate">
+                    Cargando información...
+                </p>
+
+            </div>
+
+            <div class="controls">
+
+                <input
+                    id="search"
+                    class="control"
+                    type="search"
+                    placeholder="Buscar por radicado, nombre, documento, correo o asunto..."
+                >
+
+                <select id="filterEstado" class="control">
+
+                    <option value="">
+                        Todos los estados
+                    </option>
+
+                    <option value="Recibida">
+                        Recibida
+                    </option>
+
+                    <option value="En revisión">
+                        En revisión
+                    </option>
+
+                    <option value="En trámite">
+                        En trámite
+                    </option>
+
+                    <option value="Respondida">
+                        Respondida
+                    </option>
+
+                    <option value="Cerrada">
+                        Cerrada
+                    </option>
+
+                </select>
+
+                <select id="filterTipo" class="control">
+
+                    <option value="">
+                        Todos los tipos
+                    </option>
+
+                    <option value="Petición">
+                        Petición
+                    </option>
+
+                    <option value="Queja">
+                        Queja
+                    </option>
+
+                    <option value="Reclamo">
+                        Reclamo
+                    </option>
+
+                    <option value="Sugerencia">
+                        Sugerencia
+                    </option>
+
+                </select>
+
+                <select id="filterOrden" class="control">
+
+                    <option value="recientes">
+                        Más recientes
+                    </option>
+
+                    <option value="antiguas">
+                        Más antiguas
+                    </option>
+
+                </select>
+
+                <button
+                    class="btn btn-light"
+                    id="btnLimpiar"
+                    type="button"
+                >
+                    Limpiar
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    id="btnActualizar"
+                    type="button"
+                >
+                    ↻ Actualizar
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- TABLA -->
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Radicado</th>
+                        <th>Fecha</th>
+                        <th>Solicitante</th>
+                        <th>Tipo</th>
+                        <th>Asunto</th>
+                        <th>Contacto</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="tablaPQRS">
+
+                    <tr>
+
+                        <td colspan="8">
+
+                            <div class="message">
+
+                                <div class="spinner"></div>
+
+                                <strong>
+                                    Cargando PQRS
+                                </strong>
+
+                                Consultando el sistema institucional...
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!-- PAGINACIÓN -->
+
+        <div class="pagination">
+
+            <div
+                class="page-info"
+                id="pageInfo"
+            >
+                Página 1 de 1
+            </div>
+
+            <div
+                class="page-buttons"
+                id="pageButtons"
+            ></div>
+
+        </div>
+
+    </section>
+
+</div>
+
+</main>
+
+<!-- MODAL -->
+
+<div
+    class="modal"
+    id="modal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h3>
+                Detalle de PQRS
+            </h3>
+
+            <button
+                class="close"
+                id="btnCerrarModal"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <div
+            class="modal-content"
+            id="modalContent"
+        ></div>
+
+    </div>
+
+</div>
+
+<!-- TOAST -->
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="container footer-content">
+
+        <div>
+            © 2026 Junta de Acción Comunal Vereda Santa Bárbara
+        </div>
+
+        <div>
+            Municipio de El Bagre · Antioquia
+        </div>
+
+    </div>
+
+</footer>
+
+<script>
+
+function toggleMenu(){
+
+    const navigation =
+        document.querySelector(".navigation");
+
+    if(!navigation){
+        return;
+    }
+
+    if(navigation.style.display === "flex"){
+
+        navigation.style.display = "none";
+
+    }
+    else{
+
+        navigation.style.display = "flex";
+        navigation.style.position = "absolute";
+        navigation.style.top = "78px";
+        navigation.style.left = "0";
+        navigation.style.right = "0";
+        navigation.style.padding = "20px";
+        navigation.style.background = "#ffffff";
+        navigation.style.flexDirection = "column";
+        navigation.style.borderBottom = "1px solid var(--border)";
+
+    }
+
+}
+
+/* =========================================================
+   CONFIGURACIÓN
+========================================================= */
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbxUECd5ng7DgmX-x89AkgxT6nlDxrPwi1lRSzGizdUZrOaAwB7rrsqYZpks3dXjbiGH/exec"
+const POR_PAGINA = 10;
+const ADMIN_SESSION_KEY =
+    "jac_pqrs_admin_clave";
+
+const MAX_PDF_SIZE =
+    10 * 1024 * 1024;
+
+let pqrs = [];
+
+let filtradas = [];
+
+let paginaActual = 1;
+
+let pqrsActual = null;
+
+let archivoRespuesta = null;
+
+let adminClaveActual =
+    sessionStorage.getItem(
+        ADMIN_SESSION_KEY
+    ) || "";
+
+
+/* =========================================================
+   INICIO
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        configurarLogin();
+
+        if(
+            adminClaveActual
+        ){
+
+            mostrarPanelAdmin();
+
+        }
+        else{
+
+            mostrarLogin();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   LOGIN ADMINISTRADOR
+========================================================= */
+
+function configurarLogin(){
+
+    const form =
+        document.getElementById(
+            "adminLoginForm"
+        );
+
+    const cerrarSesion =
+        document.getElementById(
+            "btnCerrarSesion"
+        );
+
+    if(
+        form
+    ){
+
+        form.addEventListener(
+            "submit",
+            async function(event){
+
+                event.preventDefault();
+
+                const input =
+                    document.getElementById(
+                        "adminPassword"
+                    );
+
+                const boton =
+                    document.getElementById(
+                        "btnLogin"
+                    );
+
+                const mensaje =
+                    document.getElementById(
+                        "loginMessage"
+                    );
+
+                const clave =
+                    input.value.trim();
+
+                if(
+                    !clave
+                ){
+
+                    mensaje.textContent =
+                        "Ingresa la clave administrativa.";
+
+                    return;
+
+                }
+
+                boton.disabled = true;
+                boton.textContent = "Validando...";
+                mensaje.textContent = "";
+
+                try{
+
+                    adminClaveActual = clave;
+
+                    await llamarAPI(
+                        "listarPQRS"
+                    );
+
+                    sessionStorage.setItem(
+                        ADMIN_SESSION_KEY,
+                        clave
+                    );
+
+                    input.value = "";
+
+                    mostrarPanelAdmin();
+
+                }
+                catch(error){
+
+                    adminClaveActual = "";
+
+                    sessionStorage.removeItem(
+                        ADMIN_SESSION_KEY
+                    );
+
+                    mensaje.textContent =
+                        error.message ||
+                        "No fue posible validar la clave.";
+
+                }
+                finally{
+
+                    boton.disabled = false;
+                    boton.textContent = "Ingresar";
+
+                }
+
+            }
+        );
+
+    }
+
+    if(
+        cerrarSesion
+    ){
+
+        cerrarSesion.addEventListener(
+            "click",
+            function(){
+
+                adminClaveActual = "";
+
+                sessionStorage.removeItem(
+                    ADMIN_SESSION_KEY
+                );
+
+                pqrs = [];
+                filtradas = [];
+                paginaActual = 1;
+                pqrsActual = null;
+                archivoRespuesta = null;
+
+                cerrarModal();
+                mostrarLogin();
+
+            }
+        );
+
+    }
+
+}
+
+function mostrarLogin(){
+
+    document
+        .getElementById("adminLogin")
+        .hidden = false;
+
+    document
+        .getElementById("adminApp")
+        .hidden = true;
+
+}
+
+function mostrarPanelAdmin(){
+
+    document
+        .getElementById("adminLogin")
+        .hidden = true;
+
+    document
+        .getElementById("adminApp")
+        .hidden = false;
+
+    inicializarPanel();
+
+    cargarPQRS();
+
+}
+
+function inicializarPanel(){
+
+    if(
+        inicializarPanel.iniciado
+    ){
+
+        return;
+
+    }
+
+    inicializarPanel.iniciado = true;
+
+        document
+            .getElementById("search")
+            .addEventListener(
+                "input",
+                aplicarFiltros
+            );
+
+        document
+            .getElementById("filterEstado")
+            .addEventListener(
+                "change",
+                aplicarFiltros
+            );
+
+        document
+            .getElementById("filterTipo")
+            .addEventListener(
+                "change",
+                aplicarFiltros
+            );
+
+        document
+            .getElementById("filterOrden")
+            .addEventListener(
+                "change",
+                aplicarFiltros
+            );
+
+        document
+            .getElementById("btnLimpiar")
+            .addEventListener(
+                "click",
+                limpiarFiltros
+            );
+
+        document
+            .getElementById("btnActualizar")
+            .addEventListener(
+                "click",
+                cargarPQRS
+            );
+
+        document
+            .getElementById("btnCerrarModal")
+            .addEventListener(
+                "click",
+                cerrarModal
+            );
+
+        document
+            .getElementById("modal")
+            .addEventListener(
+                "click",
+                function(event){
+
+                    if(
+                        event.target.id === "modal"
+                    ){
+                        cerrarModal();
+                    }
+
+                }
+            );
+
+}
+
+
+/* =========================================================
+   LLAMAR API
+========================================================= */
+
+async function llamarAPI(
+    accion,
+    parametros = {},
+    opciones = {}
+){
+
+    const metodo =
+        opciones.metodo || "GET";
+
+    let url = API_URL;
+
+    let fetchOptions = {
+        method: metodo,
+        cache: "no-store"
+    };
+
+    if(
+        metodo === "GET"
+    ){
+
+        const query =
+            new URLSearchParams();
+
+        query.set(
+            "accion",
+            accion
+        );
+
+        query.set(
+            "t",
+            Date.now()
+        );
+
+        if(
+            adminClaveActual
+        ){
+
+            query.set(
+                "adminClave",
+                adminClaveActual
+            );
+
+        }
+
+        Object.keys(
+            parametros
+        ).forEach(
+            function(key){
+
+                if(
+                    parametros[key] !== null &&
+                    parametros[key] !== undefined
+                ){
+
+                    query.set(
+                        key,
+                        parametros[key]
+                    );
+
+                }
+
+            }
+        );
+
+        url +=
+            "?" +
+            query.toString();
+
+    }
+    else{
+
+        fetchOptions.headers = {
+            "Content-Type":
+                "text/plain;charset=utf-8"
+        };
+
+        fetchOptions.body =
+            JSON.stringify({
+                accion: accion,
+                adminClave: adminClaveActual,
+                ...parametros
+            });
+
+    }
+
+    const response =
+        await fetch(
+            url,
+            fetchOptions
+        );
+
+    if(
+        !response.ok
+    ){
+
+        throw new Error(
+            "HTTP " +
+            response.status
+        );
+
+    }
+
+    const data =
+        await response.json();
+
+    if(
+        data.ok === false ||
+        data.success === false
+    ){
+
+        throw new Error(
+            data.mensaje ||
+            data.message ||
+            "La operación no pudo completarse."
+        );
+
+    }
+
+    return data;
+
+}
+
+
+/* =========================================================
+   CARGAR PQRS
+========================================================= */
+
+async function cargarPQRS(){
+
+    mostrarCargando();
+
+    try{
+
+        const data =
+            await llamarAPI(
+                "listarPQRS"
+            );
+
+        if(
+            Array.isArray(data.pqrs)
+        ){
+
+            pqrs = data.pqrs;
+
+        }
+        else if(
+            Array.isArray(data.solicitudes)
+        ){
+
+            pqrs = data.solicitudes;
+
+        }
+        else if(
+            Array.isArray(data.data)
+        ){
+
+            pqrs = data.data;
+
+        }
+        else if(
+            Array.isArray(data.rows)
+        ){
+
+            pqrs = data.rows;
+
+        }
+        else{
+
+            pqrs = [];
+
+        }
+
+        actualizarEstadisticas();
+
+        paginaActual = 1;
+
+        aplicarFiltros();
+
+        document
+            .getElementById("lastUpdate")
+            .textContent =
+                "Última actualización: " +
+                new Date()
+                    .toLocaleString("es-CO");
+
+        mostrarToast(
+            "PQRS actualizadas correctamente.",
+            "success"
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Error cargando PQRS:",
+            error
+        );
+
+        if(
+            String(
+                error.message || ""
+            )
+                .toLowerCase()
+                .includes(
+                    "no autorizado"
+                )
+        ){
+
+            adminClaveActual = "";
+
+            sessionStorage.removeItem(
+                ADMIN_SESSION_KEY
+            );
+
+            mostrarLogin();
+
+            document
+                .getElementById("loginMessage")
+                .textContent =
+                    "La sesión no es válida o la clave cambió.";
+
+            return;
+
+        }
+
+        mostrarError(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   NORMALIZAR
+========================================================= */
+
+function normalizar(item){
+
+    return {
+
+        fila:
+            item.fila || "",
+
+        radicado:
+            obtener(
+                item,
+                [
+                    "radicado",
+                    "RADICADO",
+                    "id",
+                    "ID"
+                ]
+            ),
+
+        fecha:
+            formatearFechaPantalla(
+                obtener(
+                    item,
+                    [
+                        "fecha",
+                        "Fecha",
+                        "FECHA"
+                    ]
+                )
+            ),
+
+        nombre:
+            obtener(
+                item,
+                [
+                    "nombre",
+                    "Nombre completo",
+                    "nombreCompleto",
+                    "NOMBRE COMPLETO"
+                ]
+            ),
+
+        documento:
+            obtener(
+                item,
+                [
+                    "documento",
+                    "Documento"
+                ]
+            ),
+
+        telefono:
+            obtener(
+                item,
+                [
+                    "telefono",
+                    "Teléfono"
+                ]
+            ),
+
+        correo:
+            obtener(
+                item,
+                [
+                    "correo",
+                    "Correo electrónico"
+                ]
+            ),
+
+        tipo:
+            obtener(
+                item,
+                [
+                    "tipo",
+                    "Tipo"
+                ]
+            ),
+
+        asunto:
+            obtener(
+                item,
+                [
+                    "asunto",
+                    "Asunto"
+                ]
+            ),
+
+        descripcion:
+            obtener(
+                item,
+                [
+                    "descripcion",
+                    "Descripción"
+                ]
+            ),
+
+        estado:
+            obtener(
+                item,
+                [
+                    "estado",
+                    "Estado"
+                ]
+            ) || "Recibida",
+
+        respuesta:
+            obtener(
+                item,
+                [
+                    "respuesta",
+                    "Respuesta"
+                ]
+            ),
+
+        fechaRespuesta:
+            formatearFechaPantalla(
+                obtener(
+                    item,
+                    [
+                        "fechaRespuesta",
+                        "Fecha respuesta"
+                    ]
+                )
+            ),
+
+        observaciones:
+            obtener(
+                item,
+                [
+                    "observaciones",
+                    "Observaciones"
+                ]
+            ),
+
+        fechaActualizacion:
+            formatearFechaPantalla(
+                obtener(
+                    item,
+                    [
+                        "fechaActualizacion",
+                        "Fecha actualización",
+                        "Fecha actualizacion",
+                        "ultimaActualizacion",
+                        "actualizacion",
+                        "Ultima actualizacion"
+                    ]
+                )
+            ),
+
+        archivoRespuesta:
+            obtener(
+                item,
+                [
+                    "archivoRespuesta",
+                    "Archivo respuesta",
+                    "Archivo Respuesta",
+                    "pdfRespuesta",
+                    "PDF respuesta",
+                    "documentoRespuesta",
+                    "Documento respuesta",
+                    "urlArchivo",
+                    "URL archivo",
+                    "urlRespuesta",
+                    "URL respuesta",
+                    "archivoUrl",
+                    "Archivo URL",
+                    "documentoUrl",
+                    "Documento URL",
+                    "linkArchivo",
+                    "Link archivo",
+                    "linkDocumento",
+                    "Link documento"
+                ]
+            )
+
+        ,
+
+        nombreArchivo:
+            obtener(
+                item,
+                [
+                    "nombreArchivo",
+                    "Nombre archivo",
+                    "Nombre Archivo",
+                    "nombreDocumento",
+                    "Nombre documento",
+                    "nombreRespuesta",
+                    "Nombre respuesta",
+                    "archivoNombre"
+                ]
+            ),
+
+        idArchivo:
+            obtener(
+                item,
+                [
+                    "idArchivo",
+                    "ID archivo",
+                    "archivoId",
+                    "fileId"
+                ]
+            )
+
+    };
+
+}
+
+
+/* =========================================================
+   OBTENER PROPIEDAD
+========================================================= */
+
+function obtener(
+    objeto,
+    nombres
+){
+
+    for(
+        const nombre of nombres
+    ){
+
+        if(
+            objeto &&
+            Object.prototype.hasOwnProperty.call(
+                objeto,
+                nombre
+            )
+        ){
+
+            const valor =
+                objeto[nombre];
+
+            if(
+                valor !== null &&
+                valor !== undefined &&
+                valor !== ""
+            ){
+
+                return String(valor);
+
+            }
+
+        }
+
+    }
+
+    return "";
+
+}
+
+
+/* =========================================================
+   ESTADÍSTICAS
+========================================================= */
+
+function actualizarEstadisticas(){
+
+    let recibidas = 0;
+    let revision = 0;
+    let tramite = 0;
+    let respondidas = 0;
+
+    pqrs.forEach(
+        function(item){
+
+            const s =
+                normalizar(item);
+
+            const estado =
+                s.estado
+                    .trim()
+                    .toLowerCase();
+
+            if(
+                estado === "recibida"
+            ){
+
+                recibidas++;
+
+            }
+            else if(
+                estado === "en revisión"
+            ){
+
+                revision++;
+
+            }
+            else if(
+                estado === "en trámite"
+            ){
+
+                tramite++;
+
+            }
+            else if(
+                estado === "respondida"
+            ){
+
+                respondidas++;
+
+            }
+
+        }
+    );
+
+    document
+        .getElementById("statTotal")
+        .textContent =
+            pqrs.length;
+
+    document
+        .getElementById("statRecibidas")
+        .textContent =
+            recibidas;
+
+    document
+        .getElementById("statRevision")
+        .textContent =
+            revision;
+
+    document
+        .getElementById("statTramite")
+        .textContent =
+            tramite;
+
+    document
+        .getElementById("statRespondidas")
+        .textContent =
+            respondidas;
+
+}
+
+
+/* =========================================================
+   FILTROS
+========================================================= */
+
+function aplicarFiltros(){
+
+    const texto =
+        document
+            .getElementById("search")
+            .value
+            .trim()
+            .toLowerCase();
+
+    const estado =
+        document
+            .getElementById("filterEstado")
+            .value;
+
+    const tipo =
+        document
+            .getElementById("filterTipo")
+            .value;
+
+    const orden =
+        document
+            .getElementById("filterOrden")
+            .value;
+
+    filtradas =
+        pqrs
+            .map(normalizar)
+            .filter(
+                function(s){
+
+                    const contenido =
+
+                        (
+                            s.radicado +
+                            " " +
+                            s.nombre +
+                            " " +
+                            s.documento +
+                            " " +
+                            s.telefono +
+                            " " +
+                            s.correo +
+                            " " +
+                            s.tipo +
+                            " " +
+                            s.asunto +
+                            " " +
+                            s.descripcion
+                        )
+                        .toLowerCase();
+
+                    const coincideTexto =
+                        !texto ||
+                        contenido.includes(texto);
+
+                    const coincideEstado =
+                        !estado ||
+                        s.estado === estado;
+
+                    const coincideTipo =
+                        !tipo ||
+                        s.tipo === tipo;
+
+                    return (
+                        coincideTexto &&
+                        coincideEstado &&
+                        coincideTipo
+                    );
+
+                }
+            );
+
+    filtradas.sort(
+        function(a,b){
+
+            const fechaA =
+                convertirFecha(a.fecha);
+
+            const fechaB =
+                convertirFecha(b.fecha);
+
+            if(
+                orden === "antiguas"
+            ){
+
+                return fechaA - fechaB;
+
+            }
+
+            return fechaB - fechaA;
+
+        }
+    );
+
+    paginaActual =
+        Math.min(
+            paginaActual,
+            Math.max(
+                1,
+                Math.ceil(
+                    filtradas.length /
+                    POR_PAGINA
+                )
+            )
+        );
+
+    renderizarTabla();
+
+}
+
+
+/* =========================================================
+   LIMPIAR
+========================================================= */
+
+function limpiarFiltros(){
+
+    document
+        .getElementById("search")
+        .value = "";
+
+    document
+        .getElementById("filterEstado")
+        .value = "";
+
+    document
+        .getElementById("filterTipo")
+        .value = "";
+
+    document
+        .getElementById("filterOrden")
+        .value = "recientes";
+
+    paginaActual = 1;
+
+    aplicarFiltros();
+
+}
+
+
+/* =========================================================
+   TABLA
+========================================================= */
+
+function renderizarTabla(){
+
+    const tbody =
+        document
+            .getElementById("tablaPQRS");
+
+    if(
+        !filtradas.length
+    ){
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td colspan="8">
+
+                    <div class="message">
+
+                        <strong>
+                            No hay PQRS para mostrar
+                        </strong>
+
+                        Prueba modificando los filtros
+                        de búsqueda.
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `;
+
+        renderizarPaginacion();
+
+        return;
+
+    }
+
+    const inicio =
+        (
+            paginaActual - 1
+        ) *
+        POR_PAGINA;
+
+    const fin =
+        inicio +
+        POR_PAGINA;
+
+    const pagina =
+        filtradas.slice(
+            inicio,
+            fin
+        );
+
+    tbody.innerHTML =
+        pagina
+            .map(
+                function(s,index){
+
+                    return crearFila(
+                        s,
+                        inicio + index
+                    );
+
+                }
+            )
+            .join("");
+
+    renderizarPaginacion();
+
+}
+
+
+/* =========================================================
+   CREAR FILA
+========================================================= */
+
+function crearFila(
+    s,
+    index
+){
+
+    const nombre =
+        escaparHTML(
+            s.nombre ||
+            "Sin nombre"
+        );
+
+    const asunto =
+        escaparHTML(
+            s.asunto ||
+            "Sin asunto"
+        );
+
+    const contacto =
+
+        escaparHTML(
+            s.correo ||
+            "Sin correo"
+        ) +
+
+        "<br>" +
+
+        escaparHTML(
+            s.telefono ||
+            "Sin teléfono"
+        );
+
+    return `
+
+        <tr>
+
+            <td>
+
+                <span class="radicado">
+                    ${escaparHTML(
+                        s.radicado ||
+                        "-"
+                    )}
+                </span>
+
+            </td>
+
+            <td>
+
+                ${escaparHTML(
+                    s.fecha ||
+                    "-"
+                )}
+
+            </td>
+
+            <td>
+
+                <strong>
+                    ${nombre}
+                </strong>
+
+                <br>
+
+                <small>
+                    ${escaparHTML(
+                        s.documento ||
+                        "Sin documento"
+                    )}
+                </small>
+
+            </td>
+
+            <td>
+
+                ${escaparHTML(
+                    s.tipo ||
+                    "-"
+                )}
+
+            </td>
+
+            <td>
+
+                <strong>
+                    ${asunto}
+                </strong>
+
+            </td>
+
+            <td>
+
+                ${contacto}
+
+            </td>
+
+            <td>
+
+                ${crearEstado(
+                    s.estado
+                )}
+
+            </td>
+
+            <td>
+
+                <div class="actions">
+
+                    <button
+                        class="action action-view"
+                        onclick="verPQRS(${index})"
+                        type="button"
+                    >
+                        Ver
+                    </button>
+
+                </div>
+
+            </td>
+
+        </tr>
+
+    `;
+
+}
+
+
+/* =========================================================
+   ESTADO
+========================================================= */
+
+function crearEstado(estado){
+
+    const clase =
+        obtenerClaseEstado(
+            estado
+        );
+
+    return `
+
+        <span
+            class="status ${clase}"
+        >
+
+            ${escaparHTML(
+                estado ||
+                "Recibida"
+            )}
+
+        </span>
+
+    `;
+
+}
+
+
+function obtenerClaseEstado(estado){
+
+    switch(
+        String(estado)
+            .toLowerCase()
+    ){
+
+        case "recibida":
+            return "status-recibida";
+
+        case "en revisión":
+            return "status-revision";
+
+        case "en trámite":
+            return "status-tramite";
+
+        case "respondida":
+            return "status-respondida";
+
+        case "cerrada":
+            return "status-cerrada";
+
+        default:
+            return "status-recibida";
+
+    }
+
+}
+
+
+/* =========================================================
+   VER PQRS
+========================================================= */
+
+async function verPQRS(index){
+
+    const item =
+        filtradas[index];
+
+    if(
+        !item
+    ){
+
+        return;
+
+    }
+
+    pqrsActual = item;
+
+    archivoRespuesta = null;
+
+    abrirModal();
+
+    document
+        .getElementById("modalContent")
+        .innerHTML = `
+
+            <div class="message">
+
+                <div class="spinner"></div>
+
+                <strong>
+                    Cargando detalle
+                </strong>
+
+                Consultando información...
+
+            </div>
+
+        `;
+
+    try{
+
+        const data =
+            await llamarAPI(
+                "obtenerPQRS",
+                {
+                    radicado:
+                        item.radicado
+                }
+            );
+
+        const detalle =
+            normalizar(
+                data.pqrs ||
+                data.data ||
+                item
+            );
+
+        pqrsActual = detalle;
+
+        renderizarDetalle(
+            detalle
+        );
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        renderizarDetalle(item);
+
+        mostrarToast(
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   RENDERIZAR DETALLE
+========================================================= */
+
+function renderizarDetalle(s){
+
+    const archivoExistente =
+        s.archivoRespuesta || "";
+
+    document
+        .getElementById("modalContent")
+        .innerHTML = `
+
+        <div class="modal-detail-layout">
+
+        <section class="detail-section">
+
+        <div class="detail-section-header">
+            <h4>Información de la PQRS</h4>
+            <p>Datos radicados por el ciudadano.</p>
+        </div>
+
+        <div class="detail-grid">
+
+            <div class="detail">
+
+                <label>
+                    Radicado
+                </label>
+
+                <strong>
+                    ${escaparHTML(
+                        s.radicado ||
+                        "-"
+                    )}
+                </strong>
+
+            </div>
+
+            <div class="detail">
+
+                <label>
+                    Estado
+                </label>
+
+                <strong>
+                    ${crearEstado(
+                        s.estado
+                    )}
+                </strong>
+
+            </div>
+
+            <div class="detail">
+
+                <label>
+                    Fecha de recepción
+                </label>
+
+                <strong>
+                    ${escaparHTML(
+                        s.fecha ||
+                        "-"
+                    )}
+                </strong>
+
+            </div>
+
+            <div class="detail">
+
+                <label>
+                    Tipo
+                </label>
+
+                <strong>
+                    ${escaparHTML(
+                        s.tipo ||
+                        "-"
+                    )}
+                </strong>
+
+            </div>
+
+            <div class="detail">
+
+                <label>
+                    Nombre completo
+                </label>
+
+                <strong>
+                    ${escaparHTML(
+                        s.nombre ||
+                        "-"
+                    )}
+                </strong>
+
+            </div>
+
+            <div class="detail">
+
+                <label>
+                    Documento
+                </label>
+
+                <strong>
+                    ${escaparHTML(
+                        s.documento ||
+                        "-"
+                    )}
+                </strong>
+
+            </div>
+
+            <div class="detail">
+
+                <label>
+                    Teléfono
+                </label>
+
+                <strong>
+                    ${escaparHTML(
+                        s.telefono ||
+                        "-"
+                    )}
+                </strong>
+
+            </div>
+
+            <div class="detail">
+
+                <label>
+                    Correo electrónico
+                </label>
+
+                <strong>
+                    ${escaparHTML(
+                        s.correo ||
+                        "-"
+                    )}
+                </strong>
+
+            </div>
+
+            <div class="detail full">
+
+                <label>
+                    Asunto
+                </label>
+
+                <strong>
+                    ${escaparHTML(
+                        s.asunto ||
+                        "-"
+                    )}
+                </strong>
+
+            </div>
+
+            <div class="detail full">
+
+                <label>
+                    Descripción de la solicitud
+                </label>
+
+                <strong class="detail-description">
+                    ${textoDetalleHTML(
+                        s.descripcion
+                    )}
+                </strong>
+
+            </div>
+
+            ${
+                s.respuesta
+                ?
+                `
+
+                <div class="detail full">
+
+                    <label>
+                        Respuesta registrada
+                    </label>
+
+                    <strong class="detail-description">
+                        ${textoDetalleHTML(
+                            s.respuesta
+                        )}
+                    </strong>
+
+                </div>
+
+                `
+                :
+                ""
+            }
+
+            ${
+                s.observaciones
+                ?
+                `
+
+                <div class="detail full">
+
+                    <label>
+                        Observaciones internas
+                    </label>
+
+                    <strong class="detail-description">
+                        ${textoDetalleHTML(
+                            s.observaciones
+                        )}
+                    </strong>
+
+                </div>
+
+                `
+                :
+                ""
+            }
+
+            ${
+                archivoExistente
+                ?
+                `
+
+                <div class="detail full">
+
+                    <label>
+                        Documento PDF de respuesta
+                    </label>
+
+                    <strong>
+
+                        <a
+                            href="${escaparHTML(archivoExistente)}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn btn-light"
+                            style="display:inline-block;text-decoration:none;margin-top:5px;"
+                        >
+                            📄 Ver documento PDF
+                        </a>
+
+                    </strong>
+
+                </div>
+
+                `
+                :
+                ""
+            }
+
+        </div>
+
+        </section>
+
+        <div class="management-form">
+
+            <div class="detail-section-header" style="margin:-16px -16px 16px;">
+                <h4>Gestión de respuesta</h4>
+                <p>Actualiza el estado y adjunta el PDF oficial.</p>
+            </div>
+
+            <div class="form-field">
+
+                <label>
+                    Estado de la PQRS
+                </label>
+
+                <select
+                    id="gestionEstado"
+                >
+
+                    <option value="Recibida">
+                        Recibida
+                    </option>
+
+                    <option value="En revisión">
+                        En revisión
+                    </option>
+
+                    <option value="En trámite">
+                        En trámite
+                    </option>
+
+                    <option value="Respondida">
+                        Respondida
+                    </option>
+
+                    <option value="Cerrada">
+                        Cerrada
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-field">
+
+                <label>
+                    Respuesta al ciudadano
+                </label>
+
+                <textarea
+                    id="gestionRespuesta"
+                    placeholder="Escribe aquí la respuesta oficial..."
+                >${escaparHTML(
+                    s.respuesta ||
+                    ""
+                )}</textarea>
+
+            </div>
+
+            <!-- CARGA DEL PDF -->
+
+            <div class="pdf-upload">
+
+                <div class="pdf-upload-title">
+
+                    <div class="pdf-icon">
+                        PDF
+                    </div>
+
+                    Adjuntar documento PDF de respuesta
+
+                </div>
+
+                <div class="pdf-upload-description">
+
+                    Puedes adjuntar el documento oficial de respuesta
+                    que será asociado a este radicado.
+
+                    Tamaño máximo permitido: 10 MB.
+
+                </div>
+
+                <input
+                    type="file"
+                    id="archivoRespuesta"
+                    class="pdf-file-input"
+                    accept="application/pdf,.pdf"
+                >
+
+                <div
+                    id="pdfSelected"
+                    class="pdf-selected"
+                ></div>
+
+            </div>
+
+            <div class="form-field" style="margin-top:15px;">
+
+                <label>
+                    Observaciones internas
+                </label>
+
+                <textarea
+                    id="gestionObservaciones"
+                    placeholder="Notas internas de seguimiento..."
+                >${escaparHTML(
+                    s.observaciones ||
+                    ""
+                )}</textarea>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button
+                    class="btn btn-light"
+                    type="button"
+                    onclick="cerrarModal()"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    type="button"
+                    onclick="guardarGestion()"
+                >
+                    Guardar gestión
+                </button>
+
+            </div>
+
+        </div>
+
+        </div>
+
+    `;
+
+    document
+        .getElementById("gestionEstado")
+        .value =
+            s.estado ||
+            "Recibida";
+
+    const inputArchivo =
+        document.getElementById(
+            "archivoRespuesta"
+        );
+
+    inputArchivo.addEventListener(
+        "change",
+        seleccionarPDF
+    );
+
+}
+
+
+/* =========================================================
+   SELECCIONAR PDF
+========================================================= */
+
+function seleccionarPDF(event){
+
+    const input =
+        event.target;
+
+    const archivo =
+        input.files &&
+        input.files[0];
+
+    const contenedor =
+        document.getElementById(
+            "pdfSelected"
+        );
+
+    archivoRespuesta = null;
+
+    if(
+        !archivo
+    ){
+
+        contenedor.classList.remove(
+            "show"
+        );
+
+        contenedor.innerHTML = "";
+
+        return;
+
+    }
+
+    const esPDF =
+        archivo.type ===
+        "application/pdf" ||
+        archivo.name
+            .toLowerCase()
+            .endsWith(".pdf");
+
+    if(
+        !esPDF
+    ){
+
+        input.value = "";
+
+        contenedor.classList.remove(
+            "show"
+        );
+
+        mostrarToast(
+            "El archivo seleccionado debe ser un PDF.",
+            "error"
+        );
+
+        return;
+
+    }
+
+    if(
+        archivo.size >
+        MAX_PDF_SIZE
+    ){
+
+        input.value = "";
+
+        contenedor.classList.remove(
+            "show"
+        );
+
+        mostrarToast(
+            "El PDF supera el tamaño máximo permitido de 10 MB.",
+            "error"
+        );
+
+        return;
+
+    }
+
+    archivoRespuesta =
+        archivo;
+
+    const tamanoMB =
+        (
+            archivo.size /
+            (1024 * 1024)
+        ).toFixed(2);
+
+    contenedor.innerHTML = `
+
+        📄 ${escaparHTML(archivo.name)}
+        · ${tamanoMB} MB
+
+        <button
+            type="button"
+            class="pdf-remove"
+            onclick="quitarPDF()"
+        >
+            Quitar
+        </button>
+
+    `;
+
+    contenedor.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+   QUITAR PDF
+========================================================= */
+
+function quitarPDF(){
+
+    const input =
+        document.getElementById(
+            "archivoRespuesta"
+        );
+
+    const contenedor =
+        document.getElementById(
+            "pdfSelected"
+        );
+
+    if(input){
+        input.value = "";
+    }
+
+    archivoRespuesta = null;
+
+    if(contenedor){
+
+        contenedor.classList.remove(
+            "show"
+        );
+
+        contenedor.innerHTML = "";
+
+    }
+
+}
+
+
+/* =========================================================
+   CONVERTIR ARCHIVO A BASE64
+========================================================= */
+
+function archivoABase64(
+    archivo
+){
+
+    return new Promise(
+        function(resolve,reject){
+
+            const reader =
+                new FileReader();
+
+            reader.onload =
+                function(){
+
+                    const resultado =
+                        reader.result;
+
+                    const base64 =
+                        resultado
+                            .split(",")[1];
+
+                    resolve({
+                        nombre:
+                            archivo.name,
+
+                        tipo:
+                            archivo.type ||
+                            "application/pdf",
+
+                        tamanio:
+                            archivo.size,
+
+                        base64:
+                            base64
+                    });
+
+                };
+
+            reader.onerror =
+                function(){
+
+                    reject(
+                        new Error(
+                            "No fue posible leer el archivo PDF."
+                        )
+                    );
+
+                };
+
+            reader.readAsDataURL(
+                archivo
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   GUARDAR GESTIÓN
+========================================================= */
+
+async function guardarGestion(){
+
+    if(
+        !pqrsActual
+    ){
+
+        return;
+
+    }
+
+    const radicado =
+        pqrsActual.radicado;
+
+    const estado =
+        document
+            .getElementById(
+                "gestionEstado"
+            )
+            .value;
+
+    const respuesta =
+        document
+            .getElementById(
+                "gestionRespuesta"
+            )
+            .value
+            .trim();
+
+    const observaciones =
+        document
+            .getElementById(
+                "gestionObservaciones"
+            )
+            .value
+            .trim();
+
+    if(
+        estado === "Respondida" &&
+        !respuesta
+    ){
+
+        mostrarToast(
+            "Para marcar una PQRS como Respondida debes escribir la respuesta.",
+            "error"
+        );
+
+        return;
+
+    }
+
+    if(
+        estado === "Respondida" &&
+        !archivoRespuesta &&
+        !pqrsActual.archivoRespuesta
+    ){
+
+        const confirmar =
+            confirm(
+                "La PQRS será marcada como Respondida pero no tiene un PDF adjunto. ¿Deseas continuar?"
+            );
+
+        if(
+            !confirmar
+        ){
+
+            return;
+
+        }
+
+    }
+
+    const botones =
+        document.querySelectorAll(
+            "#modalContent button"
+        );
+
+    botones.forEach(
+        function(btn){
+
+            btn.disabled = true;
+
+        }
+    );
+
+    try{
+
+        let archivoData = null;
+
+        /*
+         * Si el usuario seleccionó un PDF,
+         * se convierte a Base64 para enviarlo
+         * al Apps Script.
+         */
+
+        if(
+            archivoRespuesta
+        ){
+
+            mostrarToast(
+                "Preparando el documento PDF...",
+                "success"
+            );
+
+            archivoData =
+                await archivoABase64(
+                    archivoRespuesta
+                );
+
+        }
+
+        const archivoPayload = {
+
+            archivoNombre:
+                archivoData
+                    ? archivoData.nombre
+                    : "",
+
+            archivoTipo:
+                archivoData
+                    ? archivoData.tipo
+                    : "",
+
+            archivoTamanio:
+                archivoData
+                    ? archivoData.tamanio
+                    : "",
+
+            archivoBase64:
+                archivoData
+                    ? archivoData.base64
+                    : "",
+
+            nombreArchivo:
+                archivoData
+                    ? archivoData.nombre
+                    : "",
+
+            tipoArchivo:
+                archivoData
+                    ? archivoData.tipo
+                    : "",
+
+            tamanioArchivo:
+                archivoData
+                    ? archivoData.tamanio
+                    : "",
+
+            base64Archivo:
+                archivoData
+                    ? archivoData.base64
+                    : ""
+
+        };
+
+        const estadoActual =
+            String(
+                pqrsActual.estado || ""
+            )
+                .trim()
+                .toLowerCase();
+
+        const debeResponder =
+            respuesta &&
+            estado === "Respondida" &&
+            estadoActual !== "respondida" &&
+            estadoActual !== "cerrada";
+
+        const data =
+            await llamarAPI(
+            debeResponder
+                ? "RESPONDER"
+                : "ACTUALIZAR",
+            {
+
+                radicado:
+                    radicado,
+
+                respuesta:
+                    respuesta,
+
+                estado:
+                    estado,
+
+                observaciones:
+                    observaciones,
+
+                ...archivoPayload
+
+            },
+            {
+                metodo:"POST"
+            }
+        );
+
+        if(
+            data.pqrs ||
+            data.data
+        ){
+
+            pqrsActual =
+                normalizar(
+                    data.pqrs ||
+                    data.data
+                );
+
+        }
+
+        mostrarToast(
+            "La gestión fue guardada correctamente.",
+            "success"
+        );
+
+        cerrarModal();
+
+        await cargarPQRS();
+
+    }
+    catch(error){
+
+        console.error(
+            "Error guardando gestión:",
+            error
+        );
+
+        mostrarToast(
+            error.message ||
+            "No fue posible guardar la gestión.",
+            "error"
+        );
+
+        botones.forEach(
+            function(btn){
+
+                btn.disabled = false;
+
+            }
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   PAGINACIÓN
+========================================================= */
+
+function renderizarPaginacion(){
+
+    const total =
+        filtradas.length;
+
+    const paginas =
+        Math.max(
+            1,
+            Math.ceil(
+                total /
+                POR_PAGINA
+            )
+        );
+
+    const inicio =
+        total === 0
+            ? 0
+            :
+            (
+                (
+                    paginaActual -
+                    1
+                ) *
+                POR_PAGINA
+            ) + 1;
+
+    const fin =
+        Math.min(
+            paginaActual *
+            POR_PAGINA,
+            total
+        );
+
+    document
+        .getElementById("pageInfo")
+        .textContent =
+
+            total === 0
+                ?
+                "Página 1 de 1"
+                :
+                "Mostrando " +
+                inicio +
+                "–" +
+                fin +
+                " de " +
+                total;
+
+    const contenedor =
+        document
+            .getElementById(
+                "pageButtons"
+            );
+
+    contenedor.innerHTML = "";
+
+    for(
+        let i = 1;
+        i <= paginas;
+        i++
+    ){
+
+        const button =
+            document.createElement(
+                "button"
+            );
+
+        button.type = "button";
+
+        button.className =
+            "page-btn" +
+            (
+                i === paginaActual
+                    ? " active"
+                    : ""
+            );
+
+        button.textContent = i;
+
+        button.addEventListener(
+            "click",
+            function(){
+
+                paginaActual = i;
+
+                renderizarTabla();
+
+                window.scrollTo({
+                    top:0,
+                    behavior:"smooth"
+                });
+
+            }
+        );
+
+        contenedor.appendChild(
+            button
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function abrirModal(){
+
+    document
+        .getElementById("modal")
+        .classList.add("show");
+
+}
+
+
+function cerrarModal(){
+
+    document
+        .getElementById("modal")
+        .classList.remove("show");
+
+    pqrsActual = null;
+
+    archivoRespuesta = null;
+
+}
+
+
+/* =========================================================
+   CARGANDO
+========================================================= */
+
+function mostrarCargando(){
+
+    document
+        .getElementById("tablaPQRS")
+        .innerHTML = `
+
+            <tr>
+
+                <td colspan="8">
+
+                    <div class="message">
+
+                        <div class="spinner"></div>
+
+                        <strong>
+                            Cargando PQRS
+                        </strong>
+
+                        Consultando el sistema institucional...
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `;
+
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+function mostrarError(
+    mensaje
+){
+
+    document
+        .getElementById("tablaPQRS")
+        .innerHTML = `
+
+            <tr>
+
+                <td colspan="8">
+
+                    <div class="message">
+
+                        <strong>
+                            No fue posible cargar las PQRS
+                        </strong>
+
+                        ${escaparHTML(
+                            mensaje ||
+                            "La operación no pudo completarse."
+                        )}
+
+                        <br><br>
+
+                        <button
+                            class="btn btn-primary"
+                            type="button"
+                            onclick="cargarPQRS()"
+                        >
+                            Intentar nuevamente
+                        </button>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `;
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer = null;
+
+function mostrarToast(
+    mensaje,
+    tipo
+){
+
+    const toast =
+        document
+            .getElementById("toast");
+
+    toast.textContent =
+        mensaje;
+
+    toast.className =
+        "toast show " +
+        (
+            tipo === "error"
+                ? "error"
+                : "success"
+        );
+
+    clearTimeout(
+        toastTimer
+    );
+
+    toastTimer =
+        setTimeout(
+            function(){
+
+                toast.className =
+                    "toast";
+
+            },
+            4000
+        );
+
+}
+
+
+/* =========================================================
+   ESCAPAR HTML
+========================================================= */
+
+function escaparHTML(
+    texto
+){
+
+    return String(
+        texto || ""
+    )
+
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+
+    .replace(
+        /</g,
+        "&lt;"
+    )
+
+    .replace(
+        />/g,
+        "&gt;"
+    )
+
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+function textoDetalleHTML(
+    texto
+){
+
+    const valor =
+        String(
+            texto || ""
+        )
+            .trim();
+
+    return escaparHTML(
+        valor || "-"
+    );
+
+}
+
+
+function formatearFechaPantalla(
+    valor
+){
+
+    const texto =
+        String(
+            valor || ""
+        )
+            .trim();
+
+    if(
+        !texto
+    ){
+
+        return "";
+
+    }
+
+    const coincidencia =
+        texto.match(
+            /^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?$/
+        );
+
+    if(
+        coincidencia
+    ){
+
+        const dia =
+            coincidencia[1]
+                .padStart(
+                    2,
+                    "0"
+                );
+
+        const mes =
+            coincidencia[2]
+                .padStart(
+                    2,
+                    "0"
+                );
+
+        const anio =
+            coincidencia[3];
+
+        const hora =
+            coincidencia[4];
+
+        if(
+            !hora
+        ){
+
+            return (
+                dia +
+                "/" +
+                mes +
+                "/" +
+                anio
+            );
+
+        }
+
+        return (
+            dia +
+            "/" +
+            mes +
+            "/" +
+            anio +
+            " " +
+            hora.padStart(2,"0") +
+            ":" +
+            coincidencia[5]
+        );
+
+    }
+
+    const fecha =
+        new Date(
+            texto
+        );
+
+    if(
+        Number.isNaN(
+            fecha.getTime()
+        )
+    ){
+
+        return texto;
+
+    }
+
+    return fecha.toLocaleString(
+        "es-CO",
+        {
+            year:"numeric",
+            month:"2-digit",
+            day:"2-digit",
+            hour:"2-digit",
+            minute:"2-digit",
+            hour12:true
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CONVERTIR FECHA
+========================================================= */
+
+function convertirFecha(
+    valor
+){
+
+    if(
+        !valor
+    ){
+
+        return 0;
+
+    }
+
+    const fecha =
+        new Date(valor);
+
+    if(
+        isNaN(
+            fecha.getTime()
+        )
+    ){
+
+        return 0;
+
+    }
+
+    return fecha.getTime();
+
+}
+
+</script>
+
+</body>
+</html>
+

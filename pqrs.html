@@ -1,0 +1,3950 @@
+﻿<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="description"
+    content="PQRS - Junta de Acción Comunal de la Vereda Santa Bárbara, Municipio de El Bagre."
+>
+
+<title>PQRS | JAC Vereda Santa Bárbara</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+    .value-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #edf7f1;
+    color: #0f6b3d;
+    font-size: 30px;
+}
+
+    /* =====================================================
+       VARIABLES INSTITUCIONALES
+    ===================================================== */
+
+    :root {
+
+        --green: #0f5b35;
+        --green-2: #1f7a45;
+        --green-soft: #eaf5ee;
+
+        --blue: #0d2c54;
+
+        --gold: #e3ad20;
+
+        --ink: #15221b;
+        --muted: #66756c;
+
+        --bg: #f5f8f6;
+
+        --white: #ffffff;
+
+        --border: #dce7df;
+
+        --shadow:
+            0 16px 45px rgba(13, 44, 84, 0.08);
+
+        --radius: 20px;
+    }
+
+
+    /* =====================================================
+       RESET
+    ===================================================== */
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+
+    body {
+
+        font-family:
+            "Inter",
+            Arial,
+            sans-serif;
+
+        color: var(--ink);
+
+        background: var(--bg);
+
+        line-height: 1.6;
+    }
+
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+
+    img {
+        max-width: 100%;
+        display: block;
+    }
+
+
+    button,
+    input,
+    textarea,
+    select {
+        font-family: inherit;
+    }
+
+
+    /* =====================================================
+       CONTENEDOR
+    ===================================================== */
+
+    .container {
+
+        width: min(1180px, 92%);
+
+        margin: auto;
+    }
+
+
+    /* =====================================================
+       BARRA SUPERIOR
+    ===================================================== */
+
+    .topbar {
+
+        background: var(--blue);
+
+        color: #dbe7f3;
+
+        font-size: 12px;
+    }
+
+
+    .topbar-content {
+
+        min-height: 34px;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+    }
+
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
+
+    header {
+
+        position: sticky;
+
+        top: 0;
+
+        z-index: 100;
+
+        background:
+            rgba(255,255,255,0.96);
+
+        backdrop-filter: blur(14px);
+
+        border-bottom:
+            1px solid var(--border);
+    }
+
+
+    .navbar {
+
+        min-height: 78px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 25px;
+    }
+
+
+    /* =====================================================
+       LOGO
+    ===================================================== */
+
+    .brand {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        color: var(--green);
+
+        font-weight: 800;
+
+        font-size: 12px;
+
+        line-height: 1.2;
+    }
+
+
+    .brand img {
+
+        width: 54px;
+
+        height: 54px;
+
+        object-fit: contain;
+    }
+
+
+    /* =====================================================
+       MENU
+    ===================================================== */
+
+    .navigation {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        font-size: 12px;
+
+        font-weight: 700;
+
+        color: #34443b;
+    }
+
+
+    .navigation a {
+        text-decoration: none;
+        transition: 0.25s ease;
+    }
+
+
+    .navigation a:hover {
+        color: var(--green);
+    }
+
+
+    .navigation .active {
+        color: var(--green);
+    }
+
+
+    /* =====================================================
+       BOTÓN MENÚ MÓVIL
+    ===================================================== */
+
+    .menu-button {
+
+        display: none;
+
+        border: none;
+
+        background: var(--green);
+
+        color: white;
+
+        border-radius: 10px;
+
+        padding: 10px 13px;
+
+        cursor: pointer;
+
+        font-size: 18px;
+    }
+
+
+    /* =====================================================
+       HERO PQRS
+    ===================================================== */
+
+    .pqrs-hero {
+
+        min-height: 390px;
+
+        position: relative;
+
+        overflow: hidden;
+
+        background-image:
+            url("assets/fondo-pqrs.png");
+
+        background-size: cover;
+
+        background-position: center;
+
+        display: flex;
+
+        align-items: center;
+    }
+
+
+    .pqrs-hero::before {
+
+        content: "";
+
+        position: absolute;
+
+        inset: 0;
+
+        background:
+            linear-gradient(
+                90deg,
+                rgba(255,255,255,.97) 0%,
+                rgba(255,255,255,.92) 30%,
+                rgba(255,255,255,.55) 52%,
+                rgba(255,255,255,.08) 100%
+            );
+    }
+
+
+    .pqrs-content {
+
+        position: relative;
+
+        z-index: 2;
+
+        padding: 55px 0;
+    }
+
+
+    .pqrs-label {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 9px;
+
+        color: var(--green);
+
+        font-weight: 800;
+
+        text-transform: uppercase;
+
+        letter-spacing: .08em;
+
+        font-size: 12px;
+
+        margin-bottom: 12px;
+    }
+
+
+    .pqrs-label::before {
+
+        content: "";
+
+        width: 25px;
+
+        height: 3px;
+
+        background: var(--gold);
+
+        border-radius: 5px;
+    }
+
+
+    .pqrs-content h1 {
+
+        font-family: "Montserrat", sans-serif;
+
+        font-size:
+            clamp(
+                42px,
+                5vw,
+                66px
+            );
+
+        line-height: .98;
+
+        color: var(--blue);
+
+        max-width: 650px;
+
+        margin-bottom: 15px;
+    }
+
+
+    .pqrs-content h1 span {
+        color: var(--green);
+    }
+
+
+    .pqrs-content h2 {
+
+        font-family: "Montserrat", sans-serif;
+
+        color: var(--blue);
+
+        font-size: 21px;
+
+        margin-bottom: 8px;
+    }
+
+
+    .pqrs-content p {
+
+        color: #405467;
+
+        max-width: 580px;
+
+        font-size: 15px;
+    }
+
+
+    /* =====================================================
+       SECCIONES
+    ===================================================== */
+
+    section {
+        padding: 70px 0;
+    }
+
+
+    .section-header {
+
+        max-width: 760px;
+
+        margin: 0 auto 40px;
+
+        text-align: center;
+    }
+
+
+    .section-header h2 {
+
+        color: var(--blue);
+
+        font-size: 34px;
+
+        line-height: 1.15;
+
+        margin: 10px 0;
+    }
+
+
+    .section-header p {
+
+        color: var(--muted);
+
+        font-size: 15px;
+    }
+
+
+    /* =====================================================
+       TIPOS DE PQRS
+    ===================================================== */
+
+    .types {
+        background: var(--white);
+    }
+
+
+    .types-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(4, 1fr);
+
+        gap: 18px;
+    }
+
+
+    .type-card {
+
+        background: white;
+
+        border:
+            1px solid var(--border);
+
+        border-radius: 18px;
+
+        padding: 25px;
+
+        box-shadow:
+            0 8px 25px
+            rgba(20,50,35,.045);
+
+        transition:
+            transform .25s ease,
+            box-shadow .25s ease;
+    }
+
+
+    .type-card:hover {
+
+        transform: translateY(-5px);
+
+        box-shadow: var(--shadow);
+    }
+
+
+    .type-letter {
+
+        width: 50px;
+
+        height: 50px;
+
+        border-radius: 14px;
+
+        background: var(--green-soft);
+
+        color: var(--green);
+
+        display: grid;
+
+        place-items: center;
+
+        font-family:
+            Montserrat,
+            sans-serif;
+
+        font-size: 21px;
+
+        font-weight: 900;
+
+        margin-bottom: 16px;
+    }
+
+
+    .type-card h3 {
+
+        color: var(--blue);
+
+        font-family:
+            Montserrat,
+            sans-serif;
+
+        font-size: 18px;
+
+        margin-bottom: 8px;
+    }
+
+
+    .type-card p {
+
+        color: var(--muted);
+
+        font-size: 13px;
+
+        line-height: 1.5;
+    }
+
+
+    /* =====================================================
+       CONSULTA Y SEGUIMIENTO
+    ===================================================== */
+
+    .consulta-section {
+        background: #ffffff;
+    }
+
+
+    .consulta-layout {
+
+        display: grid;
+
+        grid-template-columns:
+            .85fr
+            1.35fr;
+
+        gap: 24px;
+
+        align-items: stretch;
+    }
+
+
+    .consulta-info {
+
+        background:
+            linear-gradient(
+                145deg,
+                var(--blue),
+                #081f38
+            );
+
+        color: white;
+
+        border-radius: 20px;
+
+        padding: 32px;
+
+        box-shadow:
+            0 10px 30px
+            rgba(13,44,84,.08);
+    }
+
+
+    .consulta-icon {
+
+        width: 58px;
+
+        height: 58px;
+
+        border-radius: 16px;
+
+        background:
+            rgba(255,255,255,.10);
+
+        display: grid;
+
+        place-items: center;
+
+        font-size: 25px;
+
+        margin-bottom: 20px;
+    }
+
+
+    .consulta-info h3 {
+
+        font-family:
+            Montserrat,
+            sans-serif;
+
+        font-size: 24px;
+
+        margin-bottom: 12px;
+    }
+
+
+    .consulta-info > p {
+
+        color: #d7e2ed;
+
+        font-size: 14px;
+
+        line-height: 1.6;
+    }
+
+
+    .consulta-pasos {
+
+        display: grid;
+
+        gap: 17px;
+
+        margin-top: 28px;
+    }
+
+
+    .consulta-paso {
+
+        display: flex;
+
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+
+    .consulta-paso > span {
+
+        width: 29px;
+
+        height: 29px;
+
+        flex: 0 0 29px;
+
+        border-radius: 50%;
+
+        background: var(--gold);
+
+        color: var(--blue);
+
+        display: grid;
+
+        place-items: center;
+
+        font-weight: 900;
+
+        font-size: 12px;
+    }
+
+
+    .consulta-paso strong {
+
+        display: block;
+
+        color: white;
+
+        font-size: 13px;
+
+        margin-bottom: 2px;
+    }
+
+
+    .consulta-paso small {
+
+        color: #bfcddd;
+
+        font-size: 12px;
+
+        line-height: 1.4;
+    }
+
+
+    .consulta-panel {
+        padding: 32px;
+    }
+
+
+    .consulta-panel h3 {
+
+        color: var(--blue);
+
+        font-family:
+            Montserrat,
+            sans-serif;
+
+        font-size: 24px;
+
+        margin-bottom: 3px;
+    }
+
+
+    .consulta-descripcion {
+
+        color: var(--muted);
+
+        font-size: 13px;
+
+        margin-bottom: 20px;
+    }
+
+
+    .consulta-field {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 6px;
+
+        margin-bottom: 13px;
+    }
+
+
+    .consulta-field label {
+
+        color: #263a4f;
+
+        font-size: 12px;
+
+        font-weight: 700;
+    }
+
+
+    .consulta-field input {
+
+        width: 100%;
+
+        border:
+            1px solid #cfdad4;
+
+        border-radius: 9px;
+
+        padding: 13px;
+
+        font-size: 14px;
+
+        outline: none;
+
+        transition: .2s ease;
+    }
+
+
+    .consulta-field input:focus {
+
+        border-color: var(--green);
+
+        box-shadow:
+            0 0 0 3px
+            rgba(15,91,53,.08);
+    }
+
+
+    .consulta-button {
+
+        width: 100%;
+
+        border: none;
+
+        background: var(--green);
+
+        color: white;
+
+        padding: 13px 20px;
+
+        border-radius: 10px;
+
+        font-weight: 800;
+
+        cursor: pointer;
+
+        transition: .25s ease;
+    }
+
+
+    .consulta-button:hover {
+
+        background: #0a4328;
+
+        transform: translateY(-1px);
+    }
+
+
+    .consulta-button:disabled {
+
+        opacity: .65;
+
+        cursor: not-allowed;
+
+        transform: none;
+    }
+
+
+    .consulta-message {
+
+        display: none;
+
+        padding: 12px 14px;
+
+        border-radius: 9px;
+
+        font-size: 13px;
+
+        font-weight: 600;
+
+        margin-top: 15px;
+    }
+
+
+    .consulta-message.success {
+
+        display: block;
+
+        background: #eaf5ee;
+
+        color: #0f5b35;
+
+        border: 1px solid #b9dcc7;
+    }
+
+
+    .consulta-message.error {
+
+        display: block;
+
+        background: #fff1f1;
+
+        color: #a52d2d;
+
+        border: 1px solid #efc5c5;
+    }
+
+
+    /* =====================================================
+       RESULTADO
+    ===================================================== */
+
+    .consulta-resultado {
+
+        display: none;
+
+        margin-top: 22px;
+
+        border:
+            1px solid var(--border);
+
+        border-radius: 15px;
+
+        overflow: hidden;
+
+        background: #f9fbfa;
+    }
+
+
+    .consulta-resultado.show {
+        display: block;
+    }
+
+
+    .resultado-header {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        gap: 15px;
+
+        padding: 18px;
+
+        background: var(--green-soft);
+
+        border-bottom:
+            1px solid var(--border);
+    }
+
+
+    .resultado-label {
+
+        display: block;
+
+        color: var(--muted);
+
+        font-size: 11px;
+
+        margin-bottom: 3px;
+    }
+
+
+    #resultadoRadicado {
+
+        color: var(--green);
+
+        font-family:
+            Montserrat,
+            sans-serif;
+
+        font-size: 17px;
+    }
+
+
+    .estado-badge {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 6px 11px;
+
+        border-radius: 20px;
+
+        background: var(--green);
+
+        color: white;
+
+        font-size: 11px;
+
+        font-weight: 800;
+
+        white-space: nowrap;
+    }
+
+
+    .resultado-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 1px;
+
+        background: var(--border);
+    }
+
+
+    .resultado-item {
+
+        background: white;
+
+        padding: 15px;
+    }
+
+
+    .resultado-item span {
+
+        display: block;
+
+        color: var(--muted);
+
+        font-size: 11px;
+
+        margin-bottom: 4px;
+    }
+
+
+    .resultado-item strong {
+
+        color: var(--blue);
+
+        font-size: 13px;
+
+        word-break: break-word;
+    }
+
+
+    .avance-box {
+
+        padding: 18px;
+
+        background: white;
+
+        border-top:
+            1px solid var(--border);
+    }
+
+
+    .avance-box h4 {
+
+        color: var(--blue);
+
+        font-family:
+            Montserrat,
+            sans-serif;
+
+        font-size: 14px;
+
+        margin-bottom: 7px;
+    }
+
+
+    .avance-box p {
+
+        color: #4b5b68;
+
+        font-size: 13px;
+
+        line-height: 1.55;
+
+        white-space: pre-line;
+    }
+
+
+    /* =====================================================
+       ARCHIVO DE RESPUESTA
+    ===================================================== */
+
+    .archivo-respuesta {
+
+        display: none;
+
+        margin-top: 15px;
+
+        padding: 16px;
+
+        background: #f7faf8;
+
+        border:
+            1px solid var(--border);
+
+        border-radius: 12px;
+    }
+
+
+    .archivo-respuesta.show {
+        display: block;
+    }
+
+
+    .archivo-respuesta-header {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        margin-bottom: 12px;
+    }
+
+
+    .archivo-icon {
+
+        width: 42px;
+
+        height: 42px;
+
+        flex: 0 0 42px;
+
+        border-radius: 10px;
+
+        background: var(--green-soft);
+
+        display: grid;
+
+        place-items: center;
+
+        font-size: 21px;
+    }
+
+
+    .archivo-respuesta-title {
+
+        color: var(--blue);
+
+        font-family: Montserrat, sans-serif;
+
+        font-size: 14px;
+
+        font-weight: 800;
+    }
+
+
+    .archivo-respuesta-name {
+
+        color: var(--muted);
+
+        font-size: 11px;
+
+        word-break: break-word;
+    }
+
+
+    .descargar-respuesta {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 8px;
+
+        width: 100%;
+
+        background: var(--green);
+
+        color: white;
+
+        padding: 11px 15px;
+
+        border-radius: 9px;
+
+        font-size: 12px;
+
+        font-weight: 800;
+
+        transition: .25s ease;
+    }
+
+
+    .descargar-respuesta:hover {
+
+        background: #0a4328;
+
+        transform: translateY(-1px);
+    }
+
+
+    .sin-archivo {
+
+        display: none;
+
+        margin-top: 15px;
+
+        padding: 13px;
+
+        border-radius: 10px;
+
+        background: #f5f7f6;
+
+        border: 1px solid var(--border);
+
+        color: var(--muted);
+
+        font-size: 12px;
+    }
+
+
+    .sin-archivo.show {
+        display: block;
+    }
+
+
+    /* =====================================================
+       FORMULARIO
+    ===================================================== */
+
+    .form-section {
+        background: var(--bg);
+    }
+
+
+    .form-layout {
+
+        display: grid;
+
+        grid-template-columns:
+            .75fr
+            1.55fr
+            .75fr;
+
+        gap: 22px;
+
+        align-items: stretch;
+    }
+
+
+    .panel {
+
+        background: white;
+
+        border:
+            1px solid var(--border);
+
+        border-radius: 20px;
+
+        padding: 28px;
+
+        box-shadow:
+            0 10px 30px
+            rgba(13,44,84,.06);
+    }
+
+
+    .intro-panel {
+
+        background:
+            linear-gradient(
+                145deg,
+                var(--green),
+                #0a4328
+            );
+
+        color: white;
+
+        border: none;
+    }
+
+
+    .intro-icon {
+
+        width: 58px;
+
+        height: 58px;
+
+        border-radius: 16px;
+
+        background:
+            rgba(255,255,255,.12);
+
+        display: grid;
+
+        place-items: center;
+
+        font-size: 26px;
+
+        margin-bottom: 20px;
+    }
+
+
+    .intro-panel h2 {
+
+        font-family:
+            Montserrat,
+            sans-serif;
+
+        font-size: 25px;
+
+        margin-bottom: 12px;
+    }
+
+
+    .intro-panel p {
+
+        color: #e1f1e7;
+
+        font-size: 14px;
+    }
+
+
+    .form-panel h2 {
+
+        font-family:
+            Montserrat,
+            sans-serif;
+
+        color: var(--blue);
+
+        font-size: 24px;
+
+        margin-bottom: 4px;
+    }
+
+
+    .required-note {
+
+        color: var(--muted);
+
+        font-size: 12px;
+
+        margin-bottom: 18px;
+    }
+
+
+    .pqrs-form {
+
+        display: grid;
+
+        grid-template-columns:
+            1fr
+            1fr;
+
+        gap: 14px;
+    }
+
+
+    .field {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+
+    .field.full {
+        grid-column: 1 / -1;
+    }
+
+
+    .field label {
+
+        color: #263a4f;
+
+        font-size: 12px;
+
+        font-weight: 700;
+    }
+
+
+    .field input,
+    .field select,
+    .field textarea {
+
+        width: 100%;
+
+        border:
+            1px solid
+            #cfdad4;
+
+        border-radius: 9px;
+
+        padding: 11px 12px;
+
+        font-size: 13px;
+
+        color: var(--ink);
+
+        outline: none;
+
+        background: white;
+
+        transition: .2s ease;
+    }
+
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+
+        border-color: var(--green);
+
+        box-shadow:
+            0 0 0 3px
+            rgba(15,91,53,.08);
+    }
+
+
+    .field textarea {
+
+        min-height: 120px;
+
+        resize: vertical;
+    }
+
+
+    .submit-row {
+
+        grid-column: 1 / -1;
+
+        display: flex;
+
+        justify-content: flex-end;
+
+        margin-top: 3px;
+    }
+
+
+    .submit-button {
+
+        border: none;
+
+        background: var(--green);
+
+        color: white;
+
+        padding:
+            12px
+            22px;
+
+        border-radius: 10px;
+
+        font-weight: 800;
+
+        cursor: pointer;
+
+        transition: .25s ease;
+    }
+
+
+    .submit-button:hover {
+
+        background: #0a4328;
+
+        transform: translateY(-1px);
+    }
+
+
+    .submit-button:disabled {
+
+        opacity: .65;
+
+        cursor: not-allowed;
+
+        transform: none;
+    }
+
+
+    /* =====================================================
+       TEN EN CUENTA
+    ===================================================== */
+
+    .info-panel {
+
+        background:
+            linear-gradient(
+                145deg,
+                #eef8e9,
+                #e4f1dc
+            );
+    }
+
+
+    .info-panel h2 {
+
+        color: var(--green);
+
+        font-family:
+            Montserrat,
+            sans-serif;
+
+        font-size: 20px;
+
+        margin-bottom: 18px;
+    }
+
+
+    .info-list {
+
+        display: grid;
+
+        gap: 15px;
+    }
+
+
+    .info-item {
+
+        display: flex;
+
+        align-items: flex-start;
+
+        gap: 10px;
+
+        color: #34443b;
+
+        font-size: 13px;
+    }
+
+
+    .check {
+
+        width: 23px;
+
+        height: 23px;
+
+        flex: 0 0 23px;
+
+        border-radius: 50%;
+
+        background: var(--green);
+
+        color: white;
+
+        display: grid;
+
+        place-items: center;
+
+        font-size: 12px;
+
+        font-weight: 900;
+    }
+
+
+    /* =====================================================
+       INFORMACIÓN INSTITUCIONAL
+    ===================================================== */
+
+    .institutional-data {
+
+        background: var(--blue);
+
+        color: white;
+    }
+
+
+    .institutional-data .section-header h2 {
+        color: white;
+    }
+
+
+    .institutional-data .section-header p {
+        color: #cbd8e7;
+    }
+
+
+    .data-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(4, 1fr);
+
+        gap: 14px;
+    }
+
+
+    .data-card {
+
+        background:
+            rgba(255,255,255,.08);
+
+        border:
+            1px solid
+            rgba(255,255,255,.14);
+
+        border-radius: 16px;
+
+        padding: 22px;
+
+        text-align: center;
+    }
+
+
+    .data-card strong {
+
+        display: block;
+
+        color: white;
+
+        font-size: 25px;
+
+        font-family:
+            Montserrat,
+            sans-serif;
+    }
+
+
+    .data-card span {
+
+        color: #cbd8e7;
+
+        font-size: 12px;
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    footer {
+
+        background: #081f38;
+
+        color: #aebdcd;
+
+        padding: 35px 0;
+    }
+
+
+    .footer-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            1.3fr
+            .7fr
+            .7fr;
+
+        gap: 35px;
+    }
+
+
+    .footer-grid h3 {
+
+        color: white;
+
+        font-size: 15px;
+
+        margin-bottom: 12px;
+    }
+
+
+    .footer-grid p {
+        font-size: 13px;
+    }
+
+
+    .footer-grid a {
+
+        display: block;
+
+        margin: 7px 0;
+
+        font-size: 13px;
+    }
+
+
+    .copyright {
+
+        border-top:
+            1px solid
+            rgba(255,255,255,.1);
+
+        margin-top: 25px;
+
+        padding-top: 18px;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        font-size: 12px;
+    }
+
+
+    /* =====================================================
+       MENSAJE DE ESTADO
+    ===================================================== */
+
+    .form-message {
+
+        display: none;
+
+        grid-column: 1 / -1;
+
+        padding: 13px 15px;
+
+        border-radius: 10px;
+
+        font-size: 13px;
+
+        font-weight: 600;
+
+        margin-top: 3px;
+    }
+
+
+    .form-message.success {
+
+        display: block;
+
+        background: #eaf5ee;
+
+        color: #0f5b35;
+
+        border:
+            1px solid #b9dcc7;
+    }
+
+
+    .form-message.error {
+
+        display: block;
+
+        background: #fff1f1;
+
+        color: #a52d2d;
+
+        border:
+            1px solid #efc5c5;
+    }
+
+
+    /* =====================================================
+       MODAL RADICADO
+    ===================================================== */
+
+    .radicado-overlay {
+
+        display: none;
+
+        position: fixed;
+
+        inset: 0;
+
+        z-index: 9999;
+
+        background:
+            rgba(8,31,56,.68);
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 20px;
+    }
+
+
+    .radicado-overlay.show {
+        display: flex;
+    }
+
+
+    .radicado-modal {
+
+        width: min(500px, 100%);
+
+        background: white;
+
+        border-radius: 22px;
+
+        padding: 35px;
+
+        text-align: center;
+
+        box-shadow:
+            0 25px 70px
+            rgba(0,0,0,.20);
+    }
+
+
+    .radicado-icon {
+
+        width: 65px;
+
+        height: 65px;
+
+        border-radius: 50%;
+
+        background: var(--green-soft);
+
+        color: var(--green);
+
+        display: grid;
+
+        place-items: center;
+
+        margin: 0 auto 18px;
+
+        font-size: 30px;
+
+        font-weight: 900;
+    }
+
+
+    .radicado-modal h2 {
+
+        font-family:
+            Montserrat,
+            sans-serif;
+
+        color: var(--blue);
+
+        margin-bottom: 8px;
+    }
+
+
+    .radicado-modal p {
+
+        color: var(--muted);
+
+        font-size: 14px;
+
+        margin-bottom: 18px;
+    }
+
+
+    .radicado-number {
+
+        background: var(--green-soft);
+
+        border:
+            1px dashed
+            var(--green);
+
+        color: var(--green);
+
+        border-radius: 12px;
+
+        padding: 15px;
+
+        font-family:
+            Montserrat,
+            sans-serif;
+
+        font-size: 23px;
+
+        font-weight: 800;
+
+        letter-spacing: .04em;
+
+        margin-bottom: 20px;
+    }
+
+
+    .close-modal {
+
+        border: none;
+
+        background: var(--green);
+
+        color: white;
+
+        padding: 11px 22px;
+
+        border-radius: 9px;
+
+        font-weight: 800;
+
+        cursor: pointer;
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+
+    @media(max-width: 1000px) {
+
+        .form-layout {
+
+            grid-template-columns:
+                1fr
+                1fr;
+        }
+
+
+        .intro-panel {
+
+            grid-column:
+                1 / -1;
+        }
+
+
+        .info-panel {
+
+            grid-column:
+                1 / -1;
+        }
+
+
+        .types-grid {
+
+            grid-template-columns:
+                1fr 1fr;
+        }
+
+
+        .data-grid {
+
+            grid-template-columns:
+                1fr 1fr;
+        }
+    }
+
+
+    @media(max-width: 900px) {
+
+        .navigation {
+            display: none;
+        }
+
+
+        .menu-button {
+            display: block;
+        }
+
+
+        .consulta-layout {
+            grid-template-columns: 1fr;
+        }
+    }
+
+
+    @media(max-width: 560px) {
+
+        .topbar-content {
+            justify-content: center;
+        }
+
+
+        .topbar .right {
+            display: none;
+        }
+
+
+        .brand span {
+            font-size: 10px;
+        }
+
+
+        .types-grid,
+        .form-layout,
+        .pqrs-form,
+        .data-grid,
+        .footer-grid {
+
+            grid-template-columns: 1fr;
+        }
+
+
+        .field.full {
+            grid-column: auto;
+        }
+
+
+        section {
+            padding: 55px 0;
+        }
+
+
+        .pqrs-hero {
+
+            min-height: 430px;
+
+            background-position:
+                65% center;
+        }
+
+
+        .pqrs-content {
+            padding: 45px 0;
+        }
+
+
+        .pqrs-content h1 {
+            font-size: 43px;
+        }
+
+
+        .submit-row {
+            grid-column: auto;
+        }
+
+
+        .form-message {
+            grid-column: auto;
+        }
+
+
+        .copyright {
+            display: block;
+        }
+
+
+        .copyright div + div {
+            margin-top: 8px;
+        }
+
+
+        .radicado-modal {
+            padding: 28px 20px;
+        }
+
+
+        .radicado-number {
+            font-size: 19px;
+        }
+
+
+        .resultado-grid {
+            grid-template-columns: 1fr;
+        }
+
+
+        .resultado-header {
+
+            align-items: flex-start;
+
+            flex-direction: column;
+        }
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================================================
+     BARRA SUPERIOR
+========================================================= -->
+
+<div class="topbar">
+
+<div class="container topbar-content">
+
+    <span>
+        Junta de Acción Comunal · Vereda Santa Bárbara · El Bagre
+    </span>
+
+    <span class="right">
+        Personería Jurídica No. 149 · 5 de febrero de 1971
+    </span>
+
+</div>
+
+</div>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+<div class="container navbar">
+
+    <a
+        href="index.html"
+        class="brand"
+    >
+
+        <img
+            src="assets/logo.png"
+            alt="Logo Junta de Acción Comunal Vereda Santa Bárbara"
+        >
+
+        <span>
+            JUNTA DE ACCIÓN COMUNAL<br>
+            VEREDA SANTA BÁRBARA
+        </span>
+
+    </a>
+
+
+    <nav class="navigation">
+            <a href="index.html">Inicio</a>
+            <a href="nosotro.html">Nosotros</a>
+            <a href="directivos.html">Directivos</a>
+            <a href="noticias.html">Noticias</a>
+            <a href="agenda.html">Agenda</a>
+            <a href="documentos.html">Documentos</a>
+            <a href="afiliados.html">Afiliados</a>
+            <a href="certificados.html">Certificados</a>
+            <a href="pqrs.html" class="active">PQRS</a>
+            <a href="politicas.html">Políticas</a>
+        </nav>
+
+
+    <button
+        class="menu-button"
+        onclick="toggleMenu()"
+        aria-label="Abrir menú"
+    >
+        ☰
+    </button>
+
+</div>
+
+</header>
+
+<!-- =========================================================
+     TIPOS DE PQRS
+========================================================= -->
+
+<section class="types">
+
+<div class="container">
+
+    <div class="section-header">
+
+        <div class="pqrs-label">
+            Atención comunitaria
+        </div>
+
+        <h2>
+            Tipos de PQRS
+        </h2>
+
+        <p>
+            Selecciona el tipo de solicitud que deseas
+            presentar ante la Junta de Acción Comunal.
+        </p>
+
+    </div>
+
+
+    <div class="types-grid">
+
+        <article class="type-card">
+
+            <img src="assets/pqrs.png" alt="">
+
+            <h3>
+                Petición
+            </h3>
+
+            <p>
+                Solicitud de información, orientación o
+                actuación sobre asuntos de interés comunitario.
+            </p>
+
+        </article>
+
+
+        <article class="type-card">
+
+            <img src="assets/pqrs.png" alt="">
+
+            <h3>
+                Queja
+            </h3>
+
+            <p>
+                Manifestación de inconformidad frente a una
+                situación o actuación que genere insatisfacción.
+            </p>
+
+        </article>
+
+
+        <article class="type-card">
+
+            <img src="assets/pqrs.png" alt="">
+
+            <h3>
+                Reclamo
+            </h3>
+
+            <p>
+                Expresión de inconformidad frente a una
+                situación que requiere revisión o solución.
+            </p>
+
+        </article>
+
+
+        <article class="type-card">
+
+            <img src="assets/pqrs.png" alt="">
+
+            <h3>
+                Sugerencia
+            </h3>
+
+            <p>
+                Propuesta o recomendación para mejorar
+                procesos, actividades o acciones comunitarias.
+            </p>
+
+        </article>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- =========================================================
+     CONSULTA Y SEGUIMIENTO
+========================================================= -->
+
+<section
+    class="consulta-section"
+    id="consultar-pqrs"
+>
+
+<div class="container">
+
+    <div class="section-header">
+
+        <div class="pqrs-label">
+            Seguimiento de solicitudes
+        </div>
+
+        <h2>
+            Consulta tu PQRS
+        </h2>
+
+        <p>
+            Ingresa el número de radicado que recibiste al
+            presentar tu solicitud para consultar su estado
+            y avance.
+        </p>
+
+    </div>
+
+
+    <div class="consulta-layout">
+
+
+        <!-- PANEL INFORMACIÓN -->
+
+        <div class="consulta-info">
+
+            <div class="consulta-icon">
+                🔎
+            </div>
+
+            <h3>
+                ¿Quieres saber cómo va tu solicitud?
+            </h3>
+
+            <p>
+                Consulta el estado de tu PQRS utilizando
+                únicamente el número de radicado asignado
+                al momento de realizar el registro.
+            </p>
+
+
+            <div class="consulta-pasos">
+
+                <div class="consulta-paso">
+
+                    <span>1</span>
+
+                    <div>
+
+                        <strong>
+                            Busca tu radicado
+                        </strong>
+
+                        <small>
+                            Encuentra el número que recibiste
+                            al enviar tu PQRS.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="consulta-paso">
+
+                    <span>2</span>
+
+                    <div>
+
+                        <strong>
+                            Ingresa el número
+                        </strong>
+
+                        <small>
+                            Escríbelo en el campo de consulta.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="consulta-paso">
+
+                    <span>3</span>
+
+                    <div>
+
+                        <strong>
+                            Consulta el avance
+                        </strong>
+
+                        <small>
+                            Revisa el estado actual de tu solicitud.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PANEL CONSULTA -->
+
+        <div class="panel consulta-panel">
+
+            <h3>
+                Consultar estado
+            </h3>
+
+            <p class="consulta-descripcion">
+                Introduce tu número de radicado.
+            </p>
+
+
+            <form id="consultaForm">
+
+                <div class="consulta-field">
+
+                    <label for="radicadoConsulta">
+                        Número de radicado
+                    </label>
+
+                    <input
+                        type="text"
+                        id="radicadoConsulta"
+                        name="radicado"
+                        placeholder="Ej. PQRS-2026-00001"
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="consulta-button"
+                    id="consultaButton"
+                >
+                    Consultar PQRS →
+                </button>
+
+            </form>
+
+
+            <div
+                id="consultaMessage"
+                class="consulta-message"
+            ></div>
+
+
+            <!-- RESULTADO -->
+
+            <div
+                id="consultaResultado"
+                class="consulta-resultado"
+            >
+
+                <div class="resultado-header">
+
+                    <div>
+
+                        <span class="resultado-label">
+                            Número de radicado
+                        </span>
+
+                        <strong id="resultadoRadicado"></strong>
+
+                    </div>
+
+                    <span
+                        id="resultadoEstado"
+                        class="estado-badge"
+                    ></span>
+
+                </div>
+
+
+                <div class="resultado-grid">
+
+                    <div class="resultado-item">
+
+                        <span>
+                            Fecha de recepción
+                        </span>
+
+                        <strong id="resultadoFecha"></strong>
+
+                    </div>
+
+
+                    <div class="resultado-item">
+
+                        <span>
+                            Tipo de solicitud
+                        </span>
+
+                        <strong id="resultadoTipo"></strong>
+
+                    </div>
+
+
+                    <div class="resultado-item">
+
+                        <span>
+                            Asunto
+                        </span>
+
+                        <strong id="resultadoAsunto"></strong>
+
+                    </div>
+
+
+                    <div class="resultado-item">
+
+                        <span>
+                            Última actualización
+                        </span>
+
+                        <strong id="resultadoActualizacion"></strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="avance-box">
+
+                    <h4>
+                        Respuesta y avance de la solicitud
+                    </h4>
+
+                    <p id="resultadoAvance">
+                    </p>
+
+
+                    <!-- =================================================
+                         ARCHIVO DE RESPUESTA DEL FUNCIONARIO
+                    ================================================== -->
+
+                    <div
+                        id="archivoRespuesta"
+                        class="archivo-respuesta"
+                    >
+
+                        <div class="archivo-respuesta-header">
+
+                            <div class="archivo-icon">
+                                📄
+                            </div>
+
+                            <div>
+
+                                <div class="archivo-respuesta-title">
+                                    Documento de respuesta
+                                </div>
+
+                                <div
+                                    id="archivoRespuestaNombre"
+                                    class="archivo-respuesta-name"
+                                >
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <a
+                            id="descargarRespuesta"
+                            class="descargar-respuesta"
+                            href="#"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            📥 Descargar respuesta
+                        </a>
+
+                    </div>
+
+
+                    <div
+                        id="sinArchivo"
+                        class="sin-archivo"
+                    >
+                        📌 La respuesta documental aún no ha sido
+                        adjuntada por el funcionario.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+<!-- =========================================================
+     FORMULARIO PQRS
+========================================================= -->
+
+<section class="form-section">
+
+<div class="container">
+
+    <div class="form-layout">
+
+
+        <!-- PANEL INTRODUCTORIO -->
+
+        <aside class="panel intro-panel">
+
+            <div class="intro-icon">
+                ✉
+            </div>
+
+            <h2>
+                Presenta tu PQRS
+            </h2>
+
+            <p>
+                Completa el formulario con tus datos
+                y describe claramente tu petición,
+                queja, reclamo o sugerencia.
+            </p>
+
+            <br>
+
+            <p>
+                Tu participación es fundamental para
+                seguir construyendo una comunidad mejor.
+            </p>
+
+        </aside>
+
+
+        <!-- FORMULARIO -->
+
+        <div class="panel form-panel">
+
+            <h2>
+                Datos de la solicitud
+            </h2>
+
+            <div class="required-note">
+
+                Los campos marcados con
+                <strong>*</strong>
+                son obligatorios.
+
+            </div>
+
+
+            <form
+                class="pqrs-form"
+                id="pqrsForm"
+            >
+
+
+                <div class="field">
+
+                    <label for="nombre">
+                        Nombre completo *
+                    </label>
+
+                    <input
+                        id="nombre"
+                        name="nombre"
+                        type="text"
+                        required
+                        autocomplete="name"
+                        placeholder="Escribe tu nombre completo"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="documento">
+                        Documento de identidad
+                    </label>
+
+                    <input
+                        id="documento"
+                        name="documento"
+                        type="text"
+                        placeholder="Número de documento"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="telefono">
+                        Teléfono
+                    </label>
+
+                    <input
+                        id="telefono"
+                        name="telefono"
+                        type="tel"
+                        autocomplete="tel"
+                        placeholder="Número de contacto"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="correo">
+                        Correo electrónico
+                    </label>
+
+                    <input
+                        id="correo"
+                        name="correo"
+                        type="email"
+                        autocomplete="email"
+                        placeholder="correo@ejemplo.com"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="tipo">
+                        Tipo de solicitud *
+                    </label>
+
+                    <select
+                        id="tipo"
+                        name="tipo"
+                        required
+                    >
+
+                        <option value="">
+                            Selecciona una opción
+                        </option>
+
+                        <option value="Petición">
+                            Petición
+                        </option>
+
+                        <option value="Queja">
+                            Queja
+                        </option>
+
+                        <option value="Reclamo">
+                            Reclamo
+                        </option>
+
+                        <option value="Sugerencia">
+                            Sugerencia
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="asunto">
+                        Asunto *
+                    </label>
+
+                    <input
+                        id="asunto"
+                        name="asunto"
+                        type="text"
+                        required
+                        placeholder="Escribe brevemente el asunto"
+                    >
+
+                </div>
+
+
+                <div class="field full">
+
+                    <label for="descripcion">
+                        Descripción de la solicitud *
+                    </label>
+
+                    <textarea
+                        id="descripcion"
+                        name="descripcion"
+                        required
+                        placeholder="Describe claramente tu petición, queja, reclamo o sugerencia."
+                    ></textarea>
+
+                </div>
+
+
+                <div
+                    id="formMessage"
+                    class="form-message"
+                ></div>
+
+
+                <div class="submit-row">
+
+                    <button
+                        type="submit"
+                        class="submit-button"
+                        id="submitButton"
+                    >
+                        Enviar PQRS →
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+
+        <!-- TEN EN CUENTA -->
+
+        <aside class="panel info-panel">
+
+            <h2>
+                TEN EN CUENTA
+            </h2>
+
+
+            <div class="info-list">
+
+
+                <div class="info-item">
+
+                    <span class="check">
+                        ✓
+                    </span>
+
+                    <span>
+                        Describe tu solicitud de manera
+                        clara y detallada.
+                    </span>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <span class="check">
+                        ✓
+                    </span>
+
+                    <span>
+                        Proporciona información veraz
+                        y completa.
+                    </span>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <span class="check">
+                        ✓
+                    </span>
+
+                    <span>
+                        Utiliza un lenguaje respetuoso
+                        y constructivo.
+                    </span>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <span class="check">
+                        ✓
+                    </span>
+
+                    <span>
+                        Tus aportes ayudan al fortalecimiento
+                        de nuestra comunidad.
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </aside>
+
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- =========================================================
+     INFORMACIÓN INSTITUCIONAL
+========================================================= -->
+
+<section class="institutional-data">
+
+<div class="container">
+
+
+    <div class="section-header">
+
+        <div
+            class="pqrs-label"
+            style="color:#d9efe1;"
+        >
+            Información institucional
+        </div>
+
+        <h2>
+            Nuestra identificación
+        </h2>
+
+        <p>
+            Datos generales de referencia de la
+            Junta de Acción Comunal.
+        </p>
+
+    </div>
+
+
+    <div class="data-grid">
+
+
+        <div class="data-card">
+
+            <strong>
+                149
+            </strong>
+
+            <span>
+                Número de Personería Jurídica
+            </span>
+
+        </div>
+
+
+        <div class="data-card">
+
+            <strong>
+                1971
+            </strong>
+
+            <span>
+                Año de Personería Jurídica
+            </span>
+
+        </div>
+
+
+        <div class="data-card">
+
+            <strong>
+                Santa Bárbara
+            </strong>
+
+            <span>
+                Vereda
+            </span>
+
+        </div>
+
+
+        <div class="data-card">
+
+            <strong>
+                El Bagre
+            </strong>
+
+            <span>
+                Municipio · Antioquia
+            </span>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+<div class="container">
+
+
+    <div class="footer-grid">
+
+
+        <div>
+
+            <h3>
+                JAC Vereda Santa Bárbara
+            </h3>
+
+            <p>
+                Portal institucional de la Junta de
+                Acción Comunal de la Vereda Santa Bárbara.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Portal
+            </h3>
+
+            <a href="index.html">
+                Inicio
+            </a>
+
+            <a href="nosotro.html">
+                Nosotros
+            </a>
+
+            <a href="directivos.html">
+                Directivos
+            </a>
+
+            <a href="noticias.html">
+                Noticias
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Comunidad
+            </h3>
+
+            <a href="afiliados.html">
+                Afiliados
+            </a>
+
+            <a href="documentos.html">
+                Documentos
+            </a>
+
+            <a href="pqrs.html">
+                PQRS
+            </a>
+
+            <a href="agenda.html">
+                Agenda
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="copyright">
+
+        <div>
+            © 2026 Junta de Acción Comunal Vereda Santa Bárbara
+        </div>
+
+        <div>
+            Municipio de El Bagre · Antioquia
+        </div>
+
+    </div>
+
+
+</div>
+
+</footer>
+
+<!-- =========================================================
+     MODAL DE RADICADO
+========================================================= -->
+
+<div
+    class="radicado-overlay"
+    id="radicadoOverlay"
+>
+
+<div class="radicado-modal">
+
+    <div class="radicado-icon">
+        ✓
+    </div>
+
+    <h2>
+        PQRS recibida correctamente
+    </h2>
+
+    <p>
+        Tu solicitud fue registrada exitosamente.
+        Guarda este número para consultar o hacer
+        seguimiento a tu solicitud.
+    </p>
+
+    <div
+        class="radicado-number"
+        id="radicadoNumber"
+    ></div>
+
+    <button
+        type="button"
+        class="close-modal"
+        onclick="cerrarRadicado()"
+    >
+        Continuar
+    </button>
+
+</div>
+
+</div>
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+
+/* =====================================================
+   URL DEL WEB APP DE GOOGLE APPS SCRIPT
+===================================================== */
+
+const API_URL =
+    "https://script.google.com/macros/s/AKfycbxUECd5ng7DgmX-x89AkgxT6nlDxrPwi1lRSzGizdUZrOaAwB7rrsqYZpks3dXjbiGH/exec";
+
+
+/* =====================================================
+   MENÚ MÓVIL
+===================================================== */
+
+function toggleMenu() {
+
+    const navigation =
+        document.querySelector(".navigation");
+
+    if (navigation.style.display === "flex") {
+
+        navigation.style.display = "none";
+
+    } else {
+
+        navigation.style.display = "flex";
+
+        navigation.style.position = "absolute";
+
+        navigation.style.top = "78px";
+
+        navigation.style.left = "0";
+
+        navigation.style.right = "0";
+
+        navigation.style.padding = "20px";
+
+        navigation.style.background = "#ffffff";
+
+        navigation.style.flexDirection = "column";
+
+        navigation.style.borderBottom =
+            "1px solid #dce7df";
+    }
+}
+
+
+/* =====================================================
+   MENSAJE DEL FORMULARIO
+===================================================== */
+
+function mostrarMensaje(mensaje, tipo) {
+
+    const elemento =
+        document.getElementById("formMessage");
+
+    elemento.textContent = mensaje;
+
+    elemento.className =
+        "form-message " + tipo;
+}
+
+
+/* =====================================================
+   MOSTRAR RADICADO
+===================================================== */
+
+function mostrarRadicado(radicado) {
+
+    document.getElementById(
+        "radicadoNumber"
+    ).textContent = radicado;
+
+    document.getElementById(
+        "radicadoOverlay"
+    ).classList.add("show");
+}
+
+
+/* =====================================================
+   CERRAR MODAL
+===================================================== */
+
+function cerrarRadicado() {
+
+    document.getElementById(
+        "radicadoOverlay"
+    ).classList.remove("show");
+}
+
+
+/* =====================================================
+   MENSAJE CONSULTA
+===================================================== */
+
+function mostrarConsultaMensaje(mensaje, tipo) {
+
+    const elemento =
+        document.getElementById("consultaMessage");
+
+    elemento.textContent = mensaje;
+
+    elemento.className =
+        "consulta-message " + tipo;
+}
+
+
+/* =====================================================
+   LIMPIAR RESULTADO
+===================================================== */
+
+function limpiarResultadoConsulta() {
+
+    document
+        .getElementById("consultaResultado")
+        .classList.remove("show");
+
+    document.getElementById(
+        "archivoRespuesta"
+    ).classList.remove("show");
+
+    document.getElementById(
+        "sinArchivo"
+    ).classList.remove("show");
+
+    document.getElementById(
+        "descargarRespuesta"
+    ).removeAttribute("href");
+
+    document.getElementById(
+        "archivoRespuestaNombre"
+    ).textContent = "";
+
+    document.getElementById(
+        "resultadoRadicado"
+    ).textContent = "";
+
+    document.getElementById(
+        "resultadoEstado"
+    ).textContent = "";
+
+    document.getElementById(
+        "resultadoFecha"
+    ).textContent = "";
+
+    document.getElementById(
+        "resultadoTipo"
+    ).textContent = "";
+
+    document.getElementById(
+        "resultadoAsunto"
+    ).textContent = "";
+
+    document.getElementById(
+        "resultadoActualizacion"
+    ).textContent = "";
+
+    document.getElementById(
+        "resultadoAvance"
+    ).textContent = "";
+}
+
+
+/* =====================================================
+   BUSCAR URL DEL ARCHIVO DE RESPUESTA
+   SOPORTA VARIOS NOMBRES PARA COMPATIBILIDAD
+===================================================== */
+
+function obtenerUrlArchivo(resultado) {
+
+    return (
+        resultado.urlRespuesta ||
+        resultado.archivoRespuestaUrl ||
+        resultado.archivoRespuesta ||
+        resultado.urlArchivo ||
+        resultado.archivoUrl ||
+        resultado.documentoRespuesta ||
+        resultado.urlDocumento ||
+        resultado.documentoUrl ||
+        resultado.linkArchivo ||
+        resultado.linkDocumento ||
+        resultado.url ||
+        ""
+    );
+}
+
+
+/* =====================================================
+   BUSCAR NOMBRE DEL ARCHIVO
+===================================================== */
+
+function obtenerNombreArchivo(resultado) {
+
+    return (
+        resultado.nombreArchivo ||
+        resultado.nombreDocumento ||
+        resultado.nombreRespuesta ||
+        resultado.archivoRespuesta ||
+        resultado.archivoNombre ||
+        "Documento de respuesta"
+    );
+}
+
+
+/* =====================================================
+   MOSTRAR RESULTADO
+===================================================== */
+
+function mostrarResultadoConsulta(
+    resultado,
+    radicadoBuscado
+) {
+
+    const radicado =
+        resultado.radicado ||
+        resultado.numeroRadicado ||
+        resultado.numero ||
+        resultado.id ||
+        radicadoBuscado;
+
+
+    const estado =
+        resultado.estado ||
+        resultado.status ||
+        "Sin estado";
+
+
+    const fecha =
+        formatearFechaPantalla(
+            resultado.fecha ||
+            resultado.fechaRecepcion ||
+            resultado.fechaRegistro
+        ) ||
+        "No disponible";
+
+
+    const tipo =
+        resultado.tipo ||
+        resultado.tipoSolicitud ||
+        "No disponible";
+
+
+    const asunto =
+        resultado.asunto ||
+        "No disponible";
+
+
+    const actualizacion =
+        formatearFechaPantalla(
+            resultado.actualizacion ||
+            resultado.ultimaActualizacion ||
+            resultado.fechaActualizacion
+        ) ||
+        "No disponible";
+
+
+    const avance =
+        resultado.avance ||
+        resultado.progreso ||
+        resultado.observacion ||
+        resultado.mensajeAvance ||
+        resultado.respuesta ||
+        resultado.respuestaFuncionario ||
+        "No hay información de avance disponible.";
+
+
+    document.getElementById(
+        "resultadoRadicado"
+    ).textContent = radicado;
+
+
+    document.getElementById(
+        "resultadoEstado"
+    ).textContent = estado;
+
+
+    document.getElementById(
+        "resultadoFecha"
+    ).textContent = fecha;
+
+
+    document.getElementById(
+        "resultadoTipo"
+    ).textContent = tipo;
+
+
+    document.getElementById(
+        "resultadoAsunto"
+    ).textContent = asunto;
+
+
+    document.getElementById(
+        "resultadoActualizacion"
+    ).textContent = actualizacion;
+
+
+    document.getElementById(
+        "resultadoAvance"
+    ).textContent = avance;
+
+
+    /* =================================================
+       ARCHIVO DE RESPUESTA
+    ================================================= */
+
+    const urlArchivo =
+        obtenerUrlArchivo(resultado);
+
+    const nombreArchivo =
+        obtenerNombreArchivo(resultado);
+
+
+    const bloqueArchivo =
+        document.getElementById(
+            "archivoRespuesta"
+        );
+
+
+    const bloqueSinArchivo =
+        document.getElementById(
+            "sinArchivo"
+        );
+
+
+    const botonDescarga =
+        document.getElementById(
+            "descargarRespuesta"
+        );
+
+
+    const nombreArchivoElemento =
+        document.getElementById(
+            "archivoRespuestaNombre"
+        );
+
+
+    if (urlArchivo) {
+
+        nombreArchivoElemento.textContent =
+            nombreArchivo;
+
+        botonDescarga.href =
+            urlArchivo;
+
+        bloqueArchivo.classList.add("show");
+
+        bloqueSinArchivo.classList.remove("show");
+
+    } else {
+
+        bloqueArchivo.classList.remove("show");
+
+        bloqueSinArchivo.classList.add("show");
+    }
+
+
+    document
+        .getElementById("consultaResultado")
+        .classList.add("show");
+}
+
+
+/* =====================================================
+   CONSULTA DE PQRS
+===================================================== */
+
+document
+    .getElementById("consultaForm")
+    .addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const campo =
+                document.getElementById(
+                    "radicadoConsulta"
+                );
+
+
+            const boton =
+                document.getElementById(
+                    "consultaButton"
+                );
+
+
+            const radicado =
+                campo.value
+                    .trim()
+                    .toUpperCase();
+
+
+            document
+                .getElementById("consultaMessage")
+                .className =
+                    "consulta-message";
+
+            document
+                .getElementById("consultaMessage")
+                .textContent =
+                    "";
+
+            limpiarResultadoConsulta();
+
+
+            if (!radicado) {
+
+                mostrarConsultaMensaje(
+                    "Escribe el número de radicado de tu PQRS.",
+                    "error"
+                );
+
+                campo.focus();
+
+                return;
+            }
+
+
+            boton.disabled = true;
+
+            boton.textContent =
+                "Consultando...";
+
+
+            try {
+
+                /*
+                 * IMPORTANTE:
+                 * El Apps Script que entregaremos en el segundo paso
+                 * reconocerá exactamente esta acción.
+                 */
+
+                const consultaURL =
+                    API_URL +
+                    "?" +
+                    new URLSearchParams({
+                        accion: "obtenerPQRS",
+                        radicado: radicado,
+                        t: Date.now()
+                    }).toString();
+
+
+                const respuesta =
+                    await fetch(
+                        consultaURL,
+                        {
+                            method: "GET",
+                            cache: "no-store"
+                        }
+                    );
+
+
+                if (!respuesta.ok) {
+
+                    throw new Error(
+                        "No fue posible comunicarse con el servidor."
+                    );
+                }
+
+
+                const resultado =
+                    await respuesta.json();
+
+
+                if (!resultado.ok) {
+
+                    throw new Error(
+                        resultado.mensaje ||
+                        resultado.message ||
+                        "No se encontró una PQRS con ese número de radicado."
+                    );
+                }
+
+
+                mostrarConsultaMensaje(
+                    "PQRS encontrada correctamente.",
+                    "success"
+                );
+
+
+                mostrarResultadoConsulta(
+                    resultado.pqrs ||
+                    resultado.data ||
+                    resultado,
+                    radicado
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Error consultando PQRS:",
+                    error
+                );
+
+
+                mostrarConsultaMensaje(
+                    error.message ||
+                    "No fue posible consultar la PQRS. Por favor intenta nuevamente.",
+                    "error"
+                );
+
+
+                limpiarResultadoConsulta();
+
+
+            } finally {
+
+                boton.disabled = false;
+
+                boton.textContent =
+                    "Consultar PQRS →";
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   FORMULARIO PQRS
+===================================================== */
+
+document
+    .getElementById("pqrsForm")
+    .addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const formulario =
+                document.getElementById(
+                    "pqrsForm"
+                );
+
+
+            const boton =
+                document.getElementById(
+                    "submitButton"
+                );
+
+
+            const mensaje =
+                document.getElementById(
+                    "formMessage"
+                );
+
+
+            mensaje.className =
+                "form-message";
+
+            mensaje.textContent =
+                "";
+
+
+            boton.disabled = true;
+
+            boton.textContent =
+                "Enviando...";
+
+
+            const datos = {
+
+                accion:
+                    "registrar",
+
+                nombre:
+                    document
+                        .getElementById("nombre")
+                        .value
+                        .trim(),
+
+                documento:
+                    document
+                        .getElementById("documento")
+                        .value
+                        .trim(),
+
+                telefono:
+                    document
+                        .getElementById("telefono")
+                        .value
+                        .trim(),
+
+                correo:
+                    document
+                        .getElementById("correo")
+                        .value
+                        .trim(),
+
+                tipo:
+                    document
+                        .getElementById("tipo")
+                        .value
+                        .trim(),
+
+                asunto:
+                    document
+                        .getElementById("asunto")
+                        .value
+                        .trim(),
+
+                descripcion:
+                    document
+                        .getElementById("descripcion")
+                        .value
+                        .trim()
+            };
+
+
+            if (
+                !datos.nombre ||
+                !datos.tipo ||
+                !datos.asunto ||
+                !datos.descripcion
+            ) {
+
+                mostrarMensaje(
+                    "Completa todos los campos obligatorios.",
+                    "error"
+                );
+
+
+                boton.disabled = false;
+
+                boton.textContent =
+                    "Enviar PQRS →";
+
+                return;
+            }
+
+
+            try {
+
+                const respuesta =
+                    await fetch(
+                        API_URL,
+                        {
+
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "text/plain;charset=utf-8"
+                            },
+
+                            body:
+                                JSON.stringify(datos)
+                        }
+                    );
+
+
+                if (!respuesta.ok) {
+
+                    throw new Error(
+                        "El servidor no respondió correctamente."
+                    );
+                }
+
+
+                const resultado =
+                    await respuesta.json();
+
+
+                if (!resultado.ok) {
+
+                    throw new Error(
+                        resultado.mensaje ||
+                        "No fue posible registrar la PQRS."
+                    );
+                }
+
+
+                mostrarMensaje(
+                    "Tu PQRS fue registrada correctamente.",
+                    "success"
+                );
+
+
+                mostrarRadicado(
+                    resultado.radicado
+                );
+
+
+                formulario.reset();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Error enviando PQRS:",
+                    error
+                );
+
+
+                mostrarMensaje(
+                    error.message ||
+                    "No fue posible enviar la PQRS. Por favor intenta nuevamente.",
+                    "error"
+                );
+
+
+            } finally {
+
+                boton.disabled = false;
+
+                boton.textContent =
+                    "Enviar PQRS →";
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   FORMATEAR FECHAS
+===================================================== */
+
+function formatearFechaPantalla(valor) {
+
+    const texto =
+        String(valor || "")
+            .trim();
+
+    if (!texto) {
+
+        return "";
+    }
+
+
+    const coincidencia =
+        texto.match(
+            /^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?$/
+        );
+
+
+    if (coincidencia) {
+
+        const dia =
+            coincidencia[1].padStart(2, "0");
+
+        const mes =
+            coincidencia[2].padStart(2, "0");
+
+        const anio =
+            coincidencia[3];
+
+        if (!coincidencia[4]) {
+
+            return dia + "/" + mes + "/" + anio;
+        }
+
+        return (
+            dia +
+            "/" +
+            mes +
+            "/" +
+            anio +
+            " " +
+            coincidencia[4].padStart(2, "0") +
+            ":" +
+            coincidencia[5]
+        );
+    }
+
+
+    const fecha =
+        new Date(texto);
+
+    if (
+        Number.isNaN(
+            fecha.getTime()
+        )
+    ) {
+
+        return texto;
+    }
+
+
+    return fecha.toLocaleString(
+        "es-CO",
+        {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true
+        }
+    );
+}
+
+
+/* =====================================================
+   CERRAR MODAL AL HACER CLICK AFUERA
+===================================================== */
+
+document
+    .getElementById("radicadoOverlay")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (event.target === this) {
+
+                cerrarRadicado();
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   ENTER PARA CONSULTAR
+===================================================== */
+
+document
+    .getElementById("radicadoConsulta")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+
+                event.preventDefault();
+
+                document
+                    .getElementById("consultaForm")
+                    .requestSubmit();
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   CONSULTA AUTOMÁTICA POR URL
+
+   Permite abrir:
+
+   pqrs.html?radicado=1003080612
+
+   y consultar automáticamente el radicado.
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const parametros =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const radicadoURL =
+            parametros.get("radicado");
+
+
+        if (radicadoURL) {
+
+            const campo =
+                document.getElementById(
+                    "radicadoConsulta"
+                );
+
+
+            campo.value =
+                radicadoURL
+                    .trim()
+                    .toUpperCase();
+
+
+            document
+                .getElementById("consultar-pqrs")
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+
+            setTimeout(
+                function() {
+
+                    document
+                        .getElementById("consultaForm")
+                        .requestSubmit();
+
+                },
+                500
+            );
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
+
+
+

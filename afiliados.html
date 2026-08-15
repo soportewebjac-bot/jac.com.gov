@@ -1,0 +1,1767 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Información de afiliados de la Junta de Acción Comunal de la Vereda Santa Bárbara."
+    >
+
+    <title>
+        Afiliados | JAC Vereda Santa Bárbara
+    </title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        :root {
+
+            --green: #0f5b35;
+            --green-2: #1f7a45;
+            --green-soft: #eaf5ee;
+
+            --blue: #0d2c54;
+
+            --gold: #e3ad20;
+
+            --ink: #15221b;
+            --muted: #66756c;
+
+            --bg: #f5f8f6;
+            --white: #ffffff;
+
+            --border: #dce7df;
+
+            --shadow:
+                0 16px 45px rgba(13,44,84,.08);
+        }
+
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            font-family:
+                "Inter",
+                Arial,
+                sans-serif;
+
+            color:
+                var(--ink);
+
+            background:
+                var(--bg);
+
+            line-height:
+                1.6;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        .container {
+
+            width:
+                min(1180px,92%);
+
+            margin:
+                auto;
+        }
+
+
+        /* =====================================================
+           TOPBAR
+        ===================================================== */
+
+        .topbar {
+
+            background:
+                var(--blue);
+
+            color:
+                #dbe7f3;
+
+            font-size:
+                12px;
+        }
+
+
+        .topbar-content {
+
+            min-height:
+                34px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        header {
+
+            position:
+                sticky;
+
+            top:
+                0;
+
+            z-index:
+                100;
+
+            background:
+                rgba(255,255,255,.96);
+
+            backdrop-filter:
+                blur(14px);
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+
+        .navbar {
+
+            min-height:
+                78px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                25px;
+        }
+
+
+        .brand {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+            color:
+                var(--green);
+
+            font-weight:
+                800;
+
+            font-size:
+                12px;
+
+            line-height:
+                1.2;
+        }
+
+
+        .brand img {
+
+            width:
+                54px;
+
+            height:
+                54px;
+
+            object-fit:
+                contain;
+        }
+
+
+        .navigation {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            color:
+                #34443b;
+        }
+
+
+        .navigation a {
+            text-decoration: none;
+
+            transition:
+                .25s ease;
+        }
+
+
+        .navigation a:hover,
+        .navigation .active {
+
+            color:
+                var(--green);
+        }
+
+
+        .menu-button {
+
+            display:
+                none;
+
+            border:
+                none;
+
+            background:
+                var(--green);
+
+            color:
+                white;
+
+            border-radius:
+                10px;
+
+            padding:
+                10px 13px;
+
+            cursor:
+                pointer;
+
+            font-size:
+                18px;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .page-hero {
+
+            background:
+
+                radial-gradient(
+                    circle at 85% 15%,
+                    rgba(227,173,32,.15),
+                    transparent 25%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #eef7f1
+                );
+
+            padding:
+                75px 0;
+        }
+
+
+        .hero-content {
+
+            max-width:
+                850px;
+
+            margin:
+                auto;
+
+            text-align:
+                center;
+        }
+
+
+        .eyebrow {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                9px;
+
+            color:
+                var(--green);
+
+            font-weight:
+                800;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                .08em;
+
+            font-size:
+                12px;
+        }
+
+
+        .eyebrow::before {
+
+            content:
+                "";
+
+            width:
+                25px;
+
+            height:
+                3px;
+
+            background:
+                var(--gold);
+
+            border-radius:
+                5px;
+        }
+
+
+        h1,
+        h2,
+        h3 {
+
+            font-family:
+                "Montserrat",
+                sans-serif;
+        }
+
+
+        .page-hero h1 {
+
+            font-size:
+                clamp(40px,5vw,62px);
+
+            line-height:
+                1.05;
+
+            color:
+                var(--blue);
+
+            margin:
+                18px 0;
+        }
+
+
+        .page-hero h1 span {
+
+            color:
+                var(--green);
+        }
+
+
+        .page-hero p {
+
+            max-width:
+                720px;
+
+            margin:
+                auto;
+
+            color:
+                var(--muted);
+
+            font-size:
+                17px;
+        }
+
+
+        /* =====================================================
+           SECCIÓN PRINCIPAL
+        ===================================================== */
+
+        .members-section {
+
+            padding:
+                78px 0;
+        }
+
+
+        .section-header {
+
+            max-width:
+                760px;
+
+            margin:
+                0 auto 45px;
+
+            text-align:
+                center;
+        }
+
+
+        .section-header h2 {
+
+            color:
+                var(--blue);
+
+            font-size:
+                34px;
+
+            line-height:
+                1.15;
+
+            margin:
+                10px 0;
+        }
+
+
+        .section-header p {
+
+            color:
+                var(--muted);
+
+            font-size:
+                15px;
+        }
+
+
+        /* =====================================================
+           TARJETAS DE AFILIACIÓN
+        ===================================================== */
+
+        .membership-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap:
+                20px;
+        }
+
+
+        .membership-card {
+
+            background:
+                white;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                20px;
+
+            padding:
+                28px;
+
+            box-shadow:
+                0 8px 25px rgba(20,50,35,.045);
+
+            transition:
+                .25s ease;
+        }
+
+
+        .membership-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                var(--shadow);
+        }
+
+
+        .membership-icon {
+
+            width:
+                55px;
+
+            height:
+                55px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            background:
+                var(--green-soft);
+
+            color:
+                var(--green);
+
+            border-radius:
+                15px;
+
+            font-size:
+                25px;
+
+            margin-bottom:
+                18px;
+        }
+
+
+        .membership-card h3 {
+
+            color:
+                var(--blue);
+
+            font-size:
+                19px;
+
+            margin-bottom:
+                9px;
+        }
+
+
+        .membership-card p {
+
+            color:
+                var(--muted);
+
+            font-size:
+                13px;
+        }
+
+
+        /* =====================================================
+           REQUISITOS
+        ===================================================== */
+
+        .requirements {
+
+            padding:
+                65px 0;
+
+            background:
+                white;
+        }
+
+
+        .requirements-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                25px;
+        }
+
+
+        .requirements-box {
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                20px;
+
+            padding:
+                30px;
+
+            background:
+                #fbfdfb;
+        }
+
+
+        .requirements-box h3 {
+
+            color:
+                var(--blue);
+
+            font-size:
+                21px;
+
+            margin-bottom:
+                20px;
+        }
+
+
+        .requirements-list {
+
+            display:
+                grid;
+
+            gap:
+                13px;
+        }
+
+
+        .requirement {
+
+            display:
+                flex;
+
+            gap:
+                12px;
+
+            align-items:
+                flex-start;
+
+            color:
+                var(--muted);
+
+            font-size:
+                13px;
+        }
+
+
+        .check {
+
+            width:
+                27px;
+
+            height:
+                27px;
+
+            flex:
+                0 0 27px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--green);
+
+            color:
+                white;
+
+            font-size:
+                12px;
+
+            font-weight:
+                900;
+        }
+
+
+        /* =====================================================
+           CARNET
+        ===================================================== */
+
+        .card-section {
+
+            padding:
+                70px 0;
+        }
+
+
+        .card-box {
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    var(--green),
+                    var(--blue)
+                );
+
+            color:
+                white;
+
+            border-radius:
+                25px;
+
+            padding:
+                42px;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                50px;
+
+            align-items:
+                center;
+        }
+
+
+        .card-box h2 {
+
+            font-size:
+                32px;
+
+            margin:
+                10px 0 15px;
+        }
+
+
+        .card-box p {
+
+            color:
+                #dcefe4;
+
+            font-size:
+                14px;
+
+            margin-bottom:
+                22px;
+        }
+
+
+        .card-preview {
+
+            max-width:
+                390px;
+
+            margin:
+                auto;
+
+            background:
+                white;
+
+            color:
+                var(--ink);
+
+            border-radius:
+                18px;
+
+            padding:
+                20px;
+
+            box-shadow:
+                0 20px 40px rgba(0,0,0,.2);
+        }
+
+
+        .card-header {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+            border-bottom:
+                1px solid var(--border);
+
+            padding-bottom:
+                13px;
+
+            margin-bottom:
+                15px;
+        }
+
+
+        .card-logo {
+
+            width:
+                45px;
+
+            height:
+                45px;
+
+            border-radius:
+                10px;
+
+            background:
+                var(--green-soft);
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            color:
+                var(--green);
+
+            font-weight:
+                900;
+        }
+
+
+        .card-title {
+
+            font-size:
+                10px;
+
+            font-weight:
+                800;
+
+            color:
+                var(--green);
+        }
+
+
+        .card-name {
+
+            font-family:
+                "Montserrat",
+                sans-serif;
+
+            font-size:
+                18px;
+
+            color:
+                var(--blue);
+
+            margin-bottom:
+                5px;
+        }
+
+
+        .card-number {
+
+            color:
+                var(--muted);
+
+            font-size:
+                11px;
+        }
+
+
+        .card-status {
+
+            margin-top:
+                18px;
+
+            padding:
+                8px;
+
+            border-radius:
+                8px;
+
+            background:
+                var(--green-soft);
+
+            color:
+                var(--green);
+
+            text-align:
+                center;
+
+            font-size:
+                10px;
+
+            font-weight:
+                800;
+        }
+
+
+        /* =====================================================
+           PRIVACIDAD
+        ===================================================== */
+
+        .privacy {
+
+            background:
+                #fff8e5;
+
+            border:
+                1px solid #f1d98d;
+
+            color:
+                #725600;
+
+            padding:
+                20px;
+
+            border-radius:
+                16px;
+
+            margin-top:
+                30px;
+
+            font-size:
+                13px;
+        }
+
+
+        /* =====================================================
+           BOTÓN
+        ===================================================== */
+
+        .btn {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding:
+                11px 17px;
+
+            border-radius:
+                10px;
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+
+            transition:
+                .25s ease;
+        }
+
+
+        .btn-primary {
+
+            background:
+                var(--gold);
+
+            color:
+                #172018;
+        }
+
+
+        .btn-primary:hover {
+
+            transform:
+                translateY(-2px);
+
+            filter:
+                brightness(.95);
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+
+            background:
+                #081f38;
+
+            color:
+                #aebdcd;
+
+            padding:
+                35px 0;
+        }
+
+
+        .footer-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1.3fr .7fr .7fr;
+
+            gap:
+                35px;
+        }
+
+
+        .footer-grid h3 {
+
+            color:
+                white;
+
+            font-size:
+                15px;
+
+            margin-bottom:
+                12px;
+        }
+
+
+        .footer-grid p,
+        .footer-grid a {
+
+            font-size:
+                13px;
+        }
+
+
+        .footer-grid a {
+
+            display:
+                block;
+
+            margin:
+                7px 0;
+        }
+
+
+        .copyright {
+
+            border-top:
+                1px solid rgba(255,255,255,.1);
+
+            margin-top:
+                25px;
+
+            padding-top:
+                18px;
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            font-size:
+                12px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width:950px) {
+
+            .navigation {
+                display:none;
+            }
+
+            .menu-button {
+                display:block;
+            }
+
+            .membership-grid {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+            .requirements-grid,
+            .card-box {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+        }
+
+
+        @media(max-width:600px) {
+
+            .topbar-content {
+                justify-content:
+                    center;
+            }
+
+            .topbar .right {
+                display:
+                    none;
+            }
+
+            .brand span {
+                font-size:
+                    10px;
+            }
+
+            .membership-grid,
+            .footer-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .card-box {
+                padding:
+                    28px;
+            }
+
+            .copyright {
+                display:
+                    block;
+            }
+
+            .copyright div + div {
+                margin-top:
+                    8px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     TOPBAR
+====================================================== -->
+
+<div class="topbar">
+
+    <div class="container topbar-content">
+
+        <span>
+            Junta de Acción Comunal · Vereda Santa Bárbara · El Bagre
+        </span>
+
+        <span class="right">
+            Personería Jurídica No. 149 · 5 de febrero de 1971
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header>
+
+    <div class="container navbar">
+
+
+        <a
+            href="index.html"
+            class="brand"
+        >
+
+            <img
+                src="assets/logo.png"
+                alt="Logo institucional"
+            >
+
+            <span>
+                JUNTA DE ACCIÓN COMUNAL<br>
+                VEREDA SANTA BÁRBARA
+            </span>
+
+        </a>
+
+
+        <nav class="navigation">
+            <a href="index.html">Inicio</a>
+            <a href="nosotro.html">Nosotros</a>
+            <a href="directivos.html">Directivos</a>
+            <a href="noticias.html">Noticias</a>
+            <a href="agenda.html">Agenda</a>
+            <a href="documentos.html">Documentos</a>
+            <a href="afiliados.html" class="active">Afiliados</a>
+            <a href="certificados.html">Certificados</a>
+            <a href="pqrs.html">PQRS</a>
+            <a href="politicas.html">Políticas</a>
+        </nav>
+
+
+        <button
+            class="menu-button"
+            onclick="toggleMenu()"
+        >
+            ☰
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+====================================================== -->
+
+<section class="page-hero">
+
+    <div class="container hero-content">
+
+        <div class="eyebrow">
+            Comunidad organizada
+        </div>
+
+        <h1>
+            Nuestros
+            <span>afiliados</span>
+        </h1>
+
+        <p>
+
+            La participación de los afiliados es fundamental
+            para fortalecer la organización comunitaria,
+            promover iniciativas y construir soluciones
+            para nuestra comunidad.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     INFORMACIÓN
+====================================================== -->
+
+<section class="members-section">
+
+    <div class="container">
+
+
+        <div class="section-header">
+
+            <div class="eyebrow">
+                Participación
+            </div>
+
+            <h2>
+                Ser parte de la comunidad
+            </h2>
+
+            <p>
+
+                Conoce los principales aspectos relacionados
+                con la afiliación y participación dentro de
+                la Junta de Acción Comunal.
+
+            </p>
+
+        </div>
+
+
+        <div class="membership-grid">
+
+
+            <div class="membership-card">
+
+                <div class="membership-icon">
+                    Comunidad
+                </div>
+
+                <h3>
+                    Participación
+                </h3>
+
+                <p>
+
+                    Los afiliados pueden participar en los
+                    espacios comunitarios y en las actividades
+                    promovidas por la organización.
+
+                </p>
+
+            </div>
+
+
+            <div class="membership-card">
+
+                <div class="membership-icon">
+                    Votoï¸
+                </div>
+
+                <h3>
+                    Voz y decisión
+                </h3>
+
+                <p>
+
+                    Los mecanismos de participación permiten
+                    expresar propuestas, necesidades e
+                    iniciativas de interés comunitario.
+
+                </p>
+
+            </div>
+
+
+            <div class="membership-card">
+
+                <div class="membership-icon">
+                    Acuerdo
+                </div>
+
+                <h3>
+                    Compromiso
+                </h3>
+
+                <p>
+
+                    La organización comunitaria requiere
+                    responsabilidad, colaboración y respeto
+                    entre sus integrantes.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     REQUISITOS
+====================================================== -->
+
+<section class="requirements">
+
+    <div class="container">
+
+
+        <div class="requirements-grid">
+
+
+            <div class="requirements-box">
+
+                <h3>
+                    Información para afiliación
+                </h3>
+
+
+                <div class="requirements-list">
+
+
+                    <div class="requirement">
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                        <span>
+                            Consultar directamente con la Junta
+                            el procedimiento vigente de afiliación.
+                        </span>
+
+                    </div>
+
+
+                    <div class="requirement">
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                        <span>
+                            Presentar la documentación que sea
+                            requerida por la organización.
+                        </span>
+
+                    </div>
+
+
+                    <div class="requirement">
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                        <span>
+                            Cumplir las condiciones establecidas
+                            en los estatutos y reglamentos aplicables.
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <div class="requirements-box">
+
+                <h3>
+                    Compromisos del afiliado
+                </h3>
+
+
+                <div class="requirements-list">
+
+
+                    <div class="requirement">
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                        <span>
+                            Participar responsablemente en los
+                            espacios comunitarios.
+                        </span>
+
+                    </div>
+
+
+                    <div class="requirement">
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                        <span>
+                            Respetar las decisiones adoptadas
+                            mediante los mecanismos correspondientes.
+                        </span>
+
+                    </div>
+
+
+                    <div class="requirement">
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                        <span>
+                            Contribuir al fortalecimiento de la
+                            organización y la comunidad.
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CARNET
+====================================================== -->
+
+<section class="card-section">
+
+    <div class="container">
+
+
+        <div class="card-box">
+
+
+            <div>
+
+                <div
+                    class="eyebrow"
+                    style="color:#d9efe1;"
+                >
+                    Identificación institucional
+                </div>
+
+                <h2>
+                    Carnet de afiliado
+                </h2>
+
+                <p>
+
+                    La Junta podrá disponer de mecanismos de
+                    identificación institucional para sus
+                    afiliados, de acuerdo con los procedimientos
+                    establecidos.
+
+                </p>
+
+
+                <a
+                    href="#"
+                    class="btn btn-primary"
+                    onclick="solicitarCarnet(event)"
+                >
+                    Solicitar información
+                </a>
+
+            </div>
+
+
+            <!-- PREVISUALIZACIÓN -->
+
+            <div class="card-preview">
+
+
+                <div class="card-header">
+
+                    <div class="card-logo">
+                        JAC
+                    </div>
+
+                    <div>
+
+                        <div class="card-title">
+                            JUNTA DE ACCIÓN COMUNAL
+                        </div>
+
+                        <div class="card-title">
+                            VEREDA SANTA BÁRBARA
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-name">
+                    AFILIADO
+                </div>
+
+                <div class="card-number">
+                    Identificación institucional
+                </div>
+
+
+                <div class="card-status">
+                    AFILIACIÓN ACTIVA
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="privacy">
+
+            <strong>
+                Protección de información:
+            </strong>
+
+            La información personal de los afiliados no
+            deberá publicarse en este portal. Los datos
+            utilizados para procesos de afiliación,
+            identificación o administración deberán ser
+            tratados únicamente para las finalidades
+            autorizadas por la organización y conforme a
+            las normas aplicables de protección de datos.
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    <div class="container">
+
+
+        <div class="footer-grid">
+
+
+            <div>
+
+                <h3>
+                    JAC Vereda Santa Bárbara
+                </h3>
+
+                <p>
+
+                    Portal institucional de la Junta de
+                    Acción Comunal de la Vereda Santa Bárbara.
+
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Portal
+                </h3>
+
+                <a href="index.html">
+                    Inicio
+                </a>
+
+                <a href="nosotro.html">
+                    Nosotros
+                </a>
+
+                <a href="directivos.html">
+                    Directivos
+                </a>
+
+                <a href="noticias.html">
+                    Noticias
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Comunidad
+                </h3>
+
+                <a href="agenda.html">
+                    Agenda
+                </a>
+
+                <a href="documentos.html">
+                    Documentos
+                </a>
+
+                <a href="afiliados.html">
+                    Afiliados
+                </a>
+
+                <a href="pqrs.html">
+                    PQRS
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            <div>
+                © 2026 Junta de Acción Comunal Vereda Santa Bárbara
+            </div>
+
+            <div>
+                Municipio de El Bagre · Antioquia
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+
+function toggleMenu() {
+
+    const navigation =
+        document.querySelector(".navigation");
+
+
+    if (
+        navigation.style.display === "flex"
+    ) {
+
+        navigation.style.display =
+            "none";
+
+    } else {
+
+        navigation.style.display =
+            "flex";
+
+        navigation.style.position =
+            "absolute";
+
+        navigation.style.top =
+            "78px";
+
+        navigation.style.left =
+            "0";
+
+        navigation.style.right =
+            "0";
+
+        navigation.style.padding =
+            "20px";
+
+        navigation.style.background =
+            "#ffffff";
+
+        navigation.style.flexDirection =
+            "column";
+
+        navigation.style.borderBottom =
+            "1px solid #dce7df";
+
+    }
+
+}
+
+
+function solicitarCarnet(event) {
+
+    event.preventDefault();
+
+    alert(
+        "La solicitud de información sobre el carnet estará disponible próximamente."
+    );
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
+

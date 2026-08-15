@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Panel de administración de noticias y videos - JAC Vereda Santa Bárbara.">
+    <title>Administración | Noticias y Videos | JAC Santa Bárbara</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --green: #0f5b35;
+            --green-2: #1f7a45;
+            --green-soft: #eaf5ee;
+            --blue: #0d2c54;
+            --gold: #e3ad20;
+            --ink: #15221b;
+            --muted: #66756c;
+            --bg: #f5f8f6;
+            --white: #ffffff;
+            --border: #dce7df;
+            --danger: #b42318;
+            --danger-soft: #fff1f0;
+            --shadow: 0 16px 45px rgba(13,44,84,.08);
+            --radius: 20px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: "Inter", Arial, sans-serif;
+            color: var(--ink);
+            background: var(--bg);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        img { max-width: 100%; display: block; }
+
+        button, input, textarea, select { font: inherit; }
+
+        .container {
+            width: min(1180px, 92%);
+            margin: auto;
+        }
+
+        /* =====================================================
+           TOPBAR — MISMA IDENTIDAD DEL PORTAL
+        ====================================================== */
+
+        .topbar {
+            background: var(--blue);
+            color: #dbe7f3;
+            font-size: 12px;
+        }
+
+        .topbar-content {
+            min-height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* =====================================================
+           HEADER — MISMO HEADER DEL PORTAL
+        ====================================================== */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,.96);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar {
+            min-height: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--green);
+            font-weight: 800;
+            font-size: 12px;
+            line-height: 1.2;
+        }
+
+        .brand img {
+            width: 54px;
+            height: 54px;
+            object-fit: contain;
+        }
+
+        .navigation {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #34443b;
+        }
+
+        .navigation a {
+            transition: .25s ease;
+        }
+
+        .navigation a:hover,
+        .navigation .active {
+            color: var(--green);
+        }
+
+        .menu-button {
+            display: none;
+            border: none;
+            background: var(--green);
+            color: white;
+            border-radius: 10px;
+            padding: 10px 13px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* =====================================================
+           HERO ADMINISTRACIÓN
+        ====================================================== */
+
+        .page-hero {
+            background:
+                radial-gradient(circle at 85% 15%, rgba(227,173,32,.15), transparent 25%),
+                linear-gradient(135deg, #ffffff, #eef7f1);
+            padding: 58px 0 52px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--green);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            font-size: 12px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 25px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 5px;
+        }
+
+        h1, h2, h3 {
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(34px, 5vw, 52px);
+            line-height: 1.05;
+            color: var(--blue);
+            margin: 16px 0;
+        }
+
+        .page-hero h1 span { color: var(--green); }
+
+        .page-hero p {
+            max-width: 720px;
+            margin: auto;
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        /* =====================================================
+           PANEL
+        ====================================================== */
+
+        .admin-section {
+            padding: 55px 0 78px;
+        }
+
+        .admin-layout {
+            display: grid;
+            grid-template-columns: .82fr 1.18fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .panel-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .panel-head {
+            padding: 24px 26px 18px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .panel-head h2 {
+            color: var(--blue);
+            font-size: 23px;
+            line-height: 1.2;
+        }
+
+        .panel-head p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 6px;
+        }
+
+        .panel-body { padding: 26px; }
+
+        .form-group { margin-bottom: 18px; }
+
+        .form-group label {
+            display: block;
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 7px;
+        }
+
+        .form-control {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            padding: 12px 13px;
+            color: var(--ink);
+            background: #fff;
+            outline: none;
+            transition: .2s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px rgba(15,91,53,.08);
+        }
+
+        textarea.form-control {
+            min-height: 105px;
+            resize: vertical;
+        }
+
+        .upload-box {
+            border: 1.5px dashed #b8cbbf;
+            background: #fbfdfb;
+            border-radius: 15px;
+            padding: 22px;
+            text-align: center;
+            transition: .2s ease;
+        }
+
+        .upload-box.dragover {
+            border-color: var(--green);
+            background: var(--green-soft);
+        }
+
+        .upload-icon {
+            width: 52px;
+            height: 52px;
+            margin: 0 auto 10px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: var(--green-soft);
+            color: var(--green);
+            font-size: 25px;
+        }
+
+        .upload-box strong {
+            display: block;
+            color: var(--blue);
+            font-size: 14px;
+        }
+
+        .upload-box small {
+            display: block;
+            color: var(--muted);
+            font-size: 11px;
+            margin: 5px 0 14px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            border: 0;
+            padding: 11px 18px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .25s ease;
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--green-2);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border);
+            color: var(--green);
+            background: white;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--green);
+            background: var(--green-soft);
+        }
+
+        .btn-danger {
+            background: var(--danger-soft);
+            color: var(--danger);
+            border: 1px solid #f2c5c1;
+        }
+
+        .btn-danger:hover {
+            background: #ffe5e2;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 5px;
+        }
+
+        .file-name {
+            display: none;
+            margin-top: 12px;
+            padding: 10px 12px;
+            background: var(--green-soft);
+            color: var(--green);
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 700;
+            word-break: break-word;
+            text-align: left;
+        }
+
+        .video-preview {
+            display: none;
+            margin-top: 15px;
+            border-radius: 13px;
+            overflow: hidden;
+            background: #081f38;
+            aspect-ratio: 16 / 9;
+        }
+
+        .video-preview video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* =====================================================
+           LISTADO
+        ====================================================== */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .stat {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: #fbfdfb;
+            padding: 15px;
+        }
+
+        .stat strong {
+            display: block;
+            color: var(--blue);
+            font-family: "Montserrat", sans-serif;
+            font-size: 25px;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .video-list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .video-item {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 18px;
+            padding: 15px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: #fff;
+        }
+
+        .video-thumb {
+            min-height: 105px;
+            border-radius: 11px;
+            overflow: hidden;
+            background: #081f38;
+            display: grid;
+            place-items: center;
+            color: white;
+        }
+
+        .video-thumb video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-info h3 {
+            color: var(--blue);
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .video-info p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 8px;
+            border-radius: 20px;
+            font-size: 9px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .badge-category {
+            color: var(--green);
+            background: var(--green-soft);
+        }
+
+        .badge-published {
+            color: #176b39;
+            background: #e9f7ed;
+        }
+
+        .badge-draft {
+            color: #725600;
+            background: #fff8e5;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            border: 1px dashed var(--border);
+            border-radius: 15px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .notice {
+            margin-top: 22px;
+            background: #fff8e5;
+            border: 1px solid #f1d98d;
+            color: #725600;
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+
+        .status {
+            display: none;
+            margin-bottom: 18px;
+            padding: 12px 14px;
+            border-radius: 11px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .status.success {
+            display: block;
+            color: #176b39;
+            background: #e9f7ed;
+            border: 1px solid #b9dfc3;
+        }
+
+        .status.error {
+            display: block;
+            color: var(--danger);
+            background: var(--danger-soft);
+            border: 1px solid #f2c5c1;
+        }
+
+        /* =====================================================
+           FOOTER — MISMA IDENTIDAD
+        ====================================================== */
+
+        footer {
+            background: #081f38;
+            color: #aebdcd;
+            padding: 35px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.3fr .7fr .7fr;
+            gap: 35px;
+        }
+
+        .footer-grid h3 {
+            color: white;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .footer-grid p,
+        .footer-grid a {
+            font-size: 13px;
+        }
+
+        .footer-grid a {
+            display: block;
+            margin: 7px 0;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,.1);
+            margin-top: 25px;
+            padding-top: 18px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
+
+        @media(max-width:950px) {
+            .navigation { display: none; }
+
+            .menu-button { display: block; }
+
+            .admin-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .video-item {
+                grid-template-columns: 145px 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width:600px) {
+            .topbar-content { justify-content: center; }
+
+            .topbar .right { display: none; }
+
+            .brand span { font-size: 10px; }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .video-item {
+                grid-template-columns: 1fr;
+            }
+
+            .video-thumb {
+                min-height: 170px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .copyright {
+                display: block;
+            }
+
+            .copyright div + div {
+                margin-top: 8px;
+            }
+        }
+    
+
+        /* =====================================================
+           CONTROLES DEL HISTORIAL CON BACKEND
+        ====================================================== */
+        .video-thumb iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+
+        .actions button:disabled,
+        .form-actions button:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+            transform: none;
+        }
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     TOPBAR
+========================================================= -->
+
+<div class="topbar">
+    <div class="container topbar-content">
+        <span>
+            Junta de Acción Comunal · Vereda Santa Bárbara · El Bagre
+        </span>
+
+        <span class="right">
+            Personería Jurídica No. 149 · 5 de febrero de 1971
+        </span>
+    </div>
+</div>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+    <div class="container navbar">
+
+        <a href="index.html" class="brand">
+            <img src="assets/logo.png" alt="Logo institucional">
+
+            <span>
+                JUNTA DE ACCIÓN COMUNAL<br>
+                VEREDA SANTA BÁRBARA
+            </span>
+        </a>
+
+        <nav class="navigation">
+            <a href="index.html">Inicio</a>
+            <a href="nosotro.html">Nosotros</a>
+            <a href="directivos.html">Directivos</a>
+            <a href="noticias.html" class="active">Noticias</a>
+            <a href="agenda.html">Agenda</a>
+            <a href="documentos.html">Documentos</a>
+            <a href="afiliados.html">Afiliados</a>
+            <a href="certificados.html">Certificados</a>
+            <a href="pqrs.html">PQRS</a>
+            <a href="politicas.html">Políticas</a>
+        </nav>
+
+        <button class="menu-button" onclick="toggleMenu()" aria-label="Abrir menú">
+            ☰
+        </button>
+
+    </div>
+</header>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="page-hero">
+
+    <div class="container hero-content">
+
+        <div class="eyebrow">
+            Administración
+        </div>
+
+        <h1>
+            Gestión de <span>videos</span>
+        </h1>
+
+        <p>
+            Administra las noticias audiovisuales, comunicados,
+            actividades y actualizaciones que serán publicadas
+            en el portal institucional de la Junta.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PANEL ADMINISTRATIVO
+========================================================= -->
+
+<section class="admin-section">
+
+    <div class="container">
+
+        <div id="status" class="status"></div>
+
+        <div class="admin-layout">
+
+            <!-- =================================================
+                 FORMULARIO
+            ================================================== -->
+
+            <div class="panel-card">
+
+                <div class="panel-head">
+                    <h2>Publicar video</h2>
+
+                    <p>
+                        Completa la información y selecciona el video
+                        que deseas preparar para publicación.
+                    </p>
+                </div>
+
+                <div class="panel-body">
+
+                    <form id="videoForm">
+
+                        <div class="form-group">
+                            <label for="videoTitle">
+                                Título de la publicación
+                            </label>
+
+                            <input
+                                id="videoTitle"
+                                class="form-control"
+                                type="text"
+                                maxlength="120"
+                                placeholder="Ej. Jornada comunitaria de limpieza"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="videoCategory">
+                                Categoría
+                            </label>
+
+                            <select id="videoCategory" class="form-control" required>
+                                <option value="">Seleccionar categoría</option>
+                                <option value="Institucional">Institucional</option>
+                                <option value="Comunidad">Comunidad</option>
+                                <option value="Proyectos">Proyectos</option>
+                                <option value="Convocatorias">Convocatorias</option>
+                                <option value="Gestión">Gestión</option>
+                                <option value="Comunicados">Comunicados</option>
+                                <option value="Noticias">Noticias</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="videoDescription">
+                                Descripción
+                            </label>
+
+                            <textarea
+                                id="videoDescription"
+                                class="form-control"
+                                maxlength="500"
+                                placeholder="Describe brevemente la noticia o actualización..."
+                            ></textarea>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="videoDate">
+                                Fecha de publicación
+                            </label>
+
+                            <input
+                                id="videoDate"
+                                class="form-control"
+                                type="date"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Archivo de video
+                            </label>
+
+                            <div
+                                id="uploadBox"
+                                class="upload-box"
+                            >
+
+                                <div class="upload-icon">
+                                    ▶
+                                </div>
+
+                                <strong>
+                                    Selecciona o arrastra un video
+                                </strong>
+
+                                <small>
+                                    Formato recomendado: MP4 · Máximo recomendado: 200 MB
+                                </small>
+
+                                <input
+                                    id="videoFile"
+                                    type="file"
+                                    accept="video/mp4,video/webm,video/ogg"
+                                    hidden
+                                >
+
+                                <button
+                                    type="button"
+                                    class="btn btn-outline"
+                                    onclick="document.getElementById('videoFile').click()"
+                                >
+                                    Seleccionar video
+                                </button>
+
+                                <div id="fileName" class="file-name"></div>
+
+                                <div id="videoPreview" class="video-preview">
+                                    <video id="previewPlayer" controls></video>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="videoStatus">
+                                Estado
+                            </label>
+
+                            <select id="videoStatus" class="form-control">
+                                <option value="publicado">Publicar inmediatamente</option>
+                                <option value="borrador">Guardar como borrador</option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="actions">
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                            >
+                                Guardar publicación
+                            </button>
+
+                            <button
+                                type="button"
+                                class="btn btn-outline"
+                                onclick="limpiarFormulario()"
+                            >
+                                Limpiar
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 LISTADO
+            ================================================== -->
+
+            <div class="panel-card">
+
+                <div class="panel-head">
+                    <h2>Videos registrados</h2>
+
+                    <p>
+                        Consulta y administra las publicaciones preparadas
+                        desde este panel.
+                    </p>
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="stats">
+
+                        <div class="stat">
+                            <strong id="totalVideos">0</strong>
+                            <span>Total</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong id="publishedVideos">0</strong>
+                            <span>Publicados</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong id="draftVideos">0</strong>
+                            <span>Borradores</span>
+                        </div>
+
+                    </div>
+
+                    <div id="videoList" class="video-list"></div>
+
+                    <div class="notice">
+                        <strong>Conexión activa:</strong>
+                        este panel utiliza Google Apps Script como servidor y
+                        Google Sheets/Drive como almacenamiento. El historial
+                        que aparece aquí se sincroniza con el registro real
+                        del servidor.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div>
+
+                <h3>
+                    JAC Vereda Santa Bárbara
+                </h3>
+
+                <p>
+                    Portal institucional de la Junta de
+                    Acción Comunal de la Vereda Santa Bárbara.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Portal
+                </h3>
+
+                <a href="index.html">Inicio</a>
+                <a href="nosotro.html">Nosotros</a>
+                <a href="directivos.html">Directivos</a>
+                <a href="noticias.html">Noticias</a>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Comunidad
+                </h3>
+
+                <a href="agenda.html">Agenda</a>
+                <a href="documentos.html">Documentos</a>
+                <a href="afiliados.html">Afiliados</a>
+                <a href="pqrs.html">PQRS</a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            <div>
+                © 2026 Junta de Acción Comunal Vereda Santa Bárbara
+            </div>
+
+            <div>
+                Municipio de El Bagre · Antioquia
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+    /* =========================================================
+       CONEXIÓN REAL CON GOOGLE APPS SCRIPT
+    ========================================================= */
+
+    // PEGA AQUÍ LA URL /exec DE TU APLICACIÓN WEB DE APPS SCRIPT.
+    const API_URL = "https://script.google.com/macros/s/AKfycbySJS8Da3m60tOG3tM0Y7m7Hcv5XQ2sKO2P1x_PCikFmYGys_tjgdvKWe851oDdu5Y/exec";
+
+    const STORAGE_KEY = "jac_santa_barbara_videos_admin";
+    let previewUrl = null;
+
+
+    /* =========================================================
+       MENÚ
+    ========================================================= */
+
+    function toggleMenu() {
+        const navigation = document.querySelector(".navigation");
+
+        if (navigation.style.display === "flex") {
+            navigation.style.display = "none";
+        } else {
+            navigation.style.display = "flex";
+            navigation.style.position = "absolute";
+            navigation.style.top = "78px";
+            navigation.style.left = "0";
+            navigation.style.right = "0";
+            navigation.style.padding = "20px";
+            navigation.style.background = "#ffffff";
+            navigation.style.flexDirection = "column";
+            navigation.style.borderBottom = "1px solid #dce7df";
+        }
+    }
+
+
+    /* =========================================================
+       ESTADO
+    ========================================================= */
+
+    function showStatus(message, type = "success") {
+        const box = document.getElementById("status");
+        box.textContent = message;
+        box.className = "status " + type;
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        clearTimeout(showStatus.timer);
+        showStatus.timer = setTimeout(() => {
+            box.className = "status";
+            box.textContent = "";
+        }, 5000);
+    }
+
+
+    /* =========================================================
+       LOCAL FALLBACK / CACHE
+    ========================================================= */
+
+    function getVideos() {
+        try {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function saveVideos(videos) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(videos));
+    }
+
+
+    /* =========================================================
+       CONEXIÓN REAL CON GOOGLE APPS SCRIPT
+       SUBIDA RESUMABLE POR FRAGMENTOS
+    ========================================================= */
+
+    // 4 MiB por fragmento. Se envía en Base64, pero sigue muy por debajo
+    // del límite de una petición individual de Apps Script.
+    const UPLOAD_CHUNK_BYTES = 4 * 1024 * 1024;
+
+    let selectedFile = null;
+
+
+    async function apiGet(action = "getAllVideos", extra = {}) {
+        if (!API_URL) return null;
+
+        const params = new URLSearchParams();
+        params.set("action", action);
+
+        Object.keys(extra || {}).forEach(function (key) {
+            if (extra[key] !== undefined && extra[key] !== null) {
+                params.set(key, extra[key]);
+            }
+        });
+
+        const response = await fetch(
+            API_URL + "?" + params.toString(),
+            { method: "GET", cache: "no-store" }
+        );
+
+        if (!response.ok) {
+            throw new Error("El servidor respondió con error HTTP " + response.status);
+        }
+
+        const data = await response.json();
+
+        if (!data.ok) {
+            throw new Error(data.error || "El servidor rechazó la operación.");
+        }
+
+        return data;
+    }
+
+
+    // Las peticiones POST se envían como no-cors para evitar que la
+    // redirección de Google Apps Script provoque "Failed to fetch".
+    // El estado real se verifica por GET inmediatamente después.
+    async function apiPost(payload) {
+        if (!API_URL) {
+            throw new Error("Primero configura API_URL con la URL /exec del Apps Script.");
+        }
+
+        await fetch(API_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify(payload)
+        });
+
+        return { ok: true, queued: true };
+    }
+
+
+    function base64FromArrayBuffer(buffer) {
+        const bytes = new Uint8Array(buffer);
+        let binary = "";
+        const STEP = 0x8000;
+
+        for (let i = 0; i < bytes.length; i += STEP) {
+            binary += String.fromCharCode.apply(
+                null,
+                bytes.subarray(i, Math.min(i + STEP, bytes.length))
+            );
+        }
+
+        return btoa(binary);
+    }
+
+
+    function setUploadProgress(percent, text) {
+        let box = document.getElementById("uploadProgressBox");
+        if (!box) {
+            box = document.createElement("div");
+            box.id = "uploadProgressBox";
+            box.style.cssText = "margin-top:14px;padding:14px 16px;border:1px solid rgba(20,50,35,.12);border-radius:14px;background:#f7faf8;";
+            uploadBox.parentNode.insertBefore(box, uploadBox.nextSibling);
+        }
+
+        box.innerHTML = `
+            <div style="font-size:13px;font-weight:700;color:#123b2b;margin-bottom:8px;">${text || "Subiendo video..."}</div>
+            <div style="height:8px;background:#e5ece8;border-radius:99px;overflow:hidden;">
+                <div id="uploadProgressBar" style="height:100%;width:${Math.max(0, Math.min(100, percent))}%;background:#1f7a4d;transition:width .2s ease;"></div>
+            </div>
+            <div id="uploadProgressText" style="font-size:12px;color:#66756d;margin-top:6px;">${Math.round(percent)}%</div>
+        `;
+    }
+
+
+    function removeUploadProgress() {
+        const box = document.getElementById("uploadProgressBox");
+        if (box) box.remove();
+    }
+
+
+    async function esperar(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+
+    async function consultarEstadoSubida(uploadId, intentos = 8) {
+        let ultimoError = null;
+
+        for (let i = 0; i < intentos; i++) {
+            try {
+                const data = await apiGet("getUploadStatus", { uploadId: uploadId });
+                if (data && data.upload) return data.upload;
+            } catch (error) {
+                ultimoError = error;
+            }
+            await esperar(500 + (i * 250));
+        }
+
+        if (ultimoError) throw ultimoError;
+        throw new Error("No fue posible consultar el estado de la subida.");
+    }
+
+
+    async function subirVideoPorFragmentos(file, metadata, onProgress) {
+        const uploadId = "up_" + Date.now() + "_" + Math.random().toString(36).slice(2, 10);
+
+        // 1. Crear la sesión resumable mediante POST no-cors.
+        // Apps Script ya soporta startUpload por POST. Como el navegador
+        // no puede leer la respuesta de un POST no-cors, generamos el
+        // uploadId en el navegador y confirmamos la creación consultando
+        // getUploadStatus por GET antes de enviar cualquier fragmento.
+        // Esto evita depender de una versión de Apps Script que tenga
+        // startUpload habilitado por GET.
+        const datosInicio = {
+            action: "startUpload",
+            uploadId: uploadId,
+            fileName: file.name,
+            mimeType: file.type || "video/mp4",
+            totalBytes: file.size,
+            title: metadata.title,
+            category: metadata.category,
+            description: metadata.description,
+            date: metadata.date,
+            status: metadata.status
+        };
+
+        let estado = null;
+        let ultimaFallaInicio = null;
+
+        // Reintentamos el arranque porque no-cors no permite leer la
+        // respuesta del servidor. La confirmación real se hace por GET.
+        for (let intentoInicio = 0; intentoInicio < 4; intentoInicio++) {
+            try {
+                await apiPost(datosInicio);
+            } catch (error) {
+                ultimaFallaInicio = error;
+            }
+
+            // Dar tiempo a Apps Script para terminar startUpload.
+            await esperar(900 + (intentoInicio * 700));
+
+            for (let intentoEstado = 0; intentoEstado < 8; intentoEstado++) {
+                try {
+                    estado = await consultarEstadoSubida(uploadId, 2);
+
+                    if (estado && (estado.status === "READY" || estado.status === "UPLOADING")) {
+                        break;
+                    }
+
+                    if (estado && estado.status === "COMPLETE") {
+                        break;
+                    }
+
+                    if (estado && estado.status === "ERROR") {
+                        throw new Error(estado.error || "Apps Script rechazó la creación de la subida.");
+                    }
+                } catch (error) {
+                    ultimaFallaInicio = error;
+                }
+
+                await esperar(500);
+            }
+
+            if (estado && ["READY", "UPLOADING", "COMPLETE"].includes(estado.status)) {
+                break;
+            }
+        }
+
+        if (!estado || !["READY", "UPLOADING", "COMPLETE"].includes(estado.status)) {
+            const detalle = ultimaFallaInicio && ultimaFallaInicio.message
+                ? " Detalle: " + ultimaFallaInicio.message
+                : "";
+            throw new Error(
+                "Apps Script no creó la sesión de subida. " +
+                "Verifica que la implementación /exec tenga publicada la versión actual del Apps Script y que CARPETA_VIDEOS_ID sea válida." +
+                detalle
+            );
+        }
+
+        // Si una sesión ya había terminado, no volvemos a enviar datos.
+        if (estado.status === "COMPLETE") {
+            onProgress(100, "Video ya recibido. Actualizando historial...");
+            return estado;
+        }
+
+        // 2. Enviar fragmentos secuencialmente.
+        let offset = Number(estado.receivedBytes || 0);
+        const total = file.size;
+
+        while (offset < total) {
+            const endExclusive = Math.min(offset + UPLOAD_CHUNK_BYTES, total);
+            const blob = file.slice(offset, endExclusive);
+            const buffer = await blob.arrayBuffer();
+            const base64 = base64FromArrayBuffer(buffer);
+            const endInclusive = endExclusive - 1;
+
+            const porcentaje = (endExclusive / total) * 100;
+            onProgress(porcentaje, `Subiendo video... ${Math.round(porcentaje)}%`);
+
+            await apiPost({
+                action: "uploadChunk",
+                uploadId: uploadId,
+                startByte: offset,
+                endByte: endInclusive,
+                totalBytes: total,
+                chunk: base64
+            });
+
+            // Confirmación del servidor antes de enviar el siguiente fragmento.
+            let confirmado = false;
+            let ultimoEstado = null;
+
+            for (let intento = 0; intento < 15; intento++) {
+                await esperar(400 + (intento * 150));
+                ultimoEstado = await consultarEstadoSubida(uploadId, 3);
+
+                if (ultimoEstado.status === "ERROR") {
+                    throw new Error(ultimoEstado.error || "Apps Script rechazó un fragmento.");
+                }
+
+                if (Number(ultimoEstado.receivedBytes || 0) >= endExclusive) {
+                    confirmado = true;
+                    offset = endExclusive;
+                    break;
+                }
+            }
+
+            if (!confirmado) {
+                throw new Error("El servidor no confirmó el fragmento enviado.");
+            }
+        }
+
+        // 3. Confirmación final y registro definitivo en Sheets.
+        onProgress(100, "Finalizando video y guardando historial...");
+
+        for (let i = 0; i < 20; i++) {
+            await esperar(500 + (i * 150));
+            estado = await consultarEstadoSubida(uploadId, 4);
+
+            if (estado.status === "COMPLETE") {
+                onProgress(100, "Video guardado correctamente.");
+                return estado.video;
+            }
+
+            if (estado.status === "ERROR") {
+                throw new Error(estado.error || "No fue posible finalizar el video.");
+            }
+        }
+
+        throw new Error("El servidor no confirmó la finalización del video.");
+    }
+
+
+    /* =========================================================
+       SELECCIÓN DE VIDEO
+    ========================================================= */
+
+    const videoFile = document.getElementById("videoFile");
+    const uploadBox = document.getElementById("uploadBox");
+
+    videoFile.addEventListener("change", function () {
+        if (this.files && this.files[0]) {
+            prepareFile(this.files[0]);
+        }
+    });
+
+    uploadBox.addEventListener("dragover", function (event) {
+        event.preventDefault();
+        uploadBox.classList.add("dragover");
+    });
+
+    uploadBox.addEventListener("dragleave", function () {
+        uploadBox.classList.remove("dragover");
+    });
+
+    uploadBox.addEventListener("drop", function (event) {
+        event.preventDefault();
+        uploadBox.classList.remove("dragover");
+
+        const file = event.dataTransfer.files[0];
+        if (file) prepareFile(file);
+    });
+
+
+    function prepareFile(file) {
+        if (!file.type.startsWith("video/")) {
+            showStatus("Selecciona un archivo de video válido.", "error");
+            return;
+        }
+
+        // Ya NO existe el límite artificial de 30 MB.
+        // La subida se realiza por fragmentos.
+        selectedFile = file;
+
+        const fileName = document.getElementById("fileName");
+        const preview = document.getElementById("videoPreview");
+        const player = document.getElementById("previewPlayer");
+
+        fileName.style.display = "block";
+        fileName.textContent = file.name + " · " + formatBytes(file.size);
+
+        if (previewUrl) URL.revokeObjectURL(previewUrl);
+
+        previewUrl = URL.createObjectURL(file);
+        player.src = previewUrl;
+        preview.style.display = "block";
+    }
+
+
+    function formatBytes(bytes) {
+        if (!bytes) return "0 B";
+
+        const units = ["B", "KB", "MB", "GB"];
+        const index = Math.min(
+            Math.floor(Math.log(bytes) / Math.log(1024)),
+            units.length - 1
+        );
+
+        return (
+            (bytes / Math.pow(1024, index)).toFixed(1) +
+            " " +
+            units[index]
+        );
+    }
+
+
+    /* =========================================================
+       FORMULARIO — SUBIDA RESUMABLE
+    ========================================================= */
+
+    document.getElementById("videoForm").addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        if (!API_URL) {
+            showStatus(
+                "Configura primero API_URL con la URL /exec de tu Apps Script.",
+                "error"
+            );
+            return;
+        }
+
+        if (!selectedFile) {
+            showStatus("Selecciona un video antes de guardar.", "error");
+            return;
+        }
+
+        const submitButton = this.querySelector('button[type="submit"]');
+        if (submitButton) submitButton.disabled = true;
+
+        try {
+            const metadata = {
+                title: document.getElementById("videoTitle").value.trim(),
+                category: document.getElementById("videoCategory").value,
+                description: document.getElementById("videoDescription").value.trim(),
+                date: document.getElementById("videoDate").value,
+                status: document.getElementById("videoStatus").value
+            };
+
+            if (!metadata.title) throw new Error("El título es obligatorio.");
+            if (!metadata.date) throw new Error("La fecha es obligatoria.");
+
+            setUploadProgress(0, "Iniciando subida segura por fragmentos...");
+            showStatus("Preparando la subida del video...", "success");
+
+            const video = await subirVideoPorFragmentos(
+                selectedFile,
+                metadata,
+                function (percent, text) {
+                    setUploadProgress(percent, text);
+                }
+            );
+
+            await cargarHistorial();
+
+            limpiarFormulario();
+            removeUploadProgress();
+
+            showStatus(
+                "Video guardado correctamente. El archivo quedó almacenado en Drive y registrado en el historial.",
+                "success"
+            );
+
+        } catch (error) {
+            removeUploadProgress();
+            showStatus(
+                "No fue posible guardar el video: " + error.message,
+                "error"
+            );
+        } finally {
+            if (submitButton) submitButton.disabled = false;
+        }
+    });
+
+    /* =========================================================
+       LIMPIAR
+    ========================================================= */
+
+    function limpiarFormulario() {
+        document.getElementById("videoForm").reset();
+        selectedFile = null;
+
+        const fileName = document.getElementById("fileName");
+        const preview = document.getElementById("videoPreview");
+        const player = document.getElementById("previewPlayer");
+
+        fileName.style.display = "none";
+        fileName.textContent = "";
+        preview.style.display = "none";
+        player.removeAttribute("src");
+        player.load();
+
+        if (previewUrl) {
+            URL.revokeObjectURL(previewUrl);
+            previewUrl = null;
+        }
+
+        document.getElementById("videoDate").value =
+            new Date().toISOString().slice(0, 10);
+    }
+
+
+    /* =========================================================
+       HISTORIAL REAL DESDE SHEETS
+    ========================================================= */
+
+    async function cargarHistorial() {
+        try {
+            if (!API_URL) {
+                renderVideos(getVideos());
+                return;
+            }
+
+            const data = await apiGet("getAllVideos");
+            const videos = Array.isArray(data.videos) ? data.videos : [];
+
+            saveVideos(videos);
+            renderVideos(videos);
+
+        } catch (error) {
+            renderVideos(getVideos());
+            showStatus(
+                "No se pudo actualizar el historial del servidor. Mostrando la copia local: " + error.message,
+                "error"
+            );
+        }
+    }
+
+
+    /* =========================================================
+       LISTADO
+    ========================================================= */
+
+    function renderVideos(videos = getVideos()) {
+        const list = document.getElementById("videoList");
+
+        const total = videos.length;
+        const published = videos.filter(v => v.status === "publicado").length;
+        const drafts = videos.filter(v => v.status === "borrador").length;
+
+        document.getElementById("totalVideos").textContent = total;
+        document.getElementById("publishedVideos").textContent = published;
+        document.getElementById("draftVideos").textContent = drafts;
+
+        if (!videos.length) {
+            list.innerHTML = `
+                <div class="empty-state">
+                    Todavía no hay videos registrados.
+                    <br>
+                    Utiliza el formulario para crear la primera publicación.
+                </div>
+            `;
+            return;
+        }
+
+        list.innerHTML = videos.map(video => {
+            const date = video.date
+                ? new Date(video.date + "T12:00:00").toLocaleDateString("es-CO", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                })
+                : "Sin fecha";
+
+            const statusClass =
+                video.status === "publicado" ? "badge-published" : "badge-draft";
+
+            const statusText =
+                video.status === "publicado" ? "Publicado" :
+                video.status === "bloqueado" ? "Bloqueado" :
+                video.status === "archivado" ? "Archivado" :
+                "Borrador";
+
+            const preview = video.previewUrl || video.localPreview || "";
+
+            return `
+                <article class="video-item">
+                    <div class="video-thumb">
+                        ${preview ? `
+                            <iframe
+                                src="${escapeHtml(preview)}"
+                                title="${escapeHtml(video.title)}"
+                                loading="lazy"
+                                allow="autoplay"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                            ></iframe>
+                        ` : "▶"}
+                    </div>
+
+                    <div class="video-info">
+                        <div class="meta-row">
+                            <span class="badge badge-category">
+                                ${escapeHtml(video.category)}
+                            </span>
+                            <span class="badge ${statusClass}">
+                                ${statusText}
+                            </span>
+                        </div>
+
+                        <h3>${escapeHtml(video.title)}</h3>
+
+                        <p>${escapeHtml(video.description || "Sin descripción.")}</p>
+
+                        <p>
+                            <strong>Fecha:</strong> ${date}
+                            · <strong>Archivo:</strong> ${escapeHtml(video.fileName || "—")}
+                        </p>
+
+                        <div class="actions">
+                            ${video.status === "publicado" ? `
+                                <button class="btn btn-outline" type="button" onclick="setStatusVideo('${video.id}', 'borrador')">
+                                    Despublicar
+                                </button>
+                            ` : `
+                                <button class="btn btn-primary" type="button" onclick="setStatusVideo('${video.id}', 'publicado')">
+                                    Publicar
+                                </button>
+                            `}
+
+                            ${video.status === "bloqueado" ? `
+                                <button class="btn btn-outline" type="button" onclick="unblockVideo('${video.id}')">
+                                    Desbloquear
+                                </button>
+                            ` : `
+                                <button class="btn btn-outline" type="button" onclick="blockVideo('${video.id}')">
+                                    Bloquear
+                                </button>
+                            `}
+
+                            <button class="btn btn-outline" type="button" onclick="editVideo('${video.id}')">
+                                Editar
+                            </button>
+
+                            <button class="btn btn-danger" type="button" onclick="archiveVideo('${video.id}')">
+                                Archivar
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            `;
+        }).join("");
+    }
+
+
+    /* =========================================================
+       ACCIONES ADMINISTRATIVAS
+    ========================================================= */
+
+    async function setStatusVideo(id, status) {
+        try {
+            await apiPost({
+                action: "updateStatus",
+                id: id,
+                status: status
+            });
+
+            await cargarHistorial();
+            showStatus(
+                status === "publicado"
+                    ? "Video publicado en el portal de noticias."
+                    : "Video retirado de publicación.",
+                "success"
+            );
+
+        } catch (error) {
+            showStatus("No fue posible cambiar el estado: " + error.message, "error");
+        }
+    }
+
+
+    async function blockVideo(id) {
+        const reason = prompt("Motivo del bloqueo:", "Contenido pendiente de revisión.");
+        if (reason === null) return;
+
+        try {
+            await apiPost({
+                action: "blockVideo",
+                id: id,
+                reason: reason
+            });
+
+            await cargarHistorial();
+            showStatus("Video bloqueado correctamente.", "success");
+
+        } catch (error) {
+            showStatus("No fue posible bloquear el video: " + error.message, "error");
+        }
+    }
+
+
+    async function unblockVideo(id) {
+        try {
+            await apiPost({
+                action: "unblockVideo",
+                id: id
+            });
+
+            await cargarHistorial();
+            showStatus("Video desbloqueado y dejado como borrador.", "success");
+
+        } catch (error) {
+            showStatus("No fue posible desbloquear el video: " + error.message, "error");
+        }
+    }
+
+
+    async function archiveVideo(id) {
+        if (!confirm("¿Deseas archivar este video? El historial permanecerá registrado.")) return;
+
+        try {
+            await apiPost({
+                action: "archiveVideo",
+                id: id
+            });
+
+            await cargarHistorial();
+            showStatus("Video archivado. El registro histórico permanece.", "success");
+
+        } catch (error) {
+            showStatus("No fue posible archivar el video: " + error.message, "error");
+        }
+    }
+
+
+    async function editVideo(id) {
+        const video = getVideos().find(v => v.id === id);
+        if (!video) return;
+
+        const title = prompt("Título:", video.title);
+        if (title === null) return;
+
+        const description = prompt("Descripción:", video.description || "");
+        if (description === null) return;
+
+        try {
+            await apiPost({
+                action: "editVideo",
+                id: id,
+                title: title,
+                category: video.category,
+                description: description,
+                date: video.date
+            });
+
+            await cargarHistorial();
+            showStatus("Publicación editada correctamente.", "success");
+
+        } catch (error) {
+            showStatus("No fue posible editar la publicación: " + error.message, "error");
+        }
+    }
+
+
+    /* =========================================================
+       SEGURIDAD DE TEXTO
+    ========================================================= */
+
+    function escapeHtml(value) {
+        return String(value || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+
+    /* =========================================================
+       FECHA / INICIO
+    ========================================================= */
+
+    document.getElementById("videoDate").value =
+        new Date().toISOString().slice(0, 10);
+
+    cargarHistorial();
+
+</script>
+
+</body>
+</html>

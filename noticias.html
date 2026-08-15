@@ -1,0 +1,1718 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administración · Certificados</title>
+
+<style>
+:root{
+    --green:#0f5b35;
+    --green-dark:#0a4026;
+    --blue:#0d2c54;
+    --ink:#17231c;
+    --muted:#68756e;
+    --bg:#f4f7f5;
+    --white:#ffffff;
+    --border:#dfe7e2;
+    --warning:#b7791f;
+    --danger:#b83232;
+    --success:#137333;
+    --shadow:0 12px 35px rgba(20,40,30,.08);
+}
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+}
+button,input,select,textarea{font:inherit}
+.container{width:min(1180px,calc(100% - 36px));margin:auto}
+
+.topbar{background:#081f38;color:#dce7ef;font-size:12px}
+.topbar-content{
+    min-height:38px;display:flex;justify-content:space-between;
+    align-items:center;gap:20px
+}
+header{
+    position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.97);
+    backdrop-filter:blur(14px);border-bottom:1px solid var(--border)
+}
+.navbar{
+    min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:25px
+}
+.brand{
+    display:flex;align-items:center;gap:12px;color:var(--green);
+    font-size:10.5px;font-weight:800;line-height:1.2;text-decoration:none
+}
+.brand img{width:55px;height:55px;object-fit:contain}
+.brand small{display:block;color:var(--muted);font-size:9px;font-weight:600;margin-top:3px}
+.navigation{
+    display:flex;align-items:center;gap:12px;font-size:12px;font-weight:700;color:#34443b
+}
+.navigation a{text-decoration:none;position:relative;padding:8px 0;transition:.25s ease}
+.navigation a::after{
+    content:"";position:absolute;left:0;bottom:1px;width:100%;height:2px;
+    background:var(--green);border-radius:3px;transform:scaleX(0);transition:.25s ease
+}
+.navigation a:hover,.navigation a.active{color:var(--green)}
+.navigation a:hover::after,.navigation a.active::after{transform:scaleX(1)}
+.menu-button{
+    display:none;border:0;background:var(--green);color:#fff;border-radius:10px;
+    padding:10px 13px;cursor:pointer;font-size:18px
+}
+
+main{padding:55px 0 70px}
+.page-header{margin-bottom:28px}
+.eyebrow{
+    color:var(--green);text-transform:uppercase;letter-spacing:1.5px;
+    font-weight:800;font-size:11px;margin-bottom:8px
+}
+.page-header h1{margin:0;color:var(--blue);font-size:34px;line-height:1.15}
+.page-header p{max-width:760px;color:var(--muted);line-height:1.7;margin:12px 0 0}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:25px}
+.stat{
+    background:white;border:1px solid var(--border);border-radius:16px;
+    padding:20px;box-shadow:var(--shadow)
+}
+.stat span{display:block;color:var(--muted);font-size:12px;font-weight:700;margin-bottom:8px}
+.stat strong{display:block;color:var(--blue);font-size:28px}
+
+.panel{
+    background:white;border:1px solid var(--border);border-radius:18px;
+    overflow:hidden;box-shadow:var(--shadow)
+}
+.panel-header{
+    padding:22px;border-bottom:1px solid var(--border);display:flex;
+    justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap
+}
+.panel-title h2{margin:0;font-size:19px;color:var(--blue)}
+.panel-title p{margin:6px 0 0;color:var(--muted);font-size:12px}
+.controls{display:flex;gap:10px;flex-wrap:wrap}
+.search,.filter{
+    border:1px solid var(--border);border-radius:10px;padding:10px 12px;
+    background:white;outline:none
+}
+.search{min-width:260px}
+.search:focus,.filter:focus{
+    border-color:var(--green);box-shadow:0 0 0 3px rgba(15,91,53,.08)
+}
+.table-wrap{width:100%;overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:1080px}
+thead{background:#f7faf8}
+th{
+    text-align:left;padding:14px 16px;font-size:11px;text-transform:uppercase;
+    letter-spacing:.6px;color:#647169;border-bottom:1px solid var(--border)
+}
+td{padding:15px 16px;font-size:13px;border-bottom:1px solid #edf1ee;vertical-align:middle}
+tbody tr:hover{background:#fafcfb}
+
+.badge{
+    display:inline-flex;align-items:center;justify-content:center;border-radius:999px;
+    padding:6px 10px;font-size:10px;font-weight:800;white-space:nowrap
+}
+.badge-pendiente{background:#fff6df;color:#9a6700}
+.badge-aprobado{background:#e8f5ec;color:#137333}
+.badge-rechazado{background:#fdecec;color:#b83232}
+.badge-enviado{background:#e9f0ff;color:#2457a6}
+.badge-default{background:#eef2f0;color:#53615a}
+
+.actions{display:flex;gap:7px;flex-wrap:wrap}
+.btn{
+    border:0;border-radius:9px;padding:8px 11px;font-size:11px;
+    font-weight:800;cursor:pointer;transition:.2s ease
+}
+.btn:hover{transform:translateY(-1px)}
+.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.btn-view{background:#edf3f8;color:#234866}
+.btn-approve{background:#e7f4eb;color:#137333}
+.btn-reject{background:#fdecec;color:#b83232}
+.btn-generate{background:var(--green);color:white}
+.btn-upload{background:#fff4df;color:#8b5c00}
+.btn-letter{background:#e8eef9;color:#244d80}
+.btn-refresh{background:var(--blue);color:white}
+.btn-cancel{background:#eef2f0;color:#4c5a52}
+.btn-confirm{background:var(--green);color:#fff}
+.btn-danger{background:var(--danger);color:#fff}
+
+.message{text-align:center;padding:55px 20px;color:var(--muted);line-height:1.7}
+.message strong{display:block;color:var(--blue);font-size:16px;margin-bottom:8px}
+.loading-spinner{
+    width:30px;height:30px;border:3px solid #dfe7e2;border-top-color:var(--green);
+    border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 15px
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.modal-overlay{
+    position:fixed;inset:0;background:rgba(8,31,56,.58);
+    display:none;align-items:center;justify-content:center;
+    padding:20px;z-index:9999;backdrop-filter:blur(4px)
+}
+.modal{
+    width:min(760px,100%);max-height:92vh;overflow:auto;background:white;
+    border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.2);
+    animation:modalIn .2s ease
+}
+@keyframes modalIn{
+    from{opacity:0;transform:translateY(12px) scale(.98)}
+    to{opacity:1;transform:translateY(0) scale(1)}
+}
+.modal-small{width:min(460px,100%)}
+.modal-header{
+    padding:20px 22px;border-bottom:1px solid var(--border);display:flex;
+    justify-content:space-between;align-items:center;gap:15px
+}
+.modal-header h3{margin:0;color:var(--blue)}
+.close{
+    border:0;background:#f0f3f1;width:34px;height:34px;border-radius:50%;
+    cursor:pointer;font-size:18px
+}
+.modal-body{padding:22px}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.detail{
+    background:#f7faf8;border:1px solid var(--border);border-radius:12px;padding:13px
+}
+.detail label{
+    display:block;color:var(--muted);font-size:10px;text-transform:uppercase;
+    font-weight:800;margin-bottom:4px
+}
+.detail strong{color:var(--ink);font-size:13px;font-weight:600;word-break:break-word}
+.modal-actions{
+    margin-top:22px;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap
+}
+.confirm-icon{
+    width:58px;height:58px;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;margin:0 auto 15px;font-size:27px;font-weight:800
+}
+.confirm-icon.success{background:#e8f5ec;color:var(--success)}
+.confirm-icon.warning{background:#fff5df;color:var(--warning)}
+.confirm-icon.danger{background:#fdecec;color:var(--danger)}
+.confirm-icon.info{background:#e9f0ff;color:#2457a6}
+.confirm-content{text-align:center}
+.confirm-content h3{margin:0 0 8px;color:var(--blue)}
+.confirm-content p{margin:0;color:var(--muted);line-height:1.6;font-size:13px}
+.confirm-content .modal-actions{justify-content:center}
+.modal-input{
+    width:100%;margin-top:15px;border:1px solid var(--border);border-radius:10px;
+    padding:12px;outline:none;resize:vertical;min-height:100px
+}
+.modal-input:focus{
+    border-color:var(--green);box-shadow:0 0 0 3px rgba(15,91,53,.08)
+}
+
+.upload-box{
+    margin-top:20px;padding:18px;border:1px dashed #b9c9bf;border-radius:14px;
+    background:#fbfdfc
+}
+.upload-box h4{margin:0 0 7px;color:var(--blue);font-size:14px}
+.upload-box p{margin:0 0 14px;color:var(--muted);font-size:12px;line-height:1.6}
+.file-input{
+    width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;
+    background:white
+}
+.file-meta{font-size:11px;color:var(--muted);margin-top:8px}
+.progress{
+    height:7px;background:#edf1ee;border-radius:99px;overflow:hidden;margin-top:12px;display:none
+}
+.progress-bar{height:100%;width:0;background:var(--green);transition:width .2s}
+.notice{
+    padding:12px 14px;border-radius:10px;margin-top:12px;font-size:12px;line-height:1.5
+}
+.notice-info{background:#eef5ff;color:#28527f}
+.notice-success{background:#eaf7ee;color:#176b37}
+.notice-error{background:#fdecec;color:#a52e2e}
+
+footer{background:#081f38;color:#b8c5d3;padding:30px 0}
+.footer-content{
+    display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12px
+}
+
+@media(max-width:900px){
+    .menu-button{display:block}
+    .navigation{
+        display:none;position:absolute;top:78px;left:0;right:0;padding:16px 6%;
+        background:#fff;border-bottom:1px solid var(--border);
+        box-shadow:0 15px 30px rgba(0,0,0,.06);flex-direction:column;
+        align-items:stretch;gap:2px
+    }
+    .navigation.open{display:flex}
+    .stats{grid-template-columns:1fr 1fr}
+    .topbar-content{justify-content:center}
+    .topbar-content span:last-child{display:none}
+}
+@media(max-width:560px){
+    .container{width:min(100% - 24px,1180px)}
+    main{padding:35px 0 55px}
+    .stats{grid-template-columns:1fr}
+    .page-header h1{font-size:28px}
+    .search{min-width:100%}
+    .detail-grid{grid-template-columns:1fr}
+    .brand{font-size:9px}
+    .brand img{width:48px;height:48px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="container topbar-content">
+        <span>Panel administrativo · Certificados de afiliación</span>
+        <span>JAC Vereda Santa Bárbara · El Bagre</span>
+    </div>
+</div>
+
+<header>
+    <div class="container navbar">
+        <a href="index.html" class="brand">
+            <img src="assets/logo.png" alt="Logo JAC Vereda Santa Bárbara">
+            <div>
+                JUNTA DE ACCIÓN COMUNAL<br>
+                VEREDA SANTA BÁRBARA
+                <small>Plataforma de servicios comunitarios</small>
+            </div>
+        </a>
+
+        <button class="menu-button" id="menuButton" aria-label="Abrir menú" type="button">☰</button>
+
+        <nav class="navigation" id="navigation">
+            <a href="index.html">Inicio</a>
+            <a href="nosotro.html">Nosotros</a>
+            <a href="afiliados.html">Afiliados</a>
+            <a href="certificados.html">Certificados</a>
+            <a href="pqrs.html">PQRS</a>
+            <a href="gestion-pqrs.html">Gestión PQRS</a>
+            <a href="admincertificado.html" class="active">Admin Cert.</a>
+            <a href="politicas.html">Políticas</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+<div class="container">
+
+    <div class="page-header">
+        <div class="eyebrow">Administración</div>
+        <h1>Solicitudes de certificados</h1>
+        <p>
+            Consulta, revisa y gestiona las solicitudes de certificado de afiliación.
+            Desde este panel también puedes adjuntar el certificado oficial aprobado
+            y generar la carta oficial asociada al radicado.
+        </p>
+    </div>
+
+    <div class="stats">
+        <div class="stat"><span>Total solicitudes</span><strong id="total">0</strong></div>
+        <div class="stat"><span>Pendientes</span><strong id="pendientes">0</strong></div>
+        <div class="stat"><span>Aprobadas</span><strong id="aprobadas">0</strong></div>
+        <div class="stat"><span>Rechazadas</span><strong id="rechazadas">0</strong></div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-header">
+            <div class="panel-title">
+                <h2>Solicitudes registradas</h2>
+                <p id="lastUpdate">Cargando información...</p>
+            </div>
+
+            <div class="controls">
+                <input type="search" id="search" class="search"
+                       placeholder="Buscar por documento, nombre o ID...">
+
+                <select id="filter" class="filter">
+                    <option value="">Todos los estados</option>
+                    <option value="PENDIENTE">Pendientes</option>
+                    <option value="APROBADO">Aprobadas</option>
+                    <option value="RECHAZADO">Rechazadas</option>
+                    <option value="CERTIFICADO ENVIADO A FIRMA">Enviadas a firma</option>
+                    <option value="CERTIFICADO ADJUNTO">Certificado adjunto</option>
+                    <option value="DOCUMENTACION ENVIADA">Documentación enviada</option>
+                </select>
+
+                <button class="btn btn-refresh" onclick="cargarSolicitudes()">Actualizar</button>
+            </div>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID / Radicado</th>
+                        <th>Afiliado</th>
+                        <th>Documento</th>
+                        <th>Correo</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Documentos</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaSolicitudes">
+                    <tr>
+                        <td colspan="8">
+                            <div class="message">
+                                <div class="loading-spinner"></div>
+                                <strong>Cargando solicitudes</strong>
+                                Consultando Google Sheets...
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</main>
+
+<!-- MODAL PRINCIPAL -->
+<div id="modalOverlay" class="modal-overlay">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 id="modalTitle">Detalle de solicitud</h3>
+            <button class="close" onclick="cerrarModal()" type="button">×</button>
+        </div>
+        <div id="modalBody" class="modal-body"></div>
+    </div>
+</div>
+
+<!-- MODAL DE CONFIRMACIÓN / MENSAJES -->
+<div id="confirmOverlay" class="modal-overlay">
+    <div class="modal modal-small">
+        <div class="modal-body">
+            <div id="confirmIcon" class="confirm-icon warning">?</div>
+
+            <div class="confirm-content">
+                <h3 id="confirmTitle">Confirmar acción</h3>
+                <p id="confirmMessage"></p>
+
+                <textarea
+                    id="confirmInput"
+                    class="modal-input"
+                    style="display:none"
+                    placeholder="Escribe el motivo..."></textarea>
+
+                <div class="modal-actions">
+                    <button
+                        type="button"
+                        id="confirmCancel"
+                        class="btn btn-cancel">
+                        Cancelar
+                    </button>
+
+                    <button
+                        type="button"
+                        id="confirmAccept"
+                        class="btn btn-confirm">
+                        Confirmar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container footer-content">
+        <div>© 2026 Junta de Acción Comunal Vereda Santa Bárbara</div>
+        <div>Municipio de El Bagre · Antioquia</div>
+    </div>
+</footer>
+
+<script>
+
+const API_URL =
+    "https://script.google.com/macros/s/AKfycbzD6hzhHh0D5DQvnKfGmvwPOzLaFNUjBnE_Jsm3fX4cQqKhwv6xQVcf8rOrgjidSyOa/exec";
+
+let solicitudes = [];
+
+/* =========================================================
+   MENÚ
+========================================================= */
+
+const menuButton = document.getElementById("menuButton");
+const navigation = document.getElementById("navigation");
+
+if(menuButton && navigation){
+    menuButton.addEventListener("click",()=>{
+        navigation.classList.toggle("open");
+    });
+
+    navigation.querySelectorAll("a").forEach(link=>{
+        link.addEventListener("click",()=>{
+            navigation.classList.remove("open");
+        });
+    });
+}
+
+/* =========================================================
+   MODALES PROFESIONALES
+========================================================= */
+
+let modalCallback = null;
+
+function abrirMensaje(titulo,mensaje,tipo="info",boton="Aceptar"){
+
+    const overlay=document.getElementById("confirmOverlay");
+    const icon=document.getElementById("confirmIcon");
+
+    document.getElementById("confirmTitle").textContent=titulo;
+    document.getElementById("confirmMessage").innerHTML=escapeHTML(mensaje);
+
+    const input=document.getElementById("confirmInput");
+    input.style.display="none";
+    input.value="";
+
+    icon.className="confirm-icon "+tipo;
+    icon.textContent=
+        tipo==="success" ? "✓" :
+        tipo==="danger" ? "!" :
+        tipo==="warning" ? "?" : "i";
+
+    document.getElementById("confirmCancel").style.display="none";
+
+    const aceptar=document.getElementById("confirmAccept");
+    aceptar.textContent=boton;
+    aceptar.className="btn "+(tipo==="danger"?"btn-danger":"btn-confirm");
+
+    modalCallback=null;
+
+    overlay.style.display="flex";
+}
+
+function confirmarAccion(titulo,mensaje,callback,tipo="warning",textoAceptar="Confirmar"){
+
+    const overlay=document.getElementById("confirmOverlay");
+    const icon=document.getElementById("confirmIcon");
+
+    document.getElementById("confirmTitle").textContent=titulo;
+    document.getElementById("confirmMessage").innerHTML=escapeHTML(mensaje);
+
+    const input=document.getElementById("confirmInput");
+    input.style.display="none";
+    input.value="";
+
+    icon.className="confirm-icon "+tipo;
+    icon.textContent=tipo==="danger"?"!":"?";
+
+    document.getElementById("confirmCancel").style.display="inline-block";
+
+    const aceptar=document.getElementById("confirmAccept");
+    aceptar.textContent=textoAceptar;
+    aceptar.className="btn "+(tipo==="danger"?"btn-danger":"btn-confirm");
+
+    modalCallback=callback;
+
+    overlay.style.display="flex";
+}
+
+function pedirMotivo(titulo,mensaje,callback){
+
+    const overlay=document.getElementById("confirmOverlay");
+    const icon=document.getElementById("confirmIcon");
+    const input=document.getElementById("confirmInput");
+
+    document.getElementById("confirmTitle").textContent=titulo;
+    document.getElementById("confirmMessage").innerHTML=escapeHTML(mensaje);
+
+    icon.className="confirm-icon danger";
+    icon.textContent="!";
+
+    input.style.display="block";
+    input.placeholder="Indica el motivo del rechazo (obligatorio)...";
+    input.value="";
+
+    document.getElementById("confirmCancel").style.display="inline-block";
+
+    const aceptar=document.getElementById("confirmAccept");
+    aceptar.textContent="Rechazar solicitud";
+    aceptar.className="btn btn-danger";
+
+    modalCallback=()=>{
+
+        const motivo=input.value.trim();
+
+        if(!motivo){
+            input.focus();
+            return;
+        }
+
+        callback(motivo);
+    };
+
+    overlay.style.display="flex";
+
+    setTimeout(()=>input.focus(),100);
+}
+
+function cerrarConfirmacion(){
+    document.getElementById("confirmOverlay").style.display="none";
+    modalCallback=null;
+}
+
+document.getElementById("confirmAccept").addEventListener("click",()=>{
+    if(typeof modalCallback==="function"){
+        const callback=modalCallback;
+        modalCallback=null;
+        callback();
+    }else{
+        cerrarConfirmacion();
+    }
+});
+
+document.getElementById("confirmCancel").addEventListener("click",()=>{
+    cerrarConfirmacion();
+});
+
+document.getElementById("confirmOverlay").addEventListener("click",function(e){
+    if(e.target===this){
+        cerrarConfirmacion();
+    }
+});
+
+/* =========================================================
+   UTILIDADES
+========================================================= */
+
+function escapeHTML(valor){
+    return String(valor??"")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+function obtener(obj,nombres){
+    for(const nombre of nombres){
+        if(obj[nombre]!==undefined && obj[nombre]!==null){
+            return obj[nombre];
+        }
+    }
+    return "";
+}
+
+function normalizarSolicitud(item){
+    return {
+        id:obtener(item,["id","ID","Id","radicado","RADICADO"]),
+        tipoDocumento:obtener(item,["tipoDocumento","TIPO_DOCUMENTO","TIPO DOCUMENTO"]),
+        numeroDocumento:obtener(item,["numeroDocumento","NUMERO_DOCUMENTO","NUMERO DOCUMENTO","numeroDoc"]),
+        nombres:obtener(item,["nombres","NOMBRES"]),
+        apellidos:obtener(item,["apellidos","APELLIDOS"]),
+        fechaNacimiento:obtener(item,["fechaNacimiento","FECHA_NACIMIENTO"]),
+        telefono:obtener(item,["telefono","TELEFONO","teléfono"]),
+        correo:obtener(item,["correo","CORREO","email","EMAIL"]),
+        vereda:obtener(item,["vereda","VEREDA"]),
+        direccion:obtener(item,["direccion","DIRECCION","DIRECCIÓN"]),
+        fechaAfiliacion:obtener(item,["fechaAfiliacion","FECHA_AFILIACION","FECHA AFILIACION"]),
+        estado:obtener(item,["estado","ESTADO"]),
+        fechaRegistro:obtener(item,["fechaRegistro","FECHA_REGISTRO","FECHA REGISTRO"]),
+        aprobadoPor:obtener(item,["aprobadoPor","APROBADO_POR","APROBADO POR"]),
+        fechaAprobacion:obtener(item,["fechaAprobacion","FECHA_APROBACION","FECHA APROBACION"]),
+        motivoRechazo:obtener(item,["motivoRechazo","MOTIVO_RECHAZO","MOTIVO RECHAZO"]),
+        pdfUrl:obtener(item,["pdfUrl","PDF_URL","PDF URL"]),
+        fechaEnvio:obtener(item,["fechaEnvio","FECHA_ENVIO","FECHA ENVIO"]),
+        certificadoUrl:obtener(item,["certificadoUrl","CERTIFICADO_URL","CERTIFICADO URL","urlCertificado","URL_CERTIFICADO"]),
+        certificadoNombre:obtener(item,["certificadoNombre","CERTIFICADO_NOMBRE","CERTIFICADO NOMBRE","nombreCertificado"]),
+        fechaCertificado:obtener(item,["fechaCertificado","FECHA_CERTIFICADO","FECHA CERTIFICADO"]),
+        cartaUrl:obtener(item,["cartaUrl","CARTA_URL","CARTA URL","urlCarta","URL_CARTA"]),
+        fechaCarta:obtener(item,["fechaCarta","FECHA_CARTA","FECHA CARTA"]),
+        fechaDocumentacionEnviada:obtener(item,["fechaDocumentacionEnviada","FECHA_DOCUMENTACION_ENVIADA"]),
+        fila:obtener(item,["fila"])
+    };
+}
+
+/* =========================================================
+   CARGAR SOLICITUDES
+========================================================= */
+
+async function cargarSolicitudes(){
+
+    const tbody=document.getElementById("tablaSolicitudes");
+
+    tbody.innerHTML=`
+        <tr>
+            <td colspan="8">
+                <div class="message">
+                    <div class="loading-spinner"></div>
+                    <strong>Cargando solicitudes</strong>
+                    Consultando Google Sheets...
+                </div>
+            </td>
+        </tr>`;
+
+    try{
+
+        const url=API_URL+"?action=listar&t="+Date.now();
+
+        const response=await fetch(url,{
+            method:"GET",
+            cache:"no-store"
+        });
+
+        if(!response.ok) throw new Error("HTTP "+response.status);
+
+        const texto=await response.text();
+
+        let data;
+
+        try{
+            data=JSON.parse(texto);
+        }catch(e){
+            throw new Error(
+                "Apps Script no devolvió JSON válido. Respuesta: "+
+                texto.substring(0,300)
+            );
+        }
+
+        if(data.ok===false){
+            throw new Error(data.error||"Apps Script devolvió un error.");
+        }
+
+        if(data&&Array.isArray(data.solicitudes)){
+            solicitudes=data.solicitudes.map(normalizarSolicitud);
+        }else if(Array.isArray(data)){
+            solicitudes=data.map(normalizarSolicitud);
+        }else{
+            solicitudes=[];
+        }
+
+        actualizarEstadisticas();
+        mostrarSolicitudes(solicitudes);
+
+        document.getElementById("lastUpdate").textContent=
+            "Última actualización: "+
+            new Date().toLocaleString("es-CO");
+
+    }catch(error){
+
+        console.error(error);
+
+        tbody.innerHTML=`
+            <tr>
+                <td colspan="8">
+                    <div class="message">
+                        <strong>No fue posible cargar las solicitudes</strong>
+                        ${escapeHTML(error.message)}
+                        <br><br>
+                        <button class="btn btn-refresh" onclick="cargarSolicitudes()">
+                            Intentar nuevamente
+                        </button>
+                    </div>
+                </td>
+            </tr>`;
+    }
+}
+
+/* =========================================================
+   ESTADÍSTICAS
+========================================================= */
+
+function actualizarEstadisticas(){
+
+    document.getElementById("total").textContent=solicitudes.length;
+
+    document.getElementById("pendientes").textContent=
+        solicitudes.filter(s=>String(s.estado).toUpperCase()==="PENDIENTE").length;
+
+    document.getElementById("aprobadas").textContent=
+        solicitudes.filter(s=>String(s.estado).toUpperCase()==="APROBADO").length;
+
+    document.getElementById("rechazadas").textContent=
+        solicitudes.filter(s=>String(s.estado).toUpperCase()==="RECHAZADO").length;
+}
+
+/* =========================================================
+   ESTADO
+========================================================= */
+
+function estadoBadge(estado){
+
+    const valor=String(estado||"SIN ESTADO").toUpperCase();
+
+    let clase="badge-default";
+
+    if(valor==="PENDIENTE") clase="badge-pendiente";
+    else if(valor==="APROBADO") clase="badge-aprobado";
+    else if(valor==="RECHAZADO") clase="badge-rechazado";
+    else if(valor.includes("CERTIFICADO")||valor.includes("DOCUMENTACION"))
+        clase="badge-enviado";
+
+    return `<span class="badge ${clase}">${escapeHTML(valor)}</span>`;
+}
+
+/* =========================================================
+   MOSTRAR SOLICITUDES
+========================================================= */
+
+function mostrarSolicitudes(lista){
+
+    const tbody=document.getElementById("tablaSolicitudes");
+
+    if(!lista.length){
+        tbody.innerHTML=`
+            <tr>
+                <td colspan="8">
+                    <div class="message">
+                        <strong>No hay solicitudes</strong>
+                        No se encontraron registros en la hoja "Solicitudes".
+                    </div>
+                </td>
+            </tr>`;
+        return;
+    }
+
+    tbody.innerHTML=lista.map((s,index)=>{
+
+        const nombre=(s.nombres+" "+s.apellidos).trim();
+
+        const documento=
+            (s.tipoDocumento?s.tipoDocumento+" ":"")+
+            (s.numeroDocumento||"");
+
+        const tieneCertificado=!!s.certificadoUrl;
+        const tieneCarta=!!s.cartaUrl;
+
+        return `
+        <tr>
+            <td><strong>${escapeHTML(s.id||s.fila||"-")}</strong></td>
+
+            <td><strong>${escapeHTML(nombre||"Sin nombre")}</strong></td>
+
+            <td>${escapeHTML(documento||"-")}</td>
+
+            <td>${escapeHTML(s.correo||"-")}</td>
+
+            <td>${escapeHTML(s.fechaRegistro||s.fechaAfiliacion||"-")}</td>
+
+            <td>${estadoBadge(s.estado)}</td>
+
+            <td>
+                <div class="actions">
+
+                    ${tieneCertificado?`
+                        <button class="btn btn-view"
+                            onclick="abrirURL(${index},'certificado')">
+                            Certificado
+                        </button>`:""}
+
+                    ${tieneCarta?`
+                        <button class="btn btn-letter"
+                            onclick="abrirURL(${index},'carta')">
+                            Carta
+                        </button>`:""}
+
+                    ${!tieneCertificado&&String(s.estado).toUpperCase()==="APROBADO"?`
+                        <button class="btn btn-upload"
+                            onclick="abrirCargaCertificado(${index})">
+                            Adjuntar PDF
+                        </button>`:""}
+                </div>
+            </td>
+
+            <td>
+                <div class="actions">
+
+                    <button class="btn btn-view"
+                        onclick="verSolicitud(${index})">
+                        Ver
+                    </button>
+
+                    ${String(s.estado).toUpperCase()==="PENDIENTE"?`
+                        <button class="btn btn-approve"
+                            onclick="aprobar(${index})">
+                            Aprobar
+                        </button>
+
+                        <button class="btn btn-reject"
+                            onclick="rechazar(${index})">
+                            Rechazar
+                        </button>`:""}
+
+                    ${String(s.estado).toUpperCase()==="APROBADO"?`
+                        ${!tieneCertificado?`
+                            <button class="btn btn-upload"
+                                onclick="abrirCargaCertificado(${index})">
+                                Adjuntar certificado
+                            </button>`:""}
+
+                        <button class="btn btn-generate"
+                            onclick="generarCartaPorIndice(${index})">
+                            Generar carta
+                        </button>`:""}
+
+                </div>
+            </td>
+        </tr>`;
+    }).join("");
+}
+
+/* =========================================================
+   FILTRAR
+========================================================= */
+
+function filtrar(){
+
+    const texto=document.getElementById("search").value.toLowerCase().trim();
+    const estado=document.getElementById("filter").value.toUpperCase();
+
+    const resultado=solicitudes.filter(s=>{
+
+        const nombre=(s.nombres+" "+s.apellidos).toLowerCase();
+        const documento=String(s.numeroDocumento||"").toLowerCase();
+        const id=String(s.id||"").toLowerCase();
+
+        const coincideTexto=
+            !texto||
+            nombre.includes(texto)||
+            documento.includes(texto)||
+            id.includes(texto);
+
+        const coincideEstado=
+            !estado||
+            String(s.estado||"").toUpperCase()===estado;
+
+        return coincideTexto&&coincideEstado;
+    });
+
+    mostrarSolicitudes(resultado);
+}
+
+/* =========================================================
+   VER SOLICITUD
+========================================================= */
+
+function verSolicitud(index){
+
+    const s=solicitudes[index];
+
+    if(!s)return;
+
+    document.getElementById("modalTitle").textContent=
+        "Solicitud / Radicado "+(s.id||s.fila||"");
+
+    document.getElementById("modalBody").innerHTML=`
+
+        <div class="detail-grid">
+
+            <div class="detail">
+                <label>ID / Radicado</label>
+                <strong>${escapeHTML(s.id||"-")}</strong>
+            </div>
+
+            <div class="detail">
+                <label>Estado</label>
+                <strong>${estadoBadge(s.estado)}</strong>
+            </div>
+
+            <div class="detail">
+                <label>Nombres</label>
+                <strong>${escapeHTML(s.nombres||"-")}</strong>
+            </div>
+
+            <div class="detail">
+                <label>Apellidos</label>
+                <strong>${escapeHTML(s.apellidos||"-")}</strong>
+            </div>
+
+            <div class="detail">
+                <label>Documento</label>
+                <strong>${escapeHTML(
+                    (s.tipoDocumento||"")+" "+
+                    (s.numeroDocumento||"")
+                )}</strong>
+            </div>
+
+            <div class="detail">
+                <label>Teléfono</label>
+                <strong>${escapeHTML(s.telefono||"-")}</strong>
+            </div>
+
+            <div class="detail">
+                <label>Correo</label>
+                <strong>${escapeHTML(s.correo||"-")}</strong>
+            </div>
+
+            <div class="detail">
+                <label>Vereda</label>
+                <strong>${escapeHTML(s.vereda||"-")}</strong>
+            </div>
+
+            <div class="detail">
+                <label>Dirección</label>
+                <strong>${escapeHTML(s.direccion||"-")}</strong>
+            </div>
+
+            <div class="detail">
+                <label>Fecha afiliación</label>
+                <strong>${escapeHTML(s.fechaAfiliacion||"-")}</strong>
+            </div>
+
+            <div class="detail">
+                <label>Fecha registro</label>
+                <strong>${escapeHTML(s.fechaRegistro||"-")}</strong>
+            </div>
+
+            <div class="detail">
+                <label>Aprobado por</label>
+                <strong>${escapeHTML(s.aprobadoPor||"-")}</strong>
+            </div>
+
+            <div class="detail">
+                <label>Fecha aprobación</label>
+                <strong>${escapeHTML(s.fechaAprobacion||"-")}</strong>
+            </div>
+
+            <div class="detail">
+                <label>Motivo rechazo</label>
+                <strong>${escapeHTML(s.motivoRechazo||"-")}</strong>
+            </div>
+
+            <div class="detail">
+                <label>Certificado aprobado</label>
+                <strong>${s.certificadoUrl?"PDF adjunto":"Pendiente de adjuntar"}</strong>
+            </div>
+
+            <div class="detail">
+                <label>Carta oficial</label>
+                <strong>${s.cartaUrl?"Generada":"Pendiente"}</strong>
+            </div>
+
+            <div class="detail">
+                <label>Soporte de radicación</label>
+                <strong>${s.pdfUrl?"Disponible para consulta":"Pendiente"}</strong>
+            </div>
+
+            <div class="detail">
+                <label>Fecha certificado</label>
+                <strong>${escapeHTML(s.fechaCertificado||"-")}</strong>
+            </div>
+
+        </div>
+
+        ${s.certificadoUrl||s.cartaUrl?`
+            <div class="upload-box">
+                <h4>Documentación asociada al radicado</h4>
+
+                <div class="actions">
+
+                    ${s.pdfUrl?`
+                        <button class="btn btn-view"
+                            onclick="abrirURL(${index},'pdf')">
+                            📄 Ver soporte de radicación
+                        </button>`:""}
+
+                    ${s.certificadoUrl?`
+                        <button class="btn btn-view"
+                            onclick="abrirURL(${index},'certificado')">
+                            📄 Ver certificado aprobado
+                        </button>`:""}
+
+                    ${s.cartaUrl?`
+                        <button class="btn btn-letter"
+                            onclick="abrirURL(${index},'carta')">
+                            📄 Ver carta oficial
+                        </button>`:""}
+
+                </div>
+            </div>`:""}
+
+        ${String(s.estado).toUpperCase()==="APROBADO"?`
+            <div class="upload-box">
+
+                <h4>Certificado oficial aprobado</h4>
+
+                <p>
+                    Adjunta aquí el PDF definitivo firmado/aprobado.
+                    Este archivo queda asociado directamente al radicado.
+                </p>
+
+                ${s.certificadoUrl?`
+                    <div class="notice notice-success">
+                        Ya existe un certificado adjunto para esta solicitud.
+                    </div>`:""}
+
+                <input
+                    type="file"
+                    id="certificadoModalInput"
+                    class="file-input"
+                    accept="application/pdf,.pdf"
+                    onchange="mostrarArchivoSeleccionado(this)">
+
+                <div id="archivoSeleccionado" class="file-meta">
+                    Selecciona un PDF.
+                </div>
+
+                <div class="progress" id="uploadProgress">
+                    <div class="progress-bar" id="uploadProgressBar"></div>
+                </div>
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="btn btn-upload"
+                        id="btnSubirCertificado"
+                        onclick="subirCertificadoDesdeModal(${index})">
+                        📎 Guardar certificado
+                    </button>
+
+                </div>
+
+                <div id="uploadNotice"></div>
+
+            </div>`:""}
+
+        <div class="modal-actions">
+
+            ${s.pdfUrl?`
+                <button class="btn btn-view"
+                    onclick="abrirURL(${index},'pdf')">
+                    Ver soporte de radicación
+                </button>`:""}
+
+            ${String(s.estado).toUpperCase()==="PENDIENTE"?`
+                <button class="btn btn-approve"
+                    onclick="aprobarPorIndice(${index})">
+                    Aprobar solicitud
+                </button>
+
+                <button class="btn btn-reject"
+                    onclick="rechazarPorIndice(${index})">
+                    Rechazar
+                </button>`:""}
+
+            ${String(s.estado).toUpperCase()==="APROBADO"?`
+                <button class="btn btn-generate"
+                    onclick="generarCartaPorIndice(${index})">
+                    Generar carta oficial
+                </button>`:""}
+
+            ${s.certificadoUrl?`
+                <button class="btn btn-view"
+                    onclick="abrirURL(${index},'certificado')">
+                    Ver certificado
+                </button>`:""}
+
+            ${s.cartaUrl?`
+                <button class="btn btn-letter"
+                    onclick="abrirURL(${index},'carta')">
+                    Ver carta
+                </button>`:""}
+
+        </div>
+    `;
+
+    document.getElementById("modalOverlay").style.display="flex";
+}
+
+function cerrarModal(){
+    document.getElementById("modalOverlay").style.display="none";
+}
+
+/* =========================================================
+   APROBAR
+========================================================= */
+
+async function aprobar(index){
+
+    const s=solicitudes[index];
+
+    if(!s||!s.id){
+        abrirMensaje("Solicitud inválida","La solicitud no tiene un ID o radicado válido.","danger");
+        return;
+    }
+
+    confirmarAccion(
+        "Aprobar solicitud",
+        "¿Deseas aprobar la solicitud con radicado "+s.id+"?",
+        async()=>{
+
+            cerrarConfirmacion();
+
+            try{
+
+                const url=
+                    API_URL+
+                    "?action=aprobar&id="+
+                    encodeURIComponent(s.id)+
+                    "&t="+Date.now();
+
+                const response=await fetch(url);
+                const data=await response.json();
+
+                if(!data.ok){
+                    throw new Error(data.error||"No se pudo aprobar.");
+                }
+
+                cerrarModal();
+
+                await cargarSolicitudes();
+
+                abrirMensaje(
+                    "Solicitud aprobada",
+                    "El radicado "+s.id+" fue aprobado correctamente. Ahora puedes adjuntar el certificado oficial.",
+                    "success"
+                );
+
+            }catch(error){
+
+                abrirMensaje(
+                    "No fue posible aprobar",
+                    error.message,
+                    "danger"
+                );
+            }
+        },
+        "warning",
+        "Sí, aprobar"
+    );
+}
+
+function aprobarPorIndice(index){
+    cerrarModal();
+    aprobar(index);
+}
+
+/* =========================================================
+   RECHAZAR
+========================================================= */
+
+async function rechazar(index){
+
+    const s=solicitudes[index];
+
+    if(!s||!s.id){
+        abrirMensaje("Solicitud inválida","La solicitud no tiene ID o radicado.","danger");
+        return;
+    }
+
+    pedirMotivo(
+        "Rechazar solicitud",
+        "Indica el motivo por el cual deseas rechazar el radicado "+s.id+".",
+        async(motivo)=>{
+
+            cerrarConfirmacion();
+
+            try{
+
+                const url=
+                    API_URL+
+                    "?action=rechazar&id="+
+                    encodeURIComponent(s.id)+
+                    "&motivo="+
+                    encodeURIComponent(motivo)+
+                    "&t="+Date.now();
+
+                const response=await fetch(url);
+                const data=await response.json();
+
+                if(!data.ok){
+                    throw new Error(data.error||"No se pudo rechazar.");
+                }
+
+                cerrarModal();
+
+                await cargarSolicitudes();
+
+                abrirMensaje(
+                    "Solicitud rechazada",
+                    "El radicado "+s.id+" fue rechazado correctamente.",
+                    "success"
+                );
+
+            }catch(error){
+
+                abrirMensaje(
+                    "No fue posible rechazar",
+                    error.message,
+                    "danger"
+                );
+            }
+        }
+    );
+}
+
+function rechazarPorIndice(index){
+    cerrarModal();
+    rechazar(index);
+}
+
+/* =========================================================
+   CARGAR CERTIFICADO
+========================================================= */
+
+function abrirCargaCertificado(index){
+
+    const s=solicitudes[index];
+
+    if(!s)return;
+
+    if(String(s.estado).toUpperCase()!=="APROBADO"){
+
+        abrirMensaje(
+            "Solicitud no aprobada",
+            "La solicitud debe estar aprobada antes de adjuntar el certificado.",
+            "warning"
+        );
+
+        return;
+    }
+
+    verSolicitud(index);
+
+    setTimeout(()=>{
+
+        const input=document.getElementById("certificadoModalInput");
+
+        if(input)input.click();
+
+    },150);
+}
+
+function mostrarArchivoSeleccionado(input){
+
+    const meta=document.getElementById("archivoSeleccionado");
+
+    if(!meta)return;
+
+    if(!input.files||!input.files.length){
+        meta.textContent="Selecciona un PDF.";
+        return;
+    }
+
+    const file=input.files[0];
+
+    if(file.type!=="application/pdf"&&!file.name.toLowerCase().endsWith(".pdf")){
+
+        meta.textContent="El archivo debe ser PDF.";
+        input.value="";
+        return;
+    }
+
+    const maxSize=10*1024*1024;
+
+    if(file.size>maxSize){
+
+        meta.textContent="El PDF supera el límite de 10 MB.";
+        input.value="";
+        return;
+    }
+
+    meta.textContent=
+        file.name+" · "+formatBytes(file.size);
+}
+
+function formatBytes(bytes){
+
+    if(!bytes)return"0 B";
+
+    const units=["B","KB","MB","GB"];
+
+    const i=Math.floor(
+        Math.log(bytes)/Math.log(1024)
+    );
+
+    return(
+        bytes/Math.pow(1024,i)
+    ).toFixed(i?2:0)+" "+units[i];
+}
+
+/* =========================================================
+   SUBIR CERTIFICADO
+========================================================= */
+
+async function subirCertificadoDesdeModal(index){
+
+    const s=solicitudes[index];
+
+    if(!s||!s.id){
+        abrirMensaje("Solicitud inválida","La solicitud no tiene ID.","danger");
+        return;
+    }
+
+    if(String(s.estado).toUpperCase()!=="APROBADO"){
+        abrirMensaje(
+            "Solicitud no aprobada",
+            "Solo se puede adjuntar el certificado de una solicitud aprobada.",
+            "warning"
+        );
+        return;
+    }
+
+    const input=document.getElementById("certificadoModalInput");
+
+    if(!input||!input.files||!input.files.length){
+        abrirMensaje(
+            "Selecciona un archivo",
+            "Debes seleccionar primero el certificado PDF.",
+            "warning"
+        );
+        return;
+    }
+
+    const file=input.files[0];
+
+    if(
+        file.type!=="application/pdf"&&
+        !file.name.toLowerCase().endsWith(".pdf")
+    ){
+        abrirMensaje(
+            "Archivo no válido",
+            "El archivo seleccionado debe ser un PDF.",
+            "danger"
+        );
+        return;
+    }
+
+    if(file.size>10*1024*1024){
+        abrirMensaje(
+            "Archivo demasiado grande",
+            "El PDF no puede superar los 10 MB.",
+            "warning"
+        );
+        return;
+    }
+
+    confirmarAccion(
+        "Adjuntar certificado",
+        "Se asociará el archivo \""+file.name+"\" al radicado "+s.id+". ¿Deseas continuar?",
+        async()=>{
+
+            cerrarConfirmacion();
+
+            const btn=document.getElementById("btnSubirCertificado");
+            const progress=document.getElementById("uploadProgress");
+            const progressBar=document.getElementById("uploadProgressBar");
+            const notice=document.getElementById("uploadNotice");
+
+            try{
+
+                btn.disabled=true;
+                btn.textContent="Subiendo...";
+
+                if(progress)progress.style.display="block";
+                if(progressBar)progressBar.style.width="10%";
+
+                if(notice){
+                    notice.innerHTML=
+                        `<div class="notice notice-info">
+                            Preparando el certificado...
+                        </div>`;
+                }
+
+                const base64=await fileToBase64(file);
+
+                if(progressBar)progressBar.style.width="45%";
+
+                const payload={
+                    action:"subirCertificado",
+                    id:s.id,
+                    nombreArchivo:file.name,
+                    mimeType:"application/pdf",
+                    archivoBase64:base64
+                };
+
+                if(progressBar)progressBar.style.width="70%";
+
+                const response=await fetch(
+                    API_URL,
+                    {
+                        method:"POST",
+                        headers:{
+                            "Content-Type":"text/plain;charset=utf-8"
+                        },
+                        body:JSON.stringify(payload)
+                    }
+                );
+
+                const texto=await response.text();
+
+                let data;
+
+                try{
+                    data=JSON.parse(texto);
+                }catch(e){
+                    throw new Error(
+                        "Apps Script no devolvió JSON válido: "+
+                        texto.substring(0,300)
+                    );
+                }
+
+                if(!data.ok){
+                    throw new Error(
+                        data.error||
+                        data.mensaje||
+                        "No fue posible guardar el certificado."
+                    );
+                }
+
+                if(progressBar)progressBar.style.width="100%";
+
+                if(notice){
+                    notice.innerHTML=
+                        `<div class="notice notice-success">
+                            Certificado guardado correctamente y asociado al radicado.
+                        </div>`;
+                }
+
+                cerrarModal();
+
+                await cargarSolicitudes();
+
+                abrirMensaje(
+                    "Certificado guardado",
+                    "El PDF fue guardado correctamente y quedó asociado al radicado "+s.id+".",
+                    "success"
+                );
+
+            }catch(error){
+
+                console.error(error);
+
+                if(notice){
+                    notice.innerHTML=
+                        `<div class="notice notice-error">
+                            ${escapeHTML(error.message)}
+                        </div>`;
+                }
+
+                abrirMensaje(
+                    "No fue posible guardar el certificado",
+                    error.message,
+                    "danger"
+                );
+
+            }finally{
+
+                if(btn){
+                    btn.disabled=false;
+                    btn.textContent="📎 Guardar certificado";
+                }
+            }
+        },
+        "warning",
+        "Sí, guardar PDF"
+    );
+}
+
+function fileToBase64(file){
+
+    return new Promise((resolve,reject)=>{
+
+        const reader=new FileReader();
+
+        reader.onload=()=>{
+            const result=String(reader.result||"");
+            const comma=result.indexOf(",");
+
+            resolve(
+                comma>=0?
+                result.substring(comma+1):
+                result
+            );
+        };
+
+        reader.onerror=()=>{
+            reject(new Error("No fue posible leer el archivo."));
+        };
+
+        reader.readAsDataURL(file);
+    });
+}
+
+/* =========================================================
+   GENERAR CARTA OFICIAL
+========================================================= */
+
+async function generarCarta(index){
+
+    const s=solicitudes[index];
+
+    if(!s||!s.id){
+        abrirMensaje("Solicitud inválida","La solicitud no tiene ID.","danger");
+        return;
+    }
+
+    if(String(s.estado).toUpperCase()!=="APROBADO"){
+        abrirMensaje(
+            "Solicitud no aprobada",
+            "La solicitud debe estar aprobada antes de generar la carta.",
+            "warning"
+        );
+        return;
+    }
+
+    if(!s.certificadoUrl){
+
+        confirmarAccion(
+            "Certificado pendiente",
+            "Todavía no has adjuntado el certificado aprobado. La carta puede generarse, pero el expediente quedará incompleto. ¿Deseas continuar?",
+            ()=>ejecutarGenerarCarta(s),
+            "warning",
+            "Generar de todas formas"
+        );
+
+        return;
+    }
+
+    confirmarAccion(
+        "Generar carta oficial",
+        "¿Deseas generar la carta oficial para el radicado "+s.id+"?",
+        ()=>ejecutarGenerarCarta(s),
+        "info",
+        "Sí, generar carta"
+    );
+}
+
+async function ejecutarGenerarCarta(s){
+
+    cerrarConfirmacion();
+
+    try{
+
+        const url=
+            API_URL+
+            "?action=generarCarta"+
+            "&id="+
+            encodeURIComponent(s.id)+
+            "&t="+Date.now();
+
+        const response=await fetch(url);
+        const data=await response.json();
+
+        if(!data.ok){
+            throw new Error(
+                data.error||
+                data.mensaje||
+                "No se pudo generar la carta."
+            );
+        }
+
+        cerrarModal();
+
+        await cargarSolicitudes();
+
+        abrirMensaje(
+            "Carta generada correctamente",
+            "La carta oficial del radicado "+s.id+" fue generada correctamente.",
+            "success"
+        );
+
+        if(data.cartaUrl){
+
+            setTimeout(()=>{
+                window.open(
+                    data.cartaUrl,
+                    "_blank",
+                    "noopener"
+                );
+            },700);
+        }
+
+    }catch(error){
+
+        abrirMensaje(
+            "Error al generar la carta",
+            error.message,
+            "danger"
+        );
+    }
+}
+
+function generarCartaPorIndice(index){
+    cerrarModal();
+    generarCarta(index);
+}
+
+/* =========================================================
+   ABRIR DOCUMENTOS
+========================================================= */
+
+function abrirURL(index,tipo){
+
+    const s=solicitudes[index];
+
+    if(!s)return;
+
+    let url="";
+
+    if(tipo==="certificado")url=s.certificadoUrl;
+    else if(tipo==="carta")url=s.cartaUrl;
+    else if(tipo==="pdf")url=s.pdfUrl;
+
+    if(!url){
+
+        abrirMensaje(
+            "Documento no disponible",
+            "Este documento todavía no está disponible.",
+            "warning"
+        );
+
+        return;
+    }
+
+    window.open(
+        url,
+        "_blank",
+        "noopener"
+    );
+}
+
+/* =========================================================
+   FILTROS
+========================================================= */
+
+document.getElementById("search")
+    .addEventListener("input",filtrar);
+
+document.getElementById("filter")
+    .addEventListener("change",filtrar);
+
+/* =========================================================
+   MODAL PRINCIPAL
+========================================================= */
+
+document.getElementById("modalOverlay")
+    .addEventListener("click",function(event){
+
+        if(event.target===this){
+            cerrarModal();
+        }
+
+    });
+
+/* =========================================================
+   TECLA ESC
+========================================================= */
+
+document.addEventListener("keydown",function(event){
+
+    if(event.key==="Escape"){
+
+        const confirm=document.getElementById("confirmOverlay");
+
+        if(confirm.style.display==="flex"){
+            cerrarConfirmacion();
+        }else{
+            cerrarModal();
+        }
+    }
+});
+
+/* =========================================================
+   INICIO
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+        cargarSolicitudes();
+    }
+);
+
+</script>
+
+</body>
+</html>

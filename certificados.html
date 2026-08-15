@@ -1,0 +1,3317 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Solicitud de certificado de afiliación de la Junta de Acción Comunal de la Vereda Santa Bárbara."
+    >
+
+    <title>
+        Certificados | JAC Vereda Santa Barbara
+    </title>
+
+    <!-- =====================================================
+         FUENTES
+    ====================================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           VARIABLES
+        ====================================================== */
+
+        :root {
+
+            --green: #0f5b35;
+            --green-2: #1f7a45;
+            --green-soft: #eaf5ee;
+
+            --blue: #0d2c54;
+            --blue-2: #123d70;
+
+            --gold: #e3ad20;
+            --gold-soft: #fff7dd;
+
+            --ink: #15221b;
+            --muted: #66756c;
+
+            --bg: #f5f8f6;
+            --white: #ffffff;
+
+            --border: #dce7df;
+
+            --danger: #b42318;
+            --danger-bg: #fff1f0;
+
+            --success: #167347;
+            --success-bg: #edf9f2;
+
+            --shadow:
+                0 20px 55px rgba(13, 44, 84, .09);
+
+            --shadow-soft:
+                0 10px 30px rgba(13, 44, 84, .07);
+
+            --radius: 22px;
+        }
+
+
+        /* =====================================================
+           RESET
+        ====================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            font-family:
+                "Inter",
+                Arial,
+                sans-serif;
+
+            color:
+                var(--ink);
+
+            background:
+                var(--bg);
+
+            line-height:
+                1.6;
+
+            min-height:
+                100vh;
+        }
+
+
+        button,
+        input,
+        select,
+        textarea {
+
+            font-family:
+                inherit;
+        }
+
+
+        img {
+
+            max-width:
+                100%;
+
+            display:
+                block;
+        }
+
+
+        a {
+
+            text-decoration:
+                none;
+
+            color:
+                inherit;
+        }
+
+
+        /* =====================================================
+           CONTENEDOR
+        ====================================================== */
+
+        .container {
+
+            width:
+                min(1140px, 92%);
+
+            margin:
+                auto;
+        }
+
+
+        /* =====================================================
+           TOPBAR
+        ====================================================== */
+
+        .topbar {
+
+            background:
+                var(--blue);
+
+            color:
+                #dbe7f3;
+
+            font-size:
+                12px;
+        }
+
+
+        .topbar-content {
+
+            min-height:
+                34px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                20px;
+        }
+
+
+        .topbar-left {
+
+            font-weight:
+                600;
+        }
+
+
+        .topbar-right {
+
+            color:
+                #b9cadb;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ====================================================== */
+
+        header {
+
+            background:
+                rgba(255,255,255,.97);
+
+            border-bottom:
+                1px solid var(--border);
+
+            position:
+                sticky;
+
+            top:
+                0;
+
+            z-index:
+                1000;
+
+            backdrop-filter:
+                blur(14px);
+        }
+
+
+        .navbar {
+
+            min-height:
+                78px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                25px;
+        }
+
+
+        /* =====================================================
+           MARCA
+        ====================================================== */
+
+        .brand {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+            color:
+                var(--green);
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+
+            line-height:
+                1.25;
+
+            flex-shrink:
+                0;
+        }
+
+
+        .brand img {
+
+            width:
+                52px;
+
+            height:
+                52px;
+
+            object-fit:
+                contain;
+        }
+
+
+        .brand small {
+
+            display:
+                block;
+
+            color:
+                var(--muted);
+
+            font-size:
+                9px;
+
+            font-weight:
+                600;
+
+            margin-top:
+                3px;
+        }
+
+
+        /* =====================================================
+           MENU
+        ====================================================== */
+
+        .navigation {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            color:
+                #34443b;
+        }
+
+
+        .navigation a {
+            text-decoration:
+                none;
+
+            position:
+                relative;
+
+            padding:
+                8px 0;
+
+            transition:
+                .25s ease;
+        }
+
+
+        .navigation a::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            left:
+                0;
+
+            bottom:
+                1px;
+
+            width:
+                100%;
+
+            height:
+                2px;
+
+            background:
+                var(--green);
+
+            border-radius:
+                3px;
+
+            transform:
+                scaleX(0);
+
+            transition:
+                .25s ease;
+        }
+
+
+        .navigation a:hover,
+        .navigation a.active {
+
+            color:
+                var(--green);
+        }
+
+
+        .navigation a:hover::after,
+        .navigation a.active::after {
+
+            transform:
+                scaleX(1);
+        }
+
+
+        .menu-button {
+
+            display:
+                none;
+
+            width:
+                42px;
+
+            height:
+                42px;
+
+            background:
+                var(--green);
+
+            border-radius:
+                10px;
+
+            cursor:
+                pointer;
+
+            font-size:
+                20px;
+
+            color:
+                white;
+        }
+
+
+        /* =====================================================
+           HERO
+        ====================================================== */
+
+        .hero {
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            background:
+
+                radial-gradient(
+                    circle at 85% 15%,
+                    rgba(227,173,32,.16),
+                    transparent 25%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #ffffff 0%,
+                    #eef7f1 100%
+                );
+
+            padding:
+                65px 0 55px;
+
+            text-align:
+                center;
+        }
+
+
+        .hero::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                300px;
+
+            height:
+                300px;
+
+            left:
+                -150px;
+
+            top:
+                -150px;
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(13,44,84,.035);
+        }
+
+
+        .hero::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                260px;
+
+            height:
+                260px;
+
+            right:
+                -120px;
+
+            bottom:
+                -130px;
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(15,91,53,.06);
+        }
+
+
+        .hero-content {
+
+            position:
+                relative;
+
+            z-index:
+                2;
+        }
+
+
+        .eyebrow {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                9px;
+
+            color:
+                var(--green);
+
+            font-size:
+                12px;
+
+            font-weight:
+                800;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                .08em;
+        }
+
+
+        .eyebrow::before {
+
+            content:
+                "";
+
+            width:
+                25px;
+
+            height:
+                3px;
+
+            background:
+                var(--gold);
+
+            border-radius:
+                5px;
+        }
+
+
+        .hero h1 {
+
+            font-family:
+                "Montserrat",
+                sans-serif;
+
+            color:
+                var(--blue);
+
+            font-size:
+                clamp(34px, 5vw, 52px);
+
+            line-height:
+                1.08;
+
+            margin:
+                15px 0;
+        }
+
+
+        .hero h1 span {
+
+            color:
+                var(--green);
+        }
+
+
+        .hero p {
+
+            max-width:
+                700px;
+
+            margin:
+                auto;
+
+            color:
+                var(--muted);
+
+            font-size:
+                15px;
+        }
+
+
+        /* =====================================================
+           BREADCRUMB
+        ====================================================== */
+
+        .breadcrumb {
+
+            margin-top:
+                25px;
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            font-size:
+                11px;
+
+            color:
+                var(--muted);
+        }
+
+
+        .breadcrumb strong {
+
+            color:
+                var(--green);
+        }
+
+
+        /* =====================================================
+           MAIN
+        ====================================================== */
+
+        main {
+
+            padding:
+                50px 0 80px;
+        }
+
+
+        .form-layout {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                .75fr 1.25fr;
+
+            gap:
+                28px;
+
+            align-items:
+                start;
+        }
+
+
+        /* =====================================================
+           INFO CARD
+        ====================================================== */
+
+        .info-card {
+
+            background:
+                var(--green);
+
+            color:
+                white;
+
+            border-radius:
+                25px;
+
+            padding:
+                34px;
+
+            box-shadow:
+                var(--shadow);
+
+            position:
+                sticky;
+
+            top:
+                105px;
+
+            overflow:
+                hidden;
+        }
+
+
+        .info-card::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                170px;
+
+            height:
+                170px;
+
+            border-radius:
+                50%;
+
+            right:
+                -80px;
+
+            bottom:
+                -80px;
+
+            background:
+                rgba(255,255,255,.05);
+        }
+
+
+        .info-icon {
+
+            width:
+                58px;
+
+            height:
+                58px;
+
+            border-radius:
+                17px;
+
+            background:
+                rgba(255,255,255,.12);
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            font-size:
+                25px;
+
+            margin-bottom:
+                20px;
+
+            position:
+                relative;
+
+            z-index:
+                2;
+        }
+
+
+        .info-card h2 {
+
+            font-family:
+                "Montserrat",
+                sans-serif;
+
+            font-size:
+                27px;
+
+            line-height:
+                1.15;
+
+            margin-bottom:
+                14px;
+
+            position:
+                relative;
+
+            z-index:
+                2;
+        }
+
+
+        .info-card > p {
+
+            color:
+                #d9ede1;
+
+            font-size:
+                14px;
+
+            margin-bottom:
+                25px;
+
+            position:
+                relative;
+
+            z-index:
+                2;
+        }
+
+
+        .info-list {
+
+            display:
+                grid;
+
+            gap:
+                12px;
+
+            position:
+                relative;
+
+            z-index:
+                2;
+        }
+
+
+        .info-item {
+
+            display:
+                flex;
+
+            gap:
+                12px;
+
+            align-items:
+                flex-start;
+
+            padding:
+                13px;
+
+            border-radius:
+                13px;
+
+            background:
+                rgba(255,255,255,.07);
+
+            border:
+                1px solid
+                rgba(255,255,255,.10);
+        }
+
+
+        .info-item strong {
+
+            display:
+                block;
+
+            font-size:
+                13px;
+
+            margin-bottom:
+                2px;
+        }
+
+
+        .info-item span {
+
+            display:
+                block;
+
+            color:
+                #cde3d5;
+
+            font-size:
+                12px;
+        }
+
+
+        .info-check {
+
+            width:
+                25px;
+
+            height:
+                25px;
+
+            flex:
+                0 0 25px;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--gold);
+
+            color:
+                var(--ink);
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            font-weight:
+                900;
+
+            font-size:
+                12px;
+        }
+
+
+        /* =====================================================
+           DATOS IMPORTANTES
+        ====================================================== */
+
+        .institution-box {
+
+            margin-top:
+                22px;
+
+            padding:
+                15px;
+
+            border-radius:
+                13px;
+
+            background:
+                rgba(255,255,255,.08);
+
+            border:
+                1px solid
+                rgba(255,255,255,.10);
+
+            font-size:
+                11px;
+
+            color:
+                #d9ede1;
+
+            position:
+                relative;
+
+            z-index:
+                2;
+        }
+
+
+        .institution-box strong {
+
+            display:
+                block;
+
+            color:
+                white;
+
+            margin-bottom:
+                4px;
+        }
+
+
+        /* =====================================================
+           FORM CARD
+        ====================================================== */
+
+        .form-card {
+
+            background:
+                white;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                25px;
+
+            padding:
+                38px;
+
+            box-shadow:
+                var(--shadow);
+        }
+
+
+        .form-header {
+
+            margin-bottom:
+                28px;
+        }
+
+
+        .form-header-top {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                flex-start;
+
+            gap:
+                20px;
+        }
+
+
+        .form-header h2 {
+
+            font-family:
+                "Montserrat",
+                sans-serif;
+
+            color:
+                var(--blue);
+
+            font-size:
+                27px;
+
+            margin-bottom:
+                7px;
+        }
+
+
+        .form-header p {
+
+            color:
+                var(--muted);
+
+            font-size:
+                13px;
+        }
+
+
+        .status-badge {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            padding:
+                7px 11px;
+
+            border-radius:
+                50px;
+
+            background:
+                var(--gold-soft);
+
+            color:
+                #735800;
+
+            border:
+                1px solid #f1dfa0;
+
+            font-size:
+                10px;
+
+            font-weight:
+                800;
+
+            white-space:
+                nowrap;
+        }
+
+
+        .status-dot {
+
+            width:
+                7px;
+
+            height:
+                7px;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--gold);
+        }
+
+
+        /* =====================================================
+           SEPARADOR
+        ====================================================== */
+
+        .section-title {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            margin:
+                28px 0 16px;
+
+            color:
+                var(--blue);
+
+            font-size:
+                12px;
+
+            font-weight:
+                800;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                .04em;
+        }
+
+
+        .section-title::after {
+
+            content:
+                "";
+
+            height:
+                1px;
+
+            flex:
+                1;
+
+            background:
+                var(--border);
+        }
+
+
+        /* =====================================================
+           FORM GRID
+        ====================================================== */
+
+        .form-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                18px;
+        }
+
+
+        .form-group {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                7px;
+        }
+
+
+        .form-group.full {
+
+            grid-column:
+                1 / -1;
+        }
+
+
+        label {
+
+            color:
+                #34443b;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+        }
+
+
+        label span {
+
+            color:
+                var(--danger);
+        }
+
+
+        input,
+        select {
+
+            width:
+                100%;
+
+            height:
+                48px;
+
+            padding:
+                0 14px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                11px;
+
+            outline:
+                none;
+
+            background:
+                #fbfdfc;
+
+            color:
+                var(--ink);
+
+            font-size:
+                13px;
+
+            transition:
+                .2s ease;
+        }
+
+
+        input:focus,
+        select:focus {
+
+            border-color:
+                var(--green);
+
+            background:
+                white;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(15,91,53,.08);
+        }
+
+
+        input::placeholder {
+
+            color:
+                #9aa69f;
+        }
+
+
+        /* =====================================================
+           PRIVACIDAD
+        ====================================================== */
+
+        .privacy {
+
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+            gap:
+                10px;
+
+            margin-top:
+                24px;
+
+            padding:
+                14px;
+
+            background:
+                #f5f9f6;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                12px;
+        }
+
+
+        .privacy input {
+
+            width:
+                18px;
+
+            height:
+                18px;
+
+            flex:
+                0 0 18px;
+
+            margin-top:
+                2px;
+
+            accent-color:
+                var(--green);
+        }
+
+
+        .privacy label {
+
+            font-size:
+                11px;
+
+            font-weight:
+                500;
+
+            line-height:
+                1.5;
+
+            color:
+                var(--muted);
+
+            cursor:
+                pointer;
+        }
+
+
+        /* =====================================================
+           BOTÓN
+        ====================================================== */
+
+        .submit-area {
+
+            margin-top:
+                25px;
+        }
+
+
+        .submit-button {
+
+            width:
+                100%;
+
+            min-height:
+                52px;
+
+            border:
+                none;
+
+            border-radius:
+                12px;
+
+            background:
+                var(--green);
+
+            color:
+                white;
+
+            font-size:
+                13px;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                .02em;
+
+            cursor:
+                pointer;
+
+            transition:
+                .25s ease;
+
+            box-shadow:
+                0 8px 20px
+                rgba(15,91,53,.18);
+        }
+
+
+        .submit-button:hover {
+
+            background:
+                var(--green-2);
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        .submit-button:disabled {
+
+            opacity:
+                .65;
+
+            cursor:
+                not-allowed;
+
+            transform:
+                none;
+        }
+
+
+        /* =====================================================
+           LOADING
+        ====================================================== */
+
+        .loading {
+
+            display:
+                none;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                10px;
+
+            margin-top:
+                15px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                12px;
+        }
+
+
+        .loading.active {
+
+            display:
+                flex;
+        }
+
+
+        .spinner {
+
+            width:
+                18px;
+
+            height:
+                18px;
+
+            border:
+                2px solid #dce7df;
+
+            border-top-color:
+                var(--green);
+
+            border-radius:
+                50%;
+
+            animation:
+                spin .8s linear infinite;
+        }
+
+
+        @keyframes spin {
+
+            to {
+                transform:
+                    rotate(360deg);
+            }
+        }
+
+
+        /* =====================================================
+           MENSAJES
+        ====================================================== */
+
+        .message {
+
+            display:
+                none;
+
+            margin-top:
+                22px;
+
+            padding:
+                18px;
+
+            border-radius:
+                14px;
+
+            font-size:
+                13px;
+
+            line-height:
+                1.5;
+        }
+
+
+        .message.show {
+
+            display:
+                block;
+        }
+
+
+        .message.success {
+
+            background:
+                var(--success-bg);
+
+            border:
+                1px solid #c9ead7;
+
+            color:
+                #12633c;
+        }
+
+
+        .message.error {
+
+            background:
+                var(--danger-bg);
+
+            border:
+                1px solid #f2c6c2;
+
+            color:
+                var(--danger);
+        }
+
+
+        .message-title {
+
+            display:
+                block;
+
+            font-weight:
+                800;
+
+            margin-bottom:
+                4px;
+        }
+
+
+        /* =====================================================
+           NOTA FINAL
+        ====================================================== */
+
+        .form-note {
+
+            display:
+                flex;
+
+            gap:
+                10px;
+
+            margin-top:
+                20px;
+
+            padding-top:
+                18px;
+
+            border-top:
+                1px solid var(--border);
+
+            color:
+                var(--muted);
+
+            font-size:
+                11px;
+
+            line-height:
+                1.5;
+        }
+
+
+        .form-note-icon {
+
+            width:
+                22px;
+
+            height:
+                22px;
+
+            border-radius:
+                50%;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            background:
+                var(--green-soft);
+
+            color:
+                var(--green);
+
+            flex:
+                0 0 22px;
+
+            font-weight:
+                800;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ====================================================== */
+
+        footer {
+
+            background:
+                #081f38;
+
+            color:
+                #aebdcd;
+
+            padding:
+                35px 0;
+        }
+
+
+        .footer-content {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap:
+                20px;
+        }
+
+
+        .footer-brand strong {
+
+            display:
+                block;
+
+            color:
+                white;
+
+            font-size:
+                13px;
+
+            margin-bottom:
+                4px;
+        }
+
+
+        .footer-brand span {
+
+            font-size:
+                11px;
+        }
+
+
+        .footer-links {
+
+            display:
+                flex;
+
+            gap:
+                18px;
+
+            flex-wrap:
+                wrap;
+
+            justify-content:
+                flex-end;
+        }
+
+
+        .footer-links a {
+
+            color:
+                #aebdcd;
+
+            font-size:
+                11px;
+
+            transition:
+                .2s ease;
+        }
+
+
+        .footer-links a:hover {
+
+            color:
+                white;
+        }
+
+
+        .copyright {
+
+            margin-top:
+                25px;
+
+            padding-top:
+                18px;
+
+            border-top:
+                1px solid rgba(255,255,255,.08);
+
+            text-align:
+                center;
+
+            font-size:
+                10px;
+
+            color:
+                #7f93a8;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ====================================================== */
+
+        @media(max-width: 950px) {
+
+            .navigation {
+
+                gap:
+                    13px;
+            }
+
+
+            .form-layout {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .info-card {
+
+                position:
+                    static;
+            }
+        }
+
+
+        @media(max-width: 760px) {
+
+            .topbar-content {
+
+                justify-content:
+                    center;
+
+                text-align:
+                    center;
+            }
+
+
+            .topbar-right {
+
+                display:
+                    none;
+            }
+
+
+            .navbar {
+
+                min-height:
+                    70px;
+            }
+
+
+            .menu-button {
+
+                display:
+                    grid;
+
+                place-items:
+                    center;
+            }
+
+
+            .navigation {
+
+                display:
+                    none;
+
+                position:
+                    absolute;
+
+                top:
+                    70px;
+
+                left:
+                    0;
+
+                right:
+                    0;
+
+                padding:
+                    12px;
+
+                background:
+                    white;
+
+                border-bottom:
+                    1px solid var(--border);
+
+                box-shadow:
+                    0 15px 30px rgba(13,44,84,.08);
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    stretch;
+            }
+
+
+            .navigation.open {
+
+                display:
+                    flex;
+            }
+
+
+            .navigation a {
+                text-decoration:
+                    none;
+
+                width:
+                    100%;
+
+                padding:
+                    12px 15px;
+            }
+
+
+            .brand {
+
+                font-size:
+                    10px;
+            }
+
+
+            .brand img {
+
+                width:
+                    45px;
+
+                height:
+                    45px;
+            }
+
+
+            .hero {
+
+                padding:
+                    50px 0 40px;
+            }
+
+
+            .hero h1 {
+
+                font-size:
+                    34px;
+            }
+
+
+            main {
+
+                padding:
+                    35px 0 55px;
+            }
+
+
+            .form-card {
+
+                padding:
+                    24px 18px;
+            }
+
+
+            .info-card {
+
+                padding:
+                    25px;
+            }
+
+
+            .form-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .form-group.full {
+
+                grid-column:
+                    auto;
+            }
+
+
+            .form-header-top {
+
+                flex-direction:
+                    column;
+            }
+
+
+            .footer-content {
+
+                flex-direction:
+                    column;
+
+                text-align:
+                    center;
+            }
+
+
+            .footer-links {
+
+                justify-content:
+                    center;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- =====================================================
+         BARRA SUPERIOR
+    ====================================================== -->
+
+    <div class="topbar">
+
+        <div class="container topbar-content">
+
+            <div class="topbar-left">
+                Junta de Acción Comunal · Vereda Santa Bárbara
+            </div>
+
+            <div class="topbar-right">
+                El Bagre · Antioquia
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         HEADER / MENÚ
+    ====================================================== -->
+
+    <header>
+
+        <div class="container navbar">
+
+
+            <a
+                href="index.html"
+                class="brand"
+            >
+
+                <img
+                    src="assets/logo.png"
+                    alt="Logo JAC Vereda Santa Bárbara"
+                >
+
+                <div>
+
+                    JUNTA DE ACCIÓN COMUNAL
+                    <br>
+                    VEREDA SANTA BÁRBARA
+
+                    <small>
+                        Plataforma de servicios comunitarios
+                    </small>
+
+                </div>
+
+            </a>
+
+
+            <button
+                class="menu-button"
+                id="menuButton"
+                aria-label="Abrir menú"
+                type="button"
+            >
+                ☰
+            </button>
+
+
+            <nav class="navigation" id="navigation">
+                <a href="index.html">Inicio</a>
+                <a href="nosotro.html">Nosotros</a>
+                <a href="afiliados.html">Afiliados</a>
+                <a href="certificados.html" class="active">Certificados</a>
+                <a href="pqrs.html">PQRS</a>
+                <a href="gestion-pqrs.html">Gestión PQRS</a>
+                <a href="admincertificado.html">Admin Cert.</a>
+                <a href="politicas.html">Políticas</a>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="hero">
+
+        <div class="container hero-content">
+
+            <div class="eyebrow">
+                Servicio comunitario
+            </div>
+
+
+            <h1>
+
+                Certificado de
+                <span>
+                    afiliación
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                Solicita tu certificado de afiliación a la
+                Junta de Acción Comunal de la Vereda Santa Bárbara.
+                La información será revisada y validada por la Junta.
+
+            </p>
+
+
+            <div class="breadcrumb">
+
+                <span>
+                    Inicio
+                </span>
+
+                <span>
+                    /
+                </span>
+
+                <strong>
+                    Certificados
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ====================================================== -->
+
+    <main>
+
+        <div class="container">
+
+            <div class="form-layout">
+
+
+                <!-- =================================================
+                     INFORMACIÓN
+                ================================================== -->
+
+                <aside class="info-card">
+
+
+                    <div class="info-icon">
+                        ✓
+                    </div>
+
+
+                    <h2>
+                        Solicitud segura
+                    </h2>
+
+
+                    <p>
+
+                        Completa tus datos cuidadosamente.
+                        La información será utilizada para
+                        verificar tu afiliación ante la Junta.
+
+                    </p>
+
+
+                    <div class="info-list">
+
+
+                        <div class="info-item">
+
+                            <div class="info-check">
+                                1
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Verificación
+                                </strong>
+
+                                <span>
+
+                                    Comprobaremos si tu documento
+                                    ya se encuentra registrado.
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <div class="info-check">
+                                2
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Registro
+                                </strong>
+
+                                <span>
+
+                                    Si eres nuevo, tu solicitud
+                                    quedará pendiente de validación.
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <div class="info-check">
+                                3
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Validación
+                                </strong>
+
+                                <span>
+
+                                    La Junta revisará la información
+                                    antes de emitir el certificado.
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="info-item">
+
+                            <div class="info-check">
+                                4
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Certificación
+                                </strong>
+
+                                <span>
+
+                                    Una vez aprobado, podrá generarse
+                                    el certificado correspondiente.
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="institution-box">
+
+                        <strong>
+                            Junta de Acción Comunal
+                        </strong>
+
+                        Vereda Santa Bárbara · El Bagre · Antioquia
+
+                    </div>
+
+
+                </aside>
+
+
+                <!-- =================================================
+                     FORMULARIO
+                ================================================== -->
+
+                <section class="form-card">
+
+
+                    <div class="form-header">
+
+                        <div class="form-header-top">
+
+                            <div>
+
+                                <h2>
+                                    Datos del afiliado
+                                </h2>
+
+                                <p>
+
+                                    Los campos marcados con
+                                    <strong>*</strong>
+                                    son obligatorios.
+
+                                </p>
+
+                            </div>
+
+
+                            <div class="status-badge">
+
+                                <span class="status-dot"></span>
+
+                                Solicitud en línea
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <form
+                        id="certificadoForm"
+                        novalidate
+                    >
+
+
+                        <!-- =============================================
+                             IDENTIFICACIÓN
+                        ============================================== -->
+
+                        <div class="section-title">
+                            Identificación
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <!-- TIPO DOCUMENTO -->
+
+                            <div class="form-group">
+
+                                <label for="tipo_documento">
+
+                                    Tipo de documento
+                                    <span>*</span>
+
+                                </label>
+
+
+                                <select
+                                    id="tipo_documento"
+                                    name="tipo_documento"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Seleccione...
+                                    </option>
+
+                                    <option value="CÉDULA">
+                                        Cédula de ciudadanía
+                                    </option>
+
+                                    <option value="TARJETA DE IDENTIDAD">
+                                        Tarjeta de identidad
+                                    </option>
+
+                                    <option value="CÉDULA DE EXTRANJERÍA">
+                                        Cédula de extranjería
+                                    </option>
+
+                                    <option value="PASAPORTE">
+                                        Pasaporte
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- NUMERO -->
+
+                            <div class="form-group">
+
+                                <label for="numero_documento">
+
+                                    Número de documento
+                                    <span>*</span>
+
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    id="numero_documento"
+                                    name="numero_documento"
+                                    placeholder="Ej. 1234567890"
+                                    inputmode="numeric"
+                                    autocomplete="off"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <!-- NOMBRES -->
+
+                            <div class="form-group">
+
+                                <label for="nombres">
+
+                                    Nombres
+                                    <span>*</span>
+
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    id="nombres"
+                                    name="nombres"
+                                    placeholder="Ingrese sus nombres"
+                                    autocomplete="given-name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <!-- APELLIDOS -->
+
+                            <div class="form-group">
+
+                                <label for="apellidos">
+
+                                    Apellidos
+                                    <span>*</span>
+
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    id="apellidos"
+                                    name="apellidos"
+                                    placeholder="Ingrese sus apellidos"
+                                    autocomplete="family-name"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =============================================
+                             INFORMACIÓN PERSONAL
+                        ============================================== -->
+
+                        <div class="section-title">
+                            Información personal
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <!-- FECHA NACIMIENTO -->
+
+                            <div class="form-group">
+
+                                <label for="fecha_nacimiento">
+
+                                    Fecha de nacimiento
+
+                                </label>
+
+
+                                <input
+                                    type="date"
+                                    id="fecha_nacimiento"
+                                    name="fecha_nacimiento"
+                                >
+
+                            </div>
+
+
+                            <!-- TELEFONO -->
+
+                            <div class="form-group">
+
+                                <label for="telefono">
+
+                                    Teléfono
+
+                                </label>
+
+
+                                <input
+                                    type="tel"
+                                    id="telefono"
+                                    name="telefono"
+                                    placeholder="Ej. 3001234567"
+                                    autocomplete="tel"
+                                >
+
+                            </div>
+
+
+                            <!-- CORREO -->
+
+                            <div class="form-group full">
+
+                                <label for="correo">
+
+                                    Correo electrónico
+
+                                </label>
+
+
+                                <input
+                                    type="email"
+                                    id="correo"
+                                    name="correo"
+                                    placeholder="ejemplo@correo.com"
+                                    autocomplete="email"
+                                >
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- =============================================
+                             RESIDENCIA Y AFILIACIÓN
+                        ============================================== -->
+
+                        <div class="section-title">
+                            Residencia y afiliación
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <!-- VEREDA -->
+
+                            <div class="form-group">
+
+                                <label for="vereda">
+
+                                    Vereda
+                                    <span>*</span>
+
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    id="vereda"
+                                    name="vereda"
+                                    value="Santa Bárbara"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <!-- DIRECCION -->
+
+                            <div class="form-group">
+
+                                <label for="direccion">
+
+                                    Dirección / lugar de residencia
+
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    id="direccion"
+                                    name="direccion"
+                                    placeholder="Ingrese su dirección"
+                                >
+
+                            </div>
+
+
+                            <!-- FECHA AFILIACION -->
+
+                            <div class="form-group full">
+
+                                <label for="fecha_afiliacion">
+
+                                    Fecha de afiliación
+
+                                </label>
+
+
+                                <input
+                                    type="date"
+                                    id="fecha_afiliacion"
+                                    name="fecha_afiliacion"
+                                >
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- =============================================
+                             PRIVACIDAD
+                        ============================================== -->
+
+                        <div class="privacy">
+
+                            <input
+                                type="checkbox"
+                                id="acepta"
+                                required
+                            >
+
+
+                            <label for="acepta">
+
+                                Declaro que la información suministrada
+                                es verdadera y autorizo su uso para los
+                                fines relacionados con la gestión de mi
+                                afiliación y expedición del certificado
+                                correspondiente.
+
+                            </label>
+
+                        </div>
+
+
+                        <!-- =============================================
+                             BOTÓN
+                        ============================================== -->
+
+                        <div class="submit-area">
+
+                            <button
+                                type="submit"
+                                class="submit-button"
+                                id="submitButton"
+                            >
+
+                                SOLICITAR CERTIFICADO
+
+                            </button>
+
+                        </div>
+
+
+                        <!-- LOADING -->
+
+                        <div
+                            class="loading"
+                            id="loading"
+                        >
+
+                            <div class="spinner"></div>
+
+                            <span>
+                                Verificando información...
+                            </span>
+
+                        </div>
+
+
+                        <!-- MENSAJE -->
+
+                        <div
+                            class="message"
+                            id="message"
+                        ></div>
+
+
+                        <!-- NOTA -->
+
+                        <div class="form-note">
+
+                            <div class="form-note-icon">
+                                i
+                            </div>
+
+                            <div>
+
+                                La solicitud será registrada para
+                                revisión de la Junta. La emisión del
+                                certificado estará sujeta a la validación
+                                de la información suministrada.
+
+                            </div>
+
+                        </div>
+
+
+                    </form>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <div class="container">
+
+
+            <div class="footer-content">
+
+
+                <div class="footer-brand">
+
+                    <strong>
+                        JAC Vereda Santa Bárbara
+                    </strong>
+
+                    <span>
+                        Municipio de El Bagre · Antioquia
+                    </span>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <a href="index.html">
+                        Inicio
+                    </a>
+
+                    <a href="afiliados.html">
+                        Afiliados
+                    </a>
+
+                    <a href="pqrs.html">
+                        PQRS
+                    </a>
+
+                    <a href="certificados.html">
+                        Certificados
+                    </a>
+
+                    <a href="documentos.html">
+                        Documentos
+                    </a>
+
+                    <a href="politicas.html">
+                        Políticas
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="copyright">
+
+                Junta de Acción Comunal · Vereda Santa Bárbara
+                · El Bagre · Antioquia
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           URL DEL GOOGLE APPS SCRIPT
+        ====================================================== */
+
+        const API_URL =
+            "https://script.google.com/macros/s/AKfycbzD6hzhHh0D5DQvnKfGmvwPOzLaFNUjBnE_Jsm3fX4cQqKhwv6xQVcf8rOrgjidSyOa/exec";
+
+
+        /* =====================================================
+           ELEMENTOS
+        ====================================================== */
+
+        const form =
+            document.getElementById(
+                "certificadoForm"
+            );
+
+
+        const submitButton =
+            document.getElementById(
+                "submitButton"
+            );
+
+
+        const loading =
+            document.getElementById(
+                "loading"
+            );
+
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+
+        const numeroDocumento =
+            document.getElementById(
+                "numero_documento"
+            );
+
+
+        const menuButton =
+            document.getElementById(
+                "menuButton"
+            );
+
+
+        const navigation =
+            document.getElementById(
+                "navigation"
+            );
+
+
+        /* =====================================================
+           MENÚ MÓVIL
+        ====================================================== */
+
+        menuButton.addEventListener(
+            "click",
+            function() {
+
+                navigation.classList.toggle(
+                    "open"
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           CERRAR MENÚ AL SELECCIONAR
+        ====================================================== */
+
+        document
+            .querySelectorAll(".navigation a")
+            .forEach(function(link) {
+
+                link.addEventListener(
+                    "click",
+                    function() {
+
+                        navigation.classList.remove(
+                            "open"
+                        );
+
+                    }
+                );
+
+            });
+
+
+        /* =====================================================
+           MOSTRAR MENSAJE
+        ====================================================== */
+
+        function mostrarMensaje(
+            tipo,
+            titulo,
+            texto
+        ) {
+
+            message.className =
+                "message show " + tipo;
+
+
+            message.innerHTML = `
+
+                <span class="message-title">
+                    ${titulo}
+                </span>
+
+                <span>
+                    ${texto}
+                </span>
+
+            `;
+
+
+            message.scrollIntoView({
+
+                behavior:
+                    "smooth",
+
+                block:
+                    "center"
+
+            });
+
+        }
+
+
+        /* =====================================================
+           OCULTAR MENSAJE
+        ====================================================== */
+
+        function ocultarMensaje() {
+
+            message.className =
+                "message";
+
+
+            message.innerHTML =
+                "";
+
+        }
+
+
+        /* =====================================================
+           ESTADO DE CARGA
+        ====================================================== */
+
+        function establecerCargando(
+            estado
+        ) {
+
+            submitButton.disabled =
+                estado;
+
+
+            loading.classList.toggle(
+                "active",
+                estado
+            );
+
+
+            if (estado) {
+
+                submitButton.textContent =
+                    "VERIFICANDO...";
+
+            } else {
+
+                submitButton.textContent =
+                    "SOLICITAR CERTIFICADO";
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CONSULTAR DOCUMENTO
+        ====================================================== */
+
+        async function consultarDocumento(
+            documento
+        ) {
+
+            const respuesta =
+                await fetch(
+                    API_URL,
+                    {
+
+                        method:
+                            "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "text/plain;charset=utf-8"
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                accion:
+                                    "CONSULTAR",
+
+                                numero_documento:
+                                    documento
+
+                            })
+
+                    }
+                );
+
+
+            if (!respuesta.ok) {
+
+                throw new Error(
+                    "Error HTTP " +
+                    respuesta.status
+                );
+
+            }
+
+
+            return await respuesta.json();
+
+        }
+
+
+        /* =====================================================
+           REGISTRAR AFILIADO
+        ====================================================== */
+
+        async function registrarAfiliado(
+            datos
+        ) {
+
+            const respuesta =
+                await fetch(
+                    API_URL,
+                    {
+
+                        method:
+                            "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "text/plain;charset=utf-8"
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                accion:
+                                    "REGISTRAR",
+
+                                ...datos
+
+                            })
+
+                    }
+                );
+
+
+            if (!respuesta.ok) {
+
+                throw new Error(
+                    "Error HTTP " +
+                    respuesta.status
+                );
+
+            }
+
+
+            return await respuesta.json();
+
+        }
+
+
+        /* =====================================================
+           SUBMIT
+        ====================================================== */
+
+        form.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                ocultarMensaje();
+
+
+                /* =============================================
+                   VALIDACIÓN
+                ============================================== */
+
+                if (!form.checkValidity()) {
+
+                    form.reportValidity();
+
+                    return;
+
+                }
+
+
+                /* =============================================
+                   DOCUMENTO
+                ============================================== */
+
+                const documento =
+                    numeroDocumento.value
+                        .trim()
+                        .replace(
+                            /[\s.-]/g,
+                            ""
+                        );
+
+
+                if (!documento) {
+
+                    mostrarMensaje(
+
+                        "error",
+
+                        "Documento requerido",
+
+                        "Ingrese su número de documento para continuar."
+
+                    );
+
+
+                    numeroDocumento.focus();
+
+                    return;
+
+                }
+
+
+                establecerCargando(
+                    true
+                );
+
+
+                try {
+
+
+                    /* =========================================
+                       CONSULTAR
+                    ========================================== */
+
+                    const consulta =
+                        await consultarDocumento(
+                            documento
+                        );
+
+
+                    if (!consulta.ok) {
+
+                        throw new Error(
+
+                            consulta.mensaje ||
+                            "No fue posible consultar el documento."
+
+                        );
+
+                    }
+
+
+                    /* =========================================
+                       DOCUMENTO EXISTENTE
+                    ========================================== */
+
+                    if (
+                        consulta.registrado === true
+                    ) {
+
+                        establecerCargando(
+                            false
+                        );
+
+
+                        mostrarMensaje(
+
+                            "error",
+
+                            "Documento ya registrado",
+
+                            "El número de documento ingresado ya se encuentra registrado en la base de afiliados. No es posible crear un nuevo registro con el mismo documento."
+
+                        );
+
+
+                        return;
+
+                    }
+
+
+                    /* =========================================
+                       PREPARAR DATOS
+                    ========================================== */
+
+                    const datos = {
+
+                        tipo_documento:
+
+                            document.getElementById(
+                                "tipo_documento"
+                            ).value,
+
+
+                        numero_documento:
+                            documento,
+
+
+                        nombres:
+
+                            document.getElementById(
+                                "nombres"
+                            ).value.trim(),
+
+
+                        apellidos:
+
+                            document.getElementById(
+                                "apellidos"
+                            ).value.trim(),
+
+
+                        fecha_nacimiento:
+
+                            document.getElementById(
+                                "fecha_nacimiento"
+                            ).value,
+
+
+                        telefono:
+
+                            document.getElementById(
+                                "telefono"
+                            ).value.trim(),
+
+
+                        correo:
+
+                            document.getElementById(
+                                "correo"
+                            ).value.trim(),
+
+
+                        vereda:
+
+                            document.getElementById(
+                                "vereda"
+                            ).value.trim(),
+
+
+                        direccion:
+
+                            document.getElementById(
+                                "direccion"
+                            ).value.trim(),
+
+
+                        fecha_afiliacion:
+
+                            document.getElementById(
+                                "fecha_afiliacion"
+                            ).value
+
+                    };
+
+
+                    /* =========================================
+                       REGISTRAR
+                    ========================================== */
+
+                    const resultado =
+                        await registrarAfiliado(
+                            datos
+                        );
+
+
+                    establecerCargando(
+                        false
+                    );
+
+
+                    /* =========================================
+                       ERROR
+                    ========================================== */
+
+                    if (!resultado.ok) {
+
+                        mostrarMensaje(
+
+                            "error",
+
+                            "No fue posible completar la solicitud",
+
+                            resultado.mensaje ||
+                            "Por favor, inténtelo nuevamente."
+
+                        );
+
+
+                        return;
+
+                    }
+
+
+                    /* =========================================
+                       ÉXITO
+                    ========================================== */
+
+                    mostrarMensaje(
+
+                        "success",
+
+                        "Solicitud registrada correctamente",
+
+                        "Tu información fue recibida y quedó en estado PENDIENTE de validación. La Junta deberá revisar y aprobar la información antes de generar el certificado."
+
+                    );
+
+
+                    /* =========================================
+                       LIMPIAR
+                    ========================================== */
+
+                    form.reset();
+
+
+                    document.getElementById(
+                        "vereda"
+                    ).value =
+                        "Santa Bárbara";
+
+
+                } catch (error) {
+
+
+                    console.error(
+                        "Error:",
+                        error
+                    );
+
+
+                    establecerCargando(
+                        false
+                    );
+
+
+                    mostrarMensaje(
+
+                        "error",
+
+                        "Error de conexión",
+
+                        "No fue posible comunicarse con el sistema. Verifique su conexión a Internet e inténtelo nuevamente."
+
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
+

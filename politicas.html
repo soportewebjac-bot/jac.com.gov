@@ -1,0 +1,1783 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Política de privacidad, seguridad y protección de datos de la Junta de Acción Comunal Vereda Santa Bárbara."
+    >
+
+    <title>
+        Políticas y Seguridad | JAC Vereda Santa Bárbara
+    </title>
+
+
+    <!-- =====================================================
+         TIPOGRAFÍAS
+    ====================================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           VARIABLES INSTITUCIONALES
+        ===================================================== */
+
+        :root {
+
+            --green: #0f5b35;
+            --green-2: #1f7a45;
+            --green-dark: #073d25;
+            --green-soft: #eaf5ee;
+
+            --blue: #0d2c54;
+
+            --gold: #e3ad20;
+
+            --ink: #15221b;
+            --muted: #66756c;
+
+            --bg: #f5f8f6;
+
+            --white: #ffffff;
+
+            --border: #dce7df;
+
+            --shadow:
+                0 16px 45px
+                rgba(13, 44, 84, 0.08);
+
+            --radius: 20px;
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+
+            margin: 0;
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+
+        body {
+
+            font-family:
+                "Inter",
+                Arial,
+                sans-serif;
+
+            color: var(--ink);
+
+            background: var(--bg);
+
+            line-height: 1.7;
+
+        }
+
+
+        /* =====================================================
+           CONTENEDOR
+        ===================================================== */
+
+        .container {
+
+            width: min(1120px, 92%);
+
+            margin: auto;
+
+        }
+
+
+        /* =====================================================
+           FRANJA SUPERIOR
+        ===================================================== */
+
+        .topbar {
+
+            background: var(--blue);
+
+            color: #dbe7f3;
+
+            font-size: 12px;
+
+        }
+
+
+        .topbar-content {
+
+            min-height: 38px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+        }
+
+
+        /* =====================================================
+           ENCABEZADO
+        ===================================================== */
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(255,255,255,.97);
+
+            border-bottom:
+                1px solid
+                var(--border);
+
+        }
+
+
+        .header-content {
+
+            min-height: 90px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            text-decoration: none;
+
+            align-items: center;
+
+            gap: 13px;
+
+            color: var(--green);
+
+        }
+
+
+        .brand img {
+
+            display: block;
+
+            width: 62px;
+
+            height: 62px;
+
+            object-fit: contain;
+
+        }
+
+
+        .brand:hover,
+        .brand:focus {
+            text-decoration: none;
+        }
+
+        .brand-text {
+
+            font-size: 12px;
+
+            line-height: 1.25;
+
+            font-weight: 800;
+
+        }
+
+
+        .brand-text span {
+
+            color: var(--blue);
+
+        }
+
+        .navigation {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #34443b;
+        }
+
+        .navigation a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 38px;
+            padding: 7px 9px;
+            border-radius: 9px;
+            color: #34443b;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: color .2s ease, background .2s ease, transform .2s ease;
+        }
+
+        .navigation a:hover {
+            color: var(--green);
+            background: var(--green-soft);
+        }
+
+        .navigation a.active {
+            color: var(--green);
+            background: var(--green-soft);
+            box-shadow: inset 0 0 0 1px rgba(15,91,53,.08);
+        }
+
+        .menu-button {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(15,91,53,.15);
+            background: var(--green);
+            color: #ffffff;
+            border-radius: 11px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(15,91,53,.15);
+            transition: background .2s ease, transform .2s ease;
+        }
+
+        .menu-button:hover {
+            background: var(--green-dark);
+        }
+
+        .menu-button:focus-visible,
+        .navigation a:focus-visible {
+            outline: 3px solid rgba(227,173,32,.45);
+            outline-offset: 2px;
+        }
+
+
+
+        .brand,
+        .brand:hover,
+        .brand:focus {
+            text-decoration: none;
+        }
+
+        .brand img,
+        .footer-mark {
+            display: block;
+            object-fit: contain;
+        }
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+
+            padding:
+                75px 0
+                70px;
+
+            background:
+
+                radial-gradient(
+                    circle at 90% 15%,
+                    rgba(227,173,32,.15),
+                    transparent 25%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #ffffff 0%,
+                    #edf7f0 100%
+                );
+
+            border-bottom:
+                1px solid
+                var(--border);
+
+        }
+
+
+        .hero-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1.15fr
+                .85fr;
+
+            gap: 60px;
+
+            align-items: center;
+
+        }
+
+
+        .eyebrow {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            color: var(--green);
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: .08em;
+
+            font-size: 12px;
+
+        }
+
+
+        .eyebrow::before {
+
+            content: "";
+
+            width: 27px;
+
+            height: 3px;
+
+            background: var(--gold);
+
+            border-radius: 5px;
+
+        }
+
+
+        h1,
+        h2,
+        h3 {
+
+            font-family:
+                "Montserrat",
+                sans-serif;
+
+        }
+
+
+        .hero h1 {
+
+            margin-top: 17px;
+
+            color: var(--blue);
+
+            font-size:
+                clamp(
+                    40px,
+                    5vw,
+                    62px
+                );
+
+            line-height: 1.05;
+
+            letter-spacing: -.035em;
+
+        }
+
+
+        .hero h1 span {
+
+            display: block;
+
+            color: var(--green);
+
+        }
+
+
+        .hero-description {
+
+            max-width: 650px;
+
+            margin-top: 22px;
+
+            color: var(--muted);
+
+            font-size: 16px;
+
+        }
+
+
+        /* =====================================================
+           TARJETA DE SEGURIDAD
+        ===================================================== */
+
+        .security-card {
+
+            background: var(--green);
+
+            color: white;
+
+            border-radius: 28px;
+
+            padding: 38px;
+
+            box-shadow: var(--shadow);
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        .security-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+
+            height: 180px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(227,173,32,.12);
+
+            right: -70px;
+
+            bottom: -70px;
+
+        }
+
+
+        .security-icon {
+
+            width: 65px;
+
+            height: 65px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255,255,255,.12);
+
+            border:
+                1px solid
+                rgba(255,255,255,.15);
+
+            font-size: 30px;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .security-card h2 {
+
+            font-size: 26px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .security-card p {
+
+            color: #dceee4;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =====================================================
+           CONTENIDO
+        ===================================================== */
+
+        .content-section {
+
+            padding: 75px 0;
+
+        }
+
+
+        .section-title {
+
+            max-width: 760px;
+
+            margin:
+                0 auto
+                45px;
+
+            text-align: center;
+
+        }
+
+
+        .section-title h2 {
+
+            margin-top: 10px;
+
+            color: var(--blue);
+
+            font-size: 34px;
+
+            line-height: 1.15;
+
+        }
+
+
+        .section-title p {
+
+            margin-top: 12px;
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+        }
+
+
+        /* =====================================================
+           TARJETAS
+        ===================================================== */
+
+        .policy-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+
+        }
+
+
+        .policy-card {
+
+            background: white;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: var(--radius);
+
+            padding: 30px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(20,50,35,.045);
+
+        }
+
+
+        .policy-number {
+
+            width: 42px;
+
+            height: 42px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 12px;
+
+            background:
+                var(--green-soft);
+
+            color: var(--green);
+
+            font-family:
+                "Montserrat",
+                sans-serif;
+
+            font-weight: 800;
+
+            margin-bottom: 17px;
+
+        }
+
+
+        .policy-card h3 {
+
+            color: var(--blue);
+
+            font-size: 20px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .policy-card p {
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+        }
+
+
+        .policy-card ul {
+
+            margin-top: 12px;
+
+            padding-left: 20px;
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+        }
+
+
+        .policy-card li {
+
+            margin-bottom: 7px;
+
+        }
+
+
+        /* =====================================================
+           SECCIÓN DESTACADA
+        ===================================================== */
+
+        .highlight {
+
+            padding: 65px 0;
+
+            background: white;
+
+        }
+
+
+        .highlight-box {
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    var(--green),
+                    var(--green-dark)
+                );
+
+            border-radius: 28px;
+
+            padding: 42px;
+
+            color: white;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1fr;
+
+            gap: 45px;
+
+            align-items: center;
+
+            box-shadow: var(--shadow);
+
+        }
+
+
+        .highlight-box h2 {
+
+            font-size: 30px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .highlight-box p {
+
+            color: #dceee4;
+
+            font-size: 14px;
+
+        }
+
+
+        .commitments {
+
+            display: grid;
+
+            gap: 12px;
+
+        }
+
+
+        .commitment {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 12px;
+
+            padding: 14px;
+
+            border-radius: 13px;
+
+            background:
+                rgba(255,255,255,.08);
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+        }
+
+
+        .check {
+
+            flex: 0 0 27px;
+
+            width: 27px;
+
+            height: 27px;
+
+            border-radius: 50%;
+
+            display: grid;
+
+            place-items: center;
+
+            background: var(--gold);
+
+            color: var(--ink);
+
+            font-weight: 900;
+
+        }
+
+
+        .commitment strong {
+
+            font-size: 12px;
+
+        }
+
+
+        .commitment span {
+
+            display: block;
+
+            margin-top: 2px;
+
+            color: #cfe3d7;
+
+            font-size: 12px;
+
+        }
+
+
+        /* =====================================================
+           CONTACTO
+        ===================================================== */
+
+        .contact-section {
+
+            padding: 75px 0;
+
+        }
+
+
+        .contact-card {
+
+            background: white;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 22px;
+
+            padding: 35px;
+
+            text-align: center;
+
+            box-shadow:
+                0 8px 25px
+                rgba(20,50,35,.045);
+
+        }
+
+
+        .contact-card h2 {
+
+            color: var(--blue);
+
+            font-size: 28px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .contact-card p {
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+            max-width: 650px;
+
+            margin:
+                0 auto 20px;
+
+        }
+
+
+        .email {
+
+            display: inline-block;
+
+            padding:
+                13px 22px;
+
+            border-radius: 12px;
+
+            background:
+                var(--green-soft);
+
+            color: var(--green);
+
+            font-weight: 800;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            position: relative;
+            background: linear-gradient(135deg, #081f38 0%, #0b2948 55%, #073d25 100%);
+            color: #c9d5df;
+            padding: 42px 0 24px;
+            border-top: 3px solid var(--gold);
+        }
+
+        footer::before {
+            content: "";
+            display: block;
+            width: 56px;
+            height: 3px;
+            margin-bottom: 26px;
+            border-radius: 10px;
+            background: var(--green-2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .footer-mark {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            flex: 0 0 48px;
+        }
+
+        .footer-title {
+            color: #ffffff;
+            font-family: "Montserrat", sans-serif;
+            font-size: 13px;
+            line-height: 1.35;
+            font-weight: 800;
+            letter-spacing: .01em;
+        }
+
+        .footer-location {
+            margin-top: 5px;
+            color: #aebdcd;
+            font-size: 11px;
+        }
+
+        .footer-note {
+            margin-top: 12px;
+            max-width: 620px;
+            color: #9fb2c3;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .copyright {
+            padding-left: 25px;
+            border-left: 1px solid rgba(255,255,255,.14);
+            color: #c7d2dc;
+            font-size: 11px;
+            line-height: 1.6;
+            text-align: right;
+            max-width: 250px;
+        }
+
+        .copyright strong {
+            display: block;
+            margin-bottom: 3px;
+            color: #ffffff;
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 850px) {
+
+            .hero-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 35px;
+
+            }
+
+
+            .policy-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .highlight-box {
+
+                grid-template-columns: 1fr;
+
+            }
+            .header-content {
+                position: relative;
+            }
+
+            .menu-button {
+                display: inline-flex;
+            }
+
+            .navigation {
+                display: none;
+                position: absolute;
+                z-index: 1000;
+                top: calc(100% + 1px);
+                left: 0;
+                right: 0;
+                padding: 12px;
+                background: rgba(255,255,255,.99);
+                border: 1px solid var(--border);
+                border-top: 0;
+                border-radius: 0 0 16px 16px;
+                box-shadow: 0 18px 35px rgba(13,44,84,.12);
+                flex-direction: column;
+                align-items: stretch;
+                gap: 4px;
+            }
+
+            .navigation.menu-open {
+                display: flex;
+            }
+
+            .navigation a {
+                width: 100%;
+                justify-content: flex-start;
+                min-height: 43px;
+                padding: 10px 13px;
+                border-radius: 10px;
+            }
+
+        }
+
+
+        @media (max-width: 560px) {
+
+            .topbar-content {
+
+                justify-content: center;
+
+                text-align: center;
+
+            }
+
+
+            .topbar .right {
+
+                display: none;
+
+            }
+
+
+            .header-content {
+
+                min-height: 75px;
+
+            }
+
+
+            .brand img {
+
+                width: 52px;
+
+                height: 52px;
+
+            }
+
+
+            .brand-text {
+
+                font-size: 10px;
+
+            }
+
+
+            .hero {
+
+                padding:
+                    55px 0;
+
+            }
+
+
+            .hero h1 {
+
+                font-size: 42px;
+
+            }
+
+
+            .security-card {
+
+                padding: 28px;
+
+            }
+
+
+            .content-section,
+            .contact-section {
+
+                padding:
+                    55px 0;
+
+            }
+
+
+            .policy-card {
+
+                padding: 25px;
+
+            }
+
+
+            .highlight-box {
+
+                padding: 28px;
+
+            }
+            footer {
+                padding: 34px 0 22px;
+            }
+
+            footer::before {
+                margin: 0 auto 24px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 22px;
+            }
+
+            .footer-brand {
+                justify-content: center;
+            }
+
+            .footer-note {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .copyright {
+                padding-left: 0;
+                padding-top: 18px;
+                border-left: 0;
+                border-top: 1px solid rgba(255,255,255,.14);
+                max-width: none;
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         BARRA SUPERIOR
+    ====================================================== -->
+
+    <div class="topbar">
+
+        <div class="container topbar-content">
+
+            <span>
+                Junta de Acción Comunal · Vereda Santa Bárbara · El Bagre
+            </span>
+
+            <span class="right">
+                Información institucional
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         ENCABEZADO
+    ====================================================== -->
+
+    <header class="header">
+
+        <div class="container header-content">
+
+            <a href="index.html" class="brand">
+
+                <img
+                    src="assets/logo.png"
+                    alt="Logo Junta de Acción Comunal Vereda Santa Bárbara"
+                >
+
+                <div class="brand-text">
+
+                    JUNTA DE ACCIÓN COMUNAL<br>
+
+                    <span>
+                        VEREDA SANTA BÁRBARA
+                    </span>
+
+                </div>
+
+            </a>
+
+            <nav class="navigation" id="site-navigation">
+                <a href="index.html">Inicio</a>
+                <a href="nosotro.html">Nosotros</a>
+                <a href="directivos.html">Directivos</a>
+                <a href="noticias.html">Noticias</a>
+                <a href="agenda.html">Agenda</a>
+                <a href="documentos.html">Documentos</a>
+                <a href="afiliados.html">Afiliados</a>
+                <a href="certificados.html">Certificados</a>
+                <a href="pqrs.html">PQRS</a>
+                <a href="politicas.html" class="active">Políticas</a>
+            </nav>
+
+            <button
+                class="menu-button"
+                onclick="toggleMenu()"
+                type="button"
+                aria-label="Abrir menú"
+                aria-expanded="false"
+                aria-controls="site-navigation"
+            >
+                ☰
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="hero">
+
+        <div class="container hero-grid">
+
+
+            <div>
+
+                <div class="eyebrow">
+                    Información y protección
+                </div>
+
+
+                <h1>
+
+                    Políticas de
+
+                    <span>
+                        privacidad y seguridad.
+                    </span>
+
+                </h1>
+
+
+                <p class="hero-description">
+
+                    En la Junta de Acción Comunal de la Vereda
+                    Santa Bárbara promovemos el manejo responsable
+                    de la información y buscamos proteger los datos
+                    que puedan ser suministrados a través de nuestros
+                    canales institucionales.
+
+                </p>
+
+            </div>
+
+
+            <div class="security-card">
+
+                <div class="security-icon">
+                    Seguro
+                </div>
+
+                <h2>
+                    Tu información importa
+                </h2>
+
+                <p>
+
+                    Trabajamos para mantener prácticas responsables
+                    de privacidad, seguridad y manejo de la
+                    información de nuestra comunidad.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         POLÍTICAS
+    ====================================================== -->
+
+    <section class="content-section">
+
+        <div class="container">
+
+
+            <div class="section-title">
+
+                <div class="eyebrow">
+                    Nuestras políticas
+                </div>
+
+                <h2>
+                    Compromiso con la información
+                </h2>
+
+                <p>
+
+                    Estos principios orientan el manejo de la
+                    información dentro de nuestros canales
+                    institucionales.
+
+                </p>
+
+            </div>
+
+
+            <div class="policy-grid">
+
+
+                <!-- 01 -->
+
+                <article class="policy-card">
+
+                    <div class="policy-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Privacidad
+                    </h3>
+
+                    <p>
+
+                        Procuramos respetar la privacidad de las
+                        personas que se comunican con la Junta y
+                        evitar el uso innecesario de información
+                        personal.
+
+                    </p>
+
+                </article>
+
+
+                <!-- 02 -->
+
+                <article class="policy-card">
+
+                    <div class="policy-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Protección de datos
+                    </h3>
+
+                    <p>
+
+                        La información personal que eventualmente
+                        sea suministrada será tratada de manera
+                        responsable y únicamente para las
+                        finalidades correspondientes.
+
+                    </p>
+
+                </article>
+
+
+                <!-- 03 -->
+
+                <article class="policy-card">
+
+                    <div class="policy-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Seguridad
+                    </h3>
+
+                    <p>
+
+                        Procuramos aplicar medidas razonables para
+                        reducir riesgos relacionados con pérdida,
+                        acceso no autorizado, alteración o uso
+                        indebido de la información.
+
+                    </p>
+
+                </article>
+
+
+                <!-- 04 -->
+
+                <article class="policy-card">
+
+                    <div class="policy-number">
+                        04
+                    </div>
+
+                    <h3>
+                        Transparencia
+                    </h3>
+
+                    <p>
+
+                        Buscamos que la información institucional
+                        publicada sea clara, comprensible y esté
+                        orientada al interés de la comunidad.
+
+                    </p>
+
+                </article>
+
+
+                <!-- 05 -->
+
+                <article class="policy-card">
+
+                    <div class="policy-number">
+                        05
+                    </div>
+
+                    <h3>
+                        Uso responsable
+                    </h3>
+
+                    <p>
+
+                        Los canales digitales de la Junta deben
+                        utilizarse de manera responsable, respetuosa
+                        y relacionada con asuntos institucionales
+                        o comunitarios.
+
+                    </p>
+
+                </article>
+
+
+                <!-- 06 -->
+
+                <article class="policy-card">
+
+                    <div class="policy-number">
+                        06
+                    </div>
+
+                    <h3>
+                        Actualización
+                    </h3>
+
+                    <p>
+
+                        Estas políticas podrán ser revisadas y
+                        actualizadas cuando sea necesario para
+                        mejorar nuestras prácticas institucionales
+                        y digitales.
+
+                    </p>
+
+                </article>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         COMPROMISO
+    ====================================================== -->
+
+    <section class="highlight">
+
+        <div class="container">
+
+
+            <div class="highlight-box">
+
+
+                <div>
+
+                    <div class="eyebrow"  style="color:#d9efe1;">
+
+                        Nuestro compromiso
+
+                    </div>
+
+
+                    <h2>
+
+                        Una comunidad informada
+                        también es una comunidad protegida.
+
+                    </h2>
+
+
+                    <p>
+
+                        Queremos fortalecer la confianza de nuestra
+                        comunidad mediante una gestión responsable,
+                        transparente y segura de nuestros canales
+                        institucionales.
+
+                    </p>
+
+                </div>
+
+
+                <div class="commitments">
+
+
+                    <div class="commitment">
+
+                        <div class="check">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Manejo responsable
+                            </strong>
+
+                            <span>
+                                Tratamiento cuidadoso de la información.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="commitment">
+
+                        <div class="check">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Seguridad digital
+                            </strong>
+
+                            <span>
+                                Protección de nuestros canales digitales.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="commitment">
+
+                        <div class="check">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Transparencia
+                            </strong>
+
+                            <span>
+                                Comunicación clara con la comunidad.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="commitment">
+
+                        <div class="check">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Respeto
+                            </strong>
+
+                            <span>
+                                Uso responsable de la información.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTACTO
+    ====================================================== -->
+
+    <section class="contact-section">
+
+        <div class="container">
+
+
+            <div class="contact-card">
+
+                <h2>
+                    ¿Tienes alguna inquietud?
+                </h2>
+
+                <p>
+
+                    Si deseas realizar una consulta relacionada
+                    con privacidad, información institucional o
+                    el funcionamiento de nuestros canales,
+                    puedes comunicarte con la Junta.
+
+                </p>
+
+
+                <div class="email">
+
+                   "Por Confirmar"
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+        <div class="container footer-content">
+            <div>
+                <div class="footer-brand">
+                    <img
+                        class="footer-mark"
+                        src="assets/logo.png"
+                        alt="Logo Junta de Acción Comunal Vereda Santa Bárbara"
+                    >
+                    <div>
+                        <div class="footer-title">
+                            JUNTA DE ACCIÓN COMUNAL · VEREDA SANTA BÁRBARA
+                        </div>
+                        <div class="footer-location">
+                            Municipio del Bagre · Antioquia
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-note">
+                    Información institucional, participación comunitaria
+                    y atención responsable a nuestra comunidad.
+                </div>
+            </div>
+
+            <div class="copyright">
+                <strong>Información institucional</strong>
+                © 2026 Junta de Acción Comunal Vereda Santa Bárbara
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navigation = document.querySelector(".navigation");
+            const button = document.querySelector(".menu-button");
+
+            if (!navigation || !button) return;
+
+            const isOpen = navigation.classList.toggle("menu-open");
+
+            button.setAttribute("aria-expanded", String(isOpen));
+            button.setAttribute(
+                "aria-label",
+                isOpen ? "Cerrar menú" : "Abrir menú"
+            );
+            button.textContent = isOpen ? "×" : "☰";
+        }
+
+        document.addEventListener("click", function (event) {
+            const navigation = document.querySelector(".navigation");
+            const button = document.querySelector(".menu-button");
+
+            if (!navigation || !button) return;
+
+            if (
+                window.innerWidth <= 850 &&
+                navigation.classList.contains("menu-open") &&
+                !navigation.contains(event.target) &&
+                !button.contains(event.target)
+            ) {
+                navigation.classList.remove("menu-open");
+                button.setAttribute("aria-expanded", "false");
+                button.setAttribute("aria-label", "Abrir menú");
+                button.textContent = "☰";
+            }
+        });
+
+        document.querySelectorAll(".navigation a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                if (window.innerWidth <= 850) {
+                    const navigation = document.querySelector(".navigation");
+                    const button = document.querySelector(".menu-button");
+
+                    if (navigation && button) {
+                        navigation.classList.remove("menu-open");
+                        button.setAttribute("aria-expanded", "false");
+                        button.setAttribute("aria-label", "Abrir menú");
+                        button.textContent = "☰";
+                    }
+                }
+            });
+        });
+
+        window.addEventListener("resize", function () {
+            if (window.innerWidth > 850) {
+                const navigation = document.querySelector(".navigation");
+                const button = document.querySelector(".menu-button");
+
+                if (navigation && button) {
+                    navigation.classList.remove("menu-open");
+                    button.setAttribute("aria-expanded", "false");
+                    button.setAttribute("aria-label", "Abrir menú");
+                    button.textContent = "☰";
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
+

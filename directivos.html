@@ -1,0 +1,1769 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Directivos de la Junta de Acción Comunal de la Vereda Santa Bárbara, Municipio de El Bagre."
+    >
+
+    <title>
+        Directivos | JAC Vereda Santa Bárbara
+    </title>
+
+
+    <!-- =====================================================
+         TIPOGRAFÍAS
+    ====================================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           VARIABLES INSTITUCIONALES
+        ===================================================== */
+
+        :root {
+
+            --green: #0f5b35;
+            --green-2: #1f7a45;
+            --green-soft: #eaf5ee;
+
+            --blue: #0d2c54;
+
+            --gold: #e3ad20;
+
+            --ink: #15221b;
+            --muted: #66756c;
+
+            --bg: #f5f8f6;
+            --white: #ffffff;
+
+            --border: #dce7df;
+
+            --shadow:
+                0 16px 45px rgba(13,44,84,.08);
+
+            --radius: 20px;
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+
+            font-family:
+                "Inter",
+                Arial,
+                sans-serif;
+
+            color: var(--ink);
+
+            background: var(--bg);
+
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+
+        /* =====================================================
+           CONTENEDOR
+        ===================================================== */
+
+        .container {
+
+            width:
+                min(1180px, 92%);
+
+            margin: auto;
+        }
+
+
+        /* =====================================================
+           TOPBAR
+        ===================================================== */
+
+        .topbar {
+
+            background:
+                var(--blue);
+
+            color:
+                #dbe7f3;
+
+            font-size:
+                12px;
+        }
+
+        .topbar-content {
+
+            min-height:
+                34px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        header {
+
+            position:
+                sticky;
+
+            top:
+                0;
+
+            z-index:
+                100;
+
+            background:
+                rgba(255,255,255,.96);
+
+            backdrop-filter:
+                blur(14px);
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+        .navbar {
+
+            min-height:
+                78px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                25px;
+        }
+
+
+        /* =====================================================
+           MARCA
+        ===================================================== */
+
+        .brand {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+            color:
+                var(--green);
+
+            font-weight:
+                800;
+
+            font-size:
+                12px;
+
+            line-height:
+                1.2;
+        }
+
+        .brand img {
+
+            width:
+                54px;
+
+            height:
+                54px;
+
+            object-fit:
+                contain;
+        }
+
+
+        /* =====================================================
+           NAVEGACIÓN
+        ===================================================== */
+
+        .navigation {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            color:
+                #34443b;
+        }
+
+        .navigation a {
+            text-decoration:
+                none;
+
+            transition:
+                .25s ease;
+        }
+
+        .navigation a:hover {
+
+            color:
+                var(--green);
+        }
+
+        .navigation .active {
+
+            color:
+                var(--green);
+        }
+
+
+        /* =====================================================
+           BOTÓN MÓVIL
+        ===================================================== */
+
+        .menu-button {
+
+            display:
+                none;
+
+            border:
+                none;
+
+            background:
+                var(--green);
+
+            color:
+                white;
+
+            border-radius:
+                10px;
+
+            padding:
+                10px 13px;
+
+            cursor:
+                pointer;
+
+            font-size:
+                18px;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .page-hero {
+
+            background:
+
+                radial-gradient(
+                    circle at 85% 15%,
+                    rgba(227,173,32,.15),
+                    transparent 25%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #eef7f1
+                );
+
+            padding:
+                75px 0;
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+        }
+
+        .hero-content {
+
+            max-width:
+                850px;
+
+            margin:
+                auto;
+
+            text-align:
+                center;
+        }
+
+        .eyebrow {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                9px;
+
+            color:
+                var(--green);
+
+            font-weight:
+                800;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                .08em;
+
+            font-size:
+                12px;
+        }
+
+        .eyebrow::before {
+
+            content:
+                "";
+
+            width:
+                25px;
+
+            height:
+                3px;
+
+            background:
+                var(--gold);
+
+            border-radius:
+                5px;
+        }
+
+        h1,
+        h2,
+        h3 {
+
+            font-family:
+                "Montserrat",
+                sans-serif;
+        }
+
+        .page-hero h1 {
+
+            font-size:
+                clamp(40px,5vw,62px);
+
+            line-height:
+                1.05;
+
+            color:
+                var(--blue);
+
+            margin:
+                18px 0;
+        }
+
+        .page-hero h1 span {
+
+            color:
+                var(--green);
+        }
+
+        .page-hero p {
+
+            max-width:
+                700px;
+
+            margin:
+                auto;
+
+            color:
+                var(--muted);
+
+            font-size:
+                17px;
+        }
+
+
+        /* =====================================================
+           SECCIÓN DIRECTIVOS
+        ===================================================== */
+
+        .directivos {
+
+            padding:
+                78px 0;
+        }
+
+        .section-header {
+
+            max-width:
+                760px;
+
+            margin:
+                0 auto 45px;
+
+            text-align:
+                center;
+        }
+
+        .section-header h2 {
+
+            color:
+                var(--blue);
+
+            font-size:
+                34px;
+
+            line-height:
+                1.15;
+
+            margin:
+                10px 0;
+        }
+
+        .section-header p {
+
+            color:
+                var(--muted);
+
+            font-size:
+                15px;
+        }
+
+
+        /* =====================================================
+           GRID DIRECTIVOS
+        ===================================================== */
+
+        .directivos-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap:
+                22px;
+        }
+
+
+        /* =====================================================
+           TARJETA DIRECTIVO
+        ===================================================== */
+
+        .director-card {
+
+            background:
+                var(--white);
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                22px;
+
+            overflow:
+                hidden;
+
+            box-shadow:
+                0 8px 25px rgba(20,50,35,.045);
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+        }
+
+        .director-card:hover {
+
+            transform:
+                translateY(-6px);
+
+            box-shadow:
+                var(--shadow);
+        }
+
+
+        /* =====================================================
+           CABECERA TARJETA
+        ===================================================== */
+
+        .director-header {
+
+            height:
+                105px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    var(--green),
+                    var(--blue)
+                );
+
+            position:
+                relative;
+        }
+
+
+        /* =====================================================
+           FOTO
+        ===================================================== */
+
+        .director-photo {
+
+            width:
+                120px;
+
+            height:
+                120px;
+
+            border-radius:
+                50%;
+
+            position:
+                absolute;
+
+            left:
+                50%;
+
+            bottom:
+                -60px;
+
+            transform:
+                translateX(-50%);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e4f1e8,
+                    #c7ddd0
+                );
+
+            border:
+                5px solid white;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            color:
+                var(--green);
+
+            font-family:
+                Montserrat,
+                sans-serif;
+
+            font-size:
+                32px;
+
+            font-weight:
+                800;
+        }
+
+
+        /* =====================================================
+           INFORMACIÓN
+        ===================================================== */
+
+        .director-body {
+
+            text-align:
+                center;
+
+            padding:
+                78px 24px 28px;
+        }
+
+        .director-role {
+
+            display:
+                inline-block;
+
+            background:
+                var(--green-soft);
+
+            color:
+                var(--green);
+
+            padding:
+                6px 11px;
+
+            border-radius:
+                30px;
+
+            font-size:
+                10px;
+
+            font-weight:
+                800;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                .05em;
+
+            margin-bottom:
+                10px;
+        }
+
+        .director-name {
+
+            color:
+                var(--blue);
+
+            font-size:
+                20px;
+
+            margin-bottom:
+                7px;
+        }
+
+        .director-description {
+
+            color:
+                var(--muted);
+
+            font-size:
+                13px;
+
+            min-height:
+                42px;
+        }
+
+
+        /* =====================================================
+           INFORMACIÓN DE CONTACTO
+        ===================================================== */
+
+        .director-contact {
+
+            border-top:
+                1px solid var(--border);
+
+            margin-top:
+                20px;
+
+            padding-top:
+                18px;
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            gap:
+                15px;
+
+            flex-wrap:
+                wrap;
+        }
+
+        .contact-item {
+
+            color:
+                var(--muted);
+
+            font-size:
+                12px;
+        }
+
+
+        /* =====================================================
+           BLOQUE INSTITUCIONAL
+        ===================================================== */
+
+        .institutional {
+
+            background:
+                var(--green);
+
+            color:
+                white;
+
+            padding:
+                65px 0;
+        }
+
+        .institutional-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                40px;
+
+            align-items:
+                center;
+        }
+
+        .institutional h2 {
+
+            font-size:
+                32px;
+
+            margin:
+                10px 0 15px;
+        }
+
+        .institutional p {
+
+            color:
+                #dcefe4;
+
+            font-size:
+                14px;
+        }
+
+
+        /* =====================================================
+           LISTA FUNCIONES
+        ===================================================== */
+
+        .functions {
+
+            display:
+                grid;
+
+            gap:
+                12px;
+        }
+
+        .function-item {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+            background:
+                rgba(255,255,255,.08);
+
+            border:
+                1px solid rgba(255,255,255,.13);
+
+            padding:
+                14px;
+
+            border-radius:
+                13px;
+        }
+
+        .function-icon {
+
+            width:
+                30px;
+
+            height:
+                30px;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--gold);
+
+            color:
+                var(--ink);
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            font-weight:
+                900;
+
+            flex:
+                0 0 30px;
+        }
+
+
+        /* =====================================================
+           AVISO DATOS
+        ===================================================== */
+
+        .data-notice {
+
+            margin-top:
+                45px;
+
+            background:
+                #fff8e5;
+
+            border:
+                1px solid #f1d98d;
+
+            color:
+                #725600;
+
+            padding:
+                18px;
+
+            border-radius:
+                15px;
+
+            font-size:
+                13px;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+
+            background:
+                #081f38;
+
+            color:
+                #aebdcd;
+
+            padding:
+                35px 0;
+        }
+
+        .footer-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1.3fr .7fr .7fr;
+
+            gap:
+                35px;
+        }
+
+        .footer-grid h3 {
+
+            color:
+                white;
+
+            font-size:
+                15px;
+
+            margin-bottom:
+                12px;
+        }
+
+        .footer-grid p {
+
+            font-size:
+                13px;
+        }
+
+        .footer-grid a {
+
+            display:
+                block;
+
+            margin:
+                7px 0;
+
+            font-size:
+                13px;
+        }
+
+        .copyright {
+
+            border-top:
+                1px solid rgba(255,255,255,.1);
+
+            margin-top:
+                25px;
+
+            padding-top:
+                18px;
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            font-size:
+                12px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width: 950px) {
+
+            .navigation {
+                display: none;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .directivos-grid {
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+            .institutional-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+            .footer-grid {
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+        }
+
+
+        @media(max-width: 600px) {
+
+            .topbar-content {
+
+                justify-content:
+                    center;
+            }
+
+            .topbar .right {
+
+                display:
+                    none;
+            }
+
+            .brand span {
+
+                font-size:
+                    10px;
+            }
+
+            .directivos-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+            .footer-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+            .copyright {
+
+                display:
+                    block;
+            }
+
+            .copyright div + div {
+
+                margin-top:
+                    8px;
+            }
+
+            section {
+
+                padding:
+                    58px 0;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     BARRA SUPERIOR
+========================================================= -->
+
+<div class="topbar">
+
+    <div class="container topbar-content">
+
+        <span>
+            Junta de Acción Comunal · Vereda Santa Bárbara · El Bagre
+        </span>
+
+        <span class="right">
+            Personería Jurídica No. 149 · 5 de febrero de 1971
+        </span>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+    <div class="container navbar">
+
+
+        <a
+            href="index.html"
+            class="brand"
+        >
+
+            <img
+                src="assets/logo.png"
+                alt="Logo institucional"
+            >
+
+            <span>
+                JUNTA DE ACCIÓN COMUNAL<br>
+                VEREDA SANTA BÁRBARA
+            </span>
+
+        </a>
+
+
+        <nav class="navigation">
+            <a href="index.html">Inicio</a>
+            <a href="nosotro.html">Nosotros</a>
+            <a href="directivos.html" class="active">Directivos</a>
+            <a href="noticias.html">Noticias</a>
+            <a href="agenda.html">Agenda</a>
+            <a href="documentos.html">Documentos</a>
+            <a href="afiliados.html">Afiliados</a>
+            <a href="certificados.html">Certificados</a>
+            <a href="pqrs.html">PQRS</a>
+            <a href="politicas.html">Políticas</a>
+        </nav>
+
+
+        <button
+            class="menu-button"
+            onclick="toggleMenu()"
+        >
+            ☰
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="page-hero">
+
+    <div class="container hero-content">
+
+        <div class="eyebrow">
+            Organización institucional
+        </div>
+
+        <h1>
+            Nuestros
+            <span>directivos</span>
+        </h1>
+
+        <p>
+
+            Conoce la estructura directiva de la Junta de Acción
+            Comunal de la Vereda Santa Bárbara y los roles que
+            contribuyen a la gestión y representación de nuestra
+            comunidad.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     DIRECTIVOS
+========================================================= -->
+
+<section class="directivos">
+
+    <div class="container">
+
+
+        <div class="section-header">
+
+            <div class="eyebrow">
+                Junta directiva
+            </div>
+
+            <h2>
+                Equipo de dirección comunitaria
+            </h2>
+
+            <p>
+
+                La Junta Directiva desarrolla funciones de
+                representación, administración, coordinación
+                y seguimiento de las actividades comunitarias.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="directivos-grid">
+
+
+            <!-- PRESIDENTE -->
+
+            <article class="director-card">
+
+                <div class="director-header">
+
+                    <div class="director-photo">
+                    <img src="assets/logo.png" alt="">
+                    </div>
+
+                </div>
+
+                <div class="director-body">
+
+                    <div class="director-role">
+                        Presidencia
+                    </div>
+
+                    <h3 class="director-name">
+                        Por registrar
+                    </h3>
+
+                    <p class="director-description">
+
+                        Representación institucional y liderazgo
+                        de la Junta de Acción Comunal.
+
+                    </p>
+
+                    <div class="director-contact">
+
+                        <span class="contact-item">
+                            Teléfono Información pendiente
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- VICEPRESIDENTE -->
+
+            <article class="director-card">
+
+                <div class="director-header">
+
+                    <div class="director-photo">
+                        V
+                    </div>
+
+                </div>
+
+                <div class="director-body">
+
+                    <div class="director-role">
+                        Vicepresidencia
+                    </div>
+
+                    <h3 class="director-name">
+                        Por registrar
+                    </h3>
+
+                    <p class="director-description">
+
+                        Apoyo a la presidencia y coordinación
+                        de las actividades comunitarias.
+
+                    </p>
+
+                    <div class="director-contact">
+
+                        <span class="contact-item">
+                            Teléfono Información pendiente
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- SECRETARÍA -->
+
+            <article class="director-card">
+
+                <div class="director-header">
+
+                    <div class="director-photo">
+                        S
+                    </div>
+
+                </div>
+
+                <div class="director-body">
+
+                    <div class="director-role">
+                        Secretaría
+                    </div>
+
+                    <h3 class="director-name">
+                        Por registrar
+                    </h3>
+
+                    <p class="director-description">
+
+                        Gestión documental, actas y comunicaciones
+                        oficiales de la Junta.
+
+                    </p>
+
+                    <div class="director-contact">
+
+                        <span class="contact-item">
+                            Teléfono Información pendiente
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- TESORERÍA -->
+
+            <article class="director-card">
+
+                <div class="director-header">
+
+                    <div class="director-photo">
+                        T
+                    </div>
+
+                </div>
+
+                <div class="director-body">
+
+                    <div class="director-role">
+                        Tesorería
+                    </div>
+
+                    <h3 class="director-name">
+                        Por registrar
+                    </h3>
+
+                    <p class="director-description">
+
+                        Administración y control de los recursos
+                        económicos de la organización.
+
+                    </p>
+
+                    <div class="director-contact">
+
+                        <span class="contact-item">
+                            Teléfono Información pendiente
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- FISCALÍA -->
+
+            <article class="director-card">
+
+                <div class="director-header">
+
+                    <div class="director-photo">
+                        F
+                    </div>
+
+                </div>
+
+                <div class="director-body">
+
+                    <div class="director-role">
+                        Fiscalía
+                    </div>
+
+                    <h3 class="director-name">
+                        Por registrar
+                    </h3>
+
+                    <p class="director-description">
+
+                        Seguimiento y control de los procesos
+                        internos de la organización.
+
+                    </p>
+
+                    <div class="director-contact">
+
+                        <span class="contact-item">
+                            Teléfono Información pendiente
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- VOCAL -->
+
+            <article class="director-card">
+
+                <div class="director-header">
+
+                    <div class="director-photo">
+                        V
+                    </div>
+
+                </div>
+
+                <div class="director-body">
+
+                    <div class="director-role">
+                        Vocal
+                    </div>
+
+                    <h3 class="director-name">
+                        Por registrar
+                    </h3>
+
+                    <p class="director-description">
+
+                        Participación en la coordinación y
+                        seguimiento de las actividades comunitarias.
+
+                    </p>
+
+                    <div class="director-contact">
+
+                        <span class="contact-item">
+                            Teléfono Información pendiente
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+
+        <!-- AVISO -->
+
+        <div class="data-notice">
+
+            <strong>
+                Información institucional:
+            </strong>
+
+            Los nombres, fotografías, teléfonos y demás
+            información de los directivos deberán ser publicados
+            únicamente cuando hayan sido autorizados por la Junta
+            y de acuerdo con las disposiciones aplicables sobre
+            tratamiento de datos personales.
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FUNCIONES
+========================================================= -->
+
+<section class="institutional">
+
+    <div class="container institutional-grid">
+
+
+        <div>
+
+            <div
+                class="eyebrow"
+                style="color:#d9efe1;"
+            >
+                Gestión comunitaria
+            </div>
+
+            <h2>
+                Una dirección al servicio de la comunidad
+            </h2>
+
+            <p>
+
+                La estructura directiva permite organizar las
+                responsabilidades de la Junta y facilitar la
+                gestión de las iniciativas comunitarias.
+
+            </p>
+
+        </div>
+
+
+        <div class="functions">
+
+
+            <div class="function-item">
+
+                <div class="function-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <strong>
+                        Representación
+                    </strong>
+
+                    <p>
+                        Representar institucionalmente a la Junta.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="function-item">
+
+                <div class="function-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <strong>
+                        Organización
+                    </strong>
+
+                    <p>
+                        Coordinar las actividades de la organización.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="function-item">
+
+                <div class="function-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <strong>
+                        Gestión
+                    </strong>
+
+                    <p>
+                        Promover iniciativas y proyectos comunitarios.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="function-item">
+
+                <div class="function-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <strong>
+                        Transparencia
+                    </strong>
+
+                    <p>
+                        Promover una administración responsable.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="container">
+
+
+        <div class="footer-grid">
+
+
+            <div>
+
+                <h3>
+                    JAC Vereda Santa Bárbara
+                </h3>
+
+                <p>
+
+                    Portal institucional de la Junta de
+                    Acción Comunal de la Vereda Santa Bárbara.
+
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Portal
+                </h3>
+
+                <a href="index.html">
+                    Inicio
+                </a>
+
+                <a href="nosotro.html">
+                    Nosotros
+                </a>
+
+                <a href="directivos.html">
+                    Directivos
+                </a>
+
+                <a href="noticias.html">
+                    Noticias
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Comunidad
+                </h3>
+
+                <a href="afiliados.html">
+                    Afiliados
+                </a>
+
+                <a href="documentos.html">
+                    Documentos
+                </a>
+
+                <a href="pqrs.html">
+                    PQRS
+                </a>
+
+                <a href="agenda.html">
+                    Agenda
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            <div>
+                © 2026 Junta de Acción Comunal Vereda Santa Bárbara
+            </div>
+
+            <div>
+                Municipio de El Bagre · Antioquia
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+function toggleMenu() {
+
+    const navigation =
+        document.querySelector(".navigation");
+
+
+    if (
+        navigation.style.display === "flex"
+    ) {
+
+        navigation.style.display =
+            "none";
+
+    } else {
+
+        navigation.style.display =
+            "flex";
+
+        navigation.style.position =
+            "absolute";
+
+        navigation.style.top =
+            "78px";
+
+        navigation.style.left =
+            "0";
+
+        navigation.style.right =
+            "0";
+
+        navigation.style.padding =
+            "20px";
+
+        navigation.style.background =
+            "#ffffff";
+
+        navigation.style.flexDirection =
+            "column";
+
+        navigation.style.borderBottom =
+            "1px solid #dce7df";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>
+
