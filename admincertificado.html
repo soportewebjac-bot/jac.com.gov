@@ -252,15 +252,172 @@ footer{background:#081f38;color:#b8c5d3;padding:30px 0}
     .brand{font-size:9px}
     .brand img{width:48px;height:48px}
 }
+
+
+/* =========================================================
+   ACCESO ADMINISTRATIVO — AÑADIDO SIN MODIFICAR EL DISEÑO
+   DEL PANEL ORIGINAL
+========================================================= */
+.auth-screen{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(8,31,56,.96);
+}
+.auth-card{
+    width:min(420px,100%);
+    background:#fff;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 20px 60px rgba(0,0,0,.30);
+    border:1px solid rgba(255,255,255,.25);
+}
+.auth-logo{
+    display:block;
+    width:68px;
+    height:68px;
+    object-fit:contain;
+    margin:0 auto 12px;
+}
+.auth-card h2{
+    margin:0;
+    text-align:center;
+    color:var(--blue);
+    font-size:21px;
+}
+.auth-card p{
+    margin:7px 0 20px;
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+}
+.auth-alert{
+    display:flex;
+    gap:9px;
+    align-items:center;
+    background:#eef5ff;
+    color:#28527f;
+    border-radius:10px;
+    padding:10px 12px;
+    margin-bottom:18px;
+    font-size:11px;
+    font-weight:700;
+}
+.auth-group{margin-bottom:14px}
+.auth-group label{
+    display:block;
+    margin-bottom:6px;
+    color:var(--blue);
+    font-size:11px;
+    font-weight:800;
+}
+.auth-group input{
+    width:100%;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:11px 12px;
+    outline:none;
+    background:#fff;
+}
+.auth-group input:focus{
+    border-color:var(--green);
+    box-shadow:0 0 0 3px rgba(15,91,53,.08);
+}
+.auth-submit{
+    width:100%;
+    border:0;
+    border-radius:10px;
+    padding:12px 15px;
+    background:var(--green);
+    color:#fff;
+    font-weight:800;
+    cursor:pointer;
+}
+.auth-submit:disabled{opacity:.6;cursor:not-allowed}
+.auth-error{
+    display:none;
+    margin-top:12px;
+    padding:10px 12px;
+    border-radius:9px;
+    background:#fdecec;
+    color:#a52e2e;
+    font-size:11px;
+    line-height:1.45;
+}
+.auth-foot{
+    margin-top:17px;
+    text-align:center;
+    color:#7b8780;
+    font-size:10px;
+}
+.auth-session{
+    display:none;
+    align-items:center;
+    gap:8px;
+}
+.auth-session-user{
+    color:#fff;
+    font-size:11px;
+    font-weight:800;
+}
+.btn-logout{
+    background:#eef2f0!important;
+    color:#34443b!important;
+}
+
 </style>
 </head>
 
 <body>
 
+<!-- =========================================================
+     BLOQUEO DE ACCESO: SOLO DIRECTIVOS AUTORIZADOS
+     Este bloque es una capa fija; NO altera el layout ni
+     las proporciones del panel que está debajo.
+========================================================= -->
+<div id="authScreen" class="auth-screen">
+    <div class="auth-card">
+        <img class="auth-logo" src="assets/logo.png" alt="Junta de Acción Comunal Vereda Santa Bárbara">
+        <h2>Acceso administrativo</h2>
+        <p>Panel de gestión de certificados de afiliación</p>
+
+        <div class="auth-alert">
+            <span>🔐</span>
+            <span>Área restringida. Solo directivos autorizados.</span>
+        </div>
+
+        <form id="loginForm" autocomplete="off">
+            <div class="auth-group">
+                <label for="loginUsuario">USUARIO</label>
+                <input id="loginUsuario" type="text" autocomplete="username" required placeholder="Usuario del directivo">
+            </div>
+            <div class="auth-group">
+                <label for="loginClave">CONTRASEÑA</label>
+                <input id="loginClave" type="password" autocomplete="current-password" required placeholder="Contraseña">
+            </div>
+            <button id="loginButton" class="auth-submit" type="submit">Ingresar al sistema</button>
+            <div id="loginError" class="auth-error"></div>
+        </form>
+
+        <div class="auth-foot">
+            Junta de Acción Comunal Vereda Santa Bárbara · El Bagre, Antioquia
+        </div>
+    </div>
+</div>
+
+
 <div class="topbar">
     <div class="container topbar-content">
         <span>Panel administrativo · Certificados de afiliación</span>
         <span>JAC Vereda Santa Bárbara · El Bagre</span>
+            <div id="authSession" class="auth-session">
+                <span id="authSessionUser" class="auth-session-user"></span>
+                <button type="button" class="btn btn-logout" onclick="cerrarSesion()">Cerrar sesión</button>
+            </div>
     </div>
 </div>
 
@@ -423,9 +580,162 @@ footer{background:#081f38;color:#b8c5d3;padding:30px 0}
 <script>
 
 const API_URL =
-    "https://script.google.com/macros/s/AKfycbzRpPdhxSMQKURbr1_0-65bH7LMl_JtMt_tCb4KJDOa2Q-hz6iSC_u-6vqMVxBmF4Iv/exec";
+    "https://script.google.com/macros/s/AKfycbyLDeZDbv0pnsbl9O6inUTQVgFkoh58HZXcbbURjsaN2cX1V_zKK_A-7V3gMp9cAskT/exec";
 
 let solicitudes = [];
+
+/* =========================================================
+   AUTENTICACIÓN DE DIRECTIVOS
+   No cambia ninguna función ni proporción del panel original.
+========================================================= */
+const AUTH_STORAGE_KEY = "JAC_ADMIN_TOKEN";
+const AUTH_USER_KEY = "JAC_ADMIN_USER";
+let JAC_AUTH_TOKEN = sessionStorage.getItem(AUTH_STORAGE_KEY) || "";
+
+const _originalFetch = window.fetch.bind(window);
+window.fetch = function(input, options){
+    const token = JAC_AUTH_TOKEN;
+    options = options ? Object.assign({}, options) : {};
+    const isApi = typeof input === "string" && input.indexOf(API_URL) === 0;
+
+    if(!token || !isApi){
+        return _originalFetch(input, options);
+    }
+
+    if((options.method || "GET").toUpperCase() === "GET"){
+        const separator = input.indexOf("?") >= 0 ? "&" : "?";
+        input = input + separator + "token=" + encodeURIComponent(token);
+    }else if(options.body && typeof options.body === "string"){
+        try{
+            const body = JSON.parse(options.body);
+            body.token = token;
+            options.body = JSON.stringify(body);
+        }catch(e){
+            // Si el body no es JSON, se conserva sin modificar.
+        }
+    }
+
+    return _originalFetch(input, options);
+};
+
+function mostrarPanelAutenticado(usuario){
+    const screen=document.getElementById("authScreen");
+    const session=document.getElementById("authSession");
+    const user=document.getElementById("authSessionUser");
+
+    if(screen) screen.style.display="none";
+    if(session) session.style.display="flex";
+    if(user) user.textContent="Directivo: "+(usuario || "autorizado");
+    document.body.style.overflow="";
+}
+
+function mostrarLogin(){
+    const screen=document.getElementById("authScreen");
+    const session=document.getElementById("authSession");
+    if(screen) screen.style.display="flex";
+    if(session) session.style.display="none";
+    document.body.style.overflow="hidden";
+}
+
+function mostrarErrorLogin(mensaje){
+    const error=document.getElementById("loginError");
+    if(!error)return;
+    error.textContent=mensaje || "No fue posible iniciar sesión.";
+    error.style.display="block";
+}
+
+async function validarSesionActual(){
+    if(!JAC_AUTH_TOKEN)return false;
+
+    try{
+        const response=await _originalFetch(
+            API_URL+"?action=sesion&token="+encodeURIComponent(JAC_AUTH_TOKEN)+"&t="+Date.now(),
+            {method:"GET",cache:"no-store"}
+        );
+        const data=await response.json();
+
+        if(data && data.ok){
+            mostrarPanelAutenticado(data.usuario || sessionStorage.getItem(AUTH_USER_KEY) || "");
+            return true;
+        }
+    }catch(error){
+        console.error(error);
+    }
+
+    sessionStorage.removeItem(AUTH_STORAGE_KEY);
+    sessionStorage.removeItem(AUTH_USER_KEY);
+    JAC_AUTH_TOKEN="";
+    return false;
+}
+
+async function iniciarSesion(){
+    const usuario=document.getElementById("loginUsuario").value.trim();
+    const clave=document.getElementById("loginClave").value;
+    const button=document.getElementById("loginButton");
+
+    const error=document.getElementById("loginError");
+    if(error)error.style.display="none";
+
+    if(!usuario || !clave){
+        mostrarErrorLogin("Ingresa usuario y contraseña.");
+        return;
+    }
+
+    button.disabled=true;
+    button.textContent="Verificando...";
+
+    try{
+        const response=await _originalFetch(API_URL,{
+            method:"POST",
+            headers:{"Content-Type":"text/plain;charset=utf-8"},
+            body:JSON.stringify({
+                action:"LOGIN",
+                usuario:usuario,
+                clave:clave
+            })
+        });
+
+        const data=await response.json();
+
+        if(!data.ok || !data.token){
+            throw new Error(data.error || "Credenciales incorrectas.");
+        }
+
+        JAC_AUTH_TOKEN=data.token;
+        sessionStorage.setItem(AUTH_STORAGE_KEY,JAC_AUTH_TOKEN);
+        sessionStorage.setItem(AUTH_USER_KEY,data.usuario || usuario);
+
+        document.getElementById("loginClave").value="";
+        mostrarPanelAutenticado(data.usuario || usuario);
+        cargarSolicitudes();
+
+    }catch(error){
+        mostrarErrorLogin(error.message || "No fue posible iniciar sesión.");
+    }finally{
+        button.disabled=false;
+        button.textContent="Ingresar al sistema";
+    }
+}
+
+function cerrarSesion(){
+    JAC_AUTH_TOKEN="";
+    sessionStorage.removeItem(AUTH_STORAGE_KEY);
+    sessionStorage.removeItem(AUTH_USER_KEY);
+    mostrarLogin();
+    const usuario=document.getElementById("loginUsuario");
+    if(usuario)usuario.value="";
+    const clave=document.getElementById("loginClave");
+    if(clave)clave.value="";
+    const error=document.getElementById("loginError");
+    if(error)error.style.display="none";
+    if(usuario)setTimeout(()=>usuario.focus(),50);
+}
+
+document.getElementById("loginForm").addEventListener("submit",function(event){
+    event.preventDefault();
+    iniciarSesion();
+});
+
 
 /* =========================================================
    MENÚ
@@ -1696,8 +2006,14 @@ document.addEventListener("keydown",function(event){
 
 document.addEventListener(
     "DOMContentLoaded",
-    function(){
-        cargarSolicitudes();
+    async function(){
+        mostrarLogin();
+        const autenticado=await validarSesionActual();
+        if(autenticado){
+            cargarSolicitudes();
+        }else{
+            setTimeout(()=>document.getElementById("loginUsuario")?.focus(),100);
+        }
     }
 );
 

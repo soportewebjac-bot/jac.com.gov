@@ -886,10 +886,250 @@ footer{
         margin-top:7px;
     }
 }
+
+/* =========================================================
+   MODAL DE CARGA INSTITUCIONAL — SOLO PRESENTACIÓN
+   No altera la estructura ni el contenido del portal.
+========================================================= */
+.page-loader{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        radial-gradient(circle at 50% 35%,rgba(31,122,69,.16),transparent 30%),
+        linear-gradient(135deg,#061a2f 0%,#081f38 48%,#0b3f28 100%);
+    opacity:1;
+    visibility:visible;
+    transition:opacity .7s ease,visibility .7s ease;
+}
+.page-loader.hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+.page-loader-card{
+    position:relative;
+    width:min(430px,calc(100% - 34px));
+    padding:42px 34px 32px;
+    text-align:center;
+    color:#fff;
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:30px;
+    background:rgba(255,255,255,.075);
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.34),
+        inset 0 1px 0 rgba(255,255,255,.12);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    overflow:hidden;
+}
+.page-loader-card::before{
+    content:"";
+    position:absolute;
+    width:280px;
+    height:280px;
+    left:50%;
+    top:-185px;
+    transform:translateX(-50%);
+    border:1px solid rgba(227,173,32,.24);
+    border-radius:50%;
+    box-shadow:
+        0 0 0 34px rgba(227,173,32,.035),
+        0 0 0 68px rgba(255,255,255,.018);
+}
+.loader-orbit{
+    position:relative;
+    width:132px;
+    height:132px;
+    margin:0 auto 25px;
+    display:grid;
+    place-items:center;
+}
+.loader-orbit::before,
+.loader-orbit::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+}
+.loader-orbit::before{
+    border:1px solid rgba(255,255,255,.15);
+    box-shadow:0 0 35px rgba(31,122,69,.18);
+}
+.loader-orbit::after{
+    inset:7px;
+    border:3px solid transparent;
+    border-top-color:#e3ad20;
+    border-right-color:#e3ad20;
+    animation:loaderSpin 1.35s linear infinite;
+}
+.loader-logo{
+    position:relative;
+    z-index:2;
+    width:82px;
+    height:82px;
+    object-fit:contain;
+    filter:drop-shadow(0 8px 18px rgba(0,0,0,.25));
+    animation:loaderFloat 2.8s ease-in-out infinite;
+}
+.loader-kicker{
+    position:relative;
+    z-index:2;
+    color:#d9eadf;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    margin-bottom:9px;
+}
+.loader-title{
+    position:relative;
+    z-index:2;
+    margin:0;
+    font-family:"Montserrat",sans-serif;
+    font-size:24px;
+    line-height:1.15;
+    letter-spacing:-.4px;
+}
+.loader-title span{
+    color:#62b985;
+}
+.loader-subtitle{
+    position:relative;
+    z-index:2;
+    margin:10px auto 24px;
+    max-width:320px;
+    color:#c8d5df;
+    font-size:11px;
+    line-height:1.65;
+}
+.loader-track{
+    position:relative;
+    z-index:2;
+    width:100%;
+    height:4px;
+    overflow:hidden;
+    border-radius:99px;
+    background:rgba(255,255,255,.10);
+}
+.loader-progress{
+    width:0%;
+    height:100%;
+    border-radius:99px;
+    background:linear-gradient(90deg,#1f7a45,#62b985,#e3ad20);
+    box-shadow:0 0 14px rgba(98,185,133,.45);
+    transition:width .25s ease;
+}
+.loader-status{
+    position:relative;
+    z-index:2;
+    min-height:18px;
+    margin-top:12px;
+    color:#9fb2c1;
+    font-size:10px;
+    font-weight:600;
+}
+.loader-dots{
+    display:inline-flex;
+    gap:5px;
+    margin-left:5px;
+    vertical-align:middle;
+}
+.loader-dots i{
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:#e3ad20;
+    animation:loaderDot 1s infinite ease-in-out;
+}
+.loader-dots i:nth-child(2){animation-delay:.15s}
+.loader-dots i:nth-child(3){animation-delay:.3s}
+.loader-signature{
+    position:relative;
+    z-index:2;
+    margin-top:23px;
+    padding-top:14px;
+    border-top:1px solid rgba(255,255,255,.08);
+    color:#91a4b3;
+    font-size:9px;
+    letter-spacing:.04em;
+}
+@keyframes loaderSpin{
+    to{transform:rotate(360deg)}
+}
+@keyframes loaderFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-5px)}
+}
+@keyframes loaderDot{
+    0%,70%,100%{transform:translateY(0);opacity:.45}
+    35%{transform:translateY(-3px);opacity:1}
+}
+@media(max-width:560px){
+    .page-loader-card{
+        padding:34px 24px 27px;
+        border-radius:25px;
+    }
+    .loader-orbit{
+        width:112px;
+        height:112px;
+        margin-bottom:21px;
+    }
+    .loader-logo{
+        width:70px;
+        height:70px;
+    }
+    .loader-title{
+        font-size:21px;
+    }
+}
+
 </style>
 </head>
 
 <body>
+
+
+<!-- =========================================================
+     MODAL DE CARGA INSTITUCIONAL
+========================================================= -->
+<div class="page-loader" id="pageLoader" aria-label="Cargando portal institucional">
+    <div class="page-loader-card">
+        <div class="loader-orbit">
+            <img class="loader-logo"
+                 src="assets/logo.png"
+                 alt="Logo institucional de la Junta de Acción Comunal">
+        </div>
+
+        <div class="loader-kicker">Portal institucional</div>
+
+        <h2 class="loader-title">
+            Junta de Acción Comunal<br>
+            <span>Vereda Santa Bárbara</span>
+        </h2>
+
+        <p class="loader-subtitle">
+            Preparando el portal comunitario y sus servicios institucionales.
+        </p>
+
+        <div class="loader-track">
+            <div class="loader-progress" id="loaderProgress"></div>
+        </div>
+
+        <div class="loader-status" id="loaderStatus">
+            Iniciando plataforma
+            <span class="loader-dots"><i></i><i></i><i></i></span>
+        </div>
+
+        <div class="loader-signature">
+            PARTICIPACIÓN · GESTIÓN · UNIDAD · COMUNIDAD
+        </div>
+    </div>
+</div>
+
 
 <!-- BARRA INSTITUCIONAL -->
 <div class="topbar">
@@ -1228,8 +1468,79 @@ navigation.querySelectorAll("a").forEach(function(link){
         navigation.classList.remove("open");
     });
 });
+
+/* =========================================================
+   CARGA ELEGANTE DEL PORTAL
+   Solo añade la presentación de carga; no modifica
+   ninguna función ni contenido existente.
+========================================================= */
+(function(){
+
+    const loader = document.getElementById("pageLoader");
+    const progress = document.getElementById("loaderProgress");
+    const status = document.getElementById("loaderStatus");
+
+    if(!loader || !progress || !status) return;
+
+    const mensajes = [
+        {p:18, t:"Verificando identidad institucional"},
+        {p:37, t:"Preparando información comunitaria"},
+        {p:58, t:"Cargando módulos del portal"},
+        {p:78, t:"Organizando servicios institucionales"},
+        {p:92, t:"Finalizando preparación"},
+        {p:100, t:"Portal listo"}
+    ];
+
+    let indice = 0;
+
+    function actualizar(){
+        if(indice >= mensajes.length) return;
+
+        progress.style.width = mensajes[indice].p + "%";
+        status.innerHTML =
+            mensajes[indice].t +
+            ' <span class="loader-dots"><i></i><i></i><i></i></span>';
+
+        indice++;
+
+        if(indice < mensajes.length){
+            setTimeout(actualizar, 240);
+        }
+    }
+
+    actualizar();
+
+    function cerrarCarga(){
+        progress.style.width = "100%";
+        status.innerHTML = "Portal listo";
+
+        setTimeout(function(){
+            loader.classList.add("hide");
+
+            setTimeout(function(){
+                loader.remove();
+            }, 750);
+
+        }, 420);
+    }
+
+    if(document.readyState === "complete"){
+        setTimeout(cerrarCarga, 1150);
+    }else{
+        window.addEventListener("load", function(){
+            setTimeout(cerrarCarga, 500);
+        }, {once:true});
+
+        /* Respaldo para conexiones rápidas/lentas */
+        setTimeout(function(){
+            if(document.body.contains(loader)){
+                cerrarCarga();
+            }
+        }, 4200);
+    }
+
+})();
 </script>
 
 </body>
 </html>
-
