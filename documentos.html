@@ -20,6 +20,10 @@
     </title>
 
 
+    <!-- =====================================================
+         TIPOGRAFÍAS
+    ====================================================== -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link
@@ -34,16 +38,30 @@
     >
 
 
+    <!-- =====================================================
+         BOOTSTRAP ICONS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+
     <style>
+
+        /* =====================================================
+           VARIABLES
+        ====================================================== */
 
         :root {
 
             --green: #0f5b35;
             --green-2: #1f7a45;
+            --green-dark: #073d25;
             --green-soft: #eaf5ee;
 
             --blue: #0d2c54;
-
             --gold: #e3ad20;
 
             --ink: #15221b;
@@ -55,9 +73,20 @@
             --border: #dce7df;
 
             --shadow:
-                0 16px 45px rgba(13,44,84,.08);
+                0 16px 45px
+                rgba(13,44,84,.08);
+
+            --shadow-soft:
+                0 8px 25px
+                rgba(20,50,35,.045);
+
+            --radius: 20px;
         }
 
+
+        /* =====================================================
+           RESET
+        ====================================================== */
 
         * {
             box-sizing: border-box;
@@ -78,39 +107,35 @@
                 Arial,
                 sans-serif;
 
-            color:
-                var(--ink);
+            color: var(--ink);
 
-            background:
-                var(--bg);
+            background: var(--bg);
 
-            line-height:
-                1.6;
+            line-height: 1.6;
         }
 
 
         a {
-            text-decoration:
-                none;
-
-            color:
-                inherit;
+            text-decoration: none;
+            color: inherit;
         }
 
 
         img {
-            max-width:
-                100%;
+            max-width: 100%;
+            display: block;
+        }
 
-            display:
-                block;
+
+        button {
+            font-family: inherit;
         }
 
 
         .container {
 
             width:
-                min(1180px,92%);
+                min(1180px, 92%);
 
             margin:
                 auto;
@@ -119,7 +144,7 @@
 
         /* =====================================================
            TOPBAR
-        ===================================================== */
+        ====================================================== */
 
         .topbar {
 
@@ -152,7 +177,7 @@
 
         /* =====================================================
            HEADER
-        ===================================================== */
+        ====================================================== */
 
         header {
 
@@ -163,16 +188,17 @@
                 0;
 
             z-index:
-                100;
+                1000;
 
             background:
-                rgba(255,255,255,.96);
+                rgba(255,255,255,.97);
 
             backdrop-filter:
                 blur(14px);
 
             border-bottom:
-                1px solid var(--border);
+                1px solid
+                var(--border);
         }
 
 
@@ -233,9 +259,16 @@
         }
 
 
+        .brand span span {
+
+            color:
+                var(--blue);
+        }
+
+
         /* =====================================================
-           NAV
-        ===================================================== */
+           NAVIGATION
+        ====================================================== */
 
         .navigation {
 
@@ -246,7 +279,7 @@
                 center;
 
             gap:
-                12px;
+                5px;
 
             font-size:
                 12px;
@@ -260,18 +293,48 @@
 
 
         .navigation a {
-            text-decoration: none;
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            min-height:
+                36px;
+
+            padding:
+                7px 9px;
+
+            border-radius:
+                9px;
 
             transition:
-                .25s ease;
+                color .2s ease,
+                background .2s ease;
         }
 
 
-        .navigation a:hover,
-        .navigation .active {
+        .navigation a:hover {
 
             color:
                 var(--green);
+
+            background:
+                var(--green-soft);
+        }
+
+
+        .navigation a.active {
+
+            color:
+                var(--green);
+
+            background:
+                var(--green-soft);
         }
 
 
@@ -280,8 +343,20 @@
             display:
                 none;
 
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            width:
+                44px;
+
+            height:
+                44px;
+
             border:
-                none;
+                0;
 
             background:
                 var(--green);
@@ -292,20 +367,17 @@
             border-radius:
                 10px;
 
-            padding:
-                10px 13px;
-
             cursor:
                 pointer;
 
             font-size:
-                18px;
+                20px;
         }
 
 
         /* =====================================================
            HERO
-        ===================================================== */
+        ====================================================== */
 
         .page-hero {
 
@@ -439,7 +511,7 @@
 
         /* =====================================================
            DOCUMENTOS
-        ===================================================== */
+        ====================================================== */
 
         .documents-section {
 
@@ -454,7 +526,7 @@
                 760px;
 
             margin:
-                0 auto 45px;
+                0 auto 40px;
 
             text-align:
                 center;
@@ -488,8 +560,8 @@
 
 
         /* =====================================================
-           CATEGORÍAS
-        ===================================================== */
+           FILTROS
+        ====================================================== */
 
         .filters {
 
@@ -500,7 +572,7 @@
                 center;
 
             gap:
-                10px;
+                9px;
 
             flex-wrap:
                 wrap;
@@ -513,7 +585,8 @@
         .filter {
 
             border:
-                1px solid var(--border);
+                1px solid
+                var(--border);
 
             background:
                 white;
@@ -537,11 +610,20 @@
                 pointer;
 
             transition:
-                .25s ease;
+                .2s ease;
         }
 
 
-        .filter:hover,
+        .filter:hover {
+
+            border-color:
+                var(--green);
+
+            background:
+                var(--green-soft);
+        }
+
+
         .filter.active {
 
             background:
@@ -556,8 +638,8 @@
 
 
         /* =====================================================
-           GRID
-        ===================================================== */
+           GRID DOCUMENTOS
+        ====================================================== */
 
         .documents-grid {
 
@@ -565,7 +647,7 @@
                 grid;
 
             grid-template-columns:
-                repeat(3,1fr);
+                repeat(3, 1fr);
 
             gap:
                 20px;
@@ -573,40 +655,50 @@
 
 
         /* =====================================================
-           CARD
-        ===================================================== */
+           CARD DOCUMENTO
+        ====================================================== */
 
         .document-card {
 
             background:
-                white;
+                var(--white);
 
             border:
-                1px solid var(--border);
+                1px solid
+                var(--border);
 
             border-radius:
-                20px;
+                var(--radius);
 
             padding:
                 25px;
 
             box-shadow:
-                0 8px 25px rgba(20,50,35,.045);
+                var(--shadow-soft);
 
             transition:
-                .25s ease;
+                transform .25s ease,
+                box-shadow .25s ease,
+                border-color .25s ease;
         }
 
 
         .document-card:hover {
 
             transform:
-                translateY(-5px);
+                translateY(-4px);
 
             box-shadow:
                 var(--shadow);
+
+            border-color:
+                #c9ddd1;
         }
 
+
+        /* =====================================================
+           ICONO BOOTSTRAP
+        ====================================================== */
 
         .document-icon {
 
@@ -632,12 +724,23 @@
                 center;
 
             font-size:
-                24px;
+                23px;
 
             margin-bottom:
                 18px;
         }
 
+
+        .document-icon i {
+
+            line-height:
+                1;
+        }
+
+
+        /* =====================================================
+           TIPO
+        ====================================================== */
 
         .document-type {
 
@@ -702,6 +805,10 @@
         }
 
 
+        /* =====================================================
+           INFORMACIÓN DEL DOCUMENTO
+        ====================================================== */
+
         .document-meta {
 
             display:
@@ -714,7 +821,8 @@
                 center;
 
             border-top:
-                1px solid var(--border);
+                1px solid
+                var(--border);
 
             padding-top:
                 15px;
@@ -735,10 +843,10 @@
 
 
         /* =====================================================
-           BOTÓN
-        ===================================================== */
+           BOTÓN DOCUMENTO
+        ====================================================== */
 
-        .btn {
+        .btn-document {
 
             display:
                 inline-flex;
@@ -749,11 +857,20 @@
             justify-content:
                 center;
 
+            gap:
+                7px;
+
             padding:
                 9px 14px;
 
             border-radius:
                 9px;
+
+            background:
+                var(--green);
+
+            color:
+                white;
 
             font-size:
                 11px;
@@ -762,30 +879,66 @@
                 800;
 
             transition:
-                .25s ease;
+                .2s ease;
         }
 
 
-        .btn-primary {
-
-            background:
-                var(--green);
-
-            color:
-                white;
-        }
-
-
-        .btn-primary:hover {
+        .btn-document:hover {
 
             background:
                 var(--green-2);
+
+            color:
+                white;
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        .btn-document i {
+
+            font-size:
+                12px;
+        }
+
+
+        /* =====================================================
+           ESTADO DEL DOCUMENTO
+        ====================================================== */
+
+        .document-available {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                5px;
+
+            color:
+                var(--green);
+
+            font-size:
+                10px;
+
+            font-weight:
+                700;
+        }
+
+
+        .document-available i {
+
+            font-size:
+                9px;
         }
 
 
         /* =====================================================
            TRANSPARENCIA
-        ===================================================== */
+        ====================================================== */
 
         .transparency {
 
@@ -878,7 +1031,8 @@
                 rgba(255,255,255,.08);
 
             border:
-                1px solid rgba(255,255,255,.12);
+                1px solid
+                rgba(255,255,255,.12);
 
             border-radius:
                 12px;
@@ -918,47 +1072,76 @@
 
         /* =====================================================
            AVISO
-        ===================================================== */
+        ====================================================== */
 
         .notice {
 
             margin-top:
-                40px;
+                35px;
 
             background:
                 #fff8e5;
 
             border:
-                1px solid #f1d98d;
+                1px solid
+                #f1d98d;
 
             color:
                 #725600;
 
             padding:
-                18px;
+                17px 18px;
 
             border-radius:
-                15px;
+                14px;
 
             font-size:
                 13px;
+
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+            gap:
+                10px;
+        }
+
+
+        .notice i {
+
+            font-size:
+                17px;
+
+            margin-top:
+                1px;
         }
 
 
         /* =====================================================
            FOOTER
-        ===================================================== */
+        ====================================================== */
 
         footer {
 
             background:
-                #081f38;
+                linear-gradient(
+                    135deg,
+                    #081f38,
+                    #0b2948 55%,
+                    #073d25
+                );
 
             color:
                 #aebdcd;
 
             padding:
-                35px 0;
+                38px 0 24px;
+
+            border-top:
+                3px solid
+                var(--gold);
         }
 
 
@@ -975,13 +1158,42 @@
         }
 
 
+        .footer-brand {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+            margin-bottom:
+                12px;
+        }
+
+
+        .footer-brand img {
+
+            width:
+                48px;
+
+            height:
+                48px;
+
+            object-fit:
+                contain;
+        }
+
+
         .footer-grid h3 {
 
             color:
                 white;
 
             font-size:
-                15px;
+                14px;
 
             margin-bottom:
                 12px;
@@ -992,7 +1204,7 @@
         .footer-grid a {
 
             font-size:
-                13px;
+                12px;
         }
 
 
@@ -1003,13 +1215,24 @@
 
             margin:
                 7px 0;
+
+            transition:
+                color .2s ease;
+        }
+
+
+        .footer-grid a:hover {
+
+            color:
+                white;
         }
 
 
         .copyright {
 
             border-top:
-                1px solid rgba(255,255,255,.1);
+                1px solid
+                rgba(255,255,255,.1);
 
             margin-top:
                 25px;
@@ -1023,23 +1246,26 @@
             justify-content:
                 space-between;
 
+            gap:
+                20px;
+
             font-size:
-                12px;
+                11px;
         }
 
 
         /* =====================================================
            RESPONSIVE
-        ===================================================== */
+        ====================================================== */
 
-        @media(max-width:950px) {
+        @media (max-width: 1000px) {
 
             .navigation {
-                display:none;
+                display: none;
             }
 
             .menu-button {
-                display:block;
+                display: inline-flex;
             }
 
             .documents-grid {
@@ -1060,40 +1286,127 @@
         }
 
 
-        @media(max-width:600px) {
+        @media (max-width: 600px) {
 
             .topbar-content {
+
                 justify-content:
+                    center;
+
+                text-align:
                     center;
             }
 
+
             .topbar .right {
+
                 display:
                     none;
             }
 
-            .brand span {
+
+            .navbar {
+
+                min-height:
+                    72px;
+            }
+
+
+            .brand img {
+
+                width:
+                    50px;
+
+                height:
+                    50px;
+            }
+
+
+            .brand {
+
                 font-size:
                     10px;
             }
 
-            .documents-grid,
-            .footer-grid {
+
+            .page-hero {
+
+                padding:
+                    60px 0;
+            }
+
+
+            .page-hero h1 {
+
+                font-size:
+                    42px;
+            }
+
+
+            .documents-section {
+
+                padding:
+                    55px 0;
+            }
+
+
+            .documents-grid {
+
                 grid-template-columns:
                     1fr;
             }
 
+
+            .document-card p {
+
+                min-height:
+                    auto;
+            }
+
+
+            .transparency {
+
+                padding:
+                    50px 0;
+            }
+
+
             .transparency-box {
+
                 padding:
                     28px;
             }
 
-            .copyright {
-                display:
-                    block;
+
+            .footer-grid {
+
+                grid-template-columns:
+                    1fr;
+
+                text-align:
+                    center;
             }
 
+
+            .footer-brand {
+
+                justify-content:
+                    center;
+            }
+
+
+            .copyright {
+
+                display:
+                    block;
+
+                text-align:
+                    center;
+            }
+
+
             .copyright div + div {
+
                 margin-top:
                     8px;
             }
@@ -1149,32 +1462,80 @@
             >
 
             <span>
+
                 JUNTA DE ACCIÓN COMUNAL<br>
-                VEREDA SANTA BÁRBARA
+
+                <span>
+                    VEREDA SANTA BÁRBARA
+                </span>
+
             </span>
 
         </a>
 
 
-        <nav class="navigation">
-            <a href="index.html">Inicio</a>
-            <a href="nosotro.html">Nosotros</a>
-            <a href="directivos.html">Directivos</a>
-            <a href="noticias.html">Noticias</a>
-            <a href="agenda.html">Agenda</a>
-            <a href="documentos.html" class="active">Documentos</a>
-            <a href="afiliados.html">Afiliados</a>
-            <a href="certificados.html">Certificados</a>
-            <a href="pqrs.html">PQRS</a>
-            <a href="politicas.html">Políticas</a>
+        <nav
+            class="navigation"
+            id="site-navigation"
+        >
+
+            <a href="index.html">
+                Inicio
+            </a>
+
+            <a href="nosotro.html">
+                Nosotros
+            </a>
+
+            <a href="directivos.html">
+                Directivos
+            </a>
+
+            <a href="noticias.html">
+                Noticias
+            </a>
+
+            <a href="agenda.html">
+                Agenda
+            </a>
+
+            <a
+                href="documentos.html"
+                class="active"
+            >
+                Documentos
+            </a>
+
+            <a href="afiliados.html">
+                Afiliados
+            </a>
+
+            <a href="certificados.html">
+                Certificados
+            </a>
+
+            <a href="pqrs.html">
+                PQRS
+            </a>
+
+            <a href="politicas.html">
+                Políticas
+            </a>
+
         </nav>
 
 
         <button
             class="menu-button"
+            id="menuButton"
             onclick="toggleMenu()"
+            type="button"
+            aria-label="Abrir menú"
+            aria-expanded="false"
         >
-            ☰
+
+            <i class="bi bi-list"></i>
+
         </button>
 
     </div>
@@ -1195,15 +1556,21 @@
         </div>
 
         <h1>
+
             Documentos
-            <span>oficiales</span>
+
+            <span>
+                oficiales
+            </span>
+
         </h1>
 
         <p>
 
-            Consulta información institucional, documentos
-            administrativos, actas, reglamentos y contenidos
-            de interés para nuestra comunidad.
+            Consulta información institucional,
+            documentos administrativos, actas,
+            reglamentos e informes de interés
+            para nuestra comunidad.
 
         </p>
 
@@ -1233,49 +1600,57 @@
 
             <p>
 
-                Encuentra de manera organizada los documentos
-                publicados por la Junta de Acción Comunal.
+                Consulta de manera organizada los
+                documentos publicados por la Junta
+                de Acción Comunal.
 
             </p>
 
         </div>
 
 
-        <!-- FILTROS -->
+        <!-- =================================================
+             FILTROS
+        ================================================== -->
 
         <div class="filters">
 
             <button
                 class="filter active"
-                onclick="filtrarDocumentos('todos',this)"
+                onclick="filtrarDocumentos('todos', this)"
+                type="button"
             >
                 Todos
             </button>
 
             <button
                 class="filter"
-                onclick="filtrarDocumentos('institucional',this)"
+                onclick="filtrarDocumentos('institucional', this)"
+                type="button"
             >
                 Institucional
             </button>
 
             <button
                 class="filter"
-                onclick="filtrarDocumentos('actas',this)"
+                onclick="filtrarDocumentos('actas', this)"
+                type="button"
             >
                 Actas
             </button>
 
             <button
                 class="filter"
-                onclick="filtrarDocumentos('reglamentos',this)"
+                onclick="filtrarDocumentos('reglamentos', this)"
+                type="button"
             >
                 Reglamentos
             </button>
 
             <button
                 class="filter"
-                onclick="filtrarDocumentos('informes',this)"
+                onclick="filtrarDocumentos('informes', this)"
+                type="button"
             >
                 Informes
             </button>
@@ -1283,12 +1658,16 @@
         </div>
 
 
-        <!-- DOCUMENTOS -->
+        <!-- =================================================
+             GRID
+        ================================================== -->
 
         <div class="documents-grid">
 
 
-            <!-- DOCUMENTO 1 -->
+            <!-- =============================================
+                 DOCUMENTO 1
+            ============================================== -->
 
             <article
                 class="document-card"
@@ -1296,7 +1675,9 @@
             >
 
                 <div class="document-icon">
-                    Documento
+
+                    <i class="bi bi-building"></i>
+
                 </div>
 
                 <span class="document-type">
@@ -1309,23 +1690,33 @@
 
                 <p>
 
-                    Documento con información general
-                    de la organización comunitaria.
+                    Información general de la Junta
+                    de Acción Comunal de la Vereda
+                    Santa Bárbara.
 
                 </p>
 
                 <div class="document-meta">
 
-                    <span class="document-size">
-                        PDF · Por publicar
+                    <span class="document-available">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        PDF disponible
+
                     </span>
 
                     <a
-                        href="#"
-                        class="btn btn-primary"
-                        onclick="mostrarMensaje(event)"
+                        href="documentos/informacion-institucional.pdf"
+                        class="btn-document"
+                        target="_blank"
+                        rel="noopener"
                     >
-                        Consultar
+
+                        Ver
+
+                        <i class="bi bi-arrow-up-right"></i>
+
                     </a>
 
                 </div>
@@ -1333,7 +1724,9 @@
             </article>
 
 
-            <!-- DOCUMENTO 2 -->
+            <!-- =============================================
+                 DOCUMENTO 2
+            ============================================== -->
 
             <article
                 class="document-card"
@@ -1341,7 +1734,9 @@
             >
 
                 <div class="document-icon">
-                    Instituciónï¸
+
+                    <i class="bi bi-file-earmark-text"></i>
+
                 </div>
 
                 <span class="document-type">
@@ -1355,22 +1750,31 @@
                 <p>
 
                     Documento relacionado con las normas
-                    internas y funcionamiento de la Junta.
+                    internas y el funcionamiento de la Junta.
 
                 </p>
 
                 <div class="document-meta">
 
-                    <span class="document-size">
-                        PDF · Por publicar
+                    <span class="document-available">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        PDF disponible
+
                     </span>
 
                     <a
-                        href="#"
-                        class="btn btn-primary"
-                        onclick="mostrarMensaje(event)"
+                        href="documentos/estatutos.pdf"
+                        class="btn-document"
+                        target="_blank"
+                        rel="noopener"
                     >
-                        Consultar
+
+                        Ver
+
+                        <i class="bi bi-arrow-up-right"></i>
+
                     </a>
 
                 </div>
@@ -1378,7 +1782,9 @@
             </article>
 
 
-            <!-- DOCUMENTO 3 -->
+            <!-- =============================================
+                 DOCUMENTO 3
+            ============================================== -->
 
             <article
                 class="document-card"
@@ -1386,7 +1792,9 @@
             >
 
                 <div class="document-icon">
-                    Nota
+
+                    <i class="bi bi-journal-text"></i>
+
                 </div>
 
                 <span class="document-type">
@@ -1406,16 +1814,25 @@
 
                 <div class="document-meta">
 
-                    <span class="document-size">
-                        PDF · Por publicar
+                    <span class="document-available">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        PDF disponible
+
                     </span>
 
                     <a
-                        href="#"
-                        class="btn btn-primary"
-                        onclick="mostrarMensaje(event)"
+                        href="documentos/actas-reuniones.pdf"
+                        class="btn-document"
+                        target="_blank"
+                        rel="noopener"
                     >
-                        Consultar
+
+                        Ver
+
+                        <i class="bi bi-arrow-up-right"></i>
+
                     </a>
 
                 </div>
@@ -1423,7 +1840,9 @@
             </article>
 
 
-            <!-- DOCUMENTO 4 -->
+            <!-- =============================================
+                 DOCUMENTO 4
+            ============================================== -->
 
             <article
                 class="document-card"
@@ -1431,7 +1850,9 @@
             >
 
                 <div class="document-icon">
-                    Lista
+
+                    <i class="bi bi-people"></i>
+
                 </div>
 
                 <span class="document-type">
@@ -1451,16 +1872,25 @@
 
                 <div class="document-meta">
 
-                    <span class="document-size">
-                        PDF · Por publicar
+                    <span class="document-available">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        PDF disponible
+
                     </span>
 
                     <a
-                        href="#"
-                        class="btn btn-primary"
-                        onclick="mostrarMensaje(event)"
+                        href="documentos/actas-asamblea.pdf"
+                        class="btn-document"
+                        target="_blank"
+                        rel="noopener"
                     >
-                        Consultar
+
+                        Ver
+
+                        <i class="bi bi-arrow-up-right"></i>
+
                     </a>
 
                 </div>
@@ -1468,7 +1898,9 @@
             </article>
 
 
-            <!-- DOCUMENTO 5 -->
+            <!-- =============================================
+                 DOCUMENTO 5
+            ============================================== -->
 
             <article
                 class="document-card"
@@ -1476,7 +1908,9 @@
             >
 
                 <div class="document-icon">
-                    ⚖
+
+                    <i class="bi bi-journal-bookmark"></i>
+
                 </div>
 
                 <span class="document-type">
@@ -1489,23 +1923,32 @@
 
                 <p>
 
-                    Normas y disposiciones internas aplicables
-                    a la organización.
+                    Normas y disposiciones internas
+                    aplicables a la organización.
 
                 </p>
 
                 <div class="document-meta">
 
-                    <span class="document-size">
-                        PDF · Por publicar
+                    <span class="document-available">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        PDF disponible
+
                     </span>
 
                     <a
-                        href="#"
-                        class="btn btn-primary"
-                        onclick="mostrarMensaje(event)"
+                        href="documentos/reglamento-interno.pdf"
+                        class="btn-document"
+                        target="_blank"
+                        rel="noopener"
                     >
-                        Consultar
+
+                        Ver
+
+                        <i class="bi bi-arrow-up-right"></i>
+
                     </a>
 
                 </div>
@@ -1513,7 +1956,9 @@
             </article>
 
 
-            <!-- DOCUMENTO 6 -->
+            <!-- =============================================
+                 DOCUMENTO 6
+            ============================================== -->
 
             <article
                 class="document-card"
@@ -1521,7 +1966,9 @@
             >
 
                 <div class="document-icon">
-                    📊
+
+                    <i class="bi bi-bar-chart-line"></i>
+
                 </div>
 
                 <span class="document-type">
@@ -1541,16 +1988,25 @@
 
                 <div class="document-meta">
 
-                    <span class="document-size">
-                        PDF · Por publicar
+                    <span class="document-available">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        PDF disponible
+
                     </span>
 
                     <a
-                        href="#"
-                        class="btn btn-primary"
-                        onclick="mostrarMensaje(event)"
+                        href="documentos/informe-gestion.pdf"
+                        class="btn-document"
+                        target="_blank"
+                        rel="noopener"
                     >
-                        Consultar
+
+                        Ver
+
+                        <i class="bi bi-arrow-up-right"></i>
+
                     </a>
 
                 </div>
@@ -1561,15 +2017,25 @@
         </div>
 
 
+        <!-- =================================================
+             AVISO
+        ================================================== -->
+
         <div class="notice">
 
-            <strong>
-                Centro documental:
-            </strong>
+            <i class="bi bi-info-circle-fill"></i>
 
-            Los documentos deberán ser publicados por la
-            Junta o por usuarios autorizados y corresponder
-            a versiones oficiales de la documentación.
+            <div>
+
+                <strong>
+                    Centro documental:
+                </strong>
+
+                Los documentos publicados en este espacio
+                deben corresponder a versiones oficiales
+                suministradas por la Junta de Acción Comunal.
+
+            </div>
 
         </div>
 
@@ -1585,7 +2051,6 @@
 <section class="transparency">
 
     <div class="container">
-
 
         <div class="transparency-box">
 
@@ -1605,7 +2070,7 @@
 
                 <p>
 
-                    Este espacio busca facilitar el acceso
+                    Este espacio facilita el acceso
                     de la comunidad a la documentación
                     institucional de la Junta.
 
@@ -1620,7 +2085,9 @@
                 <div class="transparency-item">
 
                     <div class="check">
-                        ✓
+
+                        <i class="bi bi-check-lg"></i>
+
                     </div>
 
                     <div>
@@ -1641,7 +2108,9 @@
                 <div class="transparency-item">
 
                     <div class="check">
-                        ✓
+
+                        <i class="bi bi-check-lg"></i>
+
                     </div>
 
                     <div>
@@ -1662,7 +2131,9 @@
                 <div class="transparency-item">
 
                     <div class="check">
-                        ✓
+
+                        <i class="bi bi-check-lg"></i>
+
                     </div>
 
                     <div>
@@ -1703,16 +2174,27 @@
 
             <div>
 
-                <h3>
-                    JAC Vereda Santa Bárbara
-                </h3>
+                <div class="footer-brand">
 
-                <p>
+                    <img
+                        src="assets/logo.png"
+                        alt="Logo Junta de Acción Comunal Vereda Santa Bárbara"
+                    >
 
-                    Portal institucional de la Junta de
-                    Acción Comunal de la Vereda Santa Bárbara.
+                    <div>
 
-                </p>
+                        <h3>
+                            JAC Vereda Santa Bárbara
+                        </h3>
+
+                        <p>
+                            Portal institucional de la Junta
+                            de Acción Comunal.
+                        </p>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -1766,6 +2248,7 @@
 
             </div>
 
+
         </div>
 
 
@@ -1786,106 +2269,740 @@
 </footer>
 
 
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+
+
+
+
+
+
 <script>
 
-function toggleMenu() {
+/* =====================================================
+   URL DE GOOGLE APPS SCRIPT
+===================================================== */
 
-    const navigation =
-        document.querySelector(".navigation");
+const APPS_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbz3cGBMfWsqwBQaM8jDx-upHFtBZh20qoDs2MhsDtFQ6EnTK52OeEIeY6J8kDIS3tws/exec";
 
-    if (
-        navigation.style.display === "flex"
-    ) {
 
-        navigation.style.display =
-            "none";
-
-    } else {
-
-        navigation.style.display =
-            "flex";
-
-        navigation.style.position =
-            "absolute";
-
-        navigation.style.top =
-            "78px";
-
-        navigation.style.left =
-            "0";
-
-        navigation.style.right =
-            "0";
-
-        navigation.style.padding =
-            "20px";
-
-        navigation.style.background =
-            "#ffffff";
-
-        navigation.style.flexDirection =
-            "column";
-
-        navigation.style.borderBottom =
-            "1px solid #dce7df";
-    }
-}
-
+/* =====================================================
+   FILTROS
+===================================================== */
 
 function filtrarDocumentos(tipo, boton) {
 
-    const documentos =
-        document.querySelectorAll(".document-card");
-
-    const filtros =
-        document.querySelectorAll(".filter");
-
-
-    filtros.forEach(function(item) {
-
-        item.classList.remove("active");
-
+    document.querySelectorAll(".filter").forEach(function (b) {
+        b.classList.remove("active");
     });
 
+    if (boton) {
+        boton.classList.add("active");
+    }
 
-    boton.classList.add("active");
+    document.querySelectorAll(".document-card").forEach(function (card) {
 
+        var categoria =
+            (card.getAttribute("data-type") || "").toLowerCase();
 
-    documentos.forEach(function(documento) {
+        var filtro =
+            (tipo || "todos").toLowerCase();
 
-        if (
-            tipo === "todos" ||
-            documento.dataset.type === tipo
-        ) {
-
-            documento.style.display =
-                "block";
-
-        } else {
-
-            documento.style.display =
-                "none";
-        }
-
+        card.style.display =
+            (
+                filtro === "todos" ||
+                categoria === filtro
+            )
+            ? ""
+            : "none";
     });
-
 }
 
 
-function mostrarMensaje(event) {
+/* =====================================================
+   SEGURIDAD HTML
+===================================================== */
 
-    event.preventDefault();
+function escaparHTML(valor) {
 
-    alert(
-        "Este documento estará disponible próximamente."
+    return String(valor == null ? "" : valor)
+
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+/* =====================================================
+   NORMALIZAR CATEGORÍA
+===================================================== */
+
+function normalizarCategoria(categoria) {
+
+    var valor =
+        String(categoria || "Institucional")
+        .trim()
+        .toLowerCase();
+
+    if (
+        valor === "actas" ||
+        valor === "acta"
+    ) {
+        return "actas";
+    }
+
+    if (
+        valor === "reglamentos" ||
+        valor === "reglamento"
+    ) {
+        return "reglamentos";
+    }
+
+    if (
+        valor === "informes" ||
+        valor === "informe"
+    ) {
+        return "informes";
+    }
+
+    return "institucional";
+}
+
+
+/* =====================================================
+   ICONOS
+===================================================== */
+
+function iconoCategoria(categoria) {
+
+    if (categoria === "actas") {
+        return "bi-journal-text";
+    }
+
+    if (categoria === "reglamentos") {
+        return "bi-journal-bookmark";
+    }
+
+    if (categoria === "informes") {
+        return "bi-bar-chart-line";
+    }
+
+    return "bi-file-earmark-text";
+}
+
+
+/* =====================================================
+   COMPROBAR SI DOCUMENTO ESTÁ ACTIVO
+===================================================== */
+
+function documentoEstaActivo(documento) {
+
+    /*
+       Estado
+    */
+
+    var estado =
+        String(
+            documento.estado ||
+            documento.Estado ||
+            "Activo"
+        )
+        .trim()
+        .toLowerCase();
+
+
+    /*
+       Bloqueado
+    */
+
+    var bloqueado =
+        String(
+            documento.bloqueado ||
+            documento.Bloqueado ||
+            documento.bloqueo ||
+            documento.Bloqueo ||
+            "NO"
+        )
+        .trim()
+        .toUpperCase();
+
+
+    /*
+       Valores considerados eliminados
+    */
+
+    var estadosEliminados = [
+        "ELIMINADO",
+        "ELIMINADA",
+        "BORRADO",
+        "BORRADA",
+        "INACTIVO",
+        "INACTIVA",
+        "DESACTIVADO",
+        "DESACTIVADA"
+    ];
+
+
+    /*
+       Si el estado está eliminado,
+       no mostrar.
+    */
+
+    if (estadosEliminados.indexOf(estado.toUpperCase()) !== -1) {
+        return false;
+    }
+
+
+    /*
+       Si está bloqueado,
+       no mostrar.
+    */
+
+    if (
+        bloqueado === "SI" ||
+        bloqueado === "SÍ" ||
+        bloqueado === "TRUE" ||
+        bloqueado === "1" ||
+        bloqueado === "BLOQUEADO"
+    ) {
+        return false;
+    }
+
+
+    /*
+       Si existe estado y no es activo,
+       no mostrar.
+    */
+
+    if (
+        estado !== "" &&
+        estado !== "activo"
+    ) {
+        return false;
+    }
+
+
+    return true;
+}
+
+
+/* =====================================================
+   CREAR TARJETA
+===================================================== */
+
+function crearTarjetaDocumento(documento) {
+
+    var categoria =
+        normalizarCategoria(documento.categoria);
+
+    var icono =
+        iconoCategoria(categoria);
+
+
+    var nombre =
+        documento.nombre ||
+        documento.archivo ||
+        documento.titulo ||
+        "Documento";
+
+
+    var descripcion =
+        documento.descripcion ||
+        "Documento institucional disponible.";
+
+
+    var tamano =
+        documento.tamano ||
+        documento.tamaño ||
+        "";
+
+
+    var url =
+        documento.driveUrl ||
+        documento.url ||
+        documento.enlace ||
+        "";
+
+
+    var card =
+        document.createElement("article");
+
+
+    card.className =
+        "document-card";
+
+
+    card.setAttribute(
+        "data-type",
+        categoria
     );
 
+
+    card.innerHTML =
+
+        '<div class="document-icon">' +
+
+            '<i class="bi ' +
+            escaparHTML(icono) +
+            '"></i>' +
+
+        '</div>' +
+
+
+        '<span class="document-type">' +
+
+            escaparHTML(
+                documento.categoria ||
+                "Institucional"
+            ) +
+
+        '</span>' +
+
+
+        '<h3>' +
+
+            escaparHTML(nombre) +
+
+        '</h3>' +
+
+
+        '<p>' +
+
+            escaparHTML(descripcion) +
+
+        '</p>' +
+
+
+        '<div class="document-meta">' +
+
+
+            '<span class="document-available">' +
+
+                '<i class="bi bi-check-circle-fill"></i>' +
+
+                escaparHTML(
+                    tamano ||
+                    "Documento disponible"
+                ) +
+
+            '</span>' +
+
+
+            (
+
+                url
+
+                ?
+
+                '<a class="btn-document" href="' +
+
+                    escaparHTML(url) +
+
+                    '" target="_blank" rel="noopener noreferrer">' +
+
+                    'Ver ' +
+
+                    '<i class="bi bi-arrow-up-right"></i>' +
+
+                '</a>'
+
+                :
+
+                ''
+
+            ) +
+
+
+        '</div>';
+
+
+    return card;
 }
 
+
+/* =====================================================
+   MOSTRAR ESTADO DE CARGA
+===================================================== */
+
+function mostrarCargando(grid) {
+
+    grid.innerHTML =
+
+        '<div style="' +
+
+            'grid-column:1/-1;' +
+
+            'text-align:center;' +
+
+            'padding:50px;' +
+
+            'color:#66756c;' +
+
+        '">' +
+
+            '<i class="bi bi-arrow-repeat" ' +
+
+                'style="font-size:28px;display:block;margin-bottom:10px;">' +
+
+            '</i>' +
+
+            'Cargando documentos...' +
+
+        '</div>';
+}
+
+
+/* =====================================================
+   MOSTRAR SIN DOCUMENTOS
+===================================================== */
+
+function mostrarSinDocumentos(grid) {
+
+    grid.innerHTML =
+
+        '<div style="' +
+
+            'grid-column:1/-1;' +
+
+            'text-align:center;' +
+
+            'padding:60px 20px;' +
+
+            'color:#66756c;' +
+
+        '">' +
+
+            '<i class="bi bi-folder-x" ' +
+
+                'style="font-size:42px;display:block;margin-bottom:15px;color:#0f5b35;">' +
+
+            '</i>' +
+
+            '<strong style="display:block;font-size:18px;color:#0d2c54;margin-bottom:6px;">' +
+
+                'No hay documentos disponibles' +
+
+            '</strong>' +
+
+            '<span>' +
+
+                'Actualmente no existen documentos publicados.' +
+
+            '</span>' +
+
+        '</div>';
+}
+
+
+/* =====================================================
+   OBTENER FILTRO ACTUAL
+===================================================== */
+
+function obtenerFiltroActual() {
+
+    var botonActivo =
+        document.querySelector(".filter.active");
+
+
+    if (!botonActivo) {
+        return "todos";
+    }
+
+
+    var texto =
+        botonActivo.textContent
+        .trim()
+        .toLowerCase();
+
+
+    if (texto === "institucional") {
+        return "institucional";
+    }
+
+    if (texto === "actas") {
+        return "actas";
+    }
+
+    if (texto === "reglamentos") {
+        return "reglamentos";
+    }
+
+    if (texto === "informes") {
+        return "informes";
+    }
+
+
+    return "todos";
+}
+
+
+/* =====================================================
+   CARGAR DOCUMENTOS
+===================================================== */
+
+function cargarDocumentos() {
+
+    var grid =
+        document.querySelector(".documents-grid");
+
+
+    if (!grid) {
+        return;
+    }
+
+
+    mostrarCargando(grid);
+
+
+    var url =
+        APPS_SCRIPT_URL +
+        "?accion=documentos" +
+        "&_=" +
+        Date.now();
+
+
+    fetch(url, {
+
+        method: "GET",
+
+        cache: "no-store",
+
+        redirect: "follow"
+
+    })
+
+
+    .then(function (respuesta) {
+
+        if (!respuesta.ok) {
+
+            throw new Error(
+                "HTTP " +
+                respuesta.status
+            );
+
+        }
+
+        return respuesta.json();
+
+    })
+
+
+    .then(function (respuesta) {
+
+        console.log(
+            "Respuesta Apps Script:",
+            respuesta
+        );
+
+
+        if (
+            !respuesta ||
+            respuesta.ok !== true
+        ) {
+
+            throw new Error(
+                "Apps Script no devolvió una respuesta válida."
+            );
+
+        }
+
+
+        var documentos =
+            Array.isArray(
+                respuesta.documents
+            )
+            ? respuesta.documents
+            : [];
+
+
+        /*
+           =================================================
+           FILTRADO IMPORTANTE
+           =================================================
+
+           Aquí se eliminan de la página:
+
+           - Bloqueados
+           - Eliminados
+           - Inactivos
+           - Desactivados
+        */
+
+        documentos =
+            documentos.filter(
+                documentoEstaActivo
+            );
+
+
+        /*
+           Si no quedan documentos
+        */
+
+        if (!documentos.length) {
+
+            mostrarSinDocumentos(grid);
+
+            return;
+        }
+
+
+        /*
+           Limpiar tarjetas anteriores
+        */
+
+        grid.innerHTML = "";
+
+
+        /*
+           Crear tarjetas nuevas
+        */
+
+        documentos.forEach(
+            function (documento) {
+
+                grid.appendChild(
+                    crearTarjetaDocumento(
+                        documento
+                    )
+                );
+
+            }
+        );
+
+
+        /*
+           Recuperar filtro actual
+        */
+
+        var filtro =
+            obtenerFiltroActual();
+
+
+        /*
+           Aplicar filtro
+        */
+
+        filtrarDocumentos(
+            filtro,
+            document.querySelector(
+                ".filter.active"
+            )
+        );
+
+    })
+
+
+    .catch(function (error) {
+
+        console.error(
+            "Error cargando documentos:",
+            error
+        );
+
+
+        grid.innerHTML =
+
+            '<div style="' +
+
+                'grid-column:1/-1;' +
+
+                'text-align:center;' +
+
+                'padding:50px 20px;' +
+
+                'color:#66756c;' +
+
+            '">' +
+
+                '<i class="bi bi-exclamation-triangle" ' +
+
+                    'style="font-size:40px;display:block;margin-bottom:12px;color:#e3ad20;">' +
+
+                '</i>' +
+
+                '<strong style="display:block;color:#0d2c54;font-size:18px;">' +
+
+                    'No fue posible cargar los documentos' +
+
+                '</strong>' +
+
+                '<span>' +
+
+                    'Intenta actualizar la página.' +
+
+                '</span>' +
+
+            '</div>';
+
+    });
+}
+
+
+/* =====================================================
+   ACTUALIZACIÓN AUTOMÁTICA
+===================================================== */
+
+var intervaloDocumentos;
+
+
+/*
+   Cargar cuando abre la página
+*/
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        cargarDocumentos();
+
+
+        /*
+           Actualizar cada 30 segundos.
+
+           Esto permite que si desde el panel
+           bloqueas/elimininas un documento,
+           la página vuelva a consultar Google
+           y lo retire.
+        */
+
+        intervaloDocumentos =
+            setInterval(
+                cargarDocumentos,
+                30000
+            );
+
+    }
+);
+
+
+/*
+   Cuando el usuario vuelve a la pestaña,
+   actualizar inmediatamente.
+*/
+
+document.addEventListener(
+    "visibilitychange",
+    function () {
+
+        if (
+            document.visibilityState ===
+            "visible"
+        ) {
+
+            cargarDocumentos();
+
+        }
+
+    }
+);
+
 </script>
-
-
 </body>
 
 </html>
-
