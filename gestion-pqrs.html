@@ -1023,45 +1023,7 @@ footer{
 
 <!-- HEADER -->
 
-<header>
-    <div class="container navbar">
 
-        <a href="index.html" class="brand">
-
-            <img
-                src="assets/logo.png"
-                alt="Logo JAC Vereda Santa Bárbara"
-            >
-
-            <div class="brand-text">
-                <span>JUNTA DE ACCIÓN COMUNAL</span>
-                <span>VEREDA SANTA BÁRBARA</span>
-            </div>
-
-        </a>
-
-        <nav class="navigation">
-            <a href="index.html">Inicio</a>
-            <a href="nosotro.html">Nosotros</a>
-            <a href="afiliados.html">Afiliados</a>
-            <a href="certificados.html">Certificados</a>
-            <a href="pqrs.html">PQRS</a>
-            <a href="gestion-pqrs.html" class="active">Gestión PQRS</a>
-            <a href="admincertificado.html">Admin Cert.</a>
-            <a href="politicas.html">Políticas</a>
-        </nav>
-
-        <button
-            class="menu-button"
-            onclick="toggleMenu()"
-            type="button"
-            aria-label="Abrir menú"
-        >
-            ☰
-        </button>
-
-    </div>
-</header>
 
 <!-- MAIN -->
 
@@ -1412,21 +1374,7 @@ footer{
 
 <!-- FOOTER -->
 
-<footer>
 
-    <div class="container footer-content">
-
-        <div>
-            © 2026 Junta de Acción Comunal Vereda Santa Bárbara
-        </div>
-
-        <div>
-            Municipio de El Bagre · Antioquia
-        </div>
-
-    </div>
-
-</footer>
 
 <script>
 
@@ -1464,8 +1412,7 @@ function toggleMenu(){
    CONFIGURACIÓN
 ========================================================= */
 
-const API_URL =
-"https://script.google.com/macros/s/AKfycbxUECd5ng7DgmX-x89AkgxT6nlDxrPwi1lRSzGizdUZrOaAwB7rrsqYZpks3dXjbiGH/exec"
+const API_URL ="https://script.google.com/macros/s/AKfycbz7IW0SB-hpbrZngghTaBAGPZonxYBnhJ_WwyGcvh1j9aqTDz_TborLd7dPGtIyDUce/exec"
 const POR_PAGINA = 10;
 const ADMIN_SESSION_KEY =
     "jac_pqrs_admin_clave";
@@ -3606,10 +3553,24 @@ async function guardarGestion(){
                 .trim()
                 .toLowerCase();
 
+        /*
+         * RESPONDER debe ejecutarse también cuando la PQRS ya estaba
+         * en estado Respondida pero el usuario está enviando un nuevo
+         * PDF o modificando la respuesta.
+         *
+         * Esto evita que el sistema mande el PDF solamente a Drive
+         * mediante ACTUALIZAR sin ejecutar el envío del correo.
+         */
+        const tieneNuevoPDF = Boolean(
+            archivoRespuesta
+        );
+
         const debeResponder =
-            respuesta &&
             estado === "Respondida" &&
-            estadoActual !== "respondida" &&
+            (
+                Boolean(respuesta) ||
+                tieneNuevoPDF
+            ) &&
             estadoActual !== "cerrada";
 
         const data =
@@ -3652,8 +3613,17 @@ async function guardarGestion(){
 
         }
 
+        const mensajeExito =
+            debeResponder
+                ? (
+                    data.correoEnviado === false
+                        ? "La respuesta fue guardada, pero el correo no fue enviado."
+                        : "Respuesta enviada correctamente. El correo y el PDF fueron procesados."
+                )
+                : "La gestión fue guardada correctamente.";
+
         mostrarToast(
-            "La gestión fue guardada correctamente.",
+            mensajeExito,
             "success"
         );
 
@@ -4148,4 +4118,3 @@ function convertirFecha(
 
 </body>
 </html>
-

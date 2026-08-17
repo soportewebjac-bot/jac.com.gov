@@ -1,0 +1,866 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>cPanel | JAC Vereda Santa Bárbara</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+:root{--g:#0b6940;--gd:#063b2b;--gs:#eaf6ef;--b:#102f55;--bg:#f5f8f6;--line:#dfe9e3;--muted:#708078;--white:#fff;--gold:#dfad28}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,Arial;background:var(--bg);color:#17231e}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+.app{min-height:100vh}
+.side{position:fixed;inset:0 auto 0 0;width:265px;background:linear-gradient(180deg,#063d2d,#052d24);color:#dcebe4;padding:18px 15px;overflow:auto;z-index:20}
+.logo{display:flex;align-items:center;gap:11px;padding:0 5px 18px;border-bottom:1px solid #ffffff16}
+.logo img{width:56px;height:56px;object-fit:contain;background:white;border-radius:50%}
+.logo b{font-family:Montserrat;font-size:13px;color:white;line-height:1.25}
+.logo small{display:block;color:#5fc48a;font-weight:700;margin-top:3px}
+.navtitle{font-size:9px;font-weight:800;letter-spacing:.08em;color:#8ca79d;margin:20px 12px 7px}
+.nav{width:100%;border:0;background:transparent;color:#dcebe4;display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:9px;margin:2px 0;text-align:left}
+.nav i{font-size:17px;width:20px;text-align:center}
+.nav span{font-size:12px;font-weight:650;flex:1}
+.nav em{font-style:normal;font-size:12px}
+.nav:hover{background:#ffffff0d}
+.nav.active{background:#087b46;color:#fff}
+.store{margin-top:18px;padding:13px;border:1px solid #ffffff25;background:#ffffff0a;border-radius:10px;font-size:10px}
+.store b{display:flex;justify-content:space-between;color:white}
+.bar{height:6px;background:#ffffff20;border-radius:8px;margin-top:8px}
+.bar i{display:block;width:23%;height:100%;background:#55bf84;border-radius:8px}
+.site{display:flex;gap:10px;align-items:center;margin-top:14px;padding:11px 13px;border:1px solid #ffffff30;border-radius:9px;color:white;font-size:11px;font-weight:700}
+.main{margin-left:265px}
+.top{height:78px;background:#fffffff5;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:18px;padding:0 26px;position:sticky;top:0;z-index:10;backdrop-filter:blur(8px)}
+.toggle{display:none;border:0;background:none;font-size:22px;color:var(--b)}
+.title{flex:1}
+.title h1{font:800 20px Montserrat;color:var(--b)}
+.title p{font-size:10px;color:var(--muted)}
+.search{height:40px;width:265px;border:1px solid var(--line);background:white;border-radius:9px;display:flex;align-items:center;padding:0 11px}
+.search input{border:0;outline:0;width:100%;padding-left:8px;font-size:11px}
+.bell{border:0;background:white;font-size:19px;color:var(--b);position:relative}
+.bell i{position:absolute;background:#d83e4d;color:white;font-size:8px;font-style:normal;border-radius:20px;padding:2px 5px;top:-8px;right:-8px}
+.user{display:flex;gap:8px;align-items:center}
+.avatar{width:34px;height:34px;background:var(--g);color:white;border-radius:50%;display:grid;place-items:center}
+.user b{font-size:10px;color:var(--b);display:block}
+.user small{font-size:8px;color:var(--muted)}
+.content{padding:22px 26px}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:16px}
+.kpi{background:white;border:1px solid var(--line);border-radius:12px;padding:15px;display:flex;align-items:center;gap:11px;box-shadow:0 5px 18px #153b2b08}
+.ki{width:45px;height:45px;border-radius:13px;display:grid;place-items:center;font-size:20px;background:var(--gs);color:var(--g)}
+.kpi:nth-child(2) .ki{background:#e7f0fc;color:#1770c9}
+.kpi:nth-child(3) .ki{background:#eee7fb;color:#7650c9}
+.kpi:nth-child(4) .ki{background:#fff0e4;color:#ed7622}
+.kpi:nth-child(5) .ki{background:#e3f3f1;color:#168c87}
+.kpi strong{font-size:19px;color:var(--b)}
+.kpi label{display:block;font-size:10px;color:#46584f}
+.up{display:block;color:#07944c;font-size:8px;font-weight:700;margin-top:4px}
+.rows{display:grid;grid-template-columns:1.15fr .85fr;gap:15px}
+.panel{background:white;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 5px 18px #153b2b08}
+.head{height:54px;border-bottom:1px solid #edf1ef;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+.head h2{font:700 13px Montserrat;color:var(--b)}
+.head button,.head select{border:1px solid var(--line);background:white;border-radius:7px;padding:6px 9px;font-size:9px;color:var(--g);font-weight:700}
+.activity{padding:4px 16px 12px}
+.act{min-height:57px;border-bottom:1px solid #edf1ef;display:grid;grid-template-columns:36px 1fr auto auto;gap:9px;align-items:center}
+.act:last-child{border-bottom:0}
+.ai{width:34px;height:34px;background:var(--gs);color:var(--g);border-radius:9px;display:grid;place-items:center}
+.act strong{font-size:10px;color:var(--b);display:block}
+.act small{font-size:8px;color:var(--muted)}
+.tag{font-size:8px;font-weight:700;color:var(--g);background:var(--gs);padding:5px 8px;border-radius:15px}
+.time{font-size:8px;color:var(--muted);white-space:nowrap}
+.more{display:block;margin:10px auto 0;border:1px solid var(--line);background:white;border-radius:7px;padding:7px 25px;font-size:9px;font-weight:700;color:var(--b)}
+.chartbox{padding:14px 16px}
+.chart{height:205px;position:relative;background:repeating-linear-gradient(to bottom,transparent 0,transparent 39px,#edf1ef 40px)}
+.chart svg{position:absolute;inset:8px 5px 20px 22px;width:calc(100% - 27px);height:calc(100% - 28px)}
+.legend{text-align:center;font-size:8px;color:var(--muted);word-spacing:7px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;padding:0 10px 12px}
+.mini{padding:9px;border-radius:8px;background:#f3faf5}
+.mini b{font-size:16px;color:var(--g);display:block}
+.mini span{font-size:8px;color:var(--muted)}
+.lower{display:grid;grid-template-columns:1.15fr .85fr;gap:15px;margin-top:15px}
+.tablewrap{overflow:auto}
+table{width:100%;border-collapse:collapse}
+th,td{padding:9px 12px;border-bottom:1px solid #edf1ef;text-align:left;font-size:8px;white-space:nowrap}
+th{color:var(--muted);background:#fcfdfc}
+.doc{color:var(--b);font-weight:700}
+.pdf{color:#e34c4c;margin-right:5px}
+.status{background:#e4f5ea;color:#087442;border-radius:15px;padding:4px 7px;font-weight:700;font-size:7px}
+.acts button{width:25px;height:25px;background:white;border:1px solid var(--line);border-radius:5px;color:#64746c}
+.page{padding:9px 12px;display:flex;justify-content:space-between;font-size:8px;color:var(--muted)}
+.pages button{width:25px;height:25px;border:1px solid var(--line);background:white;border-radius:5px;font-size:8px}
+.pages .sel{background:var(--g);color:white}
+.stack{display:grid;gap:15px}
+.drive{padding:15px}
+.drive-row{display:flex;gap:12px;align-items:center}
+.driveicon{font-size:35px;color:#218e57}
+.drive b{font-size:10px;color:var(--b)}
+.drive small{display:block;font-size:8px;color:var(--muted)}
+.drive .pct{margin-left:auto;font-size:10px;font-weight:800}
+.drivebar{height:6px;background:#e6ece9;border-radius:8px;margin-top:11px}
+.drivebar i{display:block;width:23%;height:100%;background:var(--g);border-radius:8px}
+.quick{padding:13px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.quick button{min-height:60px;background:white;border:1px solid var(--line);border-radius:8px;text-align:left;padding:9px;font-size:8px;font-weight:700;color:var(--b)}
+.quick i{display:block;font-size:20px;color:var(--g);margin-bottom:5px}
+.footer{margin-top:22px;border-top:1px solid var(--line);padding-top:14px;display:flex;justify-content:space-between;font-size:8px;color:var(--muted)}
+.module-note{margin:15px 0;padding:12px 14px;border:1px solid #dce7df;background:#fff;border-radius:10px;color:#53635b;font-size:10px}
+@media(max-width:1200px){.kpis{grid-template-columns:repeat(3,1fr)}.rows,.lower{grid-template-columns:1fr}}
+@media(max-width:850px){.side{transform:translateX(-100%);transition:.25s}.open .side{transform:translateX(0)}.main{margin-left:0}.toggle{display:block}.search{display:none}}
+@media(max-width:600px){.content{padding:13px}.top{padding:0 14px}.kpis{grid-template-columns:1fr 1fr}.kpi{padding:10px}.kpi .ki{width:38px;height:38px;flex-basis:38px}.stats{grid-template-columns:1fr 1fr}.quick{grid-template-columns:1fr 1fr}.footer{display:block;text-align:center}.footer div+div{margin-top:5px}}
+@media(max-width:410px){.kpis{grid-template-columns:1fr}}
+
+/* =========================================================
+   DRAWER / VENTANA LATERAL DE MÓDULOS
+========================================================= */
+.module-overlay{position:fixed;inset:0;background:rgba(3,20,15,.48);backdrop-filter:blur(2px);opacity:0;visibility:hidden;transition:.25s;z-index:80}
+.module-drawer{position:fixed;top:0;right:0;width:min(1180px,92vw);height:100vh;background:#f5f8f6;box-shadow:-18px 0 50px rgba(0,0,0,.20);transform:translateX(102%);transition:transform .30s ease;z-index:81;display:flex;flex-direction:column}
+body.module-open .module-overlay{opacity:1;visibility:visible}
+body.module-open .module-drawer{transform:translateX(0)}
+.drawer-head{height:72px;flex:0 0 72px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 18px 0 22px}
+.drawer-kicker{font-size:8px;font-weight:800;letter-spacing:.12em;color:var(--g)}
+.drawer-head h2{font:800 18px Montserrat;color:var(--b);margin-top:3px}
+.drawer-close{width:38px;height:38px;border:1px solid var(--line);background:#fff;border-radius:9px;color:var(--b);font-size:16px}
+.drawer-close:hover{background:#f2f6f3;color:var(--g)}
+.drawer-status{height:35px;flex:0 0 35px;background:#f7faf8;border-bottom:1px solid var(--line);padding:0 20px;display:flex;align-items:center;justify-content:space-between;font-size:8px;color:var(--muted)}
+.drawer-status span:first-child{color:#087442;font-weight:700}.drawer-status i{font-size:6px;margin-right:5px}
+.drawer-body{flex:1;min-height:0;background:#fff}.drawer-body iframe{width:100%;height:100%;display:block;border:0;background:#fff}
+@media(max-width:700px){.module-drawer{width:100vw}.drawer-head{padding-left:15px}.drawer-status{padding:0 15px}.drawer-status span:last-child{max-width:50%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+
+/* =========================================================
+   ACCESO SEGURO DEL cPANEL
+   Usuario: admin
+   La contraseña no se guarda en texto plano: se compara
+   mediante SHA-256 en el navegador.
+========================================================= */
+body.auth-locked .app{
+    visibility:hidden;
+}
+.auth-screen{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(8,123,70,.18),transparent 32%),
+        radial-gradient(circle at 80% 80%,rgba(16,47,85,.18),transparent 35%),
+        linear-gradient(135deg,#f2f7f4,#eaf1ee);
+}
+.auth-card{
+    width:min(430px,100%);
+    background:#fff;
+    border:1px solid #dfe9e3;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 24px 70px rgba(6,59,43,.18);
+}
+.auth-brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:24px;
+}
+.auth-brand img{
+    width:58px;
+    height:58px;
+    object-fit:contain;
+    background:#fff;
+    border-radius:50%;
+    border:1px solid #e5ece8;
+}
+.auth-brand b{
+    display:block;
+    font:800 14px Montserrat,Arial;
+    line-height:1.25;
+    color:#102f55;
+}
+.auth-brand small{
+    display:block;
+    margin-top:4px;
+    color:#0b6940;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.08em;
+}
+.auth-card h2{
+    margin:0;
+    font:800 21px Montserrat,Arial;
+    color:#102f55;
+}
+.auth-card .auth-subtitle{
+    margin:7px 0 20px;
+    color:#708078;
+    font-size:11px;
+    line-height:1.5;
+}
+.auth-alert{
+    display:flex;
+    gap:9px;
+    align-items:flex-start;
+    padding:11px 12px;
+    margin-bottom:18px;
+    background:#eaf6ef;
+    border:1px solid #cfe8d8;
+    border-radius:10px;
+    color:#087442;
+    font-size:9px;
+    font-weight:700;
+}
+.auth-group{margin-bottom:14px}
+.auth-group label{
+    display:block;
+    margin-bottom:6px;
+    color:#52635b;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.06em;
+}
+.auth-group input{
+    width:100%;
+    height:44px;
+    border:1px solid #dfe9e3;
+    border-radius:9px;
+    outline:none;
+    padding:0 12px;
+    font-size:11px;
+    color:#17231e;
+    background:#fbfdfc;
+}
+.auth-group input:focus{
+    border-color:#0b6940;
+    box-shadow:0 0 0 3px rgba(11,105,64,.10);
+}
+.auth-submit{
+    width:100%;
+    height:44px;
+    border:0;
+    border-radius:9px;
+    background:#0b6940;
+    color:#fff;
+    font-size:11px;
+    font-weight:800;
+    box-shadow:0 8px 18px rgba(11,105,64,.18);
+}
+.auth-submit:hover{background:#087442}
+.auth-submit:disabled{opacity:.65;cursor:wait}
+.auth-error{
+    min-height:18px;
+    margin-top:10px;
+    text-align:center;
+    color:#c63745;
+    font-size:9px;
+    font-weight:700;
+}
+.auth-foot{
+    margin-top:20px;
+    padding-top:14px;
+    border-top:1px solid #edf1ef;
+    text-align:center;
+    color:#8a9891;
+    font-size:8px;
+}
+.logout-btn{
+    border:1px solid var(--line);
+    background:#fff;
+    color:#b33a45;
+    border-radius:7px;
+    padding:5px 8px;
+    font-size:8px;
+    font-weight:800;
+    margin-left:8px;
+}
+.logout-btn:hover{background:#fff5f5}
+.authenticated-only{display:none}
+body.authenticated .authenticated-only{display:block}
+
+</style>
+</head>
+
+<body class="auth-locked">
+
+<!-- =========================================================
+     ACCESO AL cPANEL
+========================================================= -->
+<div id="authScreen" class="auth-screen">
+    <div class="auth-card">
+        <div class="auth-brand">
+            <img src="assets/logo.png" alt="Logo JAC Vereda Santa Bárbara">
+            <div>
+                <b>JAC VEREDA<br>SANTA BÁRBARA</b>
+                <small>cPanel Administrativo</small>
+            </div>
+        </div>
+
+        <h2>Acceso administrativo</h2>
+        <p class="auth-subtitle">
+            Ingresa tus credenciales para acceder al panel central
+            y administrar los módulos conectados.
+        </p>
+
+        <div class="auth-alert">
+            <span>🔐</span>
+            <span>Área restringida. Solo personal autorizado.</span>
+        </div>
+
+        <form id="loginForm" autocomplete="off">
+            <div class="auth-group">
+                <label for="loginUsuario">USUARIO</label>
+                <input
+                    id="loginUsuario"
+                    type="text"
+                    autocomplete="username"
+                    autocapitalize="none"
+                    spellcheck="false"
+                    placeholder="Usuario"
+                    required
+                >
+            </div>
+
+            <div class="auth-group">
+                <label for="loginClave">CONTRASEÑA</label>
+                <input
+                    id="loginClave"
+                    type="password"
+                    autocomplete="current-password"
+                    placeholder="Contraseña"
+                    required
+                >
+            </div>
+
+            <button id="loginButton" class="auth-submit" type="submit">
+                Ingresar al sistema
+            </button>
+
+            <div id="loginError" class="auth-error" aria-live="polite"></div>
+        </form>
+
+        <div class="auth-foot">
+            Junta de Acción Comunal Vereda Santa Bárbara · El Bagre, Antioquia
+        </div>
+    </div>
+</div>
+
+<div class="app">
+
+<aside class="side">
+    <div class="logo">
+        <img src="assets/logo.png" alt="Logo">
+        <div><b>JAC VEREDA<br>SANTA BÁRBARA</b><small>Panel Administrativo</small></div>
+    </div>
+
+    <nav>
+        <div class="navtitle">Principal</div>
+        <button class="nav active" onclick="section('Dashboard',this)">
+            <i class="bi bi-house-fill"></i><span>Dashboard</span>
+        </button>
+
+        <div class="navtitle">Gestión de contenido</div>
+
+        <button class="nav" onclick="abrirModulo('Documentos',URLS.documentos,this)">
+            <i class="bi bi-file-earmark-text"></i><span>Documentos</span><em>›</em>
+        </button>
+
+        <button class="nav" onclick="abrirModulo('Actas',URLS.documentos,this)">
+            <i class="bi bi-journal-text"></i><span>Actas</span><em>›</em>
+        </button>
+
+        <button class="nav" onclick="abrirModulo('Noticias',URLS.noticias,this)">
+            <i class="bi bi-newspaper"></i><span>Noticias</span><em>›</em>
+        </button>
+
+        <button class="nav" onclick="abrirModulo('Agenda',URLS.agenda,this)">
+            <i class="bi bi-calendar-event"></i><span>Agenda</span><em>›</em>
+        </button>
+
+        <button class="nav" onclick="abrirModulo('Certificados',URLS.certificadosAdmin,this)">
+            <i class="bi bi-award"></i><span>Certificados</span><em>›</em>
+        </button>
+
+        <div class="navtitle">Usuarios y comunidad</div>
+
+        <button class="nav" onclick="abrirModulo('Afiliados',URLS.afiliados,this)">
+            <i class="bi bi-people"></i><span>Afiliados</span><em>›</em>
+        </button>
+
+        <button class="nav" onclick="abrirModulo('PQRS',URLS.pqrs,this)">
+            <i class="bi bi-chat-dots"></i><span>PQRS</span><em>›</em>
+        </button>
+
+        <div class="navtitle">Administración</div>
+
+        <button class="nav" onclick="section('Usuarios',this)">
+            <i class="bi bi-person-gear"></i><span>Usuarios</span><em>›</em>
+        </button>
+
+        <button class="nav" onclick="section('Configuración',this)">
+            <i class="bi bi-gear"></i><span>Configuración</span><em>›</em>
+        </button>
+
+        <button class="nav" onclick="section('Información General',this)">
+            <i class="bi bi-info-circle"></i><span>Información General</span><em>›</em>
+        </button>
+    </nav>
+
+    <div class="store">
+        <b><span>Almacenamiento</span><span>23%</span></b>
+        <span>3.45 GB utilizado de 15 GB</span>
+        <div class="bar"><i></i></div>
+    </div>
+
+    <a class="site" href="../index.html">
+        <i class="bi bi-globe2"></i>Ver Mi Sitio Web
+        <i class="bi bi-chevron-right" style="margin-left:auto"></i>
+    </a>
+</aside>
+
+<main class="main">
+
+<header class="top">
+    <button class="toggle" onclick="document.body.classList.toggle('open')">
+        <i class="bi bi-list"></i>
+    </button>
+
+    <div class="title">
+        <h1 id="title">Dashboard</h1>
+        <p id="subtitle">Bienvenido al panel de administración</p>
+    </div>
+
+    <div class="search">
+        <i class="bi bi-search"></i>
+        <input id="search" placeholder="Buscar en el panel..." oninput="filterTable(this.value)">
+    </div>
+
+    <button class="bell" onclick="alert('Centro de notificaciones del panel')">
+        <i class="bi bi-bell"></i><i>5</i>
+    </button>
+
+    <div class="user">
+        <div class="avatar"><i class="bi bi-person"></i></div>
+        <div><b id="loggedUserName">Administrador</b><small>Super Administrador</small></div>
+        <button class="logout-btn" type="button" onclick="cerrarSesion()" title="Cerrar sesión">
+            <i class="bi bi-box-arrow-right"></i>
+        </button>
+    </div>
+</header>
+
+<section class="content">
+
+<div class="kpis">
+    <div class="kpi"><div class="ki"><i class="bi bi-file-earmark-text"></i></div><div><strong>24</strong><label>Documentos</label><span class="up">Gestión activa</span></div></div>
+    <div class="kpi"><div class="ki"><i class="bi bi-people"></i></div><div><strong>153</strong><label>Afiliados</label><span class="up">Registro comunitario</span></div></div>
+    <div class="kpi"><div class="ki"><i class="bi bi-newspaper"></i></div><div><strong>8</strong><label>Noticias</label><span class="up">Publicaciones</span></div></div>
+    <div class="kpi"><div class="ki"><i class="bi bi-chat-dots"></i></div><div><strong>15</strong><label>PQRS</label><span class="up">Solicitudes</span></div></div>
+    <div class="kpi"><div class="ki"><i class="bi bi-calendar-plus"></i></div><div><strong>5</strong><label>Eventos</label><span class="up">Agenda</span></div></div>
+</div>
+
+<div class="module-note">
+    <strong>Panel central conectado:</strong>
+    los módulos conservan sus propios HTML y Apps Script. Este cPanel funciona como punto de entrada,
+    sin reemplazar ni modificar la programación existente.
+</div>
+
+<div class="rows">
+
+<div class="panel">
+    <div class="head">
+        <h2>Actividad Reciente</h2>
+        <button onclick="abrirModulo('Documentos',URLS.documentos)">Documentos</button>
+    </div>
+
+    <div class="activity">
+        <div class="act"><div class="ai"><i class="bi bi-file-earmark-plus"></i></div><div><strong>Administración de documentos</strong><small>Cargar, editar, bloquear y eliminar documentos</small></div><span class="tag">Documentos</span><span class="time">Activo</span></div>
+        <div class="act"><div class="ai" style="background:#f0e9fb;color:#7650c9"><i class="bi bi-newspaper"></i></div><div><strong>Administración de noticias</strong><small>Publicar noticias, videos y contenidos</small></div><span class="tag">Noticias</span><span class="time">Activo</span></div>
+        <div class="act"><div class="ai" style="background:#e8f1fc;color:#1770c9"><i class="bi bi-award"></i></div><div><strong>Certificados</strong><small>Revisar y gestionar solicitudes de certificados</small></div><span class="tag">Certificados</span><span class="time">Activo</span></div>
+        <div class="act"><div class="ai" style="background:#fff0e5;color:#ed7622"><i class="bi bi-chat-dots"></i></div><div><strong>PQRS</strong><small>Gestionar peticiones, quejas, reclamos y solicitudes</small></div><span class="tag">PQRS</span><span class="time">Activo</span></div>
+        <div class="act"><div class="ai"><i class="bi bi-calendar-event"></i></div><div><strong>Agenda y Eventos</strong><small>Administrador de eventos, reuniones, anuncios e historial</small></div><span class="tag">Agenda</span><span class="time">Módulo</span></div>
+    </div>
+</div>
+
+<div class="panel">
+    <div class="head">
+        <h2>Accesos principales</h2>
+        <button onclick="abrirModulo('Noticias',URLS.noticias)">Abrir módulo</button>
+    </div>
+
+    <div class="quick">
+        <button onclick="abrirModulo('Documentos',URLS.documentos)"><i class="bi bi-file-earmark-plus"></i>Administrar Documentos</button>
+        <button onclick="abrirModulo('Noticias',URLS.noticias)"><i class="bi bi-newspaper"></i>Administrar Noticias</button>
+        <button onclick="abrirModulo('Certificados',URLS.certificadosAdmin)"><i class="bi bi-award"></i>Administrar Certificados</button>
+        <button onclick="abrirModulo('PQRS',URLS.pqrs)"><i class="bi bi-chat-dots"></i>Gestionar PQRS</button>
+        <button onclick="abrirModulo('Afiliados',URLS.afiliados)"><i class="bi bi-person-plus"></i>Afiliados</button>
+        <button onclick="abrirModulo('Agenda',URLS.agenda)"><i class="bi bi-calendar-plus"></i>Agenda</button>
+    </div>
+</div>
+
+</div>
+
+<div class="lower">
+
+<div class="panel">
+    <div class="head">
+        <h2>Módulos administrativos</h2>
+        <button onclick="location.reload()">Actualizar</button>
+    </div>
+
+    <div class="tablewrap">
+        <table id="table">
+            <thead>
+                <tr><th>Módulo</th><th>Administración</th><th>Backend</th><th>Acceso</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="doc"><i class="bi bi-file-earmark-text pdf"></i>Documentos</td>
+                    <td>Subir / editar / bloquear / eliminar</td>
+                    <td><span class="status">Apps Script</span></td>
+                    <td class="acts"><button title="Abrir" onclick="abrirModulo('Documentos',URLS.documentos)"><i class="bi bi-box-arrow-up-right"></i></button></td>
+                </tr>
+                <tr>
+                    <td class="doc"><i class="bi bi-newspaper pdf"></i>Noticias</td>
+                    <td>Publicar noticias y videos</td>
+                    <td><span class="status">Apps Script</span></td>
+                    <td class="acts"><button title="Abrir" onclick="abrirModulo('Noticias',URLS.noticias)"><i class="bi bi-box-arrow-up-right"></i></button></td>
+                </tr>
+                <tr>
+                    <td class="doc"><i class="bi bi-award pdf"></i>Certificados</td>
+                    <td>Solicitudes y generación</td>
+                    <td><span class="status">Apps Script</span></td>
+                    <td class="acts"><button title="Abrir" onclick="abrirModulo('Certificados',URLS.certificadosAdmin)"><i class="bi bi-box-arrow-up-right"></i></button></td>
+                </tr>
+                <tr>
+                    <td class="doc"><i class="bi bi-chat-dots pdf"></i>PQRS</td>
+                    <td>Gestión y seguimiento</td>
+                    <td><span class="status">Apps Script</span></td>
+                    <td class="acts"><button title="Abrir" onclick="abrirModulo('PQRS',URLS.pqrs)"><i class="bi bi-box-arrow-up-right"></i></button></td>
+                </tr>
+                <tr>
+                    <td class="doc"><i class="bi bi-calendar-event pdf"></i>Agenda y Eventos</td>
+                    <td>Eventos / reuniones / anuncios / historial</td>
+                    <td><span class="status">Apps Script</span></td>
+                    <td class="acts"><button title="Abrir" onclick="abrirModulo('Agenda',URLS.agenda)"><i class="bi bi-box-arrow-up-right"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="stack">
+
+<div class="panel">
+    <div class="head"><h2>Estado de conexiones</h2><button onclick="probarConexiones()">Comprobar</button></div>
+    <div class="drive">
+        <div class="drive-row">
+            <div class="driveicon"><i class="bi bi-cloud-check"></i></div>
+            <div><b>Servicios administrativos</b><small>Documentos · Noticias · PQRS · Certificados</small></div>
+            <div class="pct" id="connectionPct">4/4</div>
+        </div>
+        <div class="drivebar"><i id="connectionBar" style="width:100%"></i></div>
+    </div>
+</div>
+
+<div class="panel">
+    <div class="head"><h2>Información</h2></div>
+    <div class="drive">
+        <div class="drive-row">
+            <div class="driveicon"><i class="bi bi-shield-check"></i></div>
+            <div><b>Arquitectura independiente</b><small>Cada módulo mantiene su propio HTML y Apps Script.</small></div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+<footer class="footer">
+    <span>© 2026 Junta de Acción Comunal Vereda Santa Bárbara</span>
+    <span>cPanel Administrativo · Versión 2.0 · Módulos conectados</span>
+</footer>
+
+</section>
+</main>
+</div>
+<!-- =========================================================
+     PANEL LATERAL DE MÓDULOS
+     El módulo se carga aquí mismo mediante iframe.
+========================================================= -->
+<div id="moduleOverlay" class="module-overlay" onclick="cerrarModulo(event)"></div>
+<aside id="moduleDrawer" class="module-drawer" aria-hidden="true">
+    <div class="drawer-head">
+        <div>
+            <span class="drawer-kicker">MÓDULO ADMINISTRATIVO</span>
+            <h2 id="drawerTitle">Módulo</h2>
+        </div>
+        <button class="drawer-close" type="button" onclick="cerrarModulo()" aria-label="Cerrar">
+            <i class="bi bi-x-lg"></i>
+        </button>
+    </div>
+    <div class="drawer-status">
+        <span><i class="bi bi-circle-fill"></i> Conexión activa</span>
+        <span id="drawerPath"></span>
+    </div>
+    <div class="drawer-body">
+        <iframe id="moduleFrame" title="Módulo administrativo" src="about:blank"></iframe>
+    </div>
+</aside>
+
+<script>
+/* =========================================================
+   RUTAS REALES DE LOS MÓDULOS
+   =========================================================
+   Si los HTML están en la misma carpeta:
+   - admin_documentos.html
+   - panel_adminnoticias.html
+   - gestion-pqrs.html
+   - admincertificado.html
+
+   Si alguna página tiene otro nombre, solo cambia esa ruta.
+*/
+const URLS = {
+    documentos: "admin_documentos.html",
+    noticias: "panel_adminnoticias.html",
+    pqrs: "gestion-pqrs.html",
+    certificadosAdmin: "admincertificado.html",
+
+    // Módulos que aún no tienen un panel específico confirmado:
+    agenda: "admin.agenda.html",
+    afiliados: "afiliados.html"
+};
+
+const subtitles = {
+    Dashboard:"Bienvenido al panel de administración",
+    Documentos:"Administración de documentos institucionales",
+    Actas:"Administración de actas y reuniones",
+    Noticias:"Publicación y administración de noticias",
+    Agenda:"Eventos y actividades de la comunidad",
+    Certificados:"Emisión y validación de certificados",
+    Afiliados:"Gestión del registro de afiliados",
+    PQRS:"Peticiones, quejas, reclamos y solicitudes",
+    Usuarios:"Administración de usuarios",
+    Configuración:"Configuración general del sistema",
+    "Información General":"Datos institucionales de la JAC"
+};
+
+function actualizarCabecera(nombre){
+    document.getElementById("title").textContent=nombre;
+    document.getElementById("subtitle").textContent=subtitles[nombre] || "Módulo administrativo";
+}
+
+function section(name,el){
+    actualizarCabecera(name);
+    document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
+    if(el) el.classList.add("active");
+    document.body.classList.remove("open");
+
+    // Usuarios, Configuración e Información General permanecen dentro del cPanel.
+    // Los módulos externos se abren en la ventana lateral, sin redireccionar.
+    if(name === "Dashboard") cerrarModulo();
+}
+
+function abrirModulo(nombre,url,el){
+    document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
+    if(el) el.classList.add("active");
+    actualizarCabecera(nombre);
+    document.body.classList.remove("open");
+
+    if(!url){
+        alert("El módulo " + nombre + " todavía no tiene una página administrativa configurada.");
+        return;
+    }
+
+    const drawer=document.getElementById("moduleDrawer");
+    const frame=document.getElementById("moduleFrame");
+    document.getElementById("drawerTitle").textContent=nombre;
+    document.getElementById("drawerPath").textContent=url;
+
+    // Primero mostramos la ventana y luego cargamos el HTML para evitar saltos visuales.
+    drawer.setAttribute("aria-hidden","false");
+    document.body.classList.add("module-open");
+
+    if(frame.src !== new URL(url, window.location.href).href){
+        frame.src=url;
+    }else{
+        try{ frame.contentWindow.location.reload(); }catch(e){}
+    }
+}
+
+function cerrarModulo(event){
+    if(event && event.target !== event.currentTarget) return;
+    const drawer=document.getElementById("moduleDrawer");
+    const frame=document.getElementById("moduleFrame");
+    document.body.classList.remove("module-open");
+    drawer.setAttribute("aria-hidden","true");
+    // No destruimos el módulo inmediatamente: al cerrar y volver a abrir conserva su estado.
+}
+
+function filterTable(q){
+    q=q.toLowerCase().trim();
+    document.querySelectorAll("#table tbody tr").forEach(r=>{
+        r.style.display=!q || r.textContent.toLowerCase().includes(q) ? "" : "none";
+    });
+}
+
+function probarConexiones(){
+    const urls=[
+        URLS.documentos,
+        URLS.noticias,
+        URLS.pqrs,
+        URLS.certificadosAdmin,
+        URLS.agenda
+    ];
+
+    const disponibles=urls.filter(Boolean).length;
+    document.getElementById("connectionPct").textContent =
+        disponibles + "/5";
+
+    document.getElementById("connectionBar").style.width =
+        (disponibles/5*100) + "%";
+
+    alert(
+        "Rutas administrativas configuradas:\\n\\n" +
+        "✓ Documentos\\n" +
+        "✓ Noticias\\n" +
+        "✓ PQRS\\n" +
+        "✓ Certificados\n" +
+         "✓ Agenda y Eventos"
+    );
+}
+
+
+/* =========================================================
+   AUTENTICACIÓN LOCAL DEL cPANEL
+   ---------------------------------------------------------
+   Usuario: admin
+   La contraseña "admin router" NO se guarda en texto plano.
+   El valor almacenado aquí es su hash SHA-256.
+   ========================================================= */
+
+const AUTH_CONFIG = {
+    username: "admin",
+    passwordSha256: "d9d232bc0bfd2dc409c8ea3bafed73af2f701a62494f08cc4207280aeedf2809",
+    sessionKey: "JAC_CPANEL_AUTH_V1"
+};
+
+async function sha256(text){
+    const data = new TextEncoder().encode(text);
+    const hash = await crypto.subtle.digest("SHA-256", data);
+    return Array.from(new Uint8Array(hash))
+        .map(b => b.toString(16).padStart(2,"0"))
+        .join("");
+}
+
+function mostrarPanel(){
+    document.body.classList.remove("auth-locked");
+    document.body.classList.add("authenticated");
+
+    const screen = document.getElementById("authScreen");
+    if(screen) screen.style.display = "none";
+
+    const usuario = sessionStorage.getItem(AUTH_CONFIG.sessionKey) || AUTH_CONFIG.username;
+    const userName = document.getElementById("loggedUserName");
+    if(userName) userName.textContent = usuario;
+}
+
+function mostrarLogin(){
+    document.body.classList.remove("authenticated");
+    document.body.classList.add("auth-locked");
+
+    const screen = document.getElementById("authScreen");
+    if(screen) screen.style.display = "flex";
+
+    const form = document.getElementById("loginForm");
+    const user = document.getElementById("loginUsuario");
+    const pass = document.getElementById("loginClave");
+    const error = document.getElementById("loginError");
+
+    if(form) form.reset();
+    if(error) error.textContent = "";
+    if(user) setTimeout(() => user.focus(), 50);
+    if(pass) pass.value = "";
+}
+
+async function iniciarSesion(event){
+    event.preventDefault();
+
+    const user = document.getElementById("loginUsuario").value.trim().toLowerCase();
+    const pass = document.getElementById("loginClave").value;
+    const button = document.getElementById("loginButton");
+    const error = document.getElementById("loginError");
+
+    error.textContent = "";
+
+    if(user !== AUTH_CONFIG.username){
+        error.textContent = "Usuario o contraseña incorrectos.";
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Verificando...";
+
+    try{
+        const passwordHash = await sha256(pass);
+
+        if(passwordHash !== AUTH_CONFIG.passwordSha256){
+            error.textContent = "Usuario o contraseña incorrectos.";
+            return;
+        }
+
+        sessionStorage.setItem(AUTH_CONFIG.sessionKey, AUTH_CONFIG.username);
+        mostrarPanel();
+
+    }catch(err){
+        console.error(err);
+        error.textContent = "No fue posible validar el acceso.";
+    }finally{
+        button.disabled = false;
+        button.textContent = "Ingresar al sistema";
+    }
+}
+
+function cerrarSesion(){
+    sessionStorage.removeItem(AUTH_CONFIG.sessionKey);
+    cerrarModulo();
+    mostrarLogin();
+}
+
+function verificarSesion(){
+    const sesion = sessionStorage.getItem(AUTH_CONFIG.sessionKey);
+
+    if(sesion === AUTH_CONFIG.username){
+        mostrarPanel();
+    }else{
+        mostrarLogin();
+    }
+}
+
+document.getElementById("loginForm").addEventListener("submit", iniciarSesion);
+
+document.addEventListener("keydown", function(e){
+    if(e.key === "Enter" && document.body.classList.contains("auth-locked")){
+        const active = document.activeElement;
+        if(active && (active.id === "loginUsuario" || active.id === "loginClave")){
+            e.preventDefault();
+            document.getElementById("loginForm").requestSubmit();
+        }
+    }
+});
+
+verificarSesion();
+
+
+/* Atajos de teclado */
+document.addEventListener("keydown",e=>{
+    if(e.key==="Escape"){
+        document.body.classList.remove("open");
+        if(document.body.classList.contains("module-open")){
+            cerrarModulo();
+        }
+    }
+});
+</script>
+
+</body>
+</html>

@@ -29,7 +29,6 @@
     rel="stylesheet"
 >
 
-
 <link
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     rel="stylesheet"
@@ -63,9 +62,7 @@
 :root {
 
     --green: #0f5b35;
-
     --green-2: #1f7a45;
-
     --green-soft: #eaf5ee;
 
     --blue: #0d2c54;
@@ -73,11 +70,9 @@
     --gold: #e3ad20;
 
     --ink: #15221b;
-
     --muted: #66756c;
 
     --bg: #f4f7f5;
-
     --white: #ffffff;
 
     --border: #dce7df;
@@ -95,16 +90,13 @@
     box-sizing: border-box;
 }
 
-
 body {
 
     margin: 0;
 
-    background:
-        var(--bg);
+    background: var(--bg);
 
-    color:
-        var(--ink);
+    color: var(--ink);
 
     font-family:
         "Inter",
@@ -112,7 +104,6 @@ body {
         sans-serif;
 
 }
-
 
 h1,
 h2,
@@ -125,12 +116,8 @@ h4 {
 
 }
 
-
 a {
-
-    text-decoration:
-        none;
-
+    text-decoration: none;
 }
 
 
@@ -140,8 +127,7 @@ a {
 
 .admin-header {
 
-    background:
-        var(--white);
+    background: var(--white);
 
     border-bottom:
         1px solid
@@ -152,79 +138,63 @@ a {
 
 .admin-header-inner {
 
-    min-height:
-        76px;
+    min-height: 76px;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    justify-content:
-        space-between;
+    justify-content: space-between;
 
-    gap:
-        20px;
+    gap: 20px;
 
 }
 
 
 .brand {
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    gap:
-        12px;
+    gap: 12px;
 
-    color:
-        var(--green);
+    color: var(--green);
 
 }
 
 
 .brand img {
 
-    width:
-        52px;
+    width: 52px;
 
-    height:
-        52px;
+    height: 52px;
 
-    object-fit:
-        contain;
+    object-fit: contain;
 
 }
 
 
 .brand-title {
 
-    font-size:
-        12px;
+    font-size: 12px;
 
-    line-height:
-        1.25;
+    line-height: 1.25;
 
-    font-weight:
-        800;
+    font-weight: 800;
 
 }
 
 
 .brand-title span {
 
-    color:
-        var(--blue);
+    color: var(--blue);
 
 }
 
 
 /* =====================================================
-   HERO ADMIN
+   HERO
 ===================================================== */
 
 .admin-hero {
@@ -255,86 +225,71 @@ a {
 
 .eyebrow {
 
-    display:
-        inline-flex;
+    display: inline-flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    gap:
-        8px;
+    gap: 8px;
 
-    color:
-        var(--green);
+    color: var(--green);
 
-    text-transform:
-        uppercase;
+    text-transform: uppercase;
 
-    letter-spacing:
-        .08em;
+    letter-spacing: .08em;
 
-    font-size:
-        11px;
+    font-size: 11px;
 
-    font-weight:
-        800;
+    font-weight: 800;
 
 }
 
 
 .eyebrow::before {
 
-    content:
-        "";
+    content: "";
 
-    width:
-        24px;
+    width: 24px;
 
-    height:
-        3px;
+    height: 3px;
 
-    background:
-        var(--gold);
+    background: var(--gold);
 
-    border-radius:
-        5px;
+    border-radius: 5px;
 
 }
 
 
 .admin-hero h1 {
 
-    margin:
-        12px 0 8px;
+    margin: 12px 0 8px;
 
-    color:
-        var(--blue);
+    color: var(--blue);
 
     font-size:
-        clamp(32px,5vw,48px);
+        clamp(
+            32px,
+            5vw,
+            48px
+        );
 
-    line-height:
-        1.05;
+    line-height: 1.05;
 
 }
 
 
 .admin-hero p {
 
-    margin:
-        0;
+    margin: 0;
 
-    max-width:
-        700px;
+    max-width: 700px;
 
-    color:
-        var(--muted);
+    color: var(--muted);
 
 }
 
 
 /* =====================================================
-   PANEL
+   CONTENIDO
 ===================================================== */
 
 .admin-section {
@@ -347,15 +302,13 @@ a {
 
 .panel {
 
-    background:
-        white;
+    background: white;
 
     border:
         1px solid
         var(--border);
 
-    border-radius:
-        18px;
+    border-radius: 18px;
 
     box-shadow:
         0 8px 30px
@@ -370,96 +323,75 @@ a {
 
 .stat-card {
 
-    height:
-        100%;
+    height: 100%;
 
-    background:
-        white;
+    background: white;
 
     border:
         1px solid
         var(--border);
 
-    border-radius:
-        15px;
+    border-radius: 15px;
 
-    padding:
-        20px;
+    padding: 20px;
 
 }
 
 
 .stat-icon {
 
-    width:
-        42px;
+    width: 42px;
 
-    height:
-        42px;
+    height: 42px;
 
-    display:
-        grid;
+    display: grid;
 
-    place-items:
-        center;
+    place-items: center;
 
-    border-radius:
-        11px;
+    border-radius: 11px;
 
-    background:
-        var(--green-soft);
+    background: var(--green-soft);
 
-    color:
-        var(--green);
+    color: var(--green);
 
-    font-size:
-        19px;
+    font-size: 19px;
 
 }
 
 
 .stat-number {
 
-    margin-top:
-        12px;
+    margin-top: 12px;
 
-    color:
-        var(--blue);
+    color: var(--blue);
 
-    font-size:
-        26px;
+    font-size: 26px;
 
-    font-weight:
-        800;
+    font-weight: 800;
 
 }
 
 
 .stat-label {
 
-    color:
-        var(--muted);
+    color: var(--muted);
 
-    font-size:
-        12px;
+    font-size: 12px;
 
 }
 
 
 /* =====================================================
-   FORMULARIO
+   FORMULARIOS
 ===================================================== */
 
 .form-label {
 
-    font-size:
-        12px;
+    font-size: 12px;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
-    color:
-        var(--blue);
+    color: var(--blue);
 
 }
 
@@ -471,14 +403,11 @@ a {
         1px solid
         var(--border);
 
-    border-radius:
-        10px;
+    border-radius: 10px;
 
-    min-height:
-        43px;
+    min-height: 43px;
 
-    font-size:
-        13px;
+    font-size: 13px;
 
 }
 
@@ -486,8 +415,7 @@ a {
 .form-control:focus,
 .form-select:focus {
 
-    border-color:
-        var(--green);
+    border-color: var(--green);
 
     box-shadow:
         0 0 0 .2rem
@@ -496,65 +424,58 @@ a {
 }
 
 
+/* =====================================================
+   UPLOAD
+===================================================== */
+
 .upload-zone {
 
     border:
         2px dashed
         #c9d9cf;
 
-    border-radius:
-        14px;
+    border-radius: 14px;
 
-    padding:
-        28px;
+    padding: 28px;
 
-    text-align:
-        center;
+    text-align: center;
 
-    background:
-        #fbfdfb;
+    background: #fbfdfb;
 
-    cursor:
-        pointer;
+    cursor: pointer;
 
-    transition:
-        .2s ease;
+    transition: .2s ease;
 
 }
 
 
 .upload-zone:hover {
 
-    border-color:
-        var(--green);
+    border-color: var(--green);
 
-    background:
-        var(--green-soft);
+    background: var(--green-soft);
 
 }
 
 
 .upload-zone i {
 
-    font-size:
-        30px;
+    font-size: 30px;
 
-    color:
-        var(--green);
+    color: var(--green);
 
 }
 
 
 .file-name {
 
-    margin-top:
-        10px;
+    margin-top: 10px;
 
-    color:
-        var(--muted);
+    color: var(--muted);
 
-    font-size:
-        12px;
+    font-size: 12px;
+
+    word-break: break-word;
 
 }
 
@@ -565,36 +486,123 @@ a {
 
 .btn {
 
-    border-radius:
-        9px;
+    border-radius: 9px;
 
-    font-size:
-        12px;
+    font-size: 12px;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
 }
 
 
 .btn-success {
 
-    background:
-        var(--green);
+    background: var(--green);
 
-    border-color:
-        var(--green);
+    border-color: var(--green);
 
 }
 
 
 .btn-success:hover {
 
-    background:
-        var(--green-2);
+    background: var(--green-2);
 
-    border-color:
-        var(--green-2);
+    border-color: var(--green-2);
+
+}
+
+
+#uploadButton {
+
+    min-width: 170px;
+
+    min-height: 42px;
+
+    transition: .2s ease;
+
+}
+
+
+#uploadButton.loading {
+
+    cursor: wait;
+
+    opacity: .9;
+
+}
+
+
+/* =====================================================
+   PROGRESO DE SUBIDA
+===================================================== */
+
+.upload-progress {
+
+    display: none;
+
+    margin-top: 18px;
+
+}
+
+
+.upload-progress.active {
+
+    display: block;
+
+}
+
+
+.upload-progress-text {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 7px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+}
+
+
+.upload-progress-text strong {
+
+    color: var(--green);
+
+}
+
+
+.upload-progress .progress {
+
+    height: 7px;
+
+    border-radius: 20px;
+
+    background: #e8efea;
+
+    overflow: hidden;
+
+}
+
+
+.upload-progress .progress-bar {
+
+    width: 0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--green),
+            var(--green-2),
+            var(--gold)
+        );
+
+    transition: width .3s ease;
 
 }
 
@@ -605,115 +613,93 @@ a {
 
 .table-wrapper {
 
-    overflow-x:
-        auto;
+    overflow-x: auto;
 
 }
 
 
 .documents-table {
 
-    margin:
-        0;
+    margin: 0;
 
-    min-width:
-        900px;
+    min-width: 900px;
 
 }
 
 
 .documents-table th {
 
-    background:
-        #f4f8f5;
+    background: #f4f8f5;
 
-    color:
-        var(--blue);
+    color: var(--blue);
 
     border-bottom:
         1px solid
         var(--border);
 
-    font-size:
-        11px;
+    font-size: 11px;
 
-    text-transform:
-        uppercase;
+    text-transform: uppercase;
 
-    letter-spacing:
-        .04em;
+    letter-spacing: .04em;
 
-    white-space:
-        nowrap;
+    white-space: nowrap;
 
 }
 
 
 .documents-table td {
 
-    vertical-align:
-        middle;
+    vertical-align: middle;
 
-    font-size:
-        12px;
+    font-size: 12px;
 
-    border-color:
-        #edf2ee;
+    border-color: #edf2ee;
 
 }
 
 
 .document-name {
 
-    font-weight:
-        700;
+    font-weight: 700;
 
-    color:
-        var(--blue);
+    color: var(--blue);
 
 }
 
 
 .document-description {
 
-    color:
-        var(--muted);
+    color: var(--muted);
 
-    font-size:
-        11px;
+    font-size: 11px;
 
-    max-width:
-        300px;
+    max-width: 300px;
 
 }
 
 
 .badge {
 
-    font-size:
-        10px;
+    font-size: 10px;
 
 }
 
 
 .badge-active {
 
-    background:
-        var(--green-soft);
+    background: var(--green-soft);
 
-    color:
-        var(--green);
+    color: var(--green);
 
 }
 
 
 .badge-blocked {
 
-    background:
-        #fff1f0;
+    background: #fff1f0;
 
-    color:
-        var(--danger);
+    color: var(--danger);
 
 }
 
@@ -724,37 +710,28 @@ a {
 
 .action-buttons {
 
-    display:
-        flex;
+    display: flex;
 
-    gap:
-        5px;
+    gap: 5px;
 
-    flex-wrap:
-        wrap;
+    flex-wrap: wrap;
 
 }
 
 
 .action-buttons .btn {
 
-    width:
-        34px;
+    width: 34px;
 
-    height:
-        34px;
+    height: 34px;
 
-    display:
-        inline-flex;
+    display: inline-flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    justify-content:
-        center;
+    justify-content: center;
 
-    padding:
-        0;
+    padding: 0;
 
 }
 
@@ -765,172 +742,200 @@ a {
 
 .empty-state {
 
-    padding:
-        60px 20px;
+    padding: 60px 20px;
 
-    text-align:
-        center;
+    text-align: center;
 
-    color:
-        var(--muted);
+    color: var(--muted);
 
 }
 
 
 .empty-state i {
 
-    font-size:
-        42px;
+    font-size: 42px;
 
-    color:
-        #aebdb3;
+    color: #aebdb3;
 
 }
 
 
 /* =====================================================
-   TOAST
+   MODAL CONFIRMACIÓN
 ===================================================== */
 
-.toast-container {
-
-    z-index:
-        99999;
-
-}
-
-
-/* =====================================================
-   IFRAME OCULTO
-===================================================== */
-
-#postFrame {
-
-    display:
-        none;
-
-}
-
-
-
-/* =====================================================
-   MODAL DE CONFIRMACIÓN PROFESIONAL
-===================================================== */
 .confirm-modal .modal-content {
+
     border: 0;
+
     border-radius: 22px;
+
     overflow: hidden;
-    box-shadow: 0 24px 70px rgba(13,44,84,.18);
+
+    box-shadow:
+        0 24px 70px
+        rgba(13,44,84,.18);
+
 }
+
 
 .confirm-modal .modal-header {
+
     border: 0;
-    padding: 22px 24px 8px;
+
+    padding:
+        22px 24px 8px;
+
 }
+
 
 .confirm-modal .modal-body {
-    padding: 8px 24px 22px;
+
+    padding:
+        8px 24px 22px;
+
 }
+
 
 .confirm-modal .modal-footer {
+
     border: 0;
-    padding: 0 24px 24px;
+
+    padding:
+        0 24px 24px;
+
     gap: 9px;
+
 }
+
 
 .confirm-icon {
+
     width: 62px;
+
     height: 62px;
+
     border-radius: 18px;
+
     display: grid;
+
     place-items: center;
+
     font-size: 27px;
+
     margin-bottom: 16px;
+
 }
+
 
 .confirm-icon.warning {
+
     background: #fff4d8;
+
     color: #9a6b00;
+
 }
+
 
 .confirm-icon.success {
+
     background: var(--green-soft);
+
     color: var(--green);
+
 }
+
 
 .confirm-icon.danger {
+
     background: #fff0ef;
+
     color: var(--danger);
+
 }
+
 
 .confirm-title {
+
     color: var(--blue);
+
     font-size: 21px;
+
     font-weight: 800;
+
     margin-bottom: 7px;
+
 }
+
 
 .confirm-document {
+
     background: #f6f9f7;
-    border: 1px solid var(--border);
+
+    border:
+        1px solid
+        var(--border);
+
     border-radius: 12px;
+
     padding: 11px 13px;
+
     margin-top: 15px;
+
     color: var(--blue);
+
     font-size: 12px;
+
     font-weight: 700;
+
     word-break: break-word;
+
 }
+
 
 .confirm-description {
+
     color: var(--muted);
+
     font-size: 13px;
+
     line-height: 1.55;
+
     margin: 0;
+
 }
+
 
 .confirm-modal .btn {
+
     min-width: 120px;
+
     min-height: 40px;
+
 }
+
 
 .btn-confirm-danger {
+
     background: var(--danger);
+
     border-color: var(--danger);
+
     color: white;
+
 }
 
-.btn-confirm-danger:hover {
-    background: #921c13;
-    border-color: #921c13;
-    color: white;
-}
 
 .btn-confirm-warning {
+
     background: #b27a00;
+
     border-color: #b27a00;
+
     color: white;
+
 }
 
-.btn-confirm-warning:hover {
-    background: #956600;
-    border-color: #956600;
-    color: white;
-}
-
-@media(max-width:500px) {
-    .confirm-modal .modal-dialog {
-        margin: 12px;
-    }
-
-    .confirm-modal .modal-footer {
-        flex-direction: column-reverse;
-    }
-
-    .confirm-modal .modal-footer .btn {
-        width: 100%;
-    }
-}
 
 /* =====================================================
    RESPONSIVE
@@ -940,43 +945,56 @@ a {
 
     .admin-header-inner {
 
-        min-height:
-            68px;
+        min-height: 68px;
 
     }
-
 
     .brand img {
 
-        width:
-            44px;
+        width: 44px;
 
-        height:
-            44px;
+        height: 44px;
 
     }
-
 
     .brand-title {
 
-        font-size:
-            10px;
+        font-size: 10px;
 
     }
-
 
     .admin-hero {
 
-        padding:
-            35px 0;
+        padding: 35px 0;
 
     }
 
-
     .admin-section {
 
-        padding:
-            25px 0 50px;
+        padding: 25px 0 50px;
+
+    }
+
+}
+
+
+@media(max-width:500px) {
+
+    .confirm-modal .modal-dialog {
+
+        margin: 12px;
+
+    }
+
+    .confirm-modal .modal-footer {
+
+        flex-direction: column-reverse;
+
+    }
+
+    .confirm-modal .modal-footer .btn {
+
+        width: 100%;
 
     }
 
@@ -1060,10 +1078,12 @@ Administrar documentos
 </h1>
 
 <p>
+
 Desde este panel puedes cargar, organizar,
 actualizar, bloquear y eliminar los documentos
 que posteriormente aparecerán en
 <strong>documentos.html</strong>.
+
 </p>
 
 </div>
@@ -1086,6 +1106,7 @@ que posteriormente aparecerán en
 ===================================================== -->
 
 <div class="row g-3 mb-4">
+
 
 <div class="col-6 col-lg-3">
 
@@ -1195,7 +1216,7 @@ Almacenamiento registrado
 
 
 <!-- =====================================================
-     SUBIR
+     SUBIR DOCUMENTO
 ===================================================== -->
 
 <div class="panel mb-4">
@@ -1211,74 +1232,40 @@ Subir documento
 </h2>
 
 <p class="text-muted small mb-0">
-El documento se almacenará automáticamente en Google Drive.
+
+El documento se almacenará automáticamente
+en Google Drive.
+
 </p>
 
 </div>
 
 <span class="badge text-bg-light border">
+
+<i class="bi bi-cloud-check me-1"></i>
+
 Google Drive
+
 </span>
 
 </div>
 
 
-<form
-    id="uploadForm"
-    method="POST"
-    target="postFrame"
-    action=""
->
-
-<input
-    type="hidden"
-    name="action"
-    value="subir"
->
-
-
-<input
-    type="hidden"
-    name="usuario"
-    value="Administrador"
->
-
-
-<input
-    type="hidden"
-    name="fileName"
-    id="hiddenFileName"
->
-
-
-<input
-    type="hidden"
-    name="mimeType"
-    id="hiddenMimeType"
->
-
-
-<input
-    type="hidden"
-    name="fileData"
-    id="hiddenFileData"
->
-
+<form id="uploadForm">
 
 <div class="row g-3">
 
 
 <div class="col-md-5">
 
-<label
-    class="form-label"
->
+<label class="form-label">
+
 Nombre del documento
+
 </label>
 
 <input
     type="text"
-    name="nombre"
     id="documentName"
     class="form-control"
     placeholder="Ej. Reglamento interno"
@@ -1290,14 +1277,13 @@ Nombre del documento
 
 <div class="col-md-4">
 
-<label
-    class="form-label"
->
+<label class="form-label">
+
 Categoría
+
 </label>
 
 <select
-    name="categoria"
     id="documentCategory"
     class="form-select"
 >
@@ -1329,11 +1315,12 @@ Otros
 
 <div class="col-md-3">
 
-<label
-    class="form-label"
->
+<label class="form-label">
+
 Archivo
+
 </label>
+
 
 <label
     for="fileInput"
@@ -1343,17 +1330,22 @@ Archivo
 <i class="bi bi-cloud-arrow-up"></i>
 
 <div class="mt-2 fw-semibold small">
+
 Seleccionar archivo
+
 </div>
 
 <div
     id="fileName"
     class="file-name"
 >
+
 Ningún archivo seleccionado
+
 </div>
 
 </label>
+
 
 <input
     type="file"
@@ -1368,19 +1360,57 @@ Ningún archivo seleccionado
 
 <div class="col-12">
 
-<label
-    class="form-label"
->
+<label class="form-label">
+
 Descripción
+
 </label>
 
 <textarea
-    name="descripcion"
     id="documentDescription"
     class="form-control"
     rows="3"
     placeholder="Descripción breve del documento..."
 ></textarea>
+
+</div>
+
+
+<!-- =====================================================
+     PROGRESO
+===================================================== -->
+
+<div class="col-12">
+
+<div
+    id="uploadProgress"
+    class="upload-progress"
+>
+
+<div class="upload-progress-text">
+
+<span id="uploadProgressText">
+Preparando archivo...
+</span>
+
+<strong id="uploadProgressPercent">
+0%
+</strong>
+
+</div>
+
+
+<div class="progress">
+
+<div
+    id="uploadProgressBar"
+    class="progress-bar"
+    role="progressbar"
+></div>
+
+</div>
+
+</div>
 
 </div>
 
@@ -1424,11 +1454,15 @@ Subir documento
 <div class="col-lg">
 
 <h2 class="h5 mb-1">
+
 Documentos publicados
+
 </h2>
 
 <p class="text-muted small mb-0">
+
 Gestiona los documentos almacenados en Drive.
+
 </p>
 
 </div>
@@ -1496,6 +1530,7 @@ Acciones
 
 </thead>
 
+
 <tbody id="documentsBody">
 
 <tr>
@@ -1505,13 +1540,11 @@ Acciones
     class="empty-state"
 >
 
-<div>
-
 <i class="bi bi-hourglass-split"></i>
 
 <div class="mt-3">
+
 Cargando documentos...
-</div>
 
 </div>
 
@@ -1551,7 +1584,9 @@ Cargando documentos...
 <div class="modal-header">
 
 <h5 class="modal-title">
+
 Editar documento
+
 </h5>
 
 <button
@@ -1646,15 +1681,20 @@ Descripción
     class="btn btn-light"
     data-bs-dismiss="modal"
 >
+
 Cancelar
+
 </button>
+
 
 <button
     type="button"
     class="btn btn-success"
     onclick="guardarEdicion()"
 >
+
 Guardar cambios
+
 </button>
 
 </div>
@@ -1668,108 +1708,118 @@ Guardar cambios
 
 
 <!-- =====================================================
-     FORMULARIO POST OCULTO
+     MODAL CONFIRMACIÓN
 ===================================================== -->
 
-<form
-    id="actionForm"
-    method="POST"
-    target="postFrame"
-    style="display:none;"
+<div
+    class="modal fade confirm-modal"
+    id="confirmActionModal"
+    tabindex="-1"
 >
 
-<input
-    type="hidden"
-    name="action"
-    id="actionField"
->
+<div class="modal-dialog modal-dialog-centered modal-sm">
 
-<input
-    type="hidden"
-    name="id"
-    id="actionId"
->
+<div class="modal-content">
 
-<input
-    type="hidden"
-    name="nombre"
-    id="actionName"
->
+<div class="modal-header">
 
-<input
-    type="hidden"
-    name="descripcion"
-    id="actionDescription"
->
+<button
+    type="button"
+    class="btn-close ms-auto"
+    data-bs-dismiss="modal"
+></button>
 
-<input
-    type="hidden"
-    name="categoria"
-    id="actionCategory"
->
-
-<input
-    type="hidden"
-    name="usuario"
-    value="Administrador"
->
-
-</form>
-
-
-<iframe
-    name="postFrame"
-    id="postFrame"
-></iframe>
-
-
-
-
-<!-- =====================================================
-     MODAL CONFIRMACIÓN DE ACCIÓN
-===================================================== -->
-<div class="modal fade confirm-modal" id="confirmActionModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-            </div>
-
-            <div class="modal-body">
-                <div id="confirmIcon" class="confirm-icon warning">
-                    <i class="bi bi-lock-fill"></i>
-                </div>
-
-                <div id="confirmTitle" class="confirm-title">¿Bloquear documento?</div>
-
-                <p id="confirmDescription" class="confirm-description">
-                    El documento dejará de estar disponible públicamente hasta que sea desbloqueado.
-                </p>
-
-                <div id="confirmDocument" class="confirm-document">
-                    Documento seleccionado
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light border" data-bs-dismiss="modal">
-                    Cancelar
-                </button>
-
-                <button type="button" id="confirmActionButton" class="btn btn-confirm-warning" onclick="ejecutarAccionConfirmada()">
-                    <i class="bi bi-lock-fill me-1"></i>
-                    Sí, bloquear
-                </button>
-            </div>
-        </div>
-    </div>
 </div>
+
+
+<div class="modal-body">
+
+<div
+    id="confirmIcon"
+    class="confirm-icon warning"
+>
+
+<i class="bi bi-lock-fill"></i>
+
+</div>
+
+
+<div
+    id="confirmTitle"
+    class="confirm-title"
+>
+
+¿Bloquear documento?
+
+</div>
+
+
+<p
+    id="confirmDescription"
+    class="confirm-description"
+>
+
+El documento dejará de estar disponible
+públicamente hasta que sea desbloqueado.
+
+</p>
+
+
+<div
+    id="confirmDocument"
+    class="confirm-document"
+>
+
+Documento seleccionado
+
+</div>
+
+</div>
+
+
+<div class="modal-footer">
+
+<button
+    type="button"
+    class="btn btn-light border"
+    data-bs-dismiss="modal"
+>
+
+Cancelar
+
+</button>
+
+
+<button
+    type="button"
+    id="confirmActionButton"
+    class="btn btn-confirm-warning"
+    onclick="ejecutarAccionConfirmada()"
+>
+
+<i class="bi bi-lock-fill me-1"></i>
+
+Sí, bloquear
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
 
 <!-- =====================================================
      TOAST
 ===================================================== -->
 
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
+<div
+    class="toast-container position-fixed bottom-0 end-0 p-3"
+>
 
 <div
     id="mainToast"
@@ -1783,7 +1833,9 @@ Guardar cambios
     class="me-auto"
     id="toastTitle"
 >
+
 Administrador
+
 </strong>
 
 <button
@@ -1793,6 +1845,7 @@ Administrador
 ></button>
 
 </div>
+
 
 <div
     class="toast-body"
@@ -1834,6 +1887,12 @@ let documents = [];
 
 let editingDocument = null;
 
+let accionPendiente = null;
+
+let idAccionPendiente = null;
+
+let nombreAccionPendiente = "";
+
 
 /* =====================================================
    INICIO
@@ -1843,47 +1902,24 @@ document.addEventListener(
     "DOMContentLoaded",
     function() {
 
-        document
-            .getElementById(
-                "uploadForm"
-            )
-            .action = API_URL;
-
-
-        document
-            .getElementById(
-                "actionForm"
-            )
-            .action = API_URL;
-
-
         cargarDocumentos();
 
-
         document
-            .getElementById(
-                "fileInput"
-            )
+            .getElementById("fileInput")
             .addEventListener(
                 "change",
                 seleccionarArchivo
             );
 
-
         document
-            .getElementById(
-                "uploadForm"
-            )
+            .getElementById("uploadForm")
             .addEventListener(
                 "submit",
                 prepararSubida
             );
 
-
         document
-            .getElementById(
-                "searchInput"
-            )
+            .getElementById("searchInput")
             .addEventListener(
                 "input",
                 renderizarDocumentos
@@ -1894,7 +1930,7 @@ document.addEventListener(
 
 
 /* =====================================================
-   LISTAR CON JSONP
+   CARGAR DOCUMENTOS
 ===================================================== */
 
 function cargarDocumentos() {
@@ -1902,7 +1938,6 @@ function cargarDocumentos() {
     const callbackName =
         "jacDocumentsCallback_" +
         Date.now();
-
 
     window[callbackName] =
         function(response) {
@@ -1915,8 +1950,7 @@ function cargarDocumentos() {
                 ) {
 
                     documents =
-                        response.documents ||
-                        [];
+                        response.documents || [];
 
                     renderizarDocumentos();
 
@@ -1928,7 +1962,7 @@ function cargarDocumentos() {
 
                     mostrarToast(
                         "Error",
-                        response.message ||
+                        response?.message ||
                         "No se pudieron cargar los documentos.",
                         true
                     );
@@ -1939,9 +1973,7 @@ function cargarDocumentos() {
 
             finally {
 
-                delete window[
-                    callbackName
-                ];
+                delete window[callbackName];
 
                 const script =
                     document.getElementById(
@@ -1960,9 +1992,7 @@ function cargarDocumentos() {
 
 
     const script =
-        document.createElement(
-            "script"
-        );
+        document.createElement("script");
 
 
     script.id =
@@ -1989,11 +2019,7 @@ function cargarDocumentos() {
         };
 
 
-    document
-        .body
-        .appendChild(
-            script
-        );
+    document.body.appendChild(script);
 
 }
 
@@ -2006,7 +2032,6 @@ function seleccionarArchivo(event) {
 
     const file =
         event.target.files[0];
-
 
     const label =
         document.getElementById(
@@ -2037,11 +2062,10 @@ function seleccionarArchivo(event) {
     if (!name.value) {
 
         name.value =
-            file.name
-                .replace(
-                    /\.[^/.]+$/,
-                    ""
-                );
+            file.name.replace(
+                /\.[^/.]+$/,
+                ""
+            );
 
     }
 
@@ -2052,9 +2076,7 @@ function seleccionarArchivo(event) {
    PREPARAR SUBIDA
 ===================================================== */
 
-function prepararSubida(
-    event
-) {
+async function prepararSubida(event) {
 
     event.preventDefault();
 
@@ -2079,15 +2101,10 @@ function prepararSubida(
 
 
     const maxSize =
-        20 *
-        1024 *
-        1024;
+        20 * 1024 * 1024;
 
 
-    if (
-        file.size >
-        maxSize
-    ) {
+    if (file.size > maxSize) {
 
         mostrarToast(
             "Archivo demasiado grande",
@@ -2106,125 +2123,356 @@ function prepararSubida(
         );
 
 
-    button.disabled =
-        true;
+    const progress =
+        document.getElementById(
+            "uploadProgress"
+        );
 
+
+    const progressBar =
+        document.getElementById(
+            "uploadProgressBar"
+        );
+
+
+    const progressText =
+        document.getElementById(
+            "uploadProgressText"
+        );
+
+
+    const progressPercent =
+        document.getElementById(
+            "uploadProgressPercent"
+        );
+
+
+    button.disabled = true;
+
+    button.classList.add("loading");
 
     button.innerHTML =
         '<span class="spinner-border spinner-border-sm me-2"></span>Subiendo...';
 
 
-    const reader =
-        new FileReader();
+    progress.classList.add("active");
 
 
-    reader.onload =
-        function() {
-
-            document
-                .getElementById(
-                    "hiddenFileName"
-                )
-                .value =
-                file.name;
+    actualizarProgreso(
+        5,
+        "Preparando archivo..."
+    );
 
 
-            document
-                .getElementById(
-                    "hiddenMimeType"
-                )
-                .value =
-                file.type ||
-                "application/octet-stream";
+    try {
 
+        const base64 =
+            await convertirArchivoABase64(
+                file,
+                function(percent) {
 
-            document
-                .getElementById(
-                    "hiddenFileData"
-                )
-                .value =
-                reader.result;
+                    const value =
+                        Math.min(
+                            65,
+                            5 +
+                            Math.round(
+                                percent * .60
+                            )
+                        );
 
+                    actualizarProgreso(
+                        value,
+                        "Leyendo archivo..."
+                    );
 
-            document
-                .getElementById(
-                    "uploadForm"
-                )
-                .submit();
-
-        };
-
-
-    reader.onerror =
-        function() {
-
-            button.disabled =
-                false;
-
-            button.innerHTML =
-                '<i class="bi bi-cloud-upload me-2"></i>Subir documento';
-
-
-            mostrarToast(
-                "Error",
-                "No se pudo leer el archivo.",
-                true
+                }
             );
 
-        };
+
+        actualizarProgreso(
+            70,
+            "Enviando a Google Drive..."
+        );
 
 
-    reader.readAsDataURL(
-        file
+        const formData =
+            new URLSearchParams();
+
+
+        formData.append(
+            "action",
+            "subir"
+        );
+
+
+        formData.append(
+            "usuario",
+            "Administrador"
+        );
+
+
+        formData.append(
+            "nombre",
+            document.getElementById(
+                "documentName"
+            ).value.trim()
+        );
+
+
+        formData.append(
+            "categoria",
+            document.getElementById(
+                "documentCategory"
+            ).value
+        );
+
+
+        formData.append(
+            "descripcion",
+            document.getElementById(
+                "documentDescription"
+            ).value.trim()
+        );
+
+
+        formData.append(
+            "fileName",
+            file.name
+        );
+
+
+        formData.append(
+            "mimeType",
+            file.type ||
+            "application/octet-stream"
+        );
+
+
+        formData.append(
+            "fileData",
+            base64
+        );
+
+
+        /*
+         * IMPORTANTE:
+         *
+         * mode no-cors evita el problema
+         * X-Frame-Options / iframe.
+         *
+         * No intentamos leer la respuesta.
+         * Después verificamos el listado.
+         */
+
+        await fetch(
+            API_URL,
+            {
+                method: "POST",
+
+                mode: "no-cors",
+
+                headers: {
+                    "Content-Type":
+                        "application/x-www-form-urlencoded;charset=UTF-8"
+                },
+
+                body: formData.toString()
+            }
+        );
+
+
+        actualizarProgreso(
+            85,
+            "Verificando documento..."
+        );
+
+
+        /*
+         * Esperamos un poco para darle tiempo
+         * a Apps Script de terminar la operación.
+         */
+
+        await esperar(1800);
+
+
+        actualizarProgreso(
+            95,
+            "Actualizando documentos..."
+        );
+
+
+        await verificarSubida(
+            file.name
+        );
+
+
+    }
+
+    catch(error) {
+
+        console.error(
+            "Error de subida:",
+            error
+        );
+
+
+        mostrarToast(
+            "Error",
+            "No fue posible completar la subida.",
+            true
+        );
+
+        restaurarBotonSubida();
+
+    }
+
+}
+
+
+/* =====================================================
+   CONVERTIR ARCHIVO A BASE64
+===================================================== */
+
+function convertirArchivoABase64(
+    file,
+    onProgress
+) {
+
+    return new Promise(
+        function(resolve, reject) {
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function() {
+
+                    const result =
+                        reader.result;
+
+
+                    /*
+                     * Quitamos:
+                     * data:application/pdf;base64,
+                     */
+
+                    const base64 =
+                        String(result)
+                            .split(",")[1];
+
+
+                    resolve(base64);
+
+                };
+
+
+            reader.onerror =
+                function() {
+
+                    reject(
+                        new Error(
+                            "No se pudo leer el archivo."
+                        )
+                    );
+
+                };
+
+
+            reader.onprogress =
+                function(event) {
+
+                    if (
+                        event.lengthComputable &&
+                        typeof onProgress ===
+                        "function"
+                    ) {
+
+                        onProgress(
+                            Math.round(
+                                (
+                                    event.loaded /
+                                    event.total
+                                ) * 100
+                            )
+                        );
+
+                    }
+
+                };
+
+
+            reader.readAsDataURL(file);
+
+        }
     );
 
 }
 
 
 /* =====================================================
-   RESPUESTA DEL APPS SCRIPT
+   VERIFICAR SUBIDA
 ===================================================== */
 
-window.addEventListener(
-    "message",
-    function(event) {
+async function verificarSubida(
+    fileName
+) {
 
-        if (
-            !event.data ||
-            event.data.type !==
-            "JAC_DOCUMENTOS_RESPONSE"
-        ) {
+    const maxIntentos = 8;
 
-            return;
+    for (
+        let intento = 1;
+        intento <= maxIntentos;
+        intento++
+    ) {
 
-        }
-
-
-        const response =
-            event.data.data;
+        cargarDocumentos();
 
 
-        const button =
-            document.getElementById(
-                "uploadButton"
+        await esperar(1200);
+
+
+        const encontrado =
+            documents.some(
+                function(doc) {
+
+                    return (
+                        String(
+                            doc.archivo || ""
+                        ).trim() ===
+                        String(
+                            fileName
+                        ).trim()
+                    )
+
+                    ||
+
+                    String(
+                        doc.nombre || ""
+                    ).trim() ===
+                    String(
+                        fileName
+                            .replace(
+                                /\.[^/.]+$/,
+                                ""
+                            )
+                    ).trim();
+
+                }
             );
 
 
-        button.disabled =
-            false;
+        if (encontrado) {
 
+            actualizarProgreso(
+                100,
+                "Documento cargado correctamente."
+            );
 
-        button.innerHTML =
-            '<i class="bi bi-cloud-upload me-2"></i>Subir documento';
-
-
-        if (
-            response.ok
-        ) {
 
             mostrarToast(
-                "Correcto",
-                response.message,
+                "Documento cargado",
+                "El archivo fue almacenado correctamente en Google Drive.",
                 false
             );
 
@@ -2244,27 +2492,191 @@ window.addEventListener(
                 "Ningún archivo seleccionado";
 
 
-            cargarDocumentos();
+            setTimeout(
+                function() {
 
-        }
+                    restaurarBotonSubida();
 
-        else {
-
-            mostrarToast(
-                "No se pudo completar",
-                response.message ||
-                "Ocurrió un error.",
-                true
+                },
+                800
             );
+
+
+            return;
 
         }
 
     }
-);
+
+
+    /*
+     * Si Apps Script tardó más,
+     * igual dejamos la interfaz libre.
+     */
+
+    actualizarProgreso(
+        100,
+        "Operación enviada correctamente."
+    );
+
+
+    mostrarToast(
+        "Operación enviada",
+        "El archivo fue enviado a Google Drive. El listado se actualizará en unos segundos.",
+        false
+    );
+
+
+    document
+        .getElementById(
+            "uploadForm"
+        )
+        .reset();
+
+
+    document
+        .getElementById(
+            "fileName"
+        )
+        .textContent =
+        "Ningún archivo seleccionado";
+
+
+    setTimeout(
+        function() {
+
+            restaurarBotonSubida();
+
+            cargarDocumentos();
+
+        },
+        1000
+    );
+
+}
 
 
 /* =====================================================
-   RENDER
+   PROGRESO
+===================================================== */
+
+function actualizarProgreso(
+    porcentaje,
+    texto
+) {
+
+    const bar =
+        document.getElementById(
+            "uploadProgressBar"
+        );
+
+
+    const percent =
+        document.getElementById(
+            "uploadProgressPercent"
+        );
+
+
+    const label =
+        document.getElementById(
+            "uploadProgressText"
+        );
+
+
+    porcentaje =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                porcentaje
+            )
+        );
+
+
+    bar.style.width =
+        porcentaje + "%";
+
+
+    percent.textContent =
+        porcentaje + "%";
+
+
+    label.textContent =
+        texto;
+
+}
+
+
+/* =====================================================
+   RESTAURAR BOTÓN
+===================================================== */
+
+function restaurarBotonSubida() {
+
+    const button =
+        document.getElementById(
+            "uploadButton"
+        );
+
+
+    const progress =
+        document.getElementById(
+            "uploadProgress"
+        );
+
+
+    button.disabled = false;
+
+    button.classList.remove(
+        "loading"
+    );
+
+
+    button.innerHTML =
+        '<i class="bi bi-cloud-upload me-2"></i>Subir documento';
+
+
+    setTimeout(
+        function() {
+
+            progress.classList.remove(
+                "active"
+            );
+
+            actualizarProgreso(
+                0,
+                "Preparando archivo..."
+            );
+
+        },
+        700
+    );
+
+}
+
+
+/* =====================================================
+   ESPERAR
+===================================================== */
+
+function esperar(ms) {
+
+    return new Promise(
+        function(resolve) {
+
+            setTimeout(
+                resolve,
+                ms
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   RENDERIZAR
 ===================================================== */
 
 function renderizarDocumentos() {
@@ -2335,7 +2747,9 @@ function renderizarDocumentos() {
 <i class="bi bi-folder2-open"></i>
 
 <div class="mt-3">
+
 No hay documentos para mostrar.
+
 </div>
 
 </td>
@@ -2360,7 +2774,7 @@ No hay documentos para mostrar.
 
 
 /* =====================================================
-   FILA
+   CREAR FILA
 ===================================================== */
 
 function crearFilaDocumento(
@@ -2553,9 +2967,7 @@ ${estado}
    EDITAR
 ===================================================== */
 
-function abrirEdicion(
-    id
-) {
+function abrirEdicion(id) {
 
     const doc =
         documents.find(
@@ -2583,8 +2995,7 @@ function abrirEdicion(
     }
 
 
-    editingDocument =
-        doc;
+    editingDocument = doc;
 
 
     document
@@ -2616,19 +3027,17 @@ function abrirEdicion(
             "editCategory"
         )
         .value =
-        doc.categoria || "Otros";
+        doc.categoria ||
+        "Otros";
 
 
-    const modal =
-        bootstrap.Modal
-            .getOrCreateInstance(
-                document.getElementById(
-                    "editModal"
-                )
-            );
-
-
-    modal.show();
+    bootstrap.Modal
+        .getOrCreateInstance(
+            document.getElementById(
+                "editModal"
+            )
+        )
+        .show();
 
 }
 
@@ -2637,14 +3046,12 @@ function abrirEdicion(
    GUARDAR EDICIÓN
 ===================================================== */
 
-function guardarEdicion() {
+async function guardarEdicion() {
 
     const id =
-        document
-            .getElementById(
-                "editId"
-            )
-            .value;
+        document.getElementById(
+            "editId"
+        ).value;
 
 
     const nombre =
@@ -2666,11 +3073,9 @@ function guardarEdicion() {
 
 
     const categoria =
-        document
-            .getElementById(
-                "editCategory"
-            )
-            .value;
+        document.getElementById(
+            "editCategory"
+        ).value;
 
 
     if (!nombre) {
@@ -2686,51 +3091,15 @@ function guardarEdicion() {
     }
 
 
-    document
-        .getElementById(
-            "actionField"
-        )
-        .value =
-        "editar";
-
-
-    document
-        .getElementById(
-            "actionId"
-        )
-        .value =
-        id;
-
-
-    document
-        .getElementById(
-            "actionName"
-        )
-        .value =
-        nombre;
-
-
-    document
-        .getElementById(
-            "actionDescription"
-        )
-        .value =
-        descripcion;
-
-
-    document
-        .getElementById(
-            "actionCategory"
-        )
-        .value =
-        categoria;
-
-
-    document
-        .getElementById(
-            "actionForm"
-        )
-        .submit();
+    await enviarAccion(
+        "editar",
+        {
+            id: id,
+            nombre: nombre,
+            descripcion: descripcion,
+            categoria: categoria
+        }
+    );
 
 
     bootstrap.Modal
@@ -2753,33 +3122,62 @@ function cambiarEstado(
     actualmenteBloqueado
 ) {
 
-    const doc = documents.find(function(item) {
-        return String(item.id) === String(id);
-    });
+    const doc =
+        documents.find(
+            function(item) {
+
+                return String(
+                    item.id
+                ) ===
+                String(id);
+
+            }
+        );
+
 
     if (!doc) {
+
         mostrarToast(
             "Error",
             "No se encontró el documento seleccionado.",
             true
         );
+
         return;
+
     }
 
-    accionPendiente = actualmenteBloqueado
-        ? "desbloquear"
-        : "bloquear";
 
-    idAccionPendiente = id;
-    nombreAccionPendiente = doc.nombre || doc.archivo || "Documento";
+    accionPendiente =
+        actualmenteBloqueado
+            ? "desbloquear"
+            : "bloquear";
 
-    prepararModalConfirmacion(accionPendiente, nombreAccionPendiente);
+
+    idAccionPendiente =
+        id;
+
+
+    nombreAccionPendiente =
+        doc.nombre ||
+        doc.archivo ||
+        "Documento";
+
+
+    prepararModalConfirmacion(
+        accionPendiente,
+        nombreAccionPendiente
+    );
+
 
     bootstrap.Modal
         .getOrCreateInstance(
-            document.getElementById("confirmActionModal")
+            document.getElementById(
+                "confirmActionModal"
+            )
         )
         .show();
+
 }
 
 
@@ -2787,153 +3185,393 @@ function cambiarEstado(
    ELIMINAR
 ===================================================== */
 
-function eliminarDocumento(
-    id
-) {
+function eliminarDocumento(id) {
 
-    const doc = documents.find(function(item) {
-        return String(item.id) === String(id);
-    });
+    const doc =
+        documents.find(
+            function(item) {
+
+                return String(
+                    item.id
+                ) ===
+                String(id);
+
+            }
+        );
+
 
     if (!doc) {
+
         mostrarToast(
             "Error",
             "No se encontró el documento seleccionado.",
             true
         );
+
         return;
+
     }
 
-    accionPendiente = "eliminar";
-    idAccionPendiente = id;
-    nombreAccionPendiente = doc.nombre || doc.archivo || "Documento";
+
+    accionPendiente =
+        "eliminar";
+
+
+    idAccionPendiente =
+        id;
+
+
+    nombreAccionPendiente =
+        doc.nombre ||
+        doc.archivo ||
+        "Documento";
+
 
     prepararModalConfirmacion(
-        accionPendiente,
+        "eliminar",
         nombreAccionPendiente
     );
 
+
     bootstrap.Modal
         .getOrCreateInstance(
-            document.getElementById("confirmActionModal")
+            document.getElementById(
+                "confirmActionModal"
+            )
         )
         .show();
+
 }
 
 
 /* =====================================================
-   MODAL DE CONFIRMACIÓN
+   MODAL CONFIRMACIÓN
 ===================================================== */
 
-let accionPendiente = null;
-let idAccionPendiente = null;
-let nombreAccionPendiente = "";
+function prepararModalConfirmacion(
+    accion,
+    nombre
+) {
 
-function prepararModalConfirmacion(accion, nombre) {
+    const icon =
+        document.getElementById(
+            "confirmIcon"
+        );
 
-    const icon = document.getElementById("confirmIcon");
-    const title = document.getElementById("confirmTitle");
-    const description = document.getElementById("confirmDescription");
-    const documentName = document.getElementById("confirmDocument");
-    const button = document.getElementById("confirmActionButton");
 
-    icon.className = "confirm-icon";
-    button.className = "btn";
+    const title =
+        document.getElementById(
+            "confirmTitle"
+        );
 
-    documentName.textContent = nombre || "Documento seleccionado";
 
-    if (accion === "eliminar") {
+    const description =
+        document.getElementById(
+            "confirmDescription"
+        );
 
-        icon.classList.add("danger");
-        icon.innerHTML = '<i class="bi bi-trash3-fill"></i>';
 
-        title.textContent = "¿Eliminar documento?";
+    const documentName =
+        document.getElementById(
+            "confirmDocument"
+        );
+
+
+    const button =
+        document.getElementById(
+            "confirmActionButton"
+        );
+
+
+    icon.className =
+        "confirm-icon";
+
+
+    button.className =
+        "btn";
+
+
+    documentName.textContent =
+        nombre ||
+        "Documento seleccionado";
+
+
+    if (
+        accion ===
+        "eliminar"
+    ) {
+
+        icon.classList.add(
+            "danger"
+        );
+
+
+        icon.innerHTML =
+            '<i class="bi bi-trash3-fill"></i>';
+
+
+        title.textContent =
+            "¿Eliminar documento?";
+
 
         description.textContent =
             "El documento será enviado a la papelera de Google Drive. Esta acción afectará su disponibilidad en el portal.";
 
-        button.classList.add("btn-confirm-danger");
+
+        button.classList.add(
+            "btn-confirm-danger"
+        );
+
+
         button.innerHTML =
             '<i class="bi bi-trash3-fill me-1"></i>Sí, eliminar';
 
+
         return;
+
     }
 
-    if (accion === "desbloquear") {
 
-        icon.classList.add("success");
-        icon.innerHTML = '<i class="bi bi-unlock-fill"></i>';
+    if (
+        accion ===
+        "desbloquear"
+    ) {
 
-        title.textContent = "¿Desbloquear documento?";
+        icon.classList.add(
+            "success"
+        );
+
+
+        icon.innerHTML =
+            '<i class="bi bi-unlock-fill"></i>';
+
+
+        title.textContent =
+            "¿Desbloquear documento?";
+
 
         description.textContent =
             "El documento volverá a estar disponible públicamente en el portal de documentos.";
 
-        button.classList.add("btn-success");
+
+        button.classList.add(
+            "btn-success"
+        );
+
+
         button.innerHTML =
             '<i class="bi bi-unlock-fill me-1"></i>Sí, desbloquear';
 
+
         return;
+
     }
 
-    icon.classList.add("warning");
-    icon.innerHTML = '<i class="bi bi-lock-fill"></i>';
 
-    title.textContent = "¿Bloquear documento?";
+    icon.classList.add(
+        "warning"
+    );
+
+
+    icon.innerHTML =
+        '<i class="bi bi-lock-fill"></i>';
+
+
+    title.textContent =
+        "¿Bloquear documento?";
+
 
     description.textContent =
         "El documento dejará de estar disponible públicamente hasta que sea desbloqueado.";
 
-    button.classList.add("btn-confirm-warning");
+
+    button.classList.add(
+        "btn-confirm-warning"
+    );
+
+
     button.innerHTML =
         '<i class="bi bi-lock-fill me-1"></i>Sí, bloquear';
+
 }
 
 
-function ejecutarAccionConfirmada() {
+/* =====================================================
+   EJECUTAR ACCIÓN
+===================================================== */
 
-    if (!accionPendiente || !idAccionPendiente) {
+async function ejecutarAccionConfirmada() {
+
+    if (
+        !accionPendiente ||
+        !idAccionPendiente
+    ) {
+
         return;
+
     }
 
-    const accion = accionPendiente;
-    const id = idAccionPendiente;
-    const nombre = nombreAccionPendiente;
 
-    const button = document.getElementById("confirmActionButton");
-    const modalElement = document.getElementById("confirmActionModal");
+    const accion =
+        accionPendiente;
 
-    button.disabled = true;
+
+    const id =
+        idAccionPendiente;
+
+
+    const button =
+        document.getElementById(
+            "confirmActionButton"
+        );
+
+
+    button.disabled =
+        true;
+
+
     button.innerHTML =
         '<span class="spinner-border spinner-border-sm me-2"></span>Procesando...';
 
-    document.getElementById("actionField").value = accion;
-    document.getElementById("actionId").value = id;
 
-    document.getElementById("actionForm").submit();
-
-    bootstrap.Modal
-        .getOrCreateInstance(modalElement)
-        .hide();
-
-    mostrarToast(
-        "Procesando",
-        accion === "eliminar"
-            ? "Enviando el documento a la papelera..."
-            : accion === "bloquear"
-                ? "Bloqueando el documento..."
-                : "Desbloqueando el documento...",
-        false
+    await enviarAccion(
+        accion,
+        {
+            id: id
+        }
     );
 
-    setTimeout(function() {
-        button.disabled = false;
-        prepararModalConfirmacion(accion, nombre);
-        accionPendiente = null;
-        idAccionPendiente = null;
-        nombreAccionPendiente = "";
-        cargarDocumentos();
-    }, 1200);
+
+    bootstrap.Modal
+        .getInstance(
+            document.getElementById(
+                "confirmActionModal"
+            )
+        )
+        .hide();
+
+
+    button.disabled =
+        false;
+
+
+    prepararModalConfirmacion(
+        "bloquear",
+        ""
+    );
+
+
+    accionPendiente =
+        null;
+
+
+    idAccionPendiente =
+        null;
+
+
+    nombreAccionPendiente =
+        "";
+
+
+    await esperar(1000);
+
+
+    cargarDocumentos();
+
+}
+
+
+/* =====================================================
+   ENVIAR ACCIÓN
+===================================================== */
+
+async function enviarAccion(
+    accion,
+    datos
+) {
+
+    try {
+
+        const formData =
+            new URLSearchParams();
+
+
+        formData.append(
+            "action",
+            accion
+        );
+
+
+        formData.append(
+            "usuario",
+            "Administrador"
+        );
+
+
+        Object.keys(
+            datos
+        ).forEach(
+            function(key) {
+
+                formData.append(
+                    key,
+                    datos[key] ??
+                    ""
+                );
+
+            }
+        );
+
+
+        mostrarToast(
+            "Procesando",
+            "La operación está siendo enviada al sistema.",
+            false
+        );
+
+
+        await fetch(
+            API_URL,
+            {
+                method: "POST",
+
+                mode: "no-cors",
+
+                headers: {
+                    "Content-Type":
+                        "application/x-www-form-urlencoded;charset=UTF-8"
+                },
+
+                body:
+                    formData.toString()
+            }
+        );
+
+
+        mostrarToast(
+            "Operación enviada",
+            "La información fue enviada correctamente.",
+            false
+        );
+
+
+    }
+
+    catch(error) {
+
+        console.error(
+            error
+        );
+
+
+        mostrarToast(
+            "Error",
+            "No fue posible enviar la operación.",
+            true
+        );
+
+    }
+
 }
 
 
@@ -3064,19 +3702,23 @@ function mostrarToast(
     error
 ) {
 
-    document
-        .getElementById(
+    const titleElement =
+        document.getElementById(
             "toastTitle"
-        )
-        .textContent =
+        );
+
+
+    const messageElement =
+        document.getElementById(
+            "toastMessage"
+        );
+
+
+    titleElement.textContent =
         title;
 
 
-    document
-        .getElementById(
-            "toastMessage"
-        )
-        .textContent =
+    messageElement.textContent =
         message;
 
 
@@ -3170,22 +3812,27 @@ function escapeHtml(
     return String(
         value ?? ""
     )
+
     .replace(
         /&/g,
         "&amp;"
     )
+
     .replace(
         /</g,
         "&lt;"
     )
+
     .replace(
         />/g,
         "&gt;"
     )
+
     .replace(
         /"/g,
         "&quot;"
     )
+
     .replace(
         /'/g,
         "&#039;"
@@ -3201,6 +3848,7 @@ function escapeAttribute(
     return String(
         value ?? ""
     )
+
     .replace(
         /"/g,
         "&quot;"
@@ -3216,18 +3864,22 @@ function escapeJs(
     return String(
         value ?? ""
     )
+
     .replace(
         /\\/g,
         "\\\\"
     )
+
     .replace(
         /'/g,
         "\\'"
     )
+
     .replace(
         /\n/g,
         "\\n"
     )
+
     .replace(
         /\r/g,
         "\\r"

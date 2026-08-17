@@ -3,890 +3,497 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Administración · Certificados</title>
+<title>Base de Datos de Afiliados | JAC Vereda Santa Bárbara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
     --green:#0f5b35;
-    --green-dark:#0a4026;
+    --green2:#1f7a45;
+    --green-soft:#eaf5ee;
     --blue:#0d2c54;
-    --ink:#17231c;
-    --muted:#68756e;
-    --bg:#f4f7f5;
-    --white:#ffffff;
-    --border:#dfe7e2;
-    --warning:#b7791f;
-    --danger:#b83232;
-    --success:#137333;
-    --shadow:0 12px 35px rgba(20,40,30,.08);
+    --gold:#e3ad20;
+    --ink:#15221b;
+    --muted:#66756c;
+    --bg:#f5f8f6;
+    --white:#fff;
+    --border:#dce7df;
+    --red:#b42318;
+    --red-soft:#fff1f0;
+    --shadow:0 15px 40px rgba(13,44,84,.08);
 }
-*{box-sizing:border-box}
-body{
-    margin:0;
-    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-    background:var(--bg);
-    color:var(--ink);
-}
-button,input,select,textarea{font:inherit}
-.container{width:min(1180px,calc(100% - 36px));margin:auto}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Inter",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+button,input,select{font-family:inherit}
+button{cursor:pointer}
+.container{width:min(1450px,96%);margin:auto}
 
-.topbar{background:#081f38;color:#dce7ef;font-size:12px}
-.topbar-content{
-    min-height:38px;display:flex;justify-content:space-between;
-    align-items:center;gap:20px
+/* ENCABEZADO DE LA PÁGINA */
+.page-top{
+    background:#fff;
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:50;
+    backdrop-filter:blur(12px);
 }
-header{
-    position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.97);
-    backdrop-filter:blur(14px);border-bottom:1px solid var(--border)
-}
-.navbar{
-    min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:25px
+.page-top-inner{
+    min-height:82px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
 }
 .brand{
-    display:flex;align-items:center;gap:12px;color:var(--green);
-    font-size:10.5px;font-weight:800;line-height:1.2;text-decoration:none
+    display:flex;
+    align-items:center;
+    gap:13px;
+    color:var(--green);
 }
-.brand img{width:55px;height:55px;object-fit:contain}
-.brand small{display:block;color:var(--muted);font-size:9px;font-weight:600;margin-top:3px}
-.navigation{
-    display:flex;align-items:center;gap:12px;font-size:12px;font-weight:700;color:#34443b
-}
-.navigation a{text-decoration:none;position:relative;padding:8px 0;transition:.25s ease}
-.navigation a::after{
-    content:"";position:absolute;left:0;bottom:1px;width:100%;height:2px;
-    background:var(--green);border-radius:3px;transform:scaleX(0);transition:.25s ease
-}
-.navigation a:hover,.navigation a.active{color:var(--green)}
-.navigation a:hover::after,.navigation a.active::after{transform:scaleX(1)}
-.menu-button{
-    display:none;border:0;background:var(--green);color:#fff;border-radius:10px;
-    padding:10px 13px;cursor:pointer;font-size:18px
-}
-
-main{padding:55px 0 70px}
-.page-header{margin-bottom:28px}
-.eyebrow{
-    color:var(--green);text-transform:uppercase;letter-spacing:1.5px;
-    font-weight:800;font-size:11px;margin-bottom:8px
-}
-.page-header h1{margin:0;color:var(--blue);font-size:34px;line-height:1.15}
-.page-header p{max-width:760px;color:var(--muted);line-height:1.7;margin:12px 0 0}
-
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:25px}
-.stat{
-    background:white;border:1px solid var(--border);border-radius:16px;
-    padding:20px;box-shadow:var(--shadow)
-}
-.stat span{display:block;color:var(--muted);font-size:12px;font-weight:700;margin-bottom:8px}
-.stat strong{display:block;color:var(--blue);font-size:28px}
-
-.panel{
-    background:white;border:1px solid var(--border);border-radius:18px;
-    overflow:hidden;box-shadow:var(--shadow)
-}
-.panel-header{
-    padding:22px;border-bottom:1px solid var(--border);display:flex;
-    justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap
-}
-.panel-title h2{margin:0;font-size:19px;color:var(--blue)}
-.panel-title p{margin:6px 0 0;color:var(--muted);font-size:12px}
-.controls{display:flex;gap:10px;flex-wrap:wrap}
-.search,.filter{
-    border:1px solid var(--border);border-radius:10px;padding:10px 12px;
-    background:white;outline:none
-}
-.search{min-width:260px}
-.search:focus,.filter:focus{
-    border-color:var(--green);box-shadow:0 0 0 3px rgba(15,91,53,.08)
-}
-.table-wrap{width:100%;overflow-x:auto}
-table{width:100%;border-collapse:collapse;min-width:1080px}
-thead{background:#f7faf8}
-th{
-    text-align:left;padding:14px 16px;font-size:11px;text-transform:uppercase;
-    letter-spacing:.6px;color:#647169;border-bottom:1px solid var(--border)
-}
-td{padding:15px 16px;font-size:13px;border-bottom:1px solid #edf1ee;vertical-align:middle}
-tbody tr:hover{background:#fafcfb}
-
-.badge{
-    display:inline-flex;align-items:center;justify-content:center;border-radius:999px;
-    padding:6px 10px;font-size:10px;font-weight:800;white-space:nowrap
-}
-.badge-pendiente{background:#fff6df;color:#9a6700}
-.badge-aprobado{background:#e8f5ec;color:#137333}
-.badge-rechazado{background:#fdecec;color:#b83232}
-.badge-enviado{background:#e9f0ff;color:#2457a6}
-.badge-default{background:#eef2f0;color:#53615a}
-
-.actions{display:flex;gap:7px;flex-wrap:wrap}
-.btn{
-    border:0;border-radius:9px;padding:8px 11px;font-size:11px;
-    font-weight:800;cursor:pointer;transition:.2s ease
-}
-.btn:hover{transform:translateY(-1px)}
-.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
-.btn-view{background:#edf3f8;color:#234866}
-.btn-approve{background:#e7f4eb;color:#137333}
-.btn-reject{background:#fdecec;color:#b83232}
-.btn-generate{background:var(--green);color:white}
-.btn-upload{background:#fff4df;color:#8b5c00}
-.btn-letter{background:#e8eef9;color:#244d80}
-.btn-refresh{background:var(--blue);color:white}
-.btn-cancel{background:#eef2f0;color:#4c5a52}
-.btn-confirm{background:var(--green);color:#fff}
-.btn-danger{background:var(--danger);color:#fff}
-
-.message{text-align:center;padding:55px 20px;color:var(--muted);line-height:1.7}
-.message strong{display:block;color:var(--blue);font-size:16px;margin-bottom:8px}
-.loading-spinner{
-    width:30px;height:30px;border:3px solid #dfe7e2;border-top-color:var(--green);
-    border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 15px
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-.modal-overlay{
-    position:fixed;inset:0;background:rgba(8,31,56,.58);
-    display:none;align-items:center;justify-content:center;
-    padding:20px;z-index:9999;backdrop-filter:blur(4px)
-}
-.modal{
-    width:min(760px,100%);max-height:92vh;overflow:auto;background:white;
-    border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.2);
-    animation:modalIn .2s ease
-}
-@keyframes modalIn{
-    from{opacity:0;transform:translateY(12px) scale(.98)}
-    to{opacity:1;transform:translateY(0) scale(1)}
-}
-.modal-small{width:min(460px,100%)}
-.modal-header{
-    padding:20px 22px;border-bottom:1px solid var(--border);display:flex;
-    justify-content:space-between;align-items:center;gap:15px
-}
-.modal-header h3{margin:0;color:var(--blue)}
-.close{
-    border:0;background:#f0f3f1;width:34px;height:34px;border-radius:50%;
-    cursor:pointer;font-size:18px
-}
-.modal-body{padding:22px}
-.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.detail{
-    background:#f7faf8;border:1px solid var(--border);border-radius:12px;padding:13px
-}
-.detail label{
-    display:block;color:var(--muted);font-size:10px;text-transform:uppercase;
-    font-weight:800;margin-bottom:4px
-}
-.detail strong{color:var(--ink);font-size:13px;font-weight:600;word-break:break-word}
-.modal-actions{
-    margin-top:22px;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap
-}
-.confirm-icon{
-    width:58px;height:58px;border-radius:50%;display:flex;align-items:center;
-    justify-content:center;margin:0 auto 15px;font-size:27px;font-weight:800
-}
-.confirm-icon.success{background:#e8f5ec;color:var(--success)}
-.confirm-icon.warning{background:#fff5df;color:var(--warning)}
-.confirm-icon.danger{background:#fdecec;color:var(--danger)}
-.confirm-icon.info{background:#e9f0ff;color:#2457a6}
-.confirm-content{text-align:center}
-.confirm-content h3{margin:0 0 8px;color:var(--blue)}
-.confirm-content p{margin:0;color:var(--muted);line-height:1.6;font-size:13px}
-.confirm-content .modal-actions{justify-content:center}
-.modal-input{
-    width:100%;margin-top:15px;border:1px solid var(--border);border-radius:10px;
-    padding:12px;outline:none;resize:vertical;min-height:100px
-}
-.modal-input:focus{
-    border-color:var(--green);box-shadow:0 0 0 3px rgba(15,91,53,.08)
-}
-
-.upload-box{
-    margin-top:20px;padding:18px;border:1px dashed #b9c9bf;border-radius:14px;
-    background:#fbfdfc
-}
-.upload-box h4{margin:0 0 7px;color:var(--blue);font-size:14px}
-.upload-box p{margin:0 0 14px;color:var(--muted);font-size:12px;line-height:1.6}
-.file-input{
-    width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;
-    background:white
-}
-.file-meta{font-size:11px;color:var(--muted);margin-top:8px}
-.progress{
-    height:7px;background:#edf1ee;border-radius:99px;overflow:hidden;margin-top:12px;display:none
-}
-.progress-bar{height:100%;width:0;background:var(--green);transition:width .2s}
-.notice{
-    padding:12px 14px;border-radius:10px;margin-top:12px;font-size:12px;line-height:1.5
-}
-.notice-info{background:#eef5ff;color:#28527f}
-.notice-success{background:#eaf7ee;color:#176b37}
-.notice-error{background:#fdecec;color:#a52e2e}
-
-footer{background:#081f38;color:#b8c5d3;padding:30px 0}
-.footer-content{
-    display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12px
-}
-
-@media(max-width:900px){
-    .menu-button{display:block}
-    .navigation{
-        display:none;position:absolute;top:78px;left:0;right:0;padding:16px 6%;
-        background:#fff;border-bottom:1px solid var(--border);
-        box-shadow:0 15px 30px rgba(0,0,0,.06);flex-direction:column;
-        align-items:stretch;gap:2px
-    }
-    .navigation.open{display:flex}
-    .stats{grid-template-columns:1fr 1fr}
-    .topbar-content{justify-content:center}
-    .topbar-content span:last-child{display:none}
-}
-@media(max-width:560px){
-    .container{width:min(100% - 24px,1180px)}
-    main{padding:35px 0 55px}
-    .stats{grid-template-columns:1fr}
-    .page-header h1{font-size:28px}
-    .search{min-width:100%}
-    .detail-grid{grid-template-columns:1fr}
-    .brand{font-size:9px}
-    .brand img{width:48px;height:48px}
-}
-
-
-/* =========================================================
-   ACCESO ADMINISTRATIVO — AÑADIDO SIN MODIFICAR EL DISEÑO
-   DEL PANEL ORIGINAL
-========================================================= */
-.auth-screen{
-    position:fixed;
-    inset:0;
-    z-index:99999;
+.brand-logo{
+    width:64px;
+    height:64px;
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:20px;
-    background:rgba(8,31,56,.96);
+    flex:0 0 auto;
 }
-.auth-card{
-    width:min(420px,100%);
-    background:#fff;
-    border-radius:18px;
-    padding:30px;
-    box-shadow:0 20px 60px rgba(0,0,0,.30);
-    border:1px solid rgba(255,255,255,.25);
-}
-.auth-logo{
-    display:block;
-    width:68px;
-    height:68px;
+.brand-logo img{
+    width:64px;
+    height:64px;
     object-fit:contain;
-    margin:0 auto 12px;
-}
-.auth-card h2{
-    margin:0;
-    text-align:center;
-    color:var(--blue);
-    font-size:21px;
-}
-.auth-card p{
-    margin:7px 0 20px;
-    text-align:center;
-    color:var(--muted);
-    font-size:12px;
-}
-.auth-alert{
-    display:flex;
-    gap:9px;
-    align-items:center;
-    background:#eef5ff;
-    color:#28527f;
-    border-radius:10px;
-    padding:10px 12px;
-    margin-bottom:18px;
-    font-size:11px;
-    font-weight:700;
-}
-.auth-group{margin-bottom:14px}
-.auth-group label{
     display:block;
-    margin-bottom:6px;
+}
+.brand-text strong{
+    display:block;
+    font-family:"Montserrat",sans-serif;
     color:var(--blue);
-    font-size:11px;
-    font-weight:800;
+    font-size:18px;
 }
-.auth-group input{
-    width:100%;
+.brand-text span{
+    display:block;color:var(--muted);
+    font-size:11px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.06em;
+}
+.back-btn{
     border:1px solid var(--border);
+    background:#eef3f8;
+    color:var(--blue);
     border-radius:10px;
-    padding:11px 12px;
-    outline:none;
-    background:#fff;
-}
-.auth-group input:focus{
-    border-color:var(--green);
-    box-shadow:0 0 0 3px rgba(15,91,53,.08);
-}
-.auth-submit{
-    width:100%;
-    border:0;
-    border-radius:10px;
-    padding:12px 15px;
-    background:var(--green);
-    color:#fff;
-    font-weight:800;
-    cursor:pointer;
-}
-.auth-submit:disabled{opacity:.6;cursor:not-allowed}
-.auth-error{
-    display:none;
-    margin-top:12px;
-    padding:10px 12px;
-    border-radius:9px;
-    background:#fdecec;
-    color:#a52e2e;
-    font-size:11px;
-    line-height:1.45;
-}
-.auth-foot{
-    margin-top:17px;
-    text-align:center;
-    color:#7b8780;
-    font-size:10px;
-}
-.auth-session{
-    display:none;
-    align-items:center;
-    gap:8px;
-}
-.auth-session-user{
-    color:#fff;
-    font-size:11px;
+    padding:10px 15px;
     font-weight:800;
 }
-.btn-logout{
-    background:#eef2f0!important;
-    color:#34443b!important;
+.back-btn:hover{background:#e4ebf2}
+
+/* CONTENIDO */
+main{padding:38px 0 55px}
+.eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    color:var(--green);font-weight:800;
+    text-transform:uppercase;letter-spacing:.08em;font-size:12px;
+}
+.eyebrow::before{
+    content:"";width:25px;height:3px;
+    background:var(--gold);border-radius:5px;
+}
+.page-header{margin-bottom:24px}
+.page-header h1{
+    font-family:"Montserrat",sans-serif;
+    color:var(--blue);
+    font-size:clamp(30px,4vw,46px);
+    margin:10px 0 7px;
+}
+.page-header p{color:var(--muted);max-width:900px;font-size:14px}
+
+/* ESTADÍSTICAS */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:13px;
+    margin-bottom:20px;
+}
+.stat{
+    background:#fff;border:1px solid var(--border);
+    border-radius:16px;padding:17px 19px;
+}
+.stat span{display:block;color:var(--muted);font-size:11px;font-weight:700;margin-bottom:5px}
+.stat strong{font-family:"Montserrat",sans-serif;color:var(--blue);font-size:26px}
+
+/* PANEL */
+.panel{
+    background:#fff;border:1px solid var(--border);
+    border-radius:21px;box-shadow:var(--shadow);overflow:hidden;
+}
+.panel-header{
+    padding:22px 24px;
+    border-bottom:1px solid var(--border);
+}
+.panel-title{
+    display:flex;align-items:flex-end;justify-content:space-between;
+    gap:15px;flex-wrap:wrap;margin-bottom:17px;
+}
+.panel-title h2{
+    font-family:"Montserrat",sans-serif;color:var(--blue);font-size:21px;
+}
+.panel-title p{color:var(--muted);font-size:12px;margin-top:3px}
+.btn{
+    border:0;border-radius:10px;padding:11px 15px;
+    font-weight:800;transition:.2s ease;white-space:nowrap;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--green);color:#fff}
+.btn-primary:hover{background:var(--green2)}
+.btn-light{background:#eef3f8;color:var(--blue)}
+.btn-danger{background:var(--red-soft);color:var(--red)}
+
+.controls{
+    display:grid;
+    grid-template-columns:minmax(260px,1.6fr) repeat(2,minmax(160px,.65fr)) auto;
+    gap:9px;
+}
+.control{
+    width:100%;border:1px solid var(--border);background:#fff;
+    border-radius:10px;padding:11px 13px;outline:none;font-size:13px;
+}
+.control:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(15,91,53,.08)}
+
+/* TABLA */
+.table-wrapper{width:100%;overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:1250px}
+thead{background:#f3f7f4}
+th{
+    text-align:left;color:var(--blue);font-size:10px;
+    text-transform:uppercase;letter-spacing:.04em;
+    padding:14px 13px;border-bottom:1px solid var(--border);
+    white-space:nowrap;
+}
+td{padding:13px;border-bottom:1px solid #edf2ee;font-size:12px;vertical-align:middle}
+tbody tr:hover{background:#fafcfb}
+.member-id{font-weight:800;color:var(--green);white-space:nowrap}
+.member-name{font-weight:800;color:var(--ink)}
+.muted{color:var(--muted)}
+.status{
+    display:inline-flex;align-items:center;gap:6px;
+    border-radius:30px;padding:5px 9px;
+    font-size:10px;font-weight:800;white-space:nowrap;
+}
+.status::before{content:"";width:7px;height:7px;border-radius:50%}
+.status-active{background:var(--green-soft);color:var(--green)}
+.status-active::before{background:var(--green)}
+.status-inactive{background:#eef1ef;color:#59645e}
+.status-inactive::before{background:#69736d}
+.actions{display:flex;gap:6px;flex-wrap:wrap}
+.action{
+    border:0;border-radius:8px;padding:7px 9px;
+    font-size:10px;font-weight:800;
+}
+.action-edit{background:#eef3f8;color:var(--blue)}
+.action-cert{background:var(--green-soft);color:var(--green)}
+.action-off{background:var(--red-soft);color:var(--red)}
+
+/* PAGINACIÓN */
+.pagination{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:15px;padding:16px 22px;
+}
+.page-info{color:var(--muted);font-size:12px}
+.page-buttons{display:flex;gap:6px}
+.page-btn{
+    min-width:33px;height:33px;border:1px solid var(--border);
+    background:#fff;border-radius:8px;font-weight:700;color:var(--blue)
+}
+.page-btn.active{background:var(--green);color:#fff;border-color:var(--green)}
+
+/* MODAL */
+.modal{
+    position:fixed;inset:0;background:rgba(8,31,56,.58);
+    display:none;align-items:center;justify-content:center;
+    padding:20px;z-index:500;
+}
+.modal.show{display:flex}
+.modal-box{
+    width:min(920px,100%);max-height:92vh;background:#fff;
+    border-radius:18px;box-shadow:0 25px 70px rgba(0,0,0,.2);
+    overflow:hidden;display:flex;flex-direction:column;
+}
+.modal-header{
+    padding:20px 23px;border-bottom:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;gap:15px;
+}
+.modal-header h3{font-family:"Montserrat",sans-serif;color:var(--blue)}
+.close{
+    width:35px;height:35px;border:0;border-radius:50%;
+    background:#f1f4f2;font-size:18px;color:var(--blue)
+}
+.modal-content{padding:22px;overflow:auto}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+.form-field label{
+    display:block;font-size:10px;font-weight:800;
+    text-transform:uppercase;color:var(--muted);margin-bottom:6px
+}
+.form-field input,.form-field select{
+    width:100%;border:1px solid var(--border);border-radius:10px;
+    padding:11px 12px;outline:none;font-size:13px;background:#fff
+}
+.form-field input:focus,.form-field select:focus{
+    border-color:var(--green);box-shadow:0 0 0 3px rgba(15,91,53,.08)
+}
+.full{grid-column:1/-1}
+.modal-actions{
+    margin-top:20px;padding-top:18px;border-top:1px solid var(--border);
+    display:flex;justify-content:flex-end;gap:9px;flex-wrap:wrap
+}
+.note{
+    margin-bottom:17px;padding:12px 14px;border-radius:10px;
+    background:#f7faf8;border:1px solid var(--border);
+    color:var(--muted);font-size:12px
 }
 
+/* TOAST */
+.toast{
+    position:fixed;right:20px;bottom:20px;max-width:380px;
+    background:var(--blue);color:#fff;padding:13px 17px;
+    border-radius:12px;box-shadow:var(--shadow);
+    transform:translateY(120px);opacity:0;transition:.25s;z-index:1000;
+    font-size:13px
+}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.success{background:var(--green)}
+.toast.error{background:var(--red)}
+
+@media(max-width:1000px){
+    .controls{grid-template-columns:1fr 1fr}
+    .controls .search{grid-column:1/-1}
+}
+@media(max-width:760px){
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .form-grid{grid-template-columns:1fr}
+    .full{grid-column:auto}
+}
+@media(max-width:520px){
+    .stats{grid-template-columns:1fr}
+    .controls{grid-template-columns:1fr}
+    .controls .search{grid-column:auto}
+    .page-top-inner{min-height:72px}
+    .brand-logo{width:50px;height:50px}
+    .brand-logo img{width:50px;height:50px}
+    .brand-text strong{font-size:15px}
+    .brand-text span{font-size:9px}
+    .back-btn{padding:9px 11px;font-size:11px}
+    main{padding-top:28px}
+    .pagination{flex-direction:column;align-items:stretch}
+    .page-buttons{justify-content:center}
+}
 </style>
 </head>
 
 <body>
 
-<!-- =========================================================
-     BLOQUEO DE ACCESO: SOLO DIRECTIVOS AUTORIZADOS
-     Este bloque es una capa fija; NO altera el layout ni
-     las proporciones del panel que está debajo.
-========================================================= -->
-<div id="authScreen" class="auth-screen">
-    <div class="auth-card">
-        <img class="auth-logo" src="assets/logo.png" alt="Junta de Acción Comunal Vereda Santa Bárbara">
-        <h2>Acceso administrativo</h2>
-        <p>Panel de gestión de certificados de afiliación</p>
-
-        <div class="auth-alert">
-            <span>🔐</span>
-            <span>Área restringida. Solo directivos autorizados.</span>
-        </div>
-
-        <form id="loginForm" autocomplete="off">
-            <div class="auth-group">
-                <label for="loginUsuario">USUARIO</label>
-                <input id="loginUsuario" type="text" autocomplete="username" required placeholder="Usuario del directivo">
+<div class="page-top">
+    <div class="container page-top-inner">
+        <div class="brand">
+            <div class="brand-logo" aria-label="Junta de Acción Comunal Vereda Santa Bárbara">
+                <img src="assets/logo.png" alt="Logo oficial Junta de Acción Comunal Vereda Santa Bárbara">
             </div>
-            <div class="auth-group">
-                <label for="loginClave">CONTRASEÑA</label>
-                <input id="loginClave" type="password" autocomplete="current-password" required placeholder="Contraseña">
+            <div class="brand-text">
+                <strong>Base de Datos de Afiliados</strong>
+                <span>Junta de Acción Comunal · Vereda Santa Bárbara</span>
             </div>
-            <button id="loginButton" class="auth-submit" type="submit">Ingresar al sistema</button>
-            <div id="loginError" class="auth-error"></div>
-        </form>
-
-        <div class="auth-foot">
-            Junta de Acción Comunal Vereda Santa Bárbara · El Bagre, Antioquia
         </div>
+        <button class="back-btn" type="button" onclick="regresarAlPanel()">← Regresar al panel</button>
     </div>
 </div>
-
-
-<div class="topbar">
-    <div class="container topbar-content">
-        <span>Panel administrativo · Certificados de afiliación</span>
-        <span>JAC Vereda Santa Bárbara · El Bagre</span>
-            <div id="authSession" class="auth-session">
-                <span id="authSessionUser" class="auth-session-user"></span>
-                <button type="button" class="btn btn-logout" onclick="cerrarSesion()">Cerrar sesión</button>
-            </div>
-    </div>
-</div>
-
-<header>
-    <div class="container navbar">
-        <a href="index.html" class="brand">
-            <img src="assets/logo.png" alt="Logo JAC Vereda Santa Bárbara">
-            <div>
-                JUNTA DE ACCIÓN COMUNAL<br>
-                VEREDA SANTA BÁRBARA
-                <small>Plataforma de servicios comunitarios</small>
-            </div>
-        </a>
-
-        <button class="menu-button" id="menuButton" aria-label="Abrir menú" type="button">☰</button>
-
-        <nav class="navigation" id="navigation">
-            <a href="index.html">Inicio</a>
-            <a href="nosotro.html">Nosotros</a>
-            <a href="afiliados.html">Afiliados</a>
-            <a href="certificados.html">Certificados</a>
-            <a href="pqrs.html">PQRS</a>
-            <a href="gestion-pqrs.html">Gestión PQRS</a>
-            <a href="admincertificado.html" class="active">Admin Cert.</a>
-            <a href="politicas.html">Políticas</a>
-        </nav>
-    </div>
-</header>
 
 <main>
 <div class="container">
 
-    <div class="page-header">
-        <div class="eyebrow">Administración</div>
-        <h1>Solicitudes de certificados</h1>
-        <p>
-            Consulta, revisa y gestiona las solicitudes de certificado de afiliación.
-            Desde este panel también puedes adjuntar el certificado oficial aprobado
-            y generar la carta oficial asociada al radicado.
-        </p>
-    </div>
+    <section class="page-header">
+        <span class="eyebrow">Gestión comunitaria</span>
+        <h1>Base de Datos de Afiliados</h1>
+        <p>Administración integral del registro de afiliados de la Junta de Acción Comunal, con consulta, actualización, inactivación y generación de certificados.</p>
+    </section>
 
-    <div class="stats">
-        <div class="stat"><span>Total solicitudes</span><strong id="total">0</strong></div>
-        <div class="stat"><span>Pendientes</span><strong id="pendientes">0</strong></div>
-        <div class="stat"><span>Aprobadas</span><strong id="aprobadas">0</strong></div>
-        <div class="stat"><span>Rechazadas</span><strong id="rechazadas">0</strong></div>
-    </div>
+    <section class="stats">
+        <div class="stat"><span>Total afiliados</span><strong id="totalAfiliados">0</strong></div>
+        <div class="stat"><span>Afiliados activos</span><strong id="activos">0</strong></div>
+        <div class="stat"><span>Afiliados inactivos</span><strong id="inactivos">0</strong></div>
+        <div class="stat"><span>Registros visibles</span><strong id="visibles">0</strong></div>
+    </section>
 
-    <div class="panel">
+    <section class="panel">
         <div class="panel-header">
             <div class="panel-title">
-                <h2>Solicitudes registradas</h2>
-                <p id="lastUpdate">Cargando información...</p>
+                <div>
+                    <h2>Listado general de afiliados</h2>
+                    <p>Consulta y administración de la base de datos institucional.</p>
+                </div>
+                <button class="btn btn-primary" type="button" onclick="abrirNuevoAfiliado()">+ Nuevo afiliado</button>
             </div>
 
             <div class="controls">
-                <input type="search" id="search" class="search"
-                       placeholder="Buscar por documento, nombre o ID...">
-
-                <select id="filter" class="filter">
+                <input class="control search" id="busqueda" type="search" placeholder="Buscar por nombre, documento, teléfono o número de afiliado..." oninput="filtrar()">
+                <select class="control" id="estadoFiltro" onchange="filtrar()">
                     <option value="">Todos los estados</option>
-                    <option value="PENDIENTE">Pendientes</option>
-                    <option value="APROBADO">Aprobadas</option>
-                    <option value="RECHAZADO">Rechazadas</option>
-                    <option value="CERTIFICADO ENVIADO A FIRMA">Enviadas a firma</option>
-                    <option value="CERTIFICADO ADJUNTO">Certificado adjunto</option>
-                    <option value="DOCUMENTACION ENVIADA">Documentación enviada</option>
+                    <option value="Activo">Activos</option>
+                    <option value="Inactivo">Inactivos</option>
                 </select>
-
-                <button class="btn btn-refresh" onclick="cargarSolicitudes()">Actualizar</button>
+                <select class="control" id="generoFiltro" onchange="filtrar()">
+                    <option value="">Todos los géneros</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Otro">Otro</option>
+                </select>
+                <button class="btn btn-light" type="button" onclick="limpiarFiltros()">Limpiar</button>
             </div>
         </div>
 
-        <div class="table-wrap">
+        <div class="table-wrapper">
             <table>
                 <thead>
                     <tr>
-                        <th>ID / Radicado</th>
-                        <th>Afiliado</th>
+                        <th>N.º afiliado</th>
+                        <th>Nombre completo</th>
                         <th>Documento</th>
-                        <th>Correo</th>
-                        <th>Fecha</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                        <th>Fecha afiliación</th>
                         <th>Estado</th>
-                        <th>Documentos</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody id="tablaSolicitudes">
-                    <tr>
-                        <td colspan="8">
-                            <div class="message">
-                                <div class="loading-spinner"></div>
-                                <strong>Cargando solicitudes</strong>
-                                Consultando Google Sheets...
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
+                <tbody id="tablaAfiliados"></tbody>
             </table>
         </div>
-    </div>
+
+        <div id="mensajeTabla" class="note" style="margin:18px;display:none;text-align:center">
+            No hay afiliados que coincidan con la búsqueda.
+        </div>
+
+        <div class="pagination">
+            <div class="page-info" id="pageInfo">Mostrando 0 registros</div>
+            <div class="page-buttons" id="pageButtons"></div>
+        </div>
+    </section>
+
 </div>
 </main>
 
-<!-- MODAL PRINCIPAL -->
-<div id="modalOverlay" class="modal-overlay">
-    <div class="modal">
+<div class="modal" id="modalAfiliado">
+    <div class="modal-box">
         <div class="modal-header">
-            <h3 id="modalTitle">Detalle de solicitud</h3>
-            <button class="close" onclick="cerrarModal()" type="button">×</button>
+            <h3 id="modalTitulo">Nuevo afiliado</h3>
+            <button class="close" type="button" onclick="cerrarModal()">×</button>
         </div>
-        <div id="modalBody" class="modal-body"></div>
-    </div>
-</div>
 
-<!-- MODAL DE CONFIRMACIÓN / MENSAJES -->
-<div id="confirmOverlay" class="modal-overlay">
-    <div class="modal modal-small">
-        <div class="modal-body">
-            <div id="confirmIcon" class="confirm-icon warning">?</div>
+        <div class="modal-content">
+            <div class="note">
+                Este formulario queda preparado para conectarse posteriormente con la base de datos real. En esta primera versión trabajamos únicamente la interfaz.
+            </div>
 
-            <div class="confirm-content">
-                <h3 id="confirmTitle">Confirmar acción</h3>
-                <p id="confirmMessage"></p>
-
-                <textarea
-                    id="confirmInput"
-                    class="modal-input"
-                    style="display:none"
-                    placeholder="Escribe el motivo..."></textarea>
-
-                <div class="modal-actions">
-                    <button
-                        type="button"
-                        id="confirmCancel"
-                        class="btn btn-cancel">
-                        Cancelar
-                    </button>
-
-                    <button
-                        type="button"
-                        id="confirmAccept"
-                        class="btn btn-confirm">
-                        Confirmar
-                    </button>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label>Nombres</label>
+                    <input id="fNombres" type="text" placeholder="Nombres">
                 </div>
+                <div class="form-field">
+                    <label>Apellidos</label>
+                    <input id="fApellidos" type="text" placeholder="Apellidos">
+                </div>
+                <div class="form-field">
+                    <label>Tipo de documento</label>
+                    <select id="fTipoDoc">
+                        <option>Cédula de ciudadanía</option>
+                        <option>Tarjeta de identidad</option>
+                        <option>Cédula de extranjería</option>
+                        <option>Otro</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label>Número de documento</label>
+                    <input id="fDocumento" type="text" placeholder="Número de documento">
+                </div>
+                <div class="form-field">
+                    <label>Fecha de nacimiento</label>
+                    <input id="fNacimiento" type="date">
+                </div>
+                <div class="form-field">
+                    <label>Género</label>
+                    <select id="fGenero">
+                        <option value="">Seleccionar</option>
+                        <option>Femenino</option>
+                        <option>Masculino</option>
+                        <option>Otro</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label>Teléfono</label>
+                    <input id="fTelefono" type="tel" placeholder="Número de contacto">
+                </div>
+                <div class="form-field">
+                    <label>Correo electrónico</label>
+                    <input id="fCorreo" type="email" placeholder="Correo electrónico">
+                </div>
+                <div class="form-field full">
+                    <label>Dirección / lugar de residencia</label>
+                    <input id="fDireccion" type="text" placeholder="Dirección o descripción del lugar de residencia">
+                </div>
+                <div class="form-field">
+                    <label>Fecha de afiliación</label>
+                    <input id="fAfiliacion" type="date">
+                </div>
+                <div class="form-field">
+                    <label>Estado</label>
+                    <select id="fEstado">
+                        <option>Activo</option>
+                        <option>Inactivo</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-light" type="button" onclick="cerrarModal()">Cancelar</button>
+                <button class="btn btn-primary" type="button" onclick="guardarAfiliado()">Guardar afiliado</button>
             </div>
         </div>
     </div>
 </div>
 
-<footer>
-    <div class="container footer-content">
-        <div>© 2026 Junta de Acción Comunal Vereda Santa Bárbara</div>
-        <div>Municipio de El Bagre · Antioquia</div>
-    </div>
-</footer>
+<div class="toast" id="toast"></div>
 
 <script>
+/*
+ * =========================================================
+ * BASE DE DATOS DE AFILIADOS
+ * INTERFAZ INICIAL - SIN CONEXIÓN A BACKEND
+ * =========================================================
+ */
 
-const API_URL =
-    "https://script.google.com/macros/s/AKfycbyLDeZDbv0pnsbl9O6inUTQVgFkoh58HZXcbbURjsaN2cX1V_zKK_A-7V3gMp9cAskT/exec";
+const PANEL_URL = ""; // Coloca aquí la URL del panel cuando se integre.
 
-let solicitudes = [];
-
-/* =========================================================
-   AUTENTICACIÓN DE DIRECTIVOS
-   No cambia ninguna función ni proporción del panel original.
-========================================================= */
-const AUTH_STORAGE_KEY = "JAC_ADMIN_TOKEN";
-const AUTH_USER_KEY = "JAC_ADMIN_USER";
-let JAC_AUTH_TOKEN = sessionStorage.getItem(AUTH_STORAGE_KEY) || "";
-
-const _originalFetch = window.fetch.bind(window);
-window.fetch = function(input, options){
-    const token = JAC_AUTH_TOKEN;
-    options = options ? Object.assign({}, options) : {};
-    const isApi = typeof input === "string" && input.indexOf(API_URL) === 0;
-
-    if(!token || !isApi){
-        return _originalFetch(input, options);
+let afiliados = [
+    {
+        id:"JAC-0001", nombres:"María Elena", apellidos:"Gómez Pérez",
+        documento:"00000000", telefono:"300 000 0000",
+        direccion:"Vereda Santa Bárbara", fechaAfiliacion:"2026-01-15",
+        genero:"Femenino", estado:"Activo"
+    },
+    {
+        id:"JAC-0002", nombres:"Carlos Alberto", apellidos:"Martínez Ruiz",
+        documento:"00000001", telefono:"301 000 0000",
+        direccion:"Vereda Santa Bárbara", fechaAfiliacion:"2026-02-03",
+        genero:"Masculino", estado:"Activo"
     }
-
-    if((options.method || "GET").toUpperCase() === "GET"){
-        const separator = input.indexOf("?") >= 0 ? "&" : "?";
-        input = input + separator + "token=" + encodeURIComponent(token);
-    }else if(options.body && typeof options.body === "string"){
-        try{
-            const body = JSON.parse(options.body);
-            body.token = token;
-            options.body = JSON.stringify(body);
-        }catch(e){
-            // Si el body no es JSON, se conserva sin modificar.
-        }
-    }
-
-    return _originalFetch(input, options);
-};
-
-function mostrarPanelAutenticado(usuario){
-    const screen=document.getElementById("authScreen");
-    const session=document.getElementById("authSession");
-    const user=document.getElementById("authSessionUser");
-
-    if(screen) screen.style.display="none";
-    if(session) session.style.display="flex";
-    if(user) user.textContent="Directivo: "+(usuario || "autorizado");
-    document.body.style.overflow="";
-}
-
-function mostrarLogin(){
-    const screen=document.getElementById("authScreen");
-    const session=document.getElementById("authSession");
-    if(screen) screen.style.display="flex";
-    if(session) session.style.display="none";
-    document.body.style.overflow="hidden";
-}
-
-function mostrarErrorLogin(mensaje){
-    const error=document.getElementById("loginError");
-    if(!error)return;
-    error.textContent=mensaje || "No fue posible iniciar sesión.";
-    error.style.display="block";
-}
-
-async function validarSesionActual(){
-    if(!JAC_AUTH_TOKEN)return false;
-
-    try{
-        const response=await _originalFetch(
-            API_URL+"?action=sesion&token="+encodeURIComponent(JAC_AUTH_TOKEN)+"&t="+Date.now(),
-            {method:"GET",cache:"no-store"}
-        );
-        const data=await response.json();
-
-        if(data && data.ok){
-            mostrarPanelAutenticado(data.usuario || sessionStorage.getItem(AUTH_USER_KEY) || "");
-            return true;
-        }
-    }catch(error){
-        console.error(error);
-    }
-
-    sessionStorage.removeItem(AUTH_STORAGE_KEY);
-    sessionStorage.removeItem(AUTH_USER_KEY);
-    JAC_AUTH_TOKEN="";
-    return false;
-}
-
-async function iniciarSesion(){
-    const usuario=document.getElementById("loginUsuario").value.trim();
-    const clave=document.getElementById("loginClave").value;
-    const button=document.getElementById("loginButton");
-
-    const error=document.getElementById("loginError");
-    if(error)error.style.display="none";
-
-    if(!usuario || !clave){
-        mostrarErrorLogin("Ingresa usuario y contraseña.");
-        return;
-    }
-
-    button.disabled=true;
-    button.textContent="Verificando...";
-
-    try{
-        const response=await _originalFetch(API_URL,{
-            method:"POST",
-            headers:{"Content-Type":"text/plain;charset=utf-8"},
-            body:JSON.stringify({
-                action:"LOGIN",
-                usuario:usuario,
-                clave:clave
-            })
-        });
-
-        const data=await response.json();
-
-        if(!data.ok || !data.token){
-            throw new Error(data.error || "Credenciales incorrectas.");
-        }
-
-        JAC_AUTH_TOKEN=data.token;
-        sessionStorage.setItem(AUTH_STORAGE_KEY,JAC_AUTH_TOKEN);
-        sessionStorage.setItem(AUTH_USER_KEY,data.usuario || usuario);
-
-        document.getElementById("loginClave").value="";
-        mostrarPanelAutenticado(data.usuario || usuario);
-        cargarSolicitudes();
-
-    }catch(error){
-        mostrarErrorLogin(error.message || "No fue posible iniciar sesión.");
-    }finally{
-        button.disabled=false;
-        button.textContent="Ingresar al sistema";
-    }
-}
-
-function cerrarSesion(){
-    JAC_AUTH_TOKEN="";
-    sessionStorage.removeItem(AUTH_STORAGE_KEY);
-    sessionStorage.removeItem(AUTH_USER_KEY);
-    mostrarLogin();
-    const usuario=document.getElementById("loginUsuario");
-    if(usuario)usuario.value="";
-    const clave=document.getElementById("loginClave");
-    if(clave)clave.value="";
-    const error=document.getElementById("loginError");
-    if(error)error.style.display="none";
-    if(usuario)setTimeout(()=>usuario.focus(),50);
-}
-
-document.getElementById("loginForm").addEventListener("submit",function(event){
-    event.preventDefault();
-    iniciarSesion();
-});
-
-
-/* =========================================================
-   MENÚ
-========================================================= */
-
-const menuButton = document.getElementById("menuButton");
-const navigation = document.getElementById("navigation");
-
-if(menuButton && navigation){
-    menuButton.addEventListener("click",()=>{
-        navigation.classList.toggle("open");
-    });
-
-    navigation.querySelectorAll("a").forEach(link=>{
-        link.addEventListener("click",()=>{
-            navigation.classList.remove("open");
-        });
-    });
-}
-
-/* =========================================================
-   MODALES PROFESIONALES
-========================================================= */
-
-let modalCallback = null;
-
-function abrirMensaje(titulo,mensaje,tipo="info",boton="Aceptar"){
-
-    const overlay=document.getElementById("confirmOverlay");
-    const icon=document.getElementById("confirmIcon");
-
-    document.getElementById("confirmTitle").textContent=titulo;
-    document.getElementById("confirmMessage").innerHTML=escapeHTML(mensaje);
-
-    const input=document.getElementById("confirmInput");
-    input.style.display="none";
-    input.value="";
-
-    icon.className="confirm-icon "+tipo;
-    icon.textContent=
-        tipo==="success" ? "✓" :
-        tipo==="danger" ? "!" :
-        tipo==="warning" ? "?" : "i";
-
-    document.getElementById("confirmCancel").style.display="none";
-
-    const aceptar=document.getElementById("confirmAccept");
-    aceptar.textContent=boton;
-    aceptar.className="btn "+(tipo==="danger"?"btn-danger":"btn-confirm");
-
-    modalCallback=null;
-
-    overlay.style.display="flex";
-}
-
-function confirmarAccion(titulo,mensaje,callback,tipo="warning",textoAceptar="Confirmar"){
-
-    const overlay=document.getElementById("confirmOverlay");
-    const icon=document.getElementById("confirmIcon");
-
-    document.getElementById("confirmTitle").textContent=titulo;
-    document.getElementById("confirmMessage").innerHTML=escapeHTML(mensaje);
-
-    const input=document.getElementById("confirmInput");
-    input.style.display="none";
-    input.value="";
-
-    icon.className="confirm-icon "+tipo;
-    icon.textContent=tipo==="danger"?"!":"?";
-
-    document.getElementById("confirmCancel").style.display="inline-block";
-
-    const aceptar=document.getElementById("confirmAccept");
-    aceptar.textContent=textoAceptar;
-    aceptar.className="btn "+(tipo==="danger"?"btn-danger":"btn-confirm");
-
-    modalCallback=callback;
-
-    overlay.style.display="flex";
-}
-
-function pedirMotivo(titulo,mensaje,callback){
-
-    const overlay=document.getElementById("confirmOverlay");
-    const icon=document.getElementById("confirmIcon");
-    const input=document.getElementById("confirmInput");
-
-    document.getElementById("confirmTitle").textContent=titulo;
-    document.getElementById("confirmMessage").innerHTML=escapeHTML(mensaje);
-
-    icon.className="confirm-icon danger";
-    icon.textContent="!";
-
-    input.style.display="block";
-    input.placeholder="Indica el motivo del rechazo...";
-    input.value="";
-
-    document.getElementById("confirmCancel").style.display="inline-block";
-
-    const aceptar=document.getElementById("confirmAccept");
-    aceptar.textContent="Rechazar solicitud";
-    aceptar.className="btn btn-danger";
-
-    modalCallback=()=>{
-
-        const motivo=input.value.trim();
-
-        if(!motivo){
-            input.focus();
-            return;
-        }
-
-        callback(motivo);
-    };
-
-    overlay.style.display="flex";
-
-    setTimeout(()=>input.focus(),100);
-}
-
-function cerrarConfirmacion(){
-    document.getElementById("confirmOverlay").style.display="none";
-    modalCallback=null;
-}
-
-document.getElementById("confirmAccept").addEventListener("click",()=>{
-    if(typeof modalCallback==="function"){
-        const callback=modalCallback;
-        modalCallback=null;
-        callback();
-    }else{
-        cerrarConfirmacion();
-    }
-});
-
-document.getElementById("confirmCancel").addEventListener("click",()=>{
-    cerrarConfirmacion();
-});
-
-document.getElementById("confirmOverlay").addEventListener("click",function(e){
-    if(e.target===this){
-        cerrarConfirmacion();
-    }
-});
-
-/* =========================================================
-   UTILIDADES
-========================================================= */
-
-function escapeHTML(valor){
-    return String(valor??"")
+];
+
+let filtrados = [];
+let paginaActual = 1;
+const POR_PAGINA = 10;
+let editandoId = null;
+
+function esc(texto){
+    return String(texto ?? "")
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
@@ -894,1130 +501,209 @@ function escapeHTML(valor){
         .replace(/'/g,"&#039;");
 }
 
-function obtener(obj,nombres){
-    for(const nombre of nombres){
-        if(obj[nombre]!==undefined && obj[nombre]!==null){
-            return obj[nombre];
-        }
-    }
-    return "";
-}
+function renderizar(){
+    const tbody = document.getElementById("tablaAfiliados");
+    const inicio = (paginaActual - 1) * POR_PAGINA;
+    const pagina = filtrados.slice(inicio, inicio + POR_PAGINA);
 
-function normalizarSolicitud(item){
-    return {
-        id:obtener(item,["id","ID","Id","radicado","RADICADO"]),
-        tipoDocumento:obtener(item,["tipoDocumento","TIPO_DOCUMENTO","TIPO DOCUMENTO"]),
-        numeroDocumento:obtener(item,["numeroDocumento","NUMERO_DOCUMENTO","NUMERO DOCUMENTO","numeroDoc"]),
-        nombres:obtener(item,["nombres","NOMBRES"]),
-        apellidos:obtener(item,["apellidos","APELLIDOS"]),
-        fechaNacimiento:obtener(item,["fechaNacimiento","FECHA_NACIMIENTO"]),
-        telefono:obtener(item,["telefono","TELEFONO","teléfono"]),
-        correo:obtener(item,["correo","CORREO","email","EMAIL"]),
-        vereda:obtener(item,["vereda","VEREDA"]),
-        direccion:obtener(item,["direccion","DIRECCION","DIRECCIÓN"]),
-        fechaAfiliacion:obtener(item,["fechaAfiliacion","FECHA_AFILIACION","FECHA AFILIACION"]),
-        estado:obtener(item,["estado","ESTADO"]),
-        fechaRegistro:obtener(item,["fechaRegistro","FECHA_REGISTRO","FECHA REGISTRO"]),
-        aprobadoPor:obtener(item,["aprobadoPor","APROBADO_POR","APROBADO POR"]),
-        fechaAprobacion:obtener(item,["fechaAprobacion","FECHA_APROBACION","FECHA APROBACION"]),
-        motivoRechazo:obtener(item,["motivoRechazo","MOTIVO_RECHAZO","MOTIVO RECHAZO"]),
-        pdfUrl:obtener(item,["pdfUrl","PDF_URL","PDF URL"]),
-        fechaEnvio:obtener(item,["fechaEnvio","FECHA_ENVIO","FECHA ENVIO"]),
-        certificadoUrl:obtener(item,["certificadoUrl","CERTIFICADO_URL","CERTIFICADO URL","urlCertificado","URL_CERTIFICADO"]),
-        certificadoNombre:obtener(item,["certificadoNombre","CERTIFICADO_NOMBRE","CERTIFICADO NOMBRE","nombreCertificado"]),
-        fechaCertificado:obtener(item,["fechaCertificado","FECHA_CERTIFICADO","FECHA CERTIFICADO"]),
-        cartaUrl:obtener(item,["cartaUrl","CARTA_URL","CARTA URL","urlCarta","URL_CARTA"]),
-        fechaCarta:obtener(item,["fechaCarta","FECHA_CARTA","FECHA CARTA"]),
-        fechaDocumentacionEnviada:obtener(item,["fechaDocumentacionEnviada","FECHA_DOCUMENTACION_ENVIADA"]),
-        fila:obtener(item,["fila"])
-    };
-}
-
-/* =========================================================
-   CARGAR SOLICITUDES
-========================================================= */
-
-async function cargarSolicitudes(){
-
-    const tbody=document.getElementById("tablaSolicitudes");
-
-    tbody.innerHTML=`
+    tbody.innerHTML = pagina.map(a => `
         <tr>
-            <td colspan="8">
-                <div class="message">
-                    <div class="loading-spinner"></div>
-                    <strong>Cargando solicitudes</strong>
-                    Consultando Google Sheets...
+            <td><span class="member-id">${esc(a.id)}</span></td>
+            <td><span class="member-name">${esc(a.nombres)} ${esc(a.apellidos)}</span></td>
+            <td>${esc(a.documento)}</td>
+            <td>${esc(a.telefono)}</td>
+            <td class="muted">${esc(a.direccion)}</td>
+            <td>${esc(a.fechaAfiliacion)}</td>
+            <td>
+                <span class="status ${a.estado === "Activo" ? "status-active" : "status-inactive"}">
+                    ${esc(a.estado)}
+                </span>
+            </td>
+            <td>
+                <div class="actions">
+                    <button class="action action-edit" onclick="editarAfiliado('${esc(a.id)}')">Modificar</button>
+                    <button class="action action-cert" onclick="crearCertificado('${esc(a.id)}')">Certificado</button>
+                    ${a.estado === "Activo"
+                        ? `<button class="action action-off" onclick="inactivarAfiliado('${esc(a.id)}')">Inactivar</button>`
+                        : `<button class="action action-edit" onclick="activarAfiliado('${esc(a.id)}')">Activar</button>`
+                    }
                 </div>
             </td>
-        </tr>`;
+        </tr>
+    `).join("");
 
-    try{
+    document.getElementById("mensajeTabla").style.display = pagina.length ? "none" : "block";
 
-        const url=API_URL+"?action=listar&t="+Date.now();
+    const total = filtrados.length;
+    const desde = total ? inicio + 1 : 0;
+    const hasta = Math.min(inicio + POR_PAGINA,total);
+    document.getElementById("pageInfo").textContent = `Mostrando ${desde}–${hasta} de ${total} registros`;
 
-        const response=await fetch(url,{
-            method:"GET",
-            cache:"no-store"
-        });
+    renderizarPaginacion();
+    actualizarEstadisticas();
+}
 
-        if(!response.ok) throw new Error("HTTP "+response.status);
+function renderizarPaginacion(){
+    const cont = document.getElementById("pageButtons");
+    const totalPaginas = Math.max(1,Math.ceil(filtrados.length/POR_PAGINA));
+    cont.innerHTML = "";
 
-        const texto=await response.text();
-
-        let data;
-
-        try{
-            data=JSON.parse(texto);
-        }catch(e){
-            throw new Error(
-                "Apps Script no devolvió JSON válido. Respuesta: "+
-                texto.substring(0,300)
-            );
-        }
-
-        if(data.ok===false){
-            throw new Error(data.error||"Apps Script devolvió un error.");
-        }
-
-        if(data&&Array.isArray(data.solicitudes)){
-            solicitudes=data.solicitudes.map(normalizarSolicitud);
-        }else if(Array.isArray(data)){
-            solicitudes=data.map(normalizarSolicitud);
-        }else{
-            solicitudes=[];
-        }
-
-        actualizarEstadisticas();
-        mostrarSolicitudes(solicitudes);
-
-        document.getElementById("lastUpdate").textContent=
-            "Última actualización: "+
-            new Date().toLocaleString("es-CO");
-
-    }catch(error){
-
-        console.error(error);
-
-        tbody.innerHTML=`
-            <tr>
-                <td colspan="8">
-                    <div class="message">
-                        <strong>No fue posible cargar las solicitudes</strong>
-                        ${escapeHTML(error.message)}
-                        <br><br>
-                        <button class="btn btn-refresh" onclick="cargarSolicitudes()">
-                            Intentar nuevamente
-                        </button>
-                    </div>
-                </td>
-            </tr>`;
+    for(let i=1;i<=totalPaginas;i++){
+        const b = document.createElement("button");
+        b.className = "page-btn" + (i === paginaActual ? " active" : "");
+        b.textContent = i;
+        b.onclick = () => { paginaActual=i; renderizar(); };
+        cont.appendChild(b);
     }
 }
 
-/* =========================================================
-   ESTADÍSTICAS
-========================================================= */
-
 function actualizarEstadisticas(){
-
-    document.getElementById("total").textContent=solicitudes.length;
-
-    document.getElementById("pendientes").textContent=
-        solicitudes.filter(s=>String(s.estado).toUpperCase()==="PENDIENTE").length;
-
-    document.getElementById("aprobadas").textContent=
-        solicitudes.filter(s=>String(s.estado).toUpperCase()==="APROBADO").length;
-
-    document.getElementById("rechazadas").textContent=
-        solicitudes.filter(s=>String(s.estado).toUpperCase()==="RECHAZADO").length;
+    document.getElementById("totalAfiliados").textContent = afiliados.length;
+    document.getElementById("activos").textContent = afiliados.filter(a=>a.estado==="Activo").length;
+    document.getElementById("inactivos").textContent = afiliados.filter(a=>a.estado==="Inactivo").length;
+    document.getElementById("visibles").textContent = filtrados.length;
 }
 
-/* =========================================================
-   ESTADO
-========================================================= */
+function filtrar(){
+    const q = document.getElementById("busqueda").value.trim().toLowerCase();
+    const estado = document.getElementById("estadoFiltro").value;
+    const genero = document.getElementById("generoFiltro").value;
 
-function estadoBadge(estado){
+    filtrados = afiliados.filter(a => {
+        const texto = `${a.id} ${a.nombres} ${a.apellidos} ${a.documento} ${a.telefono}`.toLowerCase();
+        return (!q || texto.includes(q))
+            && (!estado || a.estado === estado)
+            && (!genero || a.genero === genero);
+    });
 
-    const valor=String(estado||"SIN ESTADO").toUpperCase();
-
-    let clase="badge-default";
-
-    if(valor==="PENDIENTE") clase="badge-pendiente";
-    else if(valor==="APROBADO") clase="badge-aprobado";
-    else if(valor==="RECHAZADO") clase="badge-rechazado";
-    else if(valor.includes("CERTIFICADO")||valor.includes("DOCUMENTACION"))
-        clase="badge-enviado";
-
-    return `<span class="badge ${clase}">${escapeHTML(valor)}</span>`;
+    paginaActual = 1;
+    renderizar();
 }
 
-/* =========================================================
-   MOSTRAR SOLICITUDES
-========================================================= */
+function limpiarFiltros(){
+    document.getElementById("busqueda").value = "";
+    document.getElementById("estadoFiltro").value = "";
+    document.getElementById("generoFiltro").value = "";
+    filtrar();
+}
 
-function mostrarSolicitudes(lista){
+function abrirNuevoAfiliado(){
+    editandoId = null;
+    document.getElementById("modalTitulo").textContent = "Nuevo afiliado";
+    limpiarFormulario();
+    document.getElementById("fAfiliacion").value = new Date().toISOString().slice(0,10);
+    document.getElementById("modalAfiliado").classList.add("show");
+}
 
-    const tbody=document.getElementById("tablaSolicitudes");
+function editarAfiliado(id){
+    const a = afiliados.find(x=>x.id===id);
+    if(!a) return;
 
-    if(!lista.length){
-        tbody.innerHTML=`
-            <tr>
-                <td colspan="8">
-                    <div class="message">
-                        <strong>No hay solicitudes</strong>
-                        No se encontraron registros en la hoja "Solicitudes".
-                    </div>
-                </td>
-            </tr>`;
+    editandoId = id;
+    document.getElementById("modalTitulo").textContent = "Modificar afiliado";
+    document.getElementById("fNombres").value = a.nombres;
+    document.getElementById("fApellidos").value = a.apellidos;
+    document.getElementById("fDocumento").value = a.documento;
+    document.getElementById("fTelefono").value = a.telefono;
+    document.getElementById("fDireccion").value = a.direccion;
+    document.getElementById("fAfiliacion").value = a.fechaAfiliacion;
+    document.getElementById("fGenero").value = a.genero || "";
+    document.getElementById("fEstado").value = a.estado;
+    document.getElementById("modalAfiliado").classList.add("show");
+}
+
+function limpiarFormulario(){
+    ["fNombres","fApellidos","fDocumento","fTelefono","fCorreo","fDireccion","fNacimiento"].forEach(id=>{
+        document.getElementById(id).value="";
+    });
+    document.getElementById("fGenero").value="";
+    document.getElementById("fEstado").value="Activo";
+}
+
+function guardarAfiliado(){
+    const nombres = document.getElementById("fNombres").value.trim();
+    const apellidos = document.getElementById("fApellidos").value.trim();
+    const documento = document.getElementById("fDocumento").value.trim();
+
+    if(!nombres || !apellidos || !documento){
+        mostrarToast("Completa nombres, apellidos y documento.","error");
         return;
     }
 
-    tbody.innerHTML=lista.map((s,index)=>{
+    const datos = {
+        nombres,
+        apellidos,
+        documento,
+        telefono:document.getElementById("fTelefono").value.trim(),
+        direccion:document.getElementById("fDireccion").value.trim(),
+        fechaAfiliacion:document.getElementById("fAfiliacion").value,
+        genero:document.getElementById("fGenero").value,
+        estado:document.getElementById("fEstado").value
+    };
 
-        const nombre=(s.nombres+" "+s.apellidos).trim();
+    if(editandoId){
+        const i = afiliados.findIndex(x=>x.id===editandoId);
+        if(i>=0) afiliados[i] = {...afiliados[i],...datos};
+        mostrarToast("Afiliado actualizado correctamente.","success");
+    }else{
+        const nuevoNumero = String(afiliados.length + 1).padStart(4,"0");
+        afiliados.push({id:`JAC-${nuevoNumero}`,...datos});
+        mostrarToast("Afiliado agregado correctamente.","success");
+    }
 
-        const documento=
-            (s.tipoDocumento?s.tipoDocumento+" ":"")+
-            (s.numeroDocumento||"");
-
-        const tieneCertificado=!!s.certificadoUrl;
-        const tieneCarta=!!s.cartaUrl;
-
-        return `
-        <tr>
-            <td><strong>${escapeHTML(s.id||s.fila||"-")}</strong></td>
-
-            <td><strong>${escapeHTML(nombre||"Sin nombre")}</strong></td>
-
-            <td>${escapeHTML(documento||"-")}</td>
-
-            <td>${escapeHTML(s.correo||"-")}</td>
-
-            <td>${escapeHTML(s.fechaRegistro||s.fechaAfiliacion||"-")}</td>
-
-            <td>${estadoBadge(s.estado)}</td>
-
-            <td>
-                <div class="actions">
-
-                    ${tieneCertificado?`
-                        <button class="btn btn-view"
-                            onclick="abrirURL(${index},'certificado')">
-                            Certificado
-                        </button>`:""}
-
-                    ${tieneCarta?`
-                        <button class="btn btn-letter"
-                            onclick="abrirURL(${index},'carta')">
-                            Carta
-                        </button>`:""}
-
-                    ${!tieneCertificado&&String(s.estado).toUpperCase()==="APROBADO"?`
-                        <button class="btn btn-upload"
-                            onclick="abrirCargaCertificado(${index})">
-                            Adjuntar PDF
-                        </button>`:""}
-                </div>
-            </td>
-
-            <td>
-                <div class="actions">
-
-                    <button class="btn btn-view"
-                        onclick="verSolicitud(${index})">
-                        Ver
-                    </button>
-
-                    ${String(s.estado).toUpperCase()==="PENDIENTE"?`
-                        <button class="btn btn-approve"
-                            onclick="aprobar(${index})">
-                            Aprobar
-                        </button>
-
-                        <button class="btn btn-reject"
-                            onclick="rechazar(${index})">
-                            Rechazar
-                        </button>`:""}
-
-                    ${String(s.estado).toUpperCase()==="APROBADO"?`
-                        ${!tieneCertificado?`
-                            <button class="btn btn-upload"
-                                onclick="abrirCargaCertificado(${index})">
-                                Adjuntar certificado
-                            </button>`:""}
-
-                        <button class="btn btn-generate"
-                            onclick="generarCartaPorIndice(${index})">
-                            Generar carta
-                        </button>`:""}
-
-                </div>
-            </td>
-        </tr>`;
-    }).join("");
+    cerrarModal();
+    filtrar();
 }
 
-/* =========================================================
-   FILTRAR
-========================================================= */
-
-function filtrar(){
-
-    const texto=document.getElementById("search").value.toLowerCase().trim();
-    const estado=document.getElementById("filter").value.toUpperCase();
-
-    const resultado=solicitudes.filter(s=>{
-
-        const nombre=(s.nombres+" "+s.apellidos).toLowerCase();
-        const documento=String(s.numeroDocumento||"").toLowerCase();
-        const id=String(s.id||"").toLowerCase();
-
-        const coincideTexto=
-            !texto||
-            nombre.includes(texto)||
-            documento.includes(texto)||
-            id.includes(texto);
-
-        const coincideEstado=
-            !estado||
-            String(s.estado||"").toUpperCase()===estado;
-
-        return coincideTexto&&coincideEstado;
-    });
-
-    mostrarSolicitudes(resultado);
+function inactivarAfiliado(id){
+    const a = afiliados.find(x=>x.id===id);
+    if(!a) return;
+    if(!confirm(`¿Deseas inactivar a ${a.nombres} ${a.apellidos}?`)) return;
+    a.estado="Inactivo";
+    filtrar();
+    mostrarToast("Afiliado inactivado.","success");
 }
 
-/* =========================================================
-   VER SOLICITUD
-========================================================= */
+function activarAfiliado(id){
+    const a = afiliados.find(x=>x.id===id);
+    if(!a) return;
+    a.estado="Activo";
+    filtrar();
+    mostrarToast("Afiliado activado.","success");
+}
 
-function verSolicitud(index){
-
-    const s=solicitudes[index];
-
-    if(!s)return;
-
-    document.getElementById("modalTitle").textContent=
-        "Solicitud / Radicado "+(s.id||s.fila||"");
-
-    document.getElementById("modalBody").innerHTML=`
-
-        <div class="detail-grid">
-
-            <div class="detail">
-                <label>ID / Radicado</label>
-                <strong>${escapeHTML(s.id||"-")}</strong>
-            </div>
-
-            <div class="detail">
-                <label>Estado</label>
-                <strong>${estadoBadge(s.estado)}</strong>
-            </div>
-
-            <div class="detail">
-                <label>Nombres</label>
-                <strong>${escapeHTML(s.nombres||"-")}</strong>
-            </div>
-
-            <div class="detail">
-                <label>Apellidos</label>
-                <strong>${escapeHTML(s.apellidos||"-")}</strong>
-            </div>
-
-            <div class="detail">
-                <label>Documento</label>
-                <strong>${escapeHTML(
-                    (s.tipoDocumento||"")+" "+
-                    (s.numeroDocumento||"")
-                )}</strong>
-            </div>
-
-            <div class="detail">
-                <label>Teléfono</label>
-                <strong>${escapeHTML(s.telefono||"-")}</strong>
-            </div>
-
-            <div class="detail">
-                <label>Correo</label>
-                <strong>${escapeHTML(s.correo||"-")}</strong>
-            </div>
-
-            <div class="detail">
-                <label>Vereda</label>
-                <strong>${escapeHTML(s.vereda||"-")}</strong>
-            </div>
-
-            <div class="detail">
-                <label>Dirección</label>
-                <strong>${escapeHTML(s.direccion||"-")}</strong>
-            </div>
-
-            <div class="detail">
-                <label>Fecha afiliación</label>
-                <strong>${escapeHTML(s.fechaAfiliacion||"-")}</strong>
-            </div>
-
-            <div class="detail">
-                <label>Fecha registro</label>
-                <strong>${escapeHTML(s.fechaRegistro||"-")}</strong>
-            </div>
-
-            <div class="detail">
-                <label>Aprobado por</label>
-                <strong>${escapeHTML(s.aprobadoPor||"-")}</strong>
-            </div>
-
-            <div class="detail">
-                <label>Fecha aprobación</label>
-                <strong>${escapeHTML(s.fechaAprobacion||"-")}</strong>
-            </div>
-
-            <div class="detail">
-                <label>Motivo rechazo</label>
-                <strong>${escapeHTML(s.motivoRechazo||"-")}</strong>
-            </div>
-
-            <div class="detail">
-                <label>Certificado aprobado</label>
-                <strong>${s.certificadoUrl?"PDF adjunto":"Pendiente de adjuntar"}</strong>
-            </div>
-
-            <div class="detail">
-                <label>Carta oficial</label>
-                <strong>${s.cartaUrl?"Generada":"Pendiente"}</strong>
-            </div>
-
-            <div class="detail">
-                <label>Fecha certificado</label>
-                <strong>${escapeHTML(s.fechaCertificado||"-")}</strong>
-            </div>
-
-        </div>
-
-        ${s.certificadoUrl||s.cartaUrl?`
-            <div class="upload-box">
-                <h4>Documentación asociada al radicado</h4>
-
-                <div class="actions">
-
-                    ${s.certificadoUrl?`
-                        <button class="btn btn-view"
-                            onclick="abrirURL(${index},'certificado')">
-                            📄 Ver certificado aprobado
-                        </button>`:""}
-
-                    ${s.cartaUrl?`
-                        <button class="btn btn-letter"
-                            onclick="abrirURL(${index},'carta')">
-                            📄 Ver carta oficial
-                        </button>`:""}
-
-                </div>
-            </div>`:""}
-
-        ${String(s.estado).toUpperCase()==="APROBADO"?`
-            <div class="upload-box">
-
-                <h4>Certificado oficial aprobado</h4>
-
-                <p>
-                    Adjunta aquí el PDF definitivo firmado/aprobado.
-                    Este archivo queda asociado directamente al radicado.
-                </p>
-
-                ${s.certificadoUrl?`
-                    <div class="notice notice-success">
-                        Ya existe un certificado adjunto para esta solicitud.
-                    </div>`:""}
-
-                <input
-                    type="file"
-                    id="certificadoModalInput"
-                    class="file-input"
-                    accept="application/pdf,.pdf"
-                    onchange="mostrarArchivoSeleccionado(this)">
-
-                <div id="archivoSeleccionado" class="file-meta">
-                    Selecciona un PDF.
-                </div>
-
-                <div class="progress" id="uploadProgress">
-                    <div class="progress-bar" id="uploadProgressBar"></div>
-                </div>
-
-                <div class="modal-actions">
-
-                    <button
-                        type="button"
-                        class="btn btn-upload"
-                        id="btnSubirCertificado"
-                        onclick="subirCertificadoDesdeModal(${index})">
-                        📎 Guardar certificado
-                    </button>
-
-                </div>
-
-                <div id="uploadNotice"></div>
-
-            </div>`:""}
-
-        <div class="modal-actions">
-
-            ${s.pdfUrl?`
-                <button class="btn btn-view"
-                    onclick="abrirURL(${index},'pdf')">
-                    Ver solicitud PDF
-                </button>`:""}
-
-            ${String(s.estado).toUpperCase()==="PENDIENTE"?`
-                <button class="btn btn-approve"
-                    onclick="aprobarPorIndice(${index})">
-                    Aprobar solicitud
-                </button>
-
-                <button class="btn btn-reject"
-                    onclick="rechazarPorIndice(${index})">
-                    Rechazar
-                </button>`:""}
-
-            ${String(s.estado).toUpperCase()==="APROBADO"?`
-                <button class="btn btn-generate"
-                    onclick="generarCartaPorIndice(${index})">
-                    Generar carta oficial
-                </button>`:""}
-
-            ${s.certificadoUrl?`
-                <button class="btn btn-view"
-                    onclick="abrirURL(${index},'certificado')">
-                    Ver certificado
-                </button>`:""}
-
-            ${s.cartaUrl?`
-                <button class="btn btn-letter"
-                    onclick="abrirURL(${index},'carta')">
-                    Ver carta
-                </button>`:""}
-
-        </div>
-    `;
-
-    document.getElementById("modalOverlay").style.display="flex";
+function crearCertificado(id){
+    const a = afiliados.find(x=>x.id===id);
+    if(!a) return;
+    mostrarToast(`Certificado preparado para ${a.nombres} ${a.apellidos}.`,"success");
+    // Aquí se conectará posteriormente la generación real del certificado PDF.
 }
 
 function cerrarModal(){
-    document.getElementById("modalOverlay").style.display="none";
+    document.getElementById("modalAfiliado").classList.remove("show");
 }
 
-/* =========================================================
-   APROBAR
-========================================================= */
-
-async function aprobar(index){
-
-    const s=solicitudes[index];
-
-    if(!s||!s.id){
-        abrirMensaje("Solicitud inválida","La solicitud no tiene un ID o radicado válido.","danger");
-        return;
-    }
-
-    confirmarAccion(
-        "Aprobar solicitud",
-        "¿Deseas aprobar la solicitud con radicado "+s.id+"?",
-        async()=>{
-
-            cerrarConfirmacion();
-
-            try{
-
-                const url=
-                    API_URL+
-                    "?action=aprobar&id="+
-                    encodeURIComponent(s.id)+
-                    "&t="+Date.now();
-
-                const response=await fetch(url);
-                const data=await response.json();
-
-                if(!data.ok){
-                    throw new Error(data.error||"No se pudo aprobar.");
-                }
-
-                cerrarModal();
-
-                await cargarSolicitudes();
-
-                abrirMensaje(
-                    "Solicitud aprobada",
-                    "El radicado "+s.id+" fue aprobado correctamente. Ahora puedes adjuntar el certificado oficial.",
-                    "success"
-                );
-
-            }catch(error){
-
-                abrirMensaje(
-                    "No fue posible aprobar",
-                    error.message,
-                    "danger"
-                );
-            }
-        },
-        "warning",
-        "Sí, aprobar"
-    );
-}
-
-function aprobarPorIndice(index){
-    cerrarModal();
-    aprobar(index);
-}
-
-/* =========================================================
-   RECHAZAR
-========================================================= */
-
-async function rechazar(index){
-
-    const s=solicitudes[index];
-
-    if(!s||!s.id){
-        abrirMensaje("Solicitud inválida","La solicitud no tiene ID o radicado.","danger");
-        return;
-    }
-
-    pedirMotivo(
-        "Rechazar solicitud",
-        "Indica el motivo por el cual deseas rechazar el radicado "+s.id+".",
-        async(motivo)=>{
-
-            cerrarConfirmacion();
-
-            try{
-
-                const url=
-                    API_URL+
-                    "?action=rechazar&id="+
-                    encodeURIComponent(s.id)+
-                    "&motivo="+
-                    encodeURIComponent(motivo)+
-                    "&t="+Date.now();
-
-                const response=await fetch(url);
-                const data=await response.json();
-
-                if(!data.ok){
-                    throw new Error(data.error||"No se pudo rechazar.");
-                }
-
-                cerrarModal();
-
-                await cargarSolicitudes();
-
-                abrirMensaje(
-                    "Solicitud rechazada",
-                    "El radicado "+s.id+" fue rechazado correctamente.",
-                    "success"
-                );
-
-            }catch(error){
-
-                abrirMensaje(
-                    "No fue posible rechazar",
-                    error.message,
-                    "danger"
-                );
-            }
-        }
-    );
-}
-
-function rechazarPorIndice(index){
-    cerrarModal();
-    rechazar(index);
-}
-
-/* =========================================================
-   CARGAR CERTIFICADO
-========================================================= */
-
-function abrirCargaCertificado(index){
-
-    const s=solicitudes[index];
-
-    if(!s)return;
-
-    if(String(s.estado).toUpperCase()!=="APROBADO"){
-
-        abrirMensaje(
-            "Solicitud no aprobada",
-            "La solicitud debe estar aprobada antes de adjuntar el certificado.",
-            "warning"
-        );
-
-        return;
-    }
-
-    verSolicitud(index);
-
-    setTimeout(()=>{
-
-        const input=document.getElementById("certificadoModalInput");
-
-        if(input)input.click();
-
-    },150);
-}
-
-function mostrarArchivoSeleccionado(input){
-
-    const meta=document.getElementById("archivoSeleccionado");
-
-    if(!meta)return;
-
-    if(!input.files||!input.files.length){
-        meta.textContent="Selecciona un PDF.";
-        return;
-    }
-
-    const file=input.files[0];
-
-    if(file.type!=="application/pdf"&&!file.name.toLowerCase().endsWith(".pdf")){
-
-        meta.textContent="El archivo debe ser PDF.";
-        input.value="";
-        return;
-    }
-
-    const maxSize=10*1024*1024;
-
-    if(file.size>maxSize){
-
-        meta.textContent="El PDF supera el límite de 10 MB.";
-        input.value="";
-        return;
-    }
-
-    meta.textContent=
-        file.name+" · "+formatBytes(file.size);
-}
-
-function formatBytes(bytes){
-
-    if(!bytes)return"0 B";
-
-    const units=["B","KB","MB","GB"];
-
-    const i=Math.floor(
-        Math.log(bytes)/Math.log(1024)
-    );
-
-    return(
-        bytes/Math.pow(1024,i)
-    ).toFixed(i?2:0)+" "+units[i];
-}
-
-/* =========================================================
-   SUBIR CERTIFICADO
-========================================================= */
-
-async function subirCertificadoDesdeModal(index){
-
-    const s=solicitudes[index];
-
-    if(!s||!s.id){
-        abrirMensaje("Solicitud inválida","La solicitud no tiene ID.","danger");
-        return;
-    }
-
-    if(String(s.estado).toUpperCase()!=="APROBADO"){
-        abrirMensaje(
-            "Solicitud no aprobada",
-            "Solo se puede adjuntar el certificado de una solicitud aprobada.",
-            "warning"
-        );
-        return;
-    }
-
-    const input=document.getElementById("certificadoModalInput");
-
-    if(!input||!input.files||!input.files.length){
-        abrirMensaje(
-            "Selecciona un archivo",
-            "Debes seleccionar primero el certificado PDF.",
-            "warning"
-        );
-        return;
-    }
-
-    const file=input.files[0];
-
-    if(
-        file.type!=="application/pdf"&&
-        !file.name.toLowerCase().endsWith(".pdf")
-    ){
-        abrirMensaje(
-            "Archivo no válido",
-            "El archivo seleccionado debe ser un PDF.",
-            "danger"
-        );
-        return;
-    }
-
-    if(file.size>10*1024*1024){
-        abrirMensaje(
-            "Archivo demasiado grande",
-            "El PDF no puede superar los 10 MB.",
-            "warning"
-        );
-        return;
-    }
-
-    confirmarAccion(
-        "Adjuntar certificado",
-        "Se asociará el archivo \""+file.name+"\" al radicado "+s.id+". ¿Deseas continuar?",
-        async()=>{
-
-            cerrarConfirmacion();
-
-            const btn=document.getElementById("btnSubirCertificado");
-            const progress=document.getElementById("uploadProgress");
-            const progressBar=document.getElementById("uploadProgressBar");
-            const notice=document.getElementById("uploadNotice");
-
-            try{
-
-                btn.disabled=true;
-                btn.textContent="Subiendo...";
-
-                if(progress)progress.style.display="block";
-                if(progressBar)progressBar.style.width="10%";
-
-                if(notice){
-                    notice.innerHTML=
-                        `<div class="notice notice-info">
-                            Preparando el certificado...
-                        </div>`;
-                }
-
-                const base64=await fileToBase64(file);
-
-                if(progressBar)progressBar.style.width="45%";
-
-                const payload={
-                    action:"subirCertificado",
-                    id:s.id,
-                    nombreArchivo:file.name,
-                    mimeType:"application/pdf",
-                    archivoBase64:base64
-                };
-
-                if(progressBar)progressBar.style.width="70%";
-
-                const response=await fetch(
-                    API_URL,
-                    {
-                        method:"POST",
-                        headers:{
-                            "Content-Type":"text/plain;charset=utf-8"
-                        },
-                        body:JSON.stringify(payload)
-                    }
-                );
-
-                const texto=await response.text();
-
-                let data;
-
-                try{
-                    data=JSON.parse(texto);
-                }catch(e){
-                    throw new Error(
-                        "Apps Script no devolvió JSON válido: "+
-                        texto.substring(0,300)
-                    );
-                }
-
-                if(!data.ok){
-                    throw new Error(
-                        data.error||
-                        data.mensaje||
-                        "No fue posible guardar el certificado."
-                    );
-                }
-
-                if(progressBar)progressBar.style.width="100%";
-
-                if(notice){
-                    notice.innerHTML=
-                        `<div class="notice notice-success">
-                            Certificado guardado correctamente y asociado al radicado.
-                        </div>`;
-                }
-
-                cerrarModal();
-
-                await cargarSolicitudes();
-
-                abrirMensaje(
-                    "Certificado guardado",
-                    "El PDF fue guardado correctamente y quedó asociado al radicado "+s.id+".",
-                    "success"
-                );
-
-            }catch(error){
-
-                console.error(error);
-
-                if(notice){
-                    notice.innerHTML=
-                        `<div class="notice notice-error">
-                            ${escapeHTML(error.message)}
-                        </div>`;
-                }
-
-                abrirMensaje(
-                    "No fue posible guardar el certificado",
-                    error.message,
-                    "danger"
-                );
-
-            }finally{
-
-                if(btn){
-                    btn.disabled=false;
-                    btn.textContent="📎 Guardar certificado";
-                }
-            }
-        },
-        "warning",
-        "Sí, guardar PDF"
-    );
-}
-
-function fileToBase64(file){
-
-    return new Promise((resolve,reject)=>{
-
-        const reader=new FileReader();
-
-        reader.onload=()=>{
-            const result=String(reader.result||"");
-            const comma=result.indexOf(",");
-
-            resolve(
-                comma>=0?
-                result.substring(comma+1):
-                result
-            );
-        };
-
-        reader.onerror=()=>{
-            reject(new Error("No fue posible leer el archivo."));
-        };
-
-        reader.readAsDataURL(file);
-    });
-}
-
-/* =========================================================
-   GENERAR CARTA OFICIAL
-========================================================= */
-
-async function generarCarta(index){
-
-    const s=solicitudes[index];
-
-    if(!s||!s.id){
-        abrirMensaje("Solicitud inválida","La solicitud no tiene ID.","danger");
-        return;
-    }
-
-    if(String(s.estado).toUpperCase()!=="APROBADO"){
-        abrirMensaje(
-            "Solicitud no aprobada",
-            "La solicitud debe estar aprobada antes de generar la carta.",
-            "warning"
-        );
-        return;
-    }
-
-    if(!s.certificadoUrl){
-
-        confirmarAccion(
-            "Certificado pendiente",
-            "Todavía no has adjuntado el certificado aprobado. La carta puede generarse, pero el expediente quedará incompleto. ¿Deseas continuar?",
-            ()=>ejecutarGenerarCarta(s),
-            "warning",
-            "Generar de todas formas"
-        );
-
-        return;
-    }
-
-    confirmarAccion(
-        "Generar carta oficial",
-        "¿Deseas generar la carta oficial para el radicado "+s.id+"?",
-        ()=>ejecutarGenerarCarta(s),
-        "info",
-        "Sí, generar carta"
-    );
-}
-
-async function ejecutarGenerarCarta(s){
-
-    cerrarConfirmacion();
-
-    try{
-
-        const url=
-            API_URL+
-            "?action=generarCarta"+
-            "&id="+
-            encodeURIComponent(s.id)+
-            "&t="+Date.now();
-
-        const response=await fetch(url);
-        const data=await response.json();
-
-        if(!data.ok){
-            throw new Error(
-                data.error||
-                data.mensaje||
-                "No se pudo generar la carta."
-            );
-        }
-
-        cerrarModal();
-
-        await cargarSolicitudes();
-
-        abrirMensaje(
-            "Carta generada correctamente",
-            "La carta oficial del radicado "+s.id+" fue generada correctamente.",
-            "success"
-        );
-
-        if(data.cartaUrl){
-
-            setTimeout(()=>{
-                window.open(
-                    data.cartaUrl,
-                    "_blank",
-                    "noopener"
-                );
-            },700);
-        }
-
-    }catch(error){
-
-        abrirMensaje(
-            "Error al generar la carta",
-            error.message,
-            "danger"
-        );
+function regresarAlPanel(){
+    if(PANEL_URL){
+        window.location.href = PANEL_URL;
+    }else{
+        history.back();
     }
 }
 
-function generarCartaPorIndice(index){
-    cerrarModal();
-    generarCarta(index);
+function mostrarToast(mensaje,tipo="success"){
+    const t = document.getElementById("toast");
+    t.textContent = mensaje;
+    t.className = `toast show ${tipo}`;
+    clearTimeout(window.__toastTimer);
+    window.__toastTimer = setTimeout(()=>t.className="toast",3500);
 }
 
-/* =========================================================
-   ABRIR DOCUMENTOS
-========================================================= */
-
-function abrirURL(index,tipo){
-
-    const s=solicitudes[index];
-
-    if(!s)return;
-
-    let url="";
-
-    if(tipo==="certificado")url=s.certificadoUrl;
-    else if(tipo==="carta")url=s.cartaUrl;
-    else if(tipo==="pdf")url=s.pdfUrl;
-
-    if(!url){
-
-        abrirMensaje(
-            "Documento no disponible",
-            "Este documento todavía no está disponible.",
-            "warning"
-        );
-
-        return;
-    }
-
-    window.open(
-        url,
-        "_blank",
-        "noopener"
-    );
-}
-
-/* =========================================================
-   FILTROS
-========================================================= */
-
-document.getElementById("search")
-    .addEventListener("input",filtrar);
-
-document.getElementById("filter")
-    .addEventListener("change",filtrar);
-
-/* =========================================================
-   MODAL PRINCIPAL
-========================================================= */
-
-document.getElementById("modalOverlay")
-    .addEventListener("click",function(event){
-
-        if(event.target===this){
-            cerrarModal();
-        }
-
-    });
-
-/* =========================================================
-   TECLA ESC
-========================================================= */
-
-document.addEventListener("keydown",function(event){
-
-    if(event.key==="Escape"){
-
-        const confirm=document.getElementById("confirmOverlay");
-
-        if(confirm.style.display==="flex"){
-            cerrarConfirmacion();
-        }else{
-            cerrarModal();
-        }
-    }
+document.getElementById("modalAfiliado").addEventListener("click",e=>{
+    if(e.target.id==="modalAfiliado") cerrarModal();
 });
 
-/* =========================================================
-   INICIO
-========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    async function(){
-        mostrarLogin();
-        const autenticado=await validarSesionActual();
-        if(autenticado){
-            cargarSolicitudes();
-        }else{
-            setTimeout(()=>document.getElementById("loginUsuario")?.focus(),100);
-        }
-    }
-);
-
+filtrar();
 </script>
-
 </body>
 </html>

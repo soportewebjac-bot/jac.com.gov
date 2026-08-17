@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Administrador de Agenda y Eventos | JAC Vereda Santa Bárbara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+:root{--g:#0b6940;--gd:#063b2b;--gs:#eaf6ef;--b:#102f55;--bg:#f5f8f6;--line:#dfe9e3;--muted:#708078;--white:#fff;--gold:#dfad28;--red:#c9434d}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:Inter,Arial;background:var(--bg);color:#17231e}button,input,select,textarea{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}
+.app{min-height:100vh;padding:20px}.wrap{max-width:1450px;margin:auto}
+.top{background:#fff;border:1px solid var(--line);border-radius:15px;padding:18px 20px;display:flex;align-items:center;gap:10px;box-shadow:0 8px 25px #153b2b0a}
+.brand{flex:1}.kicker{font-size:9px;letter-spacing:.12em;font-weight:800;color:var(--g)}h1{font:800 22px Montserrat;color:var(--b);margin-top:4px}.brand p{font-size:10px;color:var(--muted);margin-top:4px}
+.btn{border:1px solid var(--line);background:#fff;color:var(--b);border-radius:9px;padding:10px 13px;font-size:10px;font-weight:800}.btn.primary{background:var(--g);border-color:var(--g);color:#fff}.btn.danger{color:var(--red)}.btn:hover{filter:brightness(.98)}
+.tabs{display:flex;gap:7px;margin:15px 0;flex-wrap:wrap}.tab{border:1px solid var(--line);background:#fff;border-radius:9px;padding:9px 12px;font-size:10px;font-weight:800;color:var(--b)}.tab.active{background:var(--g);color:#fff;border-color:var(--g)}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:15px}.kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px}.kpi strong{display:block;font:800 20px Montserrat;color:var(--b)}.kpi span{font-size:9px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:1.35fr .65fr;gap:15px}.panel{background:#fff;border:1px solid var(--line);border-radius:13px;overflow:hidden;box-shadow:0 6px 22px #153b2b08}.head{padding:13px 15px;border-bottom:1px solid #edf1ef;display:flex;justify-content:space-between;align-items:center;gap:10px}.head h2{font:800 13px Montserrat;color:var(--b)}.head small{font-size:8px;color:var(--muted)}
+.filters{padding:12px 15px;display:grid;grid-template-columns:1.5fr 1fr 1fr auto;gap:8px;border-bottom:1px solid #edf1ef}.field,.form input,.form select,.form textarea{width:100%;border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px 10px;outline:none;font-size:10px;color:#24342d}.form textarea{min-height:105px;resize:vertical}.field:focus,.form input:focus,.form select:focus,.form textarea:focus{border-color:#8cc9a8;box-shadow:0 0 0 3px #0b694012}
+.empty{text-align:center;padding:35px 15px;color:var(--muted);font-size:10px}.eventrow{display:grid;grid-template-columns:70px 1fr auto auto;gap:12px;padding:13px 15px;border-bottom:1px solid #edf1ef;align-items:center}.eventrow:last-child{border-bottom:0}.datebox{border-radius:10px;background:var(--gs);text-align:center;padding:8px;color:var(--g)}.datebox b{display:block;font:800 18px Montserrat}.datebox small{font-size:8px;font-weight:800;text-transform:uppercase}.eventrow h3{font-size:11px;color:var(--b);margin-bottom:4px}.meta{font-size:8px;color:var(--muted);display:flex;gap:9px;flex-wrap:wrap}.pill{display:inline-block;padding:5px 8px;border-radius:20px;font-size:8px;font-weight:800;background:var(--gs);color:var(--g)}.pill.cancel{background:#fdebec;color:var(--red)}.pill.done{background:#eef0f1;color:#65716c}.actions{display:flex;gap:5px}.iconbtn{width:28px;height:28px;border:1px solid var(--line);background:#fff;border-radius:7px;color:#64746c}.iconbtn:hover{color:var(--g)}
+.ann{padding:12px 15px;border-bottom:1px solid #edf1ef}.ann:last-child{border-bottom:0}.ann h3{font-size:10px;color:var(--b)}.ann p{font-size:9px;color:#586860;line-height:1.5;margin-top:4px}.ann .meta{margin-top:6px}
+.modal{position:fixed;inset:0;background:#03140f78;display:none;align-items:center;justify-content:center;padding:15px;z-index:100}.modal.open{display:flex}.dialog{width:min(760px,100%);max-height:94vh;overflow:auto;background:#fff;border-radius:14px;box-shadow:0 20px 60px #0004}.dialoghead{padding:15px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.dialoghead h2{font:800 16px Montserrat;color:var(--b)}.form{padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:10px}.form .full{grid-column:1/-1}.form label{font-size:8px;font-weight:800;color:#65736c;display:block;margin-bottom:5px}.check{display:flex;align-items:center;gap:7px;font-size:9px;color:#46574f}.check input{width:auto}.dialogfoot{padding:12px 16px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:8px}
+.notice{margin:12px 15px;padding:10px 12px;border-radius:8px;background:#f4faf6;color:#456158;font-size:9px;display:none}.notice.show{display:block}.notice.error{background:#fff0f0;color:#9d343d}
+.status{font-size:9px;font-weight:800;padding:7px 10px;border-radius:20px;background:#fff7df;color:#876613;white-space:nowrap}.status.ok{background:#eaf6ef;color:#166534}.status.error{background:#fdebec;color:#a33b44}
+@media(max-width:1050px){.kpis{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:1fr}}@media(max-width:650px){.app{padding:10px}.top{align-items:flex-start;flex-wrap:wrap}.top .btn{width:100%}.status{width:100%;text-align:center}.kpis{grid-template-columns:1fr 1fr}.filters{grid-template-columns:1fr}.eventrow{grid-template-columns:55px 1fr}.eventrow>.pill,.eventrow>.actions{grid-column:2}.form{grid-template-columns:1fr}.form .full{grid-column:auto}}
+</style>
+</head>
+<body>
+<div class="app"><div class="wrap">
+<header class="top">
+ <div class="brand"><div class="kicker">ADMINISTRACIÓN · AGENDA</div><h1>Agenda y Eventos</h1><p>Eventos, reuniones, anuncios e historial de la JAC Vereda Santa Bárbara.</p></div>
+ <span id="connectionStatus" class="status">Conectando…</span>
+ <button class="btn" onclick="closeModule()">Cerrar</button>
+ <button class="btn primary" onclick="openEvent()">+ Nuevo evento</button>
+</header>
+
+<div class="tabs">
+ <button class="tab active" data-tab="upcoming" onclick="setTab('upcoming',this)">Próximos</button>
+ <button class="tab" data-tab="all" onclick="setTab('all',this)">Todos</button>
+ <button class="tab" data-tab="meetings" onclick="setTab('meetings',this)">Reuniones</button>
+ <button class="tab" data-tab="history" onclick="setTab('history',this)">Historial</button>
+ <button class="tab" data-tab="announcements" onclick="setTab('announcements',this)">Anuncios</button>
+</div>
+
+<section class="kpis">
+ <div class="kpi"><strong id="kUpcoming">0</strong><span>Próximos eventos</span></div>
+ <div class="kpi"><strong id="kMeetings">0</strong><span>Reuniones</span></div>
+ <div class="kpi"><strong id="kMonth">0</strong><span>Este mes</span></div>
+ <div class="kpi"><strong id="kDone">0</strong><span>Finalizados</span></div>
+ <div class="kpi"><strong id="kAnn">0</strong><span>Anuncios activos</span></div>
+</section>
+
+<div id="notice" class="notice"></div>
+
+<div class="grid">
+<section class="panel">
+ <div class="head"><div><h2 id="listTitle">Próximos eventos</h2><small>Consulta y administración</small></div><button class="btn" onclick="loadData(true)">Actualizar</button></div>
+ <div class="filters">
+  <input id="q" class="field" placeholder="Buscar evento, lugar o responsable..." oninput="render()">
+  <select id="typeFilter" class="field" onchange="render()"><option value="">Todos los tipos</option><option>Asamblea</option><option>Reunión</option><option>Reunión extraordinaria</option><option>Comité</option><option>Convite</option><option>Jornada comunitaria</option><option>Capacitación</option><option>Visita</option><option>Convocatoria</option><option>Otro</option></select>
+  <select id="statusFilter" class="field" onchange="render()"><option value="">Todos los estados</option><option>Programado</option><option>Publicado</option><option>Finalizado</option><option>Cancelado</option><option>Archivado</option></select>
+  <button class="btn" onclick="clearFilters()">Limpiar</button>
+ </div>
+ <div id="eventList"></div>
+</section>
+<aside class="panel">
+ <div class="head"><div><h2>Anuncios</h2><small>Comunicaciones a la comunidad</small></div><button class="btn primary" onclick="openAnnouncement()">+ Anuncio</button></div>
+ <div id="annList"></div>
+</aside>
+</div>
+</div></div>
+
+<div id="eventModal" class="modal" onclick="backdropClose(event,'eventModal')">
+<div class="dialog">
+ <div class="dialoghead"><h2 id="eventModalTitle">Nuevo evento</h2><button class="iconbtn" onclick="closeModal('eventModal')"><i class="bi bi-x-lg"></i></button></div>
+ <form class="form" id="eventForm" onsubmit="saveEvent(event)">
+  <input type="hidden" id="eventId">
+  <div><label>Nombre del evento *</label><input id="eTitle" required></div>
+  <div><label>Tipo *</label><select id="eType" required><option value="">Seleccionar</option><option>Asamblea</option><option>Reunión</option><option>Reunión extraordinaria</option><option>Comité</option><option>Convite</option><option>Jornada comunitaria</option><option>Capacitación</option><option>Visita</option><option>Convocatoria</option><option>Otro</option></select></div>
+  <div><label>Fecha *</label><input id="eDate" type="date" required></div>
+  <div><label>Hora de inicio *</label><input id="eStart" type="time" required></div>
+  <div><label>Hora de finalización</label><input id="eEnd" type="time"></div>
+  <div><label>Lugar</label><input id="ePlace"></div>
+  <div><label>Responsable</label><input id="eResponsible"></div>
+  <div><label>Estado</label><select id="eStatus"><option>Programado</option><option>Publicado</option><option>Finalizado</option><option>Cancelado</option><option>Archivado</option></select></div>
+  <div class="full"><label>Descripción</label><textarea id="eDescription"></textarea></div>
+  <div class="full check"><input id="eFeatured" type="checkbox"><label for="eFeatured">Marcar como evento destacado</label></div>
+  <div class="dialogfoot full"><button type="button" class="btn" onclick="closeModal('eventModal')">Cancelar</button><button class="btn primary" type="submit">Guardar evento</button></div>
+ </form>
+</div></div>
+
+<div id="annModal" class="modal" onclick="backdropClose(event,'annModal')">
+<div class="dialog">
+ <div class="dialoghead"><h2 id="annModalTitle">Nuevo anuncio</h2><button class="iconbtn" onclick="closeModal('annModal')"><i class="bi bi-x-lg"></i></button></div>
+ <form class="form" id="annForm" onsubmit="saveAnnouncement(event)">
+  <input type="hidden" id="annId">
+  <div class="full"><label>Título *</label><input id="aTitle" required></div>
+  <div><label>Prioridad</label><select id="aPriority"><option>Normal</option><option>Importante</option><option>Urgente</option></select></div>
+  <div><label>Vigencia</label><input id="aUntil" type="date"></div>
+  <div class="full"><label>Mensaje *</label><textarea id="aText" required></textarea></div>
+  <div class="full check"><input id="aFeatured" type="checkbox"><label for="aFeatured">Destacar anuncio</label></div>
+  <div class="dialogfoot full"><button type="button" class="btn" onclick="closeModal('annModal')">Cancelar</button><button class="btn primary" type="submit">Guardar anuncio</button></div>
+ </form>
+</div></div>
+
+<script>
+"use strict";
+
+const CONFIG = {
+ API_URL: "https://script.google.com/macros/s/AKfycbzvVsnblAF3SVBlZ_qHdhTkvnSqEnvWCTGxE47d6Df_a0x_162HLTejfyFV6hzNFPRM/exec",
+ LOCAL_KEY: "JAC_SANTA_BARBARA_AGENDA_V1"
+};
+
+let events = [];
+let announcements = [];
+let currentTab = "upcoming";
+let serverConnected = false;
+
+const $ = id => document.getElementById(id);
+
+function todayISO() {
+ const d = new Date();
+ return d.toISOString().slice(0,10);
+}
+
+function escapeHtml(value) {
+ return String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+}
+
+function showNotice(message,error=false) {
+ const n=$("notice");
+ n.textContent=message;
+ n.className="notice show"+(error?" error":"");
+ clearTimeout(window.__noticeTimer);
+ window.__noticeTimer=setTimeout(()=>n.classList.remove("show"),5000);
+}
+
+function setConnection(ok) {
+ serverConnected=ok;
+ const s=$("connectionStatus");
+ s.textContent=ok ? "● Agenda conectada" : "● Modo local";
+ s.className="status "+(ok?"ok":"error");
+}
+
+function apiGet(action,params={}){
+ return new Promise((resolve,reject)=>{
+  const callback="agendaJsonp_"+Date.now()+"_"+Math.floor(Math.random()*100000);
+  const script=document.createElement("script");
+  const qs=new URLSearchParams();
+  qs.set("action",action);
+  qs.set("callback",callback);
+  Object.entries(params||{}).forEach(([k,v])=>{
+   if(v!==undefined&&v!==null) qs.set(k,String(v));
+  });
+
+  let finished=false;
+  const cleanup=()=>{
+   finished=true;
+   try{delete window[callback]}catch(e){window[callback]=undefined}
+   script.remove();
+  };
+  window[callback]=(data)=>{
+   if(finished)return;
+   cleanup();
+   if(!data||data.ok===false){
+    reject(new Error(data?.error||"Respuesta inválida del Apps Script."));
+    return;
+   }
+   resolve(data);
+  };
+  script.onerror=()=>{
+   if(finished)return;
+   cleanup();
+   reject(new Error("No fue posible comunicarse con Google Apps Script."));
+  };
+  script.src=CONFIG.API_URL+"?"+qs.toString();
+  document.head.appendChild(script);
+  setTimeout(()=>{
+   if(!finished){
+    cleanup();
+    reject(new Error("Tiempo de espera agotado al contactar Apps Script."));
+   }
+  },15000);
+ });
+}
+
+function encodePayload(obj) {
+ return btoa(unescape(encodeURIComponent(JSON.stringify(obj))));
+}
+
+async function apiWrite(action,payload) {
+ const result=await apiGet("write",{payload:encodePayload(Object.assign({action},payload))});
+ return result;
+}
+
+function saveLocal() {
+ localStorage.setItem(CONFIG.LOCAL_KEY,JSON.stringify({events,announcements,updatedAt:new Date().toISOString()}));
+}
+
+function loadLocal() {
+ try {
+  const raw=localStorage.getItem(CONFIG.LOCAL_KEY);
+  if(raw) {
+   const data=JSON.parse(raw);
+   events=Array.isArray(data.events)?data.events:[];
+   announcements=Array.isArray(data.announcements)?data.announcements:[];
+   return;
+  }
+ } catch(e) {}
+ events=[]; announcements=[];
+}
+
+async function syncFromApi(showMessage=true) {
+ try {
+  const data=await apiGet("getAgenda");
+  events=Array.isArray(data.events)?data.events:[];
+  announcements=Array.isArray(data.announcements)?data.announcements:[];
+  saveLocal(); renderAll(); setConnection(true);
+  if(showMessage) showNotice("Agenda sincronizada correctamente.");
+  return true;
+ } catch(err) {
+  setConnection(false);
+  if(showMessage) showNotice("No se pudo sincronizar con Apps Script: "+err.message+". Se conserva la información local.","error");
+  return false;
+ }
+}
+
+async function loadData(manual=false) {
+ loadLocal(); renderAll();
+ const ok=await syncFromApi(manual);
+ if(!ok && manual) return;
+}
+
+function renderAll() {
+ updateKpis(); render(); renderAnnouncements();
+}
+
+function updateKpis() {
+ const today=todayISO(), month=today.slice(0,7);
+ $("kUpcoming").textContent=events.filter(e=>String(e.date)>=today&&!["Cancelado","Archivado","Finalizado"].includes(e.status)).length;
+ $("kMeetings").textContent=events.filter(e=>["Reunión","Reunión extraordinaria","Comité","Asamblea"].includes(e.type)).length;
+ $("kMonth").textContent=events.filter(e=>String(e.date||"").startsWith(month)).length;
+ $("kDone").textContent=events.filter(e=>e.status==="Finalizado"||String(e.date)<today).length;
+ $("kAnn").textContent=announcements.filter(a=>!a.until||String(a.until)>=today).length;
+}
+
+function setTab(tab,button) {
+ currentTab=tab;
+ document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+ if(button) button.classList.add("active");
+ $("listTitle").textContent={upcoming:"Próximos eventos",all:"Todos los eventos",meetings:"Reuniones",history:"Historial"}[tab]||"Eventos";
+ render();
+}
+
+function render() {
+ const q=($("q").value||"").toLowerCase().trim();
+ const type=$("typeFilter").value;
+ const status=$("statusFilter").value;
+ const today=todayISO();
+ let arr=[...events];
+
+ if(currentTab==="upcoming") arr=arr.filter(e=>String(e.date)>=today&&!["Cancelado","Archivado","Finalizado"].includes(e.status));
+ if(currentTab==="meetings") arr=arr.filter(e=>["Reunión","Reunión extraordinaria","Comité","Asamblea"].includes(e.type));
+ if(currentTab==="history") arr=arr.filter(e=>String(e.date)<today||["Finalizado","Cancelado","Archivado"].includes(e.status));
+ if(type) arr=arr.filter(e=>e.type===type);
+ if(status) arr=arr.filter(e=>e.status===status);
+ if(q) arr=arr.filter(e=>[e.title,e.place,e.responsible,e.type,e.description].join(" ").toLowerCase().includes(q));
+
+ arr.sort((a,b)=>String(a.date).localeCompare(String(b.date))||String(a.start).localeCompare(String(b.start)));
+
+ $("eventList").innerHTML=arr.length ? arr.map(eventCard).join("") : '<div class="empty"><i class="bi bi-calendar-x" style="font-size:25px"></i><br><br>No hay eventos para este filtro.</div>';
+}
+
+function eventCard(e) {
+ const d=new Date((String(e.date).slice(0,10))+"T12:00:00");
+ const day=isNaN(d)?"--":d.getDate();
+ const mon=isNaN(d)?"":d.toLocaleDateString("es-CO",{month:"short"}).replace(".","").toUpperCase();
+ const cls=e.status==="Cancelado"?"cancel":(e.status==="Finalizado"?"done":"");
+ return `<article class="eventrow">
+  <div class="datebox"><b>${day}</b><small>${escapeHtml(mon)}</small></div>
+  <div><h3>${escapeHtml(e.title)}</h3><div class="meta"><span><i class="bi bi-tag"></i> ${escapeHtml(e.type)}</span><span><i class="bi bi-clock"></i> ${escapeHtml(e.start)}${e.end?" - "+escapeHtml(e.end):""}</span><span><i class="bi bi-geo-alt"></i> ${escapeHtml(e.place||"Sin lugar")}</span></div></div>
+  <span class="pill ${cls}">${escapeHtml(e.status||"Programado")}</span>
+  <div class="actions"><button class="iconbtn" title="Editar" onclick="openEvent('${escapeHtml(e.id)}')"><i class="bi bi-pencil"></i></button><button class="iconbtn" title="Eliminar" onclick="deleteEvent('${escapeHtml(e.id)}')"><i class="bi bi-trash"></i></button></div>
+ </article>`;
+}
+
+function renderAnnouncements() {
+ const today=todayISO();
+ const arr=[...announcements].filter(a=>!a.until||String(a.until)>=today).sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)));
+ $("annList").innerHTML=arr.length ? arr.map(a=>`<article class="ann"><h3>${escapeHtml(a.title)} ${a.featured?"⭐":""}</h3><p>${escapeHtml(a.text)}</p><div class="meta"><span>${escapeHtml(a.priority||"Normal")}</span>${a.until?"<span>Hasta "+escapeHtml(a.until)+"</span>":""}<span><button class="btn" onclick="openAnnouncement('${escapeHtml(a.id)}')">Editar</button> <button class="btn danger" onclick="deleteAnnouncement('${escapeHtml(a.id)}')">Eliminar</button></span></div></article>`).join("") : '<div class="empty">No hay anuncios activos.</div>';
+}
+
+function openEvent(id=null) {
+ const e=id ? events.find(x=>String(x.id)===String(id)) : null;
+ $("eventForm").reset();
+ $("eventId").value=e?.id||"";
+ $("eventModalTitle").textContent=e?"Editar evento":"Nuevo evento";
+ $("eTitle").value=e?.title||"";
+ $("eType").value=e?.type||"";
+ $("eDate").value=e?.date||"";
+ $("eStart").value=e?.start||"";
+ $("eEnd").value=e?.end||"";
+ $("ePlace").value=e?.place||"";
+ $("eResponsible").value=e?.responsible||"";
+ $("eStatus").value=e?.status||"Programado";
+ $("eDescription").value=e?.description||"";
+ $("eFeatured").checked=!!e?.featured;
+ openModal("eventModal");
+}
+
+
+function showUploadModal(title,text,success=false){
+  $("uploadTitle").textContent=title;
+  $("uploadText").textContent=text;
+  $("uploadIcon").textContent=success?"✓":"⟳";
+  $("uploadIcon").style.color=success?"#0b6940":"#0b6940";
+  $("uploadProgress").style.width=success?"100%":"28%";
+  $("uploadClose").style.display=success?"inline-block":"none";
+  $("uploadModal").classList.add("open");
+}
+function closeUploadModal(){
+  $("uploadModal").classList.remove("open");
+}
+function updateUploadModal(text,progress){
+  $("uploadText").textContent=text;
+  $("uploadProgress").style.width=Math.max(5,Math.min(100,progress))+"%";
+}
+
+async function saveEvent(ev) {
+ ev.preventDefault();
+ const id=$("eventId").value||("evt-"+Date.now());
+ const old=events.find(x=>String(x.id)===String(id));
+ const item={id,title:$("eTitle").value.trim(),type:$("eType").value,date:$("eDate").value,start:$("eStart").value,end:$("eEnd").value,place:$("ePlace").value.trim(),responsible:$("eResponsible").value.trim(),status:$("eStatus").value,description:$("eDescription").value.trim(),featured:$("eFeatured").checked,createdAt:old?.createdAt||new Date().toISOString()};
+ showUploadModal(old?"Actualizando evento":"Publicando evento","Enviando la información al Apps Script…");
+ try {
+  updateUploadModal("Validando y guardando en la agenda institucional…",45);
+  await apiWrite(old?"updateEvent":"createEvent",{event:item});
+  updateUploadModal("Guardado confirmado. Sincronizando los eventos publicados…",78);
+  const ok=await syncFromApi(false);
+  if(!ok) throw new Error("El servidor guardó el registro, pero no fue posible confirmar la sincronización.");
+  updateUploadModal("¡Evento publicado correctamente! Ya está disponible para la agenda.",100);
+  closeModal("eventModal");
+  $("uploadClose").onclick=()=>{closeUploadModal();showNotice("Evento publicado y sincronizado correctamente.");};
+ } catch(err) {
+  if(old) events=events.map(x=>String(x.id)===String(id)?item:x); else events.push(item);
+  saveLocal(); renderAll();
+  $("uploadTitle").textContent="No se pudo confirmar la publicación";
+  $("uploadText").textContent=err.message+" La información se conserva localmente.";
+  $("uploadIcon").textContent="!";
+  $("uploadIcon").style.color="#c9434d";
+  $("uploadProgress").style.width="100%";
+  $("uploadProgress").style.background="#c9434d";
+  $("uploadClose").style.display="inline-block";
+  $("uploadClose").onclick=()=>{closeUploadModal();showNotice("Evento guardado localmente. Revisa la conexión con Apps Script.","error");};
+ }
+}
+
+async function deleteEvent(id) {
+ if(!confirm("¿Eliminar este evento?")) return;
+ try {
+  await apiWrite("deleteEvent",{id});
+  await syncFromApi(false); showNotice("Evento eliminado.");
+ } catch(err) {
+  events=events.filter(x=>String(x.id)!==String(id)); saveLocal(); renderAll();
+  showNotice("Eliminado localmente. Apps Script no confirmó la operación.","error");
+ }
+}
+
+function openAnnouncement(id=null) {
+ const a=id ? announcements.find(x=>String(x.id)===String(id)) : null;
+ $("annForm").reset();
+ $("annId").value=a?.id||"";
+ $("annModalTitle").textContent=a?"Editar anuncio":"Nuevo anuncio";
+ $("aTitle").value=a?.title||"";
+ $("aPriority").value=a?.priority||"Normal";
+ $("aUntil").value=a?.until||"";
+ $("aText").value=a?.text||"";
+ $("aFeatured").checked=!!a?.featured;
+ openModal("annModal");
+}
+
+async function saveAnnouncement(ev) {
+ ev.preventDefault();
+ const id=$("annId").value||("ann-"+Date.now());
+ const old=announcements.find(x=>String(x.id)===String(id));
+ const item={id,title:$("aTitle").value.trim(),priority:$("aPriority").value,until:$("aUntil").value,text:$("aText").value.trim(),featured:$("aFeatured").checked,createdAt:old?.createdAt||new Date().toISOString()};
+ try {
+  await apiWrite(old?"updateAnnouncement":"createAnnouncement",{announcement:item});
+  await syncFromApi(false); closeModal("annModal"); showNotice("Anuncio guardado correctamente.");
+ } catch(err) {
+  if(old) announcements=announcements.map(x=>String(x.id)===String(id)?item:x); else announcements.push(item);
+  saveLocal(); renderAll(); closeModal("annModal");
+  showNotice("Se guardó localmente, pero no en Google Sheets: "+err.message,"error");
+ }
+}
+
+async function deleteAnnouncement(id) {
+ if(!confirm("¿Eliminar este anuncio?")) return;
+ try {
+  await apiWrite("deleteAnnouncement",{id});
+  await syncFromApi(false); showNotice("Anuncio eliminado.");
+ } catch(err) {
+  announcements=announcements.filter(x=>String(x.id)!==String(id)); saveLocal(); renderAll();
+  showNotice("Eliminado localmente. Apps Script no confirmó la operación.","error");
+ }
+}
+
+function clearFilters() {
+ $("q").value=""; $("typeFilter").value=""; $("statusFilter").value=""; render();
+}
+
+function openModal(id) { $(id).classList.add("open"); }
+function closeModal(id) { $(id).classList.remove("open"); }
+function backdropClose(ev,id) { if(ev.target.id===id) closeModal(id); }
+function closeModule() {
+ if(window.parent && window.parent!==window) window.parent.postMessage({type:"JAC_CLOSE_MODULE"},"*");
+ else history.back();
+}
+
+window.addEventListener("keydown",e=>{if(e.key==="Escape"){closeModal("eventModal");closeModal("annModal");}});
+window.addEventListener("load",()=>loadData(false));
+</script>
+
+<div id="uploadModal" class="modal" aria-hidden="true">
+  <div class="dialog" style="max-width:430px;text-align:center;padding:28px">
+    <div id="uploadIcon" style="font-size:38px;color:#0b6940;margin-bottom:10px">⟳</div>
+    <h2 id="uploadTitle" style="font:800 18px Montserrat;color:#102f55;margin-bottom:8px">Guardando evento</h2>
+    <p id="uploadText" style="font-size:10px;color:#708078;line-height:1.6">Conectando con la agenda institucional…</p>
+    <div id="uploadBar" style="height:5px;background:#e8efeb;border-radius:10px;overflow:hidden;margin:18px 0 4px">
+      <div id="uploadProgress" style="height:100%;width:20%;background:#0b6940;border-radius:10px;transition:width .35s"></div>
+    </div>
+    <button id="uploadClose" class="btn primary" style="display:none;margin-top:10px" onclick="closeUploadModal()">Aceptar</button>
+  </div>
+</div>
+</body>
+</html>

@@ -12,7 +12,12 @@
 
     <meta
         name="description"
-        content="Sitio web en mantenimiento - Junta de Acción Comunal Vereda Santa Bárbara."
+        content="Portal institucional temporalmente en mantenimiento. Junta de Acción Comunal Vereda Santa Bárbara."
+    >
+
+    <meta
+        name="theme-color"
+        content="#073d25"
     >
 
     <title>
@@ -20,7 +25,9 @@
     </title>
 
 
-    <!-- TIPOGRAFÍAS -->
+    <!-- =====================================================
+         TIPOGRAFÍAS
+    ====================================================== -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -31,8 +38,18 @@
     >
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap"
         rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         ICONOS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     >
 
 
@@ -44,22 +61,41 @@
 
         :root {
 
-            --green: #07552f;
-            --green-dark: #003d21;
+            --green:
+                #07552f;
 
-            --gold: #e4ad1e;
+            --green-dark:
+                #03361f;
 
-            --blue: #102c53;
+            --green-deep:
+                #022b19;
 
-            --white: #ffffff;
+            --green-soft:
+                #edf6f0;
 
-            --cream: #f8faf7;
+            --blue:
+                #102c53;
 
-            --text: #17221c;
+            --gold:
+                #d9a51c;
 
-            --muted: #68746d;
+            --gold-soft:
+                #f5e7b8;
 
-            --border: #dfe8e2;
+            --white:
+                #ffffff;
+
+            --cream:
+                #f7f9f7;
+
+            --text:
+                #18221d;
+
+            --muted:
+                #69756e;
+
+            --border:
+                #dfe7e2;
 
         }
 
@@ -69,29 +105,51 @@
         ===================================================== */
 
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+
+            margin:
+                0;
+
+            padding:
+                0;
+
+            box-sizing:
+                border-box;
+
         }
 
 
-        html,
-        body {
-            width: 100%;
-            min-height: 100%;
+        html {
+
+            width:
+                100%;
+
+            min-height:
+                100%;
+
         }
 
 
         body {
+
+            width:
+                100%;
+
+            min-height:
+                100vh;
 
             font-family:
                 "Inter",
                 Arial,
                 sans-serif;
 
-            color: var(--text);
+            color:
+                var(--text);
 
-            background: var(--cream);
+            background:
+                var(--cream);
+
+            overflow-x:
+                hidden;
 
         }
 
@@ -102,22 +160,35 @@
 
         .maintenance-page {
 
-            min-height: 100vh;
+            min-height:
+                100vh;
 
-            display: flex;
+            display:
+                flex;
 
-            flex-direction: column;
+            flex-direction:
+                column;
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
 
         }
 
 
         /* =====================================================
-           FRANJA SUPERIOR
+           BARRA SUPERIOR INSTITUCIONAL
         ===================================================== */
 
         .top-line {
 
-            height: 8px;
+            height:
+                6px;
+
+            width:
+                100%;
 
             background:
                 linear-gradient(
@@ -128,6 +199,93 @@
                     var(--gold) 100%
                 );
 
+            flex-shrink:
+                0;
+
+        }
+
+
+        /* =====================================================
+           DECORACIÓN
+        ===================================================== */
+
+        .decor {
+
+            position:
+                absolute;
+
+            border-radius:
+                50%;
+
+            pointer-events:
+                none;
+
+            z-index:
+                0;
+
+        }
+
+
+        .decor-one {
+
+            width:
+                520px;
+
+            height:
+                520px;
+
+            top:
+                -300px;
+
+            right:
+                -230px;
+
+            border:
+                1px solid
+                rgba(7,85,47,.07);
+
+        }
+
+
+        .decor-two {
+
+            width:
+                360px;
+
+            height:
+                360px;
+
+            bottom:
+                -230px;
+
+            left:
+                -180px;
+
+            border:
+                1px solid
+                rgba(217,165,28,.08);
+
+        }
+
+
+        .decor-three {
+
+            width:
+                170px;
+
+            height:
+                170px;
+
+            top:
+                23%;
+
+            right:
+                8%;
+
+            border:
+                1px solid
+                rgba(7,85,47,.05);
+
         }
 
 
@@ -135,168 +293,247 @@
            CONTENIDO
         ===================================================== */
 
-        .main {
+        main {
 
-            flex: 1;
+            flex:
+                1;
 
-            display: flex;
+            display:
+                flex;
 
-            align-items: center;
+            align-items:
+                center;
 
-            justify-content: center;
+            justify-content:
+                center;
+
+            position:
+                relative;
 
             padding:
-                55px 25px;
+                70px 25px;
 
             background:
 
                 radial-gradient(
-                    circle at 85% 20%,
-                    rgba(228,173,30,.10),
-                    transparent 25%
+                    circle at 82% 20%,
+                    rgba(217,165,28,.08),
+                    transparent 27%
                 ),
 
                 linear-gradient(
                     135deg,
-                    #ffffff,
-                    #eef6f0
+                    #ffffff 0%,
+                    #f7faf8 50%,
+                    #edf5f0 100%
                 );
 
         }
 
 
-        .content {
+        .main-container {
 
-            width: min(1050px, 100%);
+            width:
+                min(1080px,100%);
 
-            display: grid;
+            display:
+                grid;
 
             grid-template-columns:
-                .85fr
-                1.15fr;
+                390px
+                1fr;
 
-            align-items: center;
+            align-items:
+                center;
 
-            gap: 75px;
+            gap:
+                90px;
+
+            position:
+                relative;
+
+            z-index:
+                2;
 
         }
 
 
         /* =====================================================
-           LOGO
+           ÁREA DEL LOGO
         ===================================================== */
 
-        .logo-area {
+        .identity {
 
-            display: flex;
+            display:
+                flex;
 
-            justify-content: center;
+            justify-content:
+                center;
 
-            align-items: center;
-
-        }
-
-
-        .logo-box {
-
-            width: 310px;
-
-            height: 310px;
-
-            display: grid;
-
-            place-items: center;
-
-            background: white;
-
-            border: 1px solid var(--border);
-
-            border-radius: 50%;
-
-            box-shadow:
-                0 25px 60px
-                rgba(7,85,47,.12);
-
-            position: relative;
+            align-items:
+                center;
 
         }
 
 
-        .logo-box::before {
+        .logo-wrapper {
 
-            content: "";
+            width:
+                315px;
 
-            position: absolute;
+            height:
+                315px;
 
-            inset: 12px;
+            border-radius:
+                50%;
+
+            background:
+                rgba(255,255,255,.92);
 
             border:
-                2px solid
-                rgba(228,173,30,.55);
+                1px solid
+                rgba(7,85,47,.12);
 
-            border-radius: 50%;
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            position:
+                relative;
+
+            box-shadow:
+                0 30px 80px
+                rgba(7,85,47,.13);
 
         }
 
 
-        .logo-box img {
+        .logo-wrapper::before {
 
-            width: 78%;
+            content:
+                "";
 
-            height: 78%;
+            position:
+                absolute;
 
-            object-fit: contain;
+            inset:
+                12px;
 
-            position: relative;
+            border:
+                1.5px solid
+                rgba(217,165,28,.55);
 
-            z-index: 2;
+            border-radius:
+                50%;
+
+        }
+
+
+        .logo-wrapper::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            inset:
+                24px;
+
+            border:
+                1px solid
+                rgba(7,85,47,.08);
+
+            border-radius:
+                50%;
+
+        }
+
+
+        .logo-wrapper img {
+
+            width:
+                73%;
+
+            height:
+                73%;
+
+            object-fit:
+                contain;
+
+            position:
+                relative;
+
+            z-index:
+                3;
 
         }
 
 
         /* =====================================================
-           TEXTO
-        ===================================================== */
+           TEXTO INSTITUCIONAL
+        ====================================================== */
+
+        .content {
+
+            max-width:
+                640px;
+
+        }
+
 
         .eyebrow {
 
-            display: flex;
+            display:
+                inline-flex;
 
-            align-items: center;
+            align-items:
+                center;
 
-            gap: 10px;
+            gap:
+                10px;
 
-            margin-bottom: 18px;
+            color:
+                var(--green);
 
-            color: var(--green);
+            font-size:
+                11px;
 
-            font-size: 12px;
+            font-weight:
+                800;
 
-            font-weight: 800;
+            letter-spacing:
+                .13em;
 
-            letter-spacing: .09em;
-
-            text-transform: uppercase;
+            text-transform:
+                uppercase;
 
         }
 
 
         .eyebrow::before {
 
-            content: "";
+            content:
+                "";
 
-            width: 28px;
+            width:
+                32px;
 
-            height: 3px;
+            height:
+                2px;
 
-            border-radius: 5px;
-
-            background: var(--gold);
+            background:
+                var(--gold);
 
         }
 
 
-        h1 {
+        .title {
+
+            margin-top:
+                18px;
 
             font-family:
                 "Montserrat",
@@ -305,351 +542,549 @@
             font-size:
                 clamp(
                     42px,
-                    6vw,
-                    72px
+                    5.2vw,
+                    68px
                 );
 
-            line-height: 1.02;
+            line-height:
+                1.04;
 
-            letter-spacing: -.04em;
+            letter-spacing:
+                -.045em;
 
-            color: var(--blue);
+            color:
+                var(--blue);
 
         }
 
 
-        h1 span {
+        .title span {
 
-            display: block;
+            display:
+                block;
 
-            color: var(--green);
+            color:
+                var(--green);
 
         }
 
 
         .description {
 
-            max-width: 610px;
+            margin-top:
+                25px;
 
-            margin-top: 24px;
+            max-width:
+                610px;
 
-            color: var(--muted);
+            color:
+                var(--muted);
 
-            font-size: 17px;
+            font-size:
+                16px;
 
-            line-height: 1.7;
+            line-height:
+                1.8;
+
+        }
+
+
+        /* =====================================================
+           LÍNEA DECORATIVA
+        ====================================================== */
+
+        .separator {
+
+            width:
+                100%;
+
+            max-width:
+                520px;
+
+            height:
+                1px;
+
+            margin-top:
+                28px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--border),
+                    transparent
+                );
 
         }
 
 
         /* =====================================================
            ESTADO
-        ===================================================== */
+        ====================================================== */
 
         .status {
 
-            display: flex;
+            margin-top:
+                25px;
 
-            align-items: center;
+            display:
+                inline-flex;
 
-            gap: 13px;
+            align-items:
+                center;
 
-            margin-top: 28px;
+            gap:
+                11px;
 
-            padding: 15px 19px;
+            padding:
+                10px 15px;
 
-            width: fit-content;
+            border:
+                1px solid
+                var(--border);
 
-            border: 1px solid var(--border);
+            border-radius:
+                30px;
 
-            border-radius: 14px;
+            background:
+                rgba(255,255,255,.72);
 
-            background: white;
+            color:
+                var(--green);
 
-            box-shadow:
-                0 8px 25px
-                rgba(20,50,35,.05);
+            font-size:
+                11px;
+
+            font-weight:
+                700;
 
         }
 
 
         .status-dot {
 
-            width: 12px;
+            width:
+                9px;
 
-            height: 12px;
+            height:
+                9px;
 
-            border-radius: 50%;
+            border-radius:
+                50%;
 
-            background: var(--gold);
+            background:
+                var(--gold);
 
             box-shadow:
                 0 0 0 5px
-                rgba(228,173,30,.14);
-
-        }
-
-
-        .status strong {
-
-            color: var(--green);
-
-            font-size: 14px;
+                rgba(217,165,28,.11);
 
         }
 
 
         /* =====================================================
-           INFORMACIÓN
-        ===================================================== */
+           INFORMACIÓN INSTITUCIONAL
+        ====================================================== */
 
-        .info {
+        .institution-info {
 
-            margin-top: 25px;
+            margin-top:
+                25px;
 
-            display: grid;
+            display:
+                flex;
 
-            grid-template-columns:
-                repeat(2, 1fr);
+            align-items:
+                center;
 
-            gap: 12px;
+            gap:
+                24px;
 
-            max-width: 620px;
-
-        }
-
-
-        .info-card {
-
-            padding: 17px;
-
-            border-radius: 13px;
-
-            background: rgba(255,255,255,.75);
-
-            border:
-                1px solid
-                var(--border);
+            flex-wrap:
+                wrap;
 
         }
 
 
-        .info-card strong {
+        .info-item {
 
-            display: block;
+            display:
+                flex;
 
-            color: var(--green);
+            align-items:
+                center;
 
-            font-family:
-                "Montserrat",
-                sans-serif;
+            gap:
+                9px;
 
-            font-size: 14px;
+            color:
+                var(--muted);
 
-            margin-bottom: 4px;
+            font-size:
+                11px;
 
         }
 
 
-        .info-card span {
+        .info-item i {
 
-            color: var(--muted);
+            color:
+                var(--green);
 
-            font-size: 12px;
+            font-size:
+                15px;
+
+        }
+
+
+        /* =====================================================
+           MENSAJE INFERIOR
+        ====================================================== */
+
+        .return-message {
+
+            margin-top:
+                34px;
+
+            color:
+                #89958e;
+
+            font-size:
+                11px;
+
+            letter-spacing:
+                .01em;
 
         }
 
 
         /* =====================================================
            FOOTER
-        ===================================================== */
+        ====================================================== */
 
         footer {
 
             background:
-                var(--green-dark);
-
-            color: white;
+                linear-gradient(
+                    135deg,
+                    var(--green-deep),
+                    var(--green-dark)
+                );
 
             border-top:
                 3px solid
                 var(--gold);
 
-        }
+            color:
+                white;
 
-
-        .footer-inner {
-
-            width: min(1050px, 92%);
-
-            min-height: 85px;
-
-            margin: auto;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            gap: 20px;
+            flex-shrink:
+                0;
 
         }
 
 
-        .footer-name {
+        .footer-container {
+
+            width:
+                min(1080px,92%);
+
+            min-height:
+                82px;
+
+            margin:
+                auto;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                25px;
+
+        }
+
+
+        .footer-brand {
 
             font-family:
                 "Montserrat",
                 sans-serif;
 
-            font-size: 13px;
+            font-size:
+                11px;
 
-            font-weight: 700;
+            font-weight:
+                800;
+
+            letter-spacing:
+                .025em;
 
         }
 
 
         .footer-location {
 
-            margin-top: 3px;
+            margin-top:
+                3px;
 
-            color: #cbded3;
+            color:
+                #bfd4c8;
 
-            font-size: 11px;
+            font-size:
+                10px;
 
         }
 
 
-        .copyright {
+        .footer-right {
 
-            color: #cbded3;
+            color:
+                #bfd4c8;
 
-            font-size: 11px;
+            font-size:
+                10px;
 
-            text-align: right;
+            text-align:
+                right;
 
         }
 
 
         /* =====================================================
-           RESPONSIVE
-        ===================================================== */
+           RESPONSIVE TABLET
+        ====================================================== */
 
-        @media (max-width: 850px) {
+        @media (max-width: 900px) {
 
-            .content {
+            main {
 
-                grid-template-columns: 1fr;
-
-                gap: 45px;
-
-                text-align: center;
+                padding:
+                    65px 25px;
 
             }
 
 
-            .logo-box {
+            .main-container {
 
-                width: 230px;
+                grid-template-columns:
+                    1fr;
 
-                height: 230px;
+                gap:
+                    50px;
+
+                text-align:
+                    center;
+
+            }
+
+
+            .logo-wrapper {
+
+                width:
+                    250px;
+
+                height:
+                    250px;
+
+            }
+
+
+            .content {
+
+                margin:
+                    auto;
 
             }
 
 
             .eyebrow {
 
-                justify-content: center;
+                justify-content:
+                    center;
 
             }
 
 
             .description {
 
-                margin-left: auto;
+                margin-left:
+                    auto;
 
-                margin-right: auto;
+                margin-right:
+                    auto;
+
+            }
+
+
+            .separator {
+
+                margin-left:
+                    auto;
+
+                margin-right:
+                    auto;
+
+                background:
+                    linear-gradient(
+                        90deg,
+                        transparent,
+                        var(--border),
+                        transparent
+                    );
 
             }
 
 
             .status {
 
-                margin-left: auto;
+                margin-left:
+                    auto;
 
-                margin-right: auto;
+                margin-right:
+                    auto;
 
             }
 
 
-            .info {
+            .institution-info {
 
-                margin-left: auto;
+                justify-content:
+                    center;
 
-                margin-right: auto;
+            }
 
-                text-align: left;
+
+            .return-message {
+
+                text-align:
+                    center;
 
             }
 
         }
 
 
-        @media (max-width: 550px) {
+        /* =====================================================
+           RESPONSIVE MÓVIL
+        ====================================================== */
 
-            .main {
+        @media (max-width: 600px) {
+
+            .top-line {
+
+                height:
+                    5px;
+
+            }
+
+
+            main {
 
                 padding:
-                    45px 20px;
+                    50px 20px 45px;
 
             }
 
 
-            .logo-box {
+            .main-container {
 
-                width: 190px;
-
-                height: 190px;
+                gap:
+                    38px;
 
             }
 
 
-            h1 {
+            .logo-wrapper {
 
-                font-size: 43px;
+                width:
+                    195px;
+
+                height:
+                    195px;
+
+            }
+
+
+            .title {
+
+                font-size:
+                    41px;
 
             }
 
 
             .description {
 
-                font-size: 15px;
+                font-size:
+                    14px;
+
+                line-height:
+                    1.75;
 
             }
 
 
-            .info {
+            .institution-info {
 
-                grid-template-columns: 1fr;
+                flex-direction:
+                    column;
 
-            }
-
-
-            .footer-inner {
-
-                padding: 20px 0;
-
-                flex-direction: column;
-
-                text-align: center;
+                gap:
+                    11px;
 
             }
 
 
-            .copyright {
+            .return-message {
 
-                text-align: center;
+                margin-top:
+                    28px;
+
+            }
+
+
+            .footer-container {
+
+                min-height:
+                    auto;
+
+                padding:
+                    21px 0;
+
+                flex-direction:
+                    column;
+
+                text-align:
+                    center;
+
+            }
+
+
+            .footer-right {
+
+                text-align:
+                    center;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           ACCESIBILIDAD
+        ====================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            * {
+
+                scroll-behavior:
+                    auto !important;
 
             }
 
@@ -663,163 +1098,201 @@
 <body>
 
 
-    <div class="maintenance-page">
+<div class="maintenance-page">
 
 
-        <!-- =================================================
-             FRANJA SUPERIOR
-        ================================================== -->
+    <!-- =====================================================
+         FRANJA INSTITUCIONAL
+    ====================================================== -->
 
-        <div class="top-line"></div>
+    <div class="top-line"></div>
 
 
-        <!-- =================================================
-             CONTENIDO
-        ================================================== -->
+    <!-- DECORACIÓN -->
 
-        <main class="main">
+    <div class="decor decor-one"></div>
+
+    <div class="decor decor-two"></div>
+
+    <div class="decor decor-three"></div>
+
+
+    <!-- =====================================================
+         CONTENIDO
+    ====================================================== -->
+
+    <main>
+
+        <div class="main-container">
+
+
+            <!-- =================================================
+                 IDENTIDAD
+            ================================================== -->
+
+            <div class="identity">
+
+                <div class="logo-wrapper">
+
+                    <img
+                        src="assets/logo.png"
+                        alt="Logo de la Junta de Acción Comunal Vereda Santa Bárbara"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 MENSAJE
+            ================================================== -->
 
             <div class="content">
 
 
-                <!-- LOGO -->
+                <div class="eyebrow">
 
-                <div class="logo-area">
+                    Portal institucional
 
-                    <div class="logo-box">
+                </div>
 
-                        <img
-                            src="assets/logo.png"
-                            alt="Junta de Acción Comunal Vereda Santa Bárbara"
-                        >
 
-                    </div>
+                <h1 class="title">
+
+                    Estamos realizando
+
+                    <span>
+                        mejoras al sitio.
+                    </span>
+
+                </h1>
+
+
+                <p class="description">
+
+                    Nuestro portal institucional se encuentra
+                    temporalmente en mantenimiento. Estamos
+                    trabajando para mejorar nuestros servicios,
+                    actualizar la información y ofrecer a la
+                    comunidad una plataforma más segura,
+                    clara y completa.
+
+                </p>
+
+
+                <div class="separator"></div>
+
+
+                <!-- ESTADO -->
+
+                <div class="status">
+
+                    <span class="status-dot"></span>
+
+                    Sitio temporalmente en mantenimiento
 
                 </div>
 
 
                 <!-- INFORMACIÓN -->
 
-                <div>
-
-                    <div class="eyebrow">
-
-                        Mantenimiento del sitio
-
-                    </div>
+                <div class="institution-info">
 
 
-                    <h1>
+                    <div class="info-item">
 
-                        Estamos realizando
+                        <i class="bi bi-people-fill"></i>
 
                         <span>
-                            algunas mejoras.
+                            Compromiso con la comunidad
                         </span>
 
-                    </h1>
+                    </div>
 
 
-                    <p class="description">
+                    <div class="info-item">
 
-                        Nuestro sitio web se encuentra temporalmente
-                        en mantenimiento mientras realizamos mejoras
-                        para ofrecer a nuestra comunidad una experiencia
-                        más completa, clara y segura.
+                        <i class="bi bi-shield-check"></i>
 
-                    </p>
-
-
-                    <div class="status">
-
-                        <div class="status-dot"></div>
-
-                        <strong>
-                            Sitio temporalmente fuera de servicio
-                        </strong>
+                        <span>
+                            Información institucional
+                        </span>
 
                     </div>
 
 
-                    <div class="info">
+                    <div class="info-item">
 
+                        <i class="bi bi-check-circle-fill"></i>
 
-                        <div class="info-card">
-
-                            <strong>
-                                Comunidad
-                            </strong>
-
-                            <span>
-                                Trabajamos por nuestra vereda.
-                            </span>
-
-                        </div>
-
-
-                        <div class="info-card">
-
-                            <strong>
-                                Información
-                            </strong>
-
-                            <span>
-                                Pronto volveremos con novedades.
-                            </span>
-
-                        </div>
-
+                        <span>
+                            Próxima disponibilidad
+                        </span>
 
                     </div>
+
+
+                </div>
+
+
+                <p class="return-message">
+
+                    Agradecemos su comprensión y paciencia.
+                    El portal estará nuevamente disponible
+                    próximamente.
+
+                </p>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <div class="footer-container">
+
+
+            <div>
+
+                <div class="footer-brand">
+
+                    JUNTA DE ACCIÓN COMUNAL
+                    · VEREDA SANTA BÁRBARA
+
+                </div>
+
+                <div class="footer-location">
+
+                    Municipio de El Bagre · Antioquia
 
                 </div>
 
             </div>
 
-        </main>
 
+            <div class="footer-right">
 
-        <!-- =================================================
-             FOOTER
-        ================================================== -->
-
-        <footer>
-
-            <div class="footer-inner">
-
-
-                <div>
-
-                    <div class="footer-name">
-
-                        JUNTA DE ACCIÓN COMUNAL
-                        VEREDA SANTA BÁRBARA
-
-                    </div>
-
-                    <div class="footer-location">
-
-                        Municipio del Bagre · Antioquia
-
-                    </div>
-
-                </div>
-
-
-                <div class="copyright">
-
-                    © 2026 Junta de Acción Comunal
-                    Vereda Santa Bárbara
-
-                </div>
-
+                © 2026 Junta de Acción Comunal
+                Vereda Santa Bárbara
 
             </div>
 
-        </footer>
+
+        </div>
+
+    </footer>
 
 
-    </div>
+</div>
 
 
 </body>
