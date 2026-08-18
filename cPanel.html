@@ -132,6 +132,7 @@ body.module-open .module-drawer .drawer-body{padding:0}
 @media(max-width:700px){.drawer-head h2{font-size:16px}}
 @media(max-width:700px){.module-drawer{width:100vw}.drawer-head{padding-left:15px}.drawer-status{padding:0 15px}.drawer-status span:last-child{max-width:50%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
 </style>
+<script src="jac_admin_api.js"></script>
 </head>
 
 <body>
@@ -183,15 +184,16 @@ body.module-open .module-drawer .drawer-body{padding:0}
 
         <div class="navtitle">Administración</div>
 
-        <button class="nav" onclick="section('Usuarios',this)">
+        <!-- Secciones administrativas: se mantienen dentro del cPanel -->
+        <button class="nav" onclick="abrirModulo('Usuarios',URLS.usuarios,this)">
             <i class="bi bi-person-gear"></i><span>Usuarios</span><em>›</em>
         </button>
 
-        <button class="nav" onclick="section('Configuración',this)">
+        <button class="nav" onclick="abrirModulo('Configuración',URLS.configuracion,this)">
             <i class="bi bi-gear"></i><span>Configuración</span><em>›</em>
         </button>
 
-        <button class="nav" onclick="section('Información General',this)">
+        <button class="nav" onclick="abrirModulo('Información General',URLS.informacion,this)">
             <i class="bi bi-info-circle"></i><span>Información General</span><em>›</em>
         </button>
     </nav>
@@ -417,9 +419,12 @@ const URLS = {
     noticias: "panel_adminnoticias.html",
     pqrs: "gestion-pqrs.html",
     certificadosAdmin: "admincertificado.html",
+    usuarios: "admin_usuarios.html",
+    configuracion: "admin_configuracion.html",
+    informacion: "admin_informacion.html",
 
     // Módulos que aún no tienen un panel específico confirmado:
-    agenda: "agenda.html",
+    agenda: "admin.agenda.html",
     afiliados: "admin.afiliados.html"
 };
 
@@ -469,6 +474,35 @@ function section(name,el){
     if(name === "Dashboard") cerrarModulo();
 }
 
+
+let jacAdminToken = null;
+let jacAdminUser = null;
+window.addEventListener('message', function(event){
+    if (!event.data || !event.data.type) return;
+    if (event.data.type === 'JAC_ADMIN_SESSION_REQUEST') {
+        if (event.source && event.source.postMessage && jacAdminToken) {
+            event.source.postMessage({type:'JAC_ADMIN_SESSION', token:jacAdminToken, user:jacAdminUser}, '*');
+        }
+    }
+    if (event.data.type === 'JAC_ADMIN_SESSION_SET' && event.data.token) {
+        jacAdminToken = event.data.token;
+        jacAdminUser = event.data.user || null;
+        const frame = document.getElementById('moduleFrame');
+        if (frame && frame.contentWindow) frame.contentWindow.postMessage({type:'JAC_ADMIN_SESSION', token:jacAdminToken, user:jacAdminUser}, '*');
+        const userName = document.querySelector('.user b');
+        const userRole = document.querySelector('.user small');
+        if (userName && jacAdminUser) userName.textContent = jacAdminUser.nombre || 'Administrador';
+        if (userRole && jacAdminUser) userRole.textContent = jacAdminUser.rol || 'Super Administrador';
+    }
+});
+
+function enviarSesionAlModulo(){
+    const frame=document.getElementById('moduleFrame');
+    if(frame && frame.contentWindow && jacAdminToken){
+        frame.contentWindow.postMessage({type:'JAC_ADMIN_SESSION', token:jacAdminToken, user:jacAdminUser}, '*');
+    }
+}
+
 function abrirModulo(nombre,url,el){
     document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
     if(el) el.classList.add("active");
@@ -492,8 +526,10 @@ function abrirModulo(nombre,url,el){
 
     if(frame.src !== contenidoUrl){
         frame.src=contenidoUrl;
+        frame.addEventListener('load', enviarSesionAlModulo, {once:true});
     }else{
         try{ frame.contentWindow.location.reload(); }catch(e){}
+        setTimeout(enviarSesionAlModulo, 250);
     }
 }
 

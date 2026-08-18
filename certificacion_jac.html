@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificaciones | JAC Santa Bárbara</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+
+<style>
+:root{
+  --verde:#087442;
+  --verde2:#0b8f52;
+  --verde-dark:#075d36;
+  --verde-soft:#eaf7f0;
+  --verde-soft2:#f4fbf7;
+  --tinta:#1f2937;
+  --gris:#64748b;
+  --gris2:#94a3b8;
+  --borde:#e4e9ed;
+  --fondo:#f4f7f6;
+  --blanco:#fff;
+  --dorado:#b38a3e;
+  --rojo:#b42318;
+  --sombra:0 14px 38px rgba(15,23,42,.075);
+  --sombra2:0 25px 80px rgba(15,23,42,.18);
+}
+*{box-sizing:border-box}
+html,body{min-height:100%;margin:0}
+body{
+  background:
+    radial-gradient(circle at 10% 0%,rgba(11,143,82,.06),transparent 28%),
+    radial-gradient(circle at 95% 10%,rgba(179,138,62,.05),transparent 24%),
+    var(--fondo);
+  color:var(--tinta);
+  font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.app{max-width:1540px;margin:auto;padding:0 22px 22px}
+.sticky-head{
+  position:sticky;
+  top:0;
+  z-index:1200;
+  padding:14px 0 10px;
+  background:rgba(244,247,246,.94);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+.topbar{
+  background:rgba(255,255,255,.97);
+  border:1px solid var(--borde);
+  border-radius:22px;
+  padding:17px 20px;
+  box-shadow:var(--sombra);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:14px;min-width:280px}
+.logo{
+  width:58px;height:58px;object-fit:contain;border-radius:15px;
+  background:var(--verde-soft2);padding:5px;
+}
+.brand h1{font-size:20px;margin:0;font-weight:850;letter-spacing:-.02em}
+.brand p{margin:3px 0 0;color:var(--gris);font-size:12.5px}
+.actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.btn-jac{
+  border:0;border-radius:11px;padding:10px 14px;font-weight:800;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  transition:.18s ease;
+}
+.btn-primary-jac{background:var(--verde);color:#fff}
+.btn-primary-jac:hover{background:var(--verde-dark);transform:translateY(-1px)}
+.btn-light-jac{background:#f6f8f9;color:#334155;border:1px solid var(--borde)}
+.btn-light-jac:hover{background:#fff;border-color:#cfd7dd}
+.sync{
+  display:inline-flex;align-items:center;gap:7px;padding:8px 11px;
+  border-radius:999px;background:var(--verde-soft);color:var(--verde);
+  font-size:11px;font-weight:850;border:1px solid #d9eee3
+}
+.sync.off{background:#fff3f1;color:var(--rojo);border-color:#f3d1cd}
+.sync.wait{background:#fff8e9;color:#9a6500;border-color:#f1dfb6}
+.dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin:10px 0 0}
+.kpi{
+  background:#fff;border:1px solid var(--borde);border-radius:17px;
+  padding:15px;box-shadow:var(--sombra);display:flex;align-items:center;gap:12px;
+}
+.kpi-icon{
+  width:44px;height:44px;border-radius:13px;background:var(--verde-soft);
+  color:var(--verde);display:grid;place-items:center;font-size:20px;flex:0 0 44px
+}
+.kpi strong{display:block;font-size:23px;line-height:1.1}
+.kpi span{display:block;font-size:11px;color:var(--gris);margin-top:3px}
+.layout{
+  display:grid;grid-template-columns:minmax(340px,.86fr) minmax(600px,1.35fr);
+  gap:17px;align-items:start
+}
+.panel{
+  background:#fff;border:1px solid var(--borde);border-radius:21px;
+  box-shadow:var(--sombra);overflow:hidden
+}
+.panel-head{
+  padding:16px 18px;border-bottom:1px solid var(--borde);
+  display:flex;align-items:center;justify-content:space-between;gap:12px
+}
+.panel-head h2{font-size:15px;margin:0;font-weight:900}
+.panel-head small{display:block;color:var(--gris);font-size:11px;margin-top:3px}
+.panel-title-icon{
+  width:36px;height:36px;border-radius:10px;background:var(--verde-soft);
+  color:var(--verde);display:grid;place-items:center
+}
+.head-left{display:flex;align-items:center;gap:10px}
+.search-box{padding:14px;border-bottom:1px solid #eef1f3;position:relative}
+.search-box i{position:absolute;left:27px;top:50%;transform:translateY(-50%);color:var(--gris2)}
+.search-box input{
+  width:100%;border:1px solid var(--borde);border-radius:11px;
+  padding:11px 12px 11px 38px;outline:0;background:#fbfcfc
+}
+.search-box input:focus{border-color:#8ac7a9;box-shadow:0 0 0 3px var(--verde-soft)}
+.filters{display:flex;gap:7px;padding:10px 14px 12px;border-bottom:1px solid #eef1f3}
+.filter{
+  border:1px solid var(--borde);background:#fff;border-radius:9px;
+  padding:7px 10px;font-size:11px;font-weight:800;color:#475569
+}
+.filter.active{background:var(--verde);border-color:var(--verde);color:#fff}
+.people-list{max-height:680px;overflow:auto;padding:8px}
+.person{
+  display:flex;align-items:center;gap:11px;padding:11px;border-radius:13px;
+  border:1px solid transparent;cursor:pointer;transition:.16s ease
+}
+.person:hover{background:#fbfdfc;border-color:#e6eee9}
+.person.active{background:var(--verde-soft);border-color:#c8e5d5}
+.person-photo{
+  width:45px;height:45px;border-radius:50%;overflow:hidden;flex:0 0 45px;
+  background:#e7f1eb;color:var(--verde);display:grid;place-items:center;
+  font-weight:900;border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.08)
+}
+.person-photo img{width:100%;height:100%;object-fit:cover}
+.person-name{font-size:13px;font-weight:850}
+.person-meta{font-size:10.5px;color:var(--gris);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:300px}
+.person-state{margin-left:auto;font-size:9.5px;font-weight:850;padding:5px 8px;border-radius:999px;background:#e9f8ef;color:var(--verde)}
+.empty{
+  padding:55px 20px;text-align:center;color:var(--gris)
+}
+.empty i{font-size:44px;color:#b6c0c7}
+.empty h5{font-weight:850;color:#475569}
+.empty p{font-size:12px;margin:5px auto 0;max-width:360px}
+.content{padding:19px}
+.selected-card{
+  border:1px solid #dbeae1;border-radius:17px;
+  background:linear-gradient(135deg,#fbfdfc,#f4faf7);
+  padding:15px;display:grid;grid-template-columns:82px 1fr auto;gap:15px;
+  align-items:center
+}
+.selected-photo{
+  width:78px;height:78px;border-radius:50%;overflow:hidden;
+  border:4px solid #fff;box-shadow:0 7px 22px rgba(15,23,42,.13);
+  background:#e6f1ea;color:var(--verde);display:grid;place-items:center;
+  font-size:25px;font-weight:900
+}
+.selected-photo img{width:100%;height:100%;object-fit:cover}
+.selected h3{margin:0;font-size:18px;font-weight:900}
+.selected-meta{font-size:11px;color:var(--gris);margin-top:3px}
+.selected-badge{
+  align-self:start;background:#fff;border:1px solid #dbeae1;
+  color:var(--verde);border-radius:10px;padding:7px 9px;font-size:10px;font-weight:900
+}
+.detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:11px}
+.detail{
+  background:#fff;border:1px solid #e6ece9;border-radius:10px;padding:9px
+}
+.detail label{display:block;font-size:9px;text-transform:uppercase;color:var(--gris2);font-weight:900;letter-spacing:.04em}
+.detail strong{display:block;font-size:11px;color:#334155;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.section{
+  border:1px solid var(--borde);border-radius:15px;margin-top:13px;overflow:hidden
+}
+.section-head{
+  background:#f8faf9;padding:11px 14px;border-bottom:1px solid #e8edef;
+  display:flex;align-items:center;gap:9px
+}
+.section-number{
+  width:26px;height:26px;border-radius:8px;background:var(--verde);
+  color:#fff;display:grid;place-items:center;font-size:11px;font-weight:900
+}
+.section-head strong{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--verde)}
+.section-head span{font-size:10px;color:var(--gris);margin-left:auto}
+.section-body{padding:14px}
+.form-label{font-size:10.5px;font-weight:850;color:#475569;margin-bottom:6px}
+.form-control,.form-select{
+  border-color:var(--borde);border-radius:10px;padding:10px 11px;font-size:12px
+}
+.form-control:focus,.form-select:focus{border-color:#8ac7a9;box-shadow:0 0 0 3px var(--verde-soft)}
+.form-hint{font-size:10px;color:var(--gris2);margin-top:4px}
+textarea.form-control{resize:vertical}
+.preview-shell{
+  background:#eef2f1;border:1px solid #dfe6e4;border-radius:15px;padding:12px;margin-top:13px
+}
+.preview-label{
+  display:flex;align-items:center;justify-content:space-between;
+  color:#64748b;font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.04em;
+  margin-bottom:8px
+}
+.paper{
+  width:100%;max-width:650px;min-height:610px;background:#fff;margin:auto;
+  border:1px solid #dfe3e5;box-shadow:0 8px 25px rgba(15,23,42,.08);
+  position:relative;padding:32px 43px 45px;color:#263238
+}
+.paper-top{height:5px;background:var(--verde);position:absolute;top:0;left:0;right:0}
+.paper-gold{height:2px;background:var(--dorado);position:absolute;top:5px;left:0;right:0}
+.paper-header{display:grid;grid-template-columns:55px 1fr 65px;gap:12px;align-items:center;margin-top:10px}
+.paper-logo{width:52px;height:52px;object-fit:contain}
+.paper-jac{font-weight:900;font-size:10px;color:var(--verde);line-height:1.35}
+.paper-jac span{display:block;color:#64748b;font-weight:500;font-size:8px;margin-top:2px}
+.paper-number{text-align:right;font-size:7.5px;color:#64748b}
+.paper-number strong{display:block;color:var(--verde);font-size:8.5px}
+.paper-rule{height:1px;background:#dfe4e6;margin:18px 0}
+.paper-title{text-align:center;color:#9b7837;font-family:Georgia,serif;font-size:17px;font-weight:700;letter-spacing:.035em}
+.paper-sub{text-align:center;color:#64748b;font-size:8px;margin-top:5px}
+.paper-person{
+  display:flex;align-items:center;justify-content:center;gap:13px;margin:24px 0 15px
+}
+.paper-person-photo{
+  width:58px;height:58px;border-radius:50%;overflow:hidden;background:#e8f1ec;
+  display:grid;place-items:center;color:var(--verde);font-weight:900
+}
+.paper-person-photo img{width:100%;height:100%;object-fit:cover}
+.paper-person-name{text-align:left;font-size:12px;font-weight:900}
+.paper-person-doc{text-align:left;font-size:8.5px;color:#64748b;margin-top:3px}
+.paper-body{font-family:Georgia,'Times New Roman',serif;font-size:11px;line-height:1.9;text-align:justify}
+.paper-body p{margin:0 0 12px}
+.paper-highlight{font-weight:700}
+.paper-signature{text-align:center;margin-top:45px}
+.paper-signature-line{height:1px;background:#777;width:180px;margin:0 auto 7px}
+.paper-signature strong{font-size:9px;display:block}
+.paper-signature span{font-size:8px;color:#64748b}
+.paper-footer{position:absolute;bottom:16px;left:43px;right:43px;border-top:1px solid #dfe4e6;padding-top:6px;text-align:center;color:#7a858b;font-size:7px}
+.footer-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:15px}
+.history-list{max-height:310px;overflow:auto}
+.history-item{
+  display:flex;align-items:center;gap:10px;padding:10px 4px;
+  border-bottom:1px solid #edf0f2
+}
+.history-icon{width:34px;height:34px;border-radius:9px;background:var(--verde-soft);color:var(--verde);display:grid;place-items:center}
+.history-main{min-width:0;flex:1}
+.history-main strong{display:block;font-size:11px}
+.history-main span{display:block;font-size:9px;color:var(--gris)}
+.history-empty{font-size:11px;color:var(--gris);padding:16px;text-align:center}
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:5000;
+  display:none;align-items:center;justify-content:center;padding:18px
+}
+.modal-overlay.show{display:flex}
+.dialog{
+  width:min(480px,100%);background:#fff;border-radius:19px;box-shadow:var(--sombra2);overflow:hidden
+}
+.dialog-head{padding:16px 18px;border-bottom:1px solid var(--borde);display:flex;align-items:center;gap:10px}
+.dialog-icon{width:38px;height:38px;border-radius:11px;background:var(--verde-soft);color:var(--verde);display:grid;place-items:center}
+.dialog-head strong{font-size:15px}
+.dialog-body{padding:18px}
+.dialog-foot{padding:13px 18px;border-top:1px solid var(--borde);display:flex;justify-content:flex-end;gap:8px}
+.alert-soft{border:1px solid #d8ebe0;background:#f5fbf7;color:#3f5e4c;border-radius:11px;padding:10px;font-size:11px}
+.error-soft{border:1px solid #f1cfca;background:#fff5f3;color:#8d2e24;border-radius:11px;padding:10px;font-size:11px}
+.spinner-ring{
+  width:20px;height:20px;border:3px solid #d7e8df;border-top-color:var(--verde);
+  border-radius:50%;animation:spin .7s linear infinite;display:inline-block
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:1100px){
+  .layout{grid-template-columns:1fr}
+  .people-list{max-height:420px}
+}
+@media(max-width:800px){
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .selected-card{grid-template-columns:70px 1fr}
+  .selected-badge{grid-column:2}
+  .detail-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .app{padding:11px}
+  .kpis{grid-template-columns:1fr 1fr}
+  .brand h1{font-size:17px}
+  .brand p{font-size:11px}
+  .selected-card{grid-template-columns:1fr;text-align:center}
+  .selected-photo{margin:auto}
+  .selected-badge{grid-column:auto;margin:auto}
+  .detail-grid{grid-template-columns:1fr}
+  .footer-actions{flex-direction:column}
+  .footer-actions button{width:100%}
+  .paper{padding:27px 22px 42px;min-height:580px}
+  .paper-footer{left:22px;right:22px}
+}
+
+/* ===== CABECERA FIJA / CONTENIDO LARGO ===== */
+@media (min-width: 1000px){
+  .layout > .panel:first-child{
+    position:sticky;
+    top:170px;
+    max-height:calc(100vh - 190px);
+    overflow:hidden;
+  }
+  .layout > .panel:first-child .people-list{
+    max-height:calc(100vh - 355px);
+  }
+}
+
+@media (max-width: 999px){
+  .sticky-head{
+    position:sticky;
+    top:0;
+    padding:8px 0 9px;
+  }
+  .app{padding:0 12px 18px}
+  .layout{grid-template-columns:1fr}
+  .layout > .panel:first-child{
+    position:relative;
+    top:auto;
+    max-height:none;
+  }
+  .layout > .panel:first-child .people-list{
+    max-height:420px;
+  }
+}
+
+@media (max-width: 680px){
+  .topbar{
+    border-radius:16px;
+    padding:12px 14px;
+  }
+  .brand{min-width:0}
+  .logo{width:48px;height:48px}
+  .brand h1{font-size:17px}
+  .brand p{font-size:10.5px}
+  .actions{width:100%}
+  .actions .btn-jac{flex:1}
+  .sync{width:100%;justify-content:center}
+  .kpis{grid-template-columns:repeat(2,1fr);gap:8px}
+  .kpi{padding:11px}
+  .kpi strong{font-size:19px}
+}
+
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<div class="sticky-head">
+<header class="topbar">
+  <div class="brand">
+    <img src="assets/logo.png" class="logo"
+      onerror="this.onerror=null;this.src='assents/logo.png';this.onerror=function(){this.src='logo.png'}"
+      alt="JAC Santa Bárbara">
+    <div>
+      <h1>Certificación de Afiliados</h1>
+      <p>Junta de Acción Comunal Vereda Santa Bárbara · El Bagre, Antioquia</p>
+    </div>
+  </div>
+
+  <div class="actions">
+    <span class="sync wait" id="syncStatus">
+      <span class="dot"></span><span id="syncText">Conectando...</span>
+    </span>
+    <button class="btn-jac btn-light-jac" onclick="cargarAfiliados()">
+      <i class="bi bi-arrow-clockwise"></i> Actualizar
+    </button>
+    <button class="btn-jac btn-light-jac" onclick="abrirClave()">
+      <i class="bi bi-shield-lock"></i> Clave
+    </button>
+    <button class="btn-jac btn-primary-jac" onclick="nuevaCertificacion()">
+      <i class="bi bi-file-earmark-plus"></i> Nueva certificación
+    </button>
+  </div>
+</header>
+
+<section class="kpis">
+  <div class="kpi">
+    <div class="kpi-icon"><i class="bi bi-people"></i></div>
+    <div><strong id="kTotal">0</strong><span>Afiliados encontrados</span></div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-icon"><i class="bi bi-person-check"></i></div>
+    <div><strong id="kActivos">0</strong><span>Afiliados activos</span></div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-icon"><i class="bi bi-file-earmark-check"></i></div>
+    <div><strong id="kCertificados">0</strong><span>Certificados generados</span></div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-icon"><i class="bi bi-shield-check"></i></div>
+    <div><strong id="kSeguridad">—</strong><span>Estado de consulta</span></div>
+  </div>
+</section>
+</div>
+
+<main class="layout">
+
+  <section class="panel">
+    <div class="panel-head">
+      <div class="head-left">
+        <div class="panel-title-icon"><i class="bi bi-person-vcard"></i></div>
+        <div>
+          <h2>Base oficial de afiliados</h2>
+          <small>Seleccione el registro para emitir la certificación</small>
+        </div>
+      </div>
+      <span class="badge text-bg-light" id="contador">0</span>
+    </div>
+
+    <div class="search-box">
+      <i class="bi bi-search"></i>
+      <input id="buscarAfiliado" type="search"
+        placeholder="Nombre, documento, afiliación, teléfono..."
+        oninput="renderAfiliados()">
+    </div>
+
+    <div class="filters">
+      <button class="filter active" id="fTodos" onclick="setFiltro('TODOS',this)">Todos</button>
+      <button class="filter" id="fActivos" onclick="setFiltro('ACTIVOS',this)">Activos</button>
+      <button class="filter" id="fInactivos" onclick="setFiltro('INACTIVOS',this)">Inactivos</button>
+    </div>
+
+    <div class="people-list" id="listaAfiliados">
+      <div class="empty">
+        <div class="spinner-ring"></div>
+        <h5 class="mt-3">Consultando base</h5>
+        <p>Estamos leyendo los afiliados sincronizados con Google Sheets.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <div class="head-left">
+        <div class="panel-title-icon"><i class="bi bi-file-earmark-text"></i></div>
+        <div>
+          <h2>Documento institucional</h2>
+          <small>Vista previa y generación de certificación</small>
+        </div>
+      </div>
+      <span class="badge text-bg-light" id="numeroCertificado">CERT-—</span>
+    </div>
+
+    <div class="content">
+
+      <div id="sinSeleccion" class="empty">
+        <i class="bi bi-person-lines-fill"></i>
+        <h5 class="mt-3">Seleccione un afiliado</h5>
+        <p>La información se descifrará con la misma clave de la Base de Afiliados.</p>
+        <button class="btn-jac btn-light-jac mt-3" onclick="abrirClave()">
+          <i class="bi bi-key"></i> Configurar clave de consulta
+        </button>
+      </div>
+
+      <div id="editorCert" style="display:none">
+
+        <div class="selected-card">
+          <div class="selected-photo" id="fotoSeleccionada">
+            <i class="bi bi-person"></i>
+          </div>
+
+          <div>
+            <h3 id="nombreSeleccionado">—</h3>
+            <div class="selected-meta" id="documentoSeleccionado">—</div>
+            <div class="selected-meta" id="afiliacionSeleccionada">—</div>
+          </div>
+
+          <div class="selected-badge" id="estadoSeleccionado">
+            <i class="bi bi-check-circle me-1"></i> ACTIVO
+          </div>
+        </div>
+
+        <div class="detail-grid">
+          <div class="detail">
+            <label>Fecha de afiliación</label>
+            <strong id="dFechaAfiliacion">—</strong>
+          </div>
+          <div class="detail">
+            <label>Calidad</label>
+            <strong id="dCalidad">—</strong>
+          </div>
+          <div class="detail">
+            <label>Cargo</label>
+            <strong id="dCargo">—</strong>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head">
+            <div class="section-number">01</div>
+            <strong>Datos del documento</strong>
+            <span>Información de expedición</span>
+          </div>
+
+          <div class="section-body">
+            <div class="row g-3">
+              <div class="col-md-7">
+                <label class="form-label">Tipo de certificación</label>
+                <select id="tipoCertificacion" class="form-select">
+                  <option value="AFILIACION">Certificación de afiliación</option>
+                  <option value="VIGENCIA">Constancia de vigencia como afiliado</option>
+                  <option value="PERTENENCIA">Constancia de pertenencia a la Junta</option>
+                  <option value="DIRECTIVA">Constancia de cargo / directiva</option>
+                  <option value="PERSONALIZADA">Certificación personalizada</option>
+                </select>
+              </div>
+
+              <div class="col-md-5">
+                <label class="form-label">Fecha de expedición</label>
+                <input id="fechaCertificacion" type="date" class="form-control">
+              </div>
+
+              <div class="col-md-7">
+                <label class="form-label">Ciudad / municipio de expedición</label>
+                <input id="municipioExpedicion" class="form-control" value="El Bagre, Antioquia">
+              </div>
+
+              <div class="col-md-5">
+                <label class="form-label">Número de certificado</label>
+                <input id="numeroManual" class="form-control" placeholder="Automático">
+                <div class="form-hint">Si queda vacío se utiliza el número automático.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head">
+            <div class="section-number">02</div>
+            <strong>Contenido de la certificación</strong>
+            <span>Editable antes de generar</span>
+          </div>
+
+          <div class="section-body">
+            <label class="form-label">Texto institucional</label>
+            <textarea id="textoCertificacion" class="form-control" rows="7"></textarea>
+            <div class="form-hint">
+              El nombre, documento y número de afiliación se incorporan automáticamente.
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head">
+            <div class="section-number">03</div>
+            <strong>Firma y observaciones</strong>
+            <span>Responsable del documento</span>
+          </div>
+
+          <div class="section-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Nombre del responsable</label>
+                <input id="responsableCertificacion" class="form-control"
+                  placeholder="Nombre completo">
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Cargo</label>
+                <input id="cargoResponsable" class="form-control"
+                  value="Presidente(a) de la Junta de Acción Comunal">
+              </div>
+
+              <div class="col-12">
+                <label class="form-label">Observaciones</label>
+                <textarea id="observacionesCertificacion" class="form-control" rows="3"
+                  placeholder="Información adicional opcional..."></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="preview-shell">
+          <div class="preview-label">
+            <span><i class="bi bi-eye me-1"></i> Vista previa institucional</span>
+            <span id="previewEstado">LISTO PARA GENERAR</span>
+          </div>
+
+          <div class="paper" id="paperPreview">
+            <div class="paper-top"></div>
+            <div class="paper-gold"></div>
+
+            <div class="paper-header">
+              <img src="assets/logo.png" class="paper-logo"
+                onerror="this.onerror=null;this.src='assents/logo.png';this.onerror=function(){this.src='logo.png'}">
+              <div class="paper-jac">
+                JUNTA DE ACCIÓN COMUNAL
+                <span>VEREDA SANTA BÁRBARA · EL BAGRE, ANTIOQUIA</span>
+              </div>
+              <div class="paper-number">
+                CERTIFICADO
+                <strong id="pNumero">CERT-—</strong>
+              </div>
+            </div>
+
+            <div class="paper-rule"></div>
+
+            <div class="paper-title" id="pTitulo">CERTIFICACIÓN DE AFILIACIÓN</div>
+            <div class="paper-sub" id="pMunicipio">El Bagre · Antioquia</div>
+
+            <div class="paper-person">
+              <div class="paper-person-photo" id="pFoto">
+                <i class="bi bi-person"></i>
+              </div>
+              <div>
+                <div class="paper-person-name" id="pNombre">SELECCIONE UN AFILIADO</div>
+                <div class="paper-person-doc" id="pDocumento">Documento: —</div>
+              </div>
+            </div>
+
+            <div class="paper-body">
+              <p id="pTexto">
+                Seleccione un afiliado para visualizar el contenido de la certificación.
+              </p>
+
+              <p id="pObservacion" style="display:none"></p>
+
+              <p>
+                Se expide la presente certificación a solicitud del interesado(a), para los
+                fines que estime pertinentes.
+              </p>
+            </div>
+
+            <div class="paper-signature">
+              <div class="paper-signature-line"></div>
+              <strong id="pResponsable">Presidente(a) de la Junta de Acción Comunal</strong>
+              <span id="pCargo">Junta de Acción Comunal Vereda Santa Bárbara</span>
+            </div>
+
+            <div class="paper-footer">
+              Junta de Acción Comunal Vereda Santa Bárbara · El Bagre, Antioquia
+              · Documento generado desde el Sistema Administrativo de la JAC
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-actions">
+          <button class="btn-jac btn-light-jac" onclick="nuevaCertificacion()">
+            <i class="bi bi-arrow-counterclockwise"></i> Limpiar
+          </button>
+
+          <button class="btn-jac btn-light-jac" onclick="imprimirVista()">
+            <i class="bi bi-printer"></i> Imprimir
+          </button>
+
+          <button class="btn-jac btn-primary-jac" id="btnGenerarPDF" onclick="generarPDF()">
+            <i class="bi bi-file-earmark-pdf"></i> Generar PDF
+          </button>
+        </div>
+
+        <div class="section">
+          <div class="section-head">
+            <div class="section-number"><i class="bi bi-clock-history"></i></div>
+            <strong>Historial local de certificaciones</strong>
+            <span>Este navegador</span>
+          </div>
+          <div class="section-body">
+            <div class="history-list" id="historialCertificados">
+              <div class="history-empty">Todavía no se han generado certificados desde este navegador.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+</div>
+
+<!-- MODAL DE CLAVE -->
+<div class="modal-overlay" id="modalClave">
+  <div class="dialog">
+    <div class="dialog-head">
+      <div class="dialog-icon"><i class="bi bi-shield-lock"></i></div>
+      <div>
+        <strong>Clave de cifrado</strong>
+        <div style="font-size:10px;color:#64748b;margin-top:2px">Misma clave utilizada por Base de Afiliados</div>
+      </div>
+    </div>
+
+    <div class="dialog-body">
+      <div class="alert-soft mb-3">
+        <i class="bi bi-info-circle me-1"></i>
+        Los datos personales no se almacenan descifrados en la hoja. La página debe
+        utilizar la misma clave para consultar el registro.
+      </div>
+
+      <label class="form-label">Clave institucional</label>
+      <input id="inputClave" type="password" class="form-control"
+        autocomplete="current-password" placeholder="Ingrese la clave de cifrado">
+
+      <div id="claveError" class="error-soft mt-3" style="display:none"></div>
+    </div>
+
+    <div class="dialog-foot">
+      <button class="btn-jac btn-light-jac" onclick="cerrarClave()">Cancelar</button>
+      <button class="btn-jac btn-primary-jac" onclick="guardarClaveYConsultar()">
+        <i class="bi bi-unlock"></i> Desbloquear
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="certificacion_jac_v2.js"></script>
+</body>
+</html>
