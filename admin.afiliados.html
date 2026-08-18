@@ -1,865 +1,1009 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>cPanel | JAC Vereda Santa Bárbara</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Base de Datos de Afiliados | JAC Santa Bárbara</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
 <style>
-:root{--g:#0b6940;--gd:#063b2b;--gs:#eaf6ef;--b:#102f55;--bg:#f5f8f6;--line:#dfe9e3;--muted:#708078;--white:#fff;--gold:#dfad28}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Inter,Arial;background:var(--bg);color:#17231e}
-button,input,select,textarea{font:inherit}button{cursor:pointer}
-a{text-decoration:none;color:inherit}
-.app{min-height:100vh}
-.side{position:fixed;inset:0 auto 0 0;width:265px;background:linear-gradient(180deg,#063d2d,#052d24);color:#dcebe4;padding:18px 15px;overflow:auto;z-index:20}
-.logo{display:flex;align-items:center;gap:11px;padding:0 5px 18px;border-bottom:1px solid #ffffff16}
-.logo img{width:56px;height:56px;object-fit:contain;background:white;border-radius:50%}
-.logo b{font-family:Montserrat;font-size:13px;color:white;line-height:1.25}
-.logo small{display:block;color:#5fc48a;font-weight:700;margin-top:3px}
-.navtitle{font-size:9px;font-weight:800;letter-spacing:.08em;color:#8ca79d;margin:20px 12px 7px}
-.nav{width:100%;border:0;background:transparent;color:#dcebe4;display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:9px;margin:2px 0;text-align:left}
-.nav i{font-size:17px;width:20px;text-align:center}
-.nav span{font-size:12px;font-weight:650;flex:1}
-.nav em{font-style:normal;font-size:12px}
-.nav:hover{background:#ffffff0d}
-.nav.active{background:#087b46;color:#fff}
-.store{margin-top:18px;padding:13px;border:1px solid #ffffff25;background:#ffffff0a;border-radius:10px;font-size:10px}
-.store b{display:flex;justify-content:space-between;color:white}
-.bar{height:6px;background:#ffffff20;border-radius:8px;margin-top:8px}
-.bar i{display:block;width:23%;height:100%;background:#55bf84;border-radius:8px}
-.site{display:flex;gap:10px;align-items:center;margin-top:14px;padding:11px 13px;border:1px solid #ffffff30;border-radius:9px;color:white;font-size:11px;font-weight:700}
-.main{margin-left:265px}
-.top{height:78px;background:#fffffff5;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:18px;padding:0 26px;position:sticky;top:0;z-index:10;backdrop-filter:blur(8px)}
-.toggle{display:none;border:0;background:none;font-size:22px;color:var(--b)}
-.title{flex:1}
-.title h1{font:800 20px Montserrat;color:var(--b)}
-.title p{font-size:10px;color:var(--muted)}
-.search{height:40px;width:265px;border:1px solid var(--line);background:white;border-radius:9px;display:flex;align-items:center;padding:0 11px}
-.search input{border:0;outline:0;width:100%;padding-left:8px;font-size:11px}
-.bell{border:0;background:white;font-size:19px;color:var(--b);position:relative}
-.bell i{position:absolute;background:#d83e4d;color:white;font-size:8px;font-style:normal;border-radius:20px;padding:2px 5px;top:-8px;right:-8px}
-.user{display:flex;gap:8px;align-items:center}
-.avatar{width:34px;height:34px;background:var(--g);color:white;border-radius:50%;display:grid;place-items:center}
-.user b{font-size:10px;color:var(--b);display:block}
-.user small{font-size:8px;color:var(--muted)}
-.content{padding:22px 26px}
-.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:16px}
-.kpi{background:white;border:1px solid var(--line);border-radius:12px;padding:15px;display:flex;align-items:center;gap:11px;box-shadow:0 5px 18px #153b2b08}
-.ki{width:45px;height:45px;border-radius:13px;display:grid;place-items:center;font-size:20px;background:var(--gs);color:var(--g)}
-.kpi:nth-child(2) .ki{background:#e7f0fc;color:#1770c9}
-.kpi:nth-child(3) .ki{background:#eee7fb;color:#7650c9}
-.kpi:nth-child(4) .ki{background:#fff0e4;color:#ed7622}
-.kpi:nth-child(5) .ki{background:#e3f3f1;color:#168c87}
-.kpi strong{font-size:19px;color:var(--b)}
-.kpi label{display:block;font-size:10px;color:#46584f}
-.up{display:block;color:#07944c;font-size:8px;font-weight:700;margin-top:4px}
-.rows{display:grid;grid-template-columns:1.15fr .85fr;gap:15px}
-.panel{background:white;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 5px 18px #153b2b08}
-.head{height:54px;border-bottom:1px solid #edf1ef;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
-.head h2{font:700 13px Montserrat;color:var(--b)}
-.head button,.head select{border:1px solid var(--line);background:white;border-radius:7px;padding:6px 9px;font-size:9px;color:var(--g);font-weight:700}
-.activity{padding:4px 16px 12px}
-.act{min-height:57px;border-bottom:1px solid #edf1ef;display:grid;grid-template-columns:36px 1fr auto auto;gap:9px;align-items:center}
-.act:last-child{border-bottom:0}
-.ai{width:34px;height:34px;background:var(--gs);color:var(--g);border-radius:9px;display:grid;place-items:center}
-.act strong{font-size:10px;color:var(--b);display:block}
-.act small{font-size:8px;color:var(--muted)}
-.tag{font-size:8px;font-weight:700;color:var(--g);background:var(--gs);padding:5px 8px;border-radius:15px}
-.time{font-size:8px;color:var(--muted);white-space:nowrap}
-.more{display:block;margin:10px auto 0;border:1px solid var(--line);background:white;border-radius:7px;padding:7px 25px;font-size:9px;font-weight:700;color:var(--b)}
-.chartbox{padding:14px 16px}
-.chart{height:205px;position:relative;background:repeating-linear-gradient(to bottom,transparent 0,transparent 39px,#edf1ef 40px)}
-.chart svg{position:absolute;inset:8px 5px 20px 22px;width:calc(100% - 27px);height:calc(100% - 28px)}
-.legend{text-align:center;font-size:8px;color:var(--muted);word-spacing:7px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;padding:0 10px 12px}
-.mini{padding:9px;border-radius:8px;background:#f3faf5}
-.mini b{font-size:16px;color:var(--g);display:block}
-.mini span{font-size:8px;color:var(--muted)}
-.lower{display:grid;grid-template-columns:1.15fr .85fr;gap:15px;margin-top:15px}
-.tablewrap{overflow:auto}
-table{width:100%;border-collapse:collapse}
-th,td{padding:9px 12px;border-bottom:1px solid #edf1ef;text-align:left;font-size:8px;white-space:nowrap}
-th{color:var(--muted);background:#fcfdfc}
-.doc{color:var(--b);font-weight:700}
-.pdf{color:#e34c4c;margin-right:5px}
-.status{background:#e4f5ea;color:#087442;border-radius:15px;padding:4px 7px;font-weight:700;font-size:7px}
-.acts button{width:25px;height:25px;background:white;border:1px solid var(--line);border-radius:5px;color:#64746c}
-.page{padding:9px 12px;display:flex;justify-content:space-between;font-size:8px;color:var(--muted)}
-.pages button{width:25px;height:25px;border:1px solid var(--line);background:white;border-radius:5px;font-size:8px}
-.pages .sel{background:var(--g);color:white}
-.stack{display:grid;gap:15px}
-.drive{padding:15px}
-.drive-row{display:flex;gap:12px;align-items:center}
-.driveicon{font-size:35px;color:#218e57}
-.drive b{font-size:10px;color:var(--b)}
-.drive small{display:block;font-size:8px;color:var(--muted)}
-.drive .pct{margin-left:auto;font-size:10px;font-weight:800}
-.drivebar{height:6px;background:#e6ece9;border-radius:8px;margin-top:11px}
-.drivebar i{display:block;width:23%;height:100%;background:var(--g);border-radius:8px}
-.quick{padding:13px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.quick button{min-height:60px;background:white;border:1px solid var(--line);border-radius:8px;text-align:left;padding:9px;font-size:8px;font-weight:700;color:var(--b)}
-.quick i{display:block;font-size:20px;color:var(--g);margin-bottom:5px}
-.footer{margin-top:22px;border-top:1px solid var(--line);padding-top:14px;display:flex;justify-content:space-between;font-size:8px;color:var(--muted)}
-.module-note{margin:15px 0;padding:12px 14px;border:1px solid #dce7df;background:#fff;border-radius:10px;color:#53635b;font-size:10px}
-@media(max-width:1200px){.kpis{grid-template-columns:repeat(3,1fr)}.rows,.lower{grid-template-columns:1fr}}
-@media(max-width:850px){.side{transform:translateX(-100%);transition:.25s}.open .side{transform:translateX(0)}.main{margin-left:0}.toggle{display:block}.search{display:none}}
-@media(max-width:600px){.content{padding:13px}.top{padding:0 14px}.kpis{grid-template-columns:1fr 1fr}.kpi{padding:10px}.kpi .ki{width:38px;height:38px;flex-basis:38px}.stats{grid-template-columns:1fr 1fr}.quick{grid-template-columns:1fr 1fr}.footer{display:block;text-align:center}.footer div+div{margin-top:5px}}
-@media(max-width:410px){.kpis{grid-template-columns:1fr}}
+:root{
+  --verde:#087442;
+  --verde2:#0b8f52;
+  --verde-soft:#eaf7f0;
+  --texto:#1f2937;
+  --muted:#6b7280;
+  --borde:#e5e7eb;
+  --fondo:#f5f7f8;
+  --rojo:#b42318;
+  --amarillo:#a15c00;
+  --sombra:0 12px 35px rgba(15,23,42,.08);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fondo);color:var(--texto);font-family:Inter,Segoe UI,Roboto,Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+.app{max-width:1500px;margin:auto;padding:22px}
+.topbar{
+  background:#fff;border:1px solid var(--borde);border-radius:20px;
+  padding:18px 20px;box-shadow:var(--sombra);display:flex;
+  align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap
+}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:56px;height:56px;object-fit:contain;border-radius:14px;background:#f4faf7;padding:5px}
+.brand h1{font-size:20px;margin:0;font-weight:800}
+.brand p{margin:3px 0 0;color:var(--muted);font-size:13px}
+.actions{display:flex;gap:9px;flex-wrap:wrap}
+.btn-jac{border:0;border-radius:11px;padding:10px 14px;font-weight:700;display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+.btn-primary-jac{background:var(--verde);color:#fff}
+.btn-primary-jac:hover{background:#075f37}
+.btn-light-jac{background:#f4f6f7;color:#334155;border:1px solid var(--borde)}
+.btn-danger-jac{background:#fff0ef;color:var(--rojo);border:1px solid #f2c6c2}
+.sync{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border-radius:999px;background:var(--verde-soft);color:var(--verde);font-size:12px;font-weight:800}
+.sync.off{background:#fff2f0;color:var(--rojo)}
+.dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}
+.kpi{background:#fff;border:1px solid var(--borde);border-radius:17px;padding:17px;box-shadow:var(--sombra);display:flex;gap:13px;align-items:center}
+.kpi-icon{width:45px;height:45px;border-radius:13px;background:var(--verde-soft);color:var(--verde);display:grid;place-items:center;font-size:21px}
+.kpi strong{font-size:25px;display:block;line-height:1.1}
+.kpi span{font-size:12px;color:var(--muted)}
+.panel{background:#fff;border:1px solid var(--borde);border-radius:20px;box-shadow:var(--sombra);overflow:hidden}
+.toolbar{padding:17px;border-bottom:1px solid var(--borde);display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.search{position:relative;min-width:280px;flex:1;max-width:600px}
+.search i{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#94a3b8}
+.search input{width:100%;border:1px solid var(--borde);border-radius:11px;padding:11px 13px 11px 38px;outline:0}
+.search input:focus{border-color:#8ac7a9;box-shadow:0 0 0 3px #eaf7f0}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filter{border:1px solid var(--borde);background:#fff;border-radius:10px;padding:9px 12px;font-size:13px;font-weight:700;color:#475569}
+.filter.active{background:var(--verde);border-color:var(--verde);color:#fff}
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:950px}
+th{background:#f8fafb;color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:.04em;padding:13px 15px;text-align:left;border-bottom:1px solid var(--borde)}
+td{padding:14px 15px;border-bottom:1px solid #eef0f2;font-size:13px;vertical-align:middle}
+tr:hover td{background:#fbfdfc}
+.person{display:flex;align-items:center;gap:10px}
+.avatar{width:38px;height:38px;border-radius:11px;background:var(--verde-soft);color:var(--verde);display:grid;place-items:center;font-weight:800}
+.name{font-weight:800}
+.sub{font-size:11px;color:var(--muted);margin-top:2px}
+.badge-state{display:inline-flex;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:800}
+.badge-active{background:#e9f8ef;color:#087442}
+.badge-inactive{background:#f1f3f5;color:#667085}
+.row-actions{display:flex;gap:6px}
+.icon-btn{width:34px;height:34px;border-radius:9px;border:1px solid var(--borde);background:#fff;display:grid;place-items:center;color:#475569;cursor:pointer}
+.icon-btn:hover{background:#f5f7f8}
+.icon-btn.edit:hover{color:var(--verde)}
+.icon-btn.off:hover{color:var(--rojo)}
+.empty{padding:55px 20px;text-align:center;color:var(--muted)}
+.empty i{font-size:42px;color:#aab4be}
+.loading{padding:35px;text-align:center;color:var(--muted)}
+.modal-content{border:0;border-radius:20px;box-shadow:0 25px 80px rgba(15,23,42,.22);overflow:hidden}
+.modal-header{border-bottom:1px solid var(--borde);padding:18px 20px}
+.modal-title{font-weight:800;font-size:18px}
+.modal-body{padding:20px}
+.modal-footer{border-top:1px solid var(--borde);padding:15px 20px}
+.form-label{font-size:12px;font-weight:800;color:#475569;margin-bottom:6px}
+.form-control,.form-select{border-color:var(--borde);border-radius:10px;padding:10px 11px}
+.form-control:focus,.form-select:focus{border-color:#8ac7a9;box-shadow:0 0 0 3px #eaf7f0}
+.section-title{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--verde);font-weight:900;margin:5px 0 12px}
+.security{background:#f8fbf9;border:1px solid #dceee4;border-radius:13px;padding:12px;font-size:12px;color:#52605a}
+.toast-container{z-index:1090}
+.jac-toast{border:0;border-radius:14px;box-shadow:0 15px 45px rgba(15,23,42,.18)}
+.toast-icon{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:var(--verde-soft);color:var(--verde)}
+.confirm-icon{width:54px;height:54px;border-radius:16px;background:#fff3e5;color:var(--amarillo);display:grid;place-items:center;font-size:25px;margin:auto}
+.spinner-ring{width:22px;height:22px;border:3px solid #d7e8df;border-top-color:var(--verde);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.app{padding:12px}.kpis{grid-template-columns:1fr 1fr}.brand h1{font-size:17px}.search{min-width:100%}}
 
-/* =========================================================
-   DRAWER / VENTANA LATERAL DE MÓDULOS
-========================================================= */
-.module-overlay{position:fixed;inset:0;background:rgba(3,20,15,.48);backdrop-filter:blur(2px);opacity:0;visibility:hidden;transition:.25s;z-index:80}
-.module-drawer{position:fixed;top:0;right:0;width:min(1180px,92vw);height:100vh;background:#f5f8f6;box-shadow:-18px 0 50px rgba(0,0,0,.20);transform:translateX(102%);transition:transform .30s ease;z-index:81;display:flex;flex-direction:column}
-body.module-open .module-overlay{opacity:1;visibility:visible}
-body.module-open .module-drawer{transform:translateX(0)}
-.drawer-head{height:72px;flex:0 0 72px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 18px 0 22px}
-.drawer-kicker{font-size:8px;font-weight:800;letter-spacing:.12em;color:var(--g)}
-.drawer-head h2{font:800 18px Montserrat;color:var(--b);margin-top:3px}
-.drawer-close{width:38px;height:38px;border:1px solid var(--line);background:#fff;border-radius:9px;color:var(--b);font-size:16px}
-.drawer-close:hover{background:#f2f6f3;color:var(--g)}
-.drawer-status{height:35px;flex:0 0 35px;background:#f7faf8;border-bottom:1px solid var(--line);padding:0 20px;display:flex;align-items:center;justify-content:space-between;font-size:8px;color:var(--muted)}
-.drawer-status span:first-child{color:#087442;font-weight:700}.drawer-status i{font-size:6px;margin-right:5px}
-.drawer-body{flex:1;min-height:0;background:#fff}.drawer-body iframe{width:100%;height:100%;display:block;border:0;background:#fff}
-@media(max-width:700px){.module-drawer{width:100vw}.drawer-head{padding-left:15px}.drawer-status{padding:0 15px}.drawer-status span:last-child{max-width:50%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
-
-/* =========================================================
-   ACCESO SEGURO DEL cPANEL
-   Usuario: admin
-   La contraseña no se guarda en texto plano: se compara
-   mediante SHA-256 en el navegador.
-========================================================= */
-body.auth-locked .app{
-    visibility:hidden;
-}
-.auth-screen{
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:24px;
-    background:
-        radial-gradient(circle at 20% 20%,rgba(8,123,70,.18),transparent 32%),
-        radial-gradient(circle at 80% 80%,rgba(16,47,85,.18),transparent 35%),
-        linear-gradient(135deg,#f2f7f4,#eaf1ee);
-}
-.auth-card{
-    width:min(430px,100%);
-    background:#fff;
-    border:1px solid #dfe9e3;
-    border-radius:18px;
-    padding:30px;
-    box-shadow:0 24px 70px rgba(6,59,43,.18);
-}
-.auth-brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-bottom:24px;
-}
-.auth-brand img{
-    width:58px;
-    height:58px;
-    object-fit:contain;
-    background:#fff;
-    border-radius:50%;
-    border:1px solid #e5ece8;
-}
-.auth-brand b{
-    display:block;
-    font:800 14px Montserrat,Arial;
-    line-height:1.25;
-    color:#102f55;
-}
-.auth-brand small{
-    display:block;
-    margin-top:4px;
-    color:#0b6940;
-    font-size:9px;
-    font-weight:800;
-    letter-spacing:.08em;
-}
-.auth-card h2{
-    margin:0;
-    font:800 21px Montserrat,Arial;
-    color:#102f55;
-}
-.auth-card .auth-subtitle{
-    margin:7px 0 20px;
-    color:#708078;
-    font-size:11px;
-    line-height:1.5;
-}
-.auth-alert{
-    display:flex;
-    gap:9px;
-    align-items:flex-start;
-    padding:11px 12px;
-    margin-bottom:18px;
-    background:#eaf6ef;
-    border:1px solid #cfe8d8;
-    border-radius:10px;
-    color:#087442;
-    font-size:9px;
-    font-weight:700;
-}
-.auth-group{margin-bottom:14px}
-.auth-group label{
-    display:block;
-    margin-bottom:6px;
-    color:#52635b;
-    font-size:9px;
-    font-weight:800;
-    letter-spacing:.06em;
-}
-.auth-group input{
-    width:100%;
-    height:44px;
-    border:1px solid #dfe9e3;
-    border-radius:9px;
-    outline:none;
-    padding:0 12px;
-    font-size:11px;
-    color:#17231e;
-    background:#fbfdfc;
-}
-.auth-group input:focus{
-    border-color:#0b6940;
-    box-shadow:0 0 0 3px rgba(11,105,64,.10);
-}
-.auth-submit{
-    width:100%;
-    height:44px;
-    border:0;
-    border-radius:9px;
-    background:#0b6940;
-    color:#fff;
-    font-size:11px;
-    font-weight:800;
-    box-shadow:0 8px 18px rgba(11,105,64,.18);
-}
-.auth-submit:hover{background:#087442}
-.auth-submit:disabled{opacity:.65;cursor:wait}
-.auth-error{
-    min-height:18px;
-    margin-top:10px;
-    text-align:center;
-    color:#c63745;
-    font-size:9px;
-    font-weight:700;
-}
-.auth-foot{
-    margin-top:20px;
-    padding-top:14px;
-    border-top:1px solid #edf1ef;
-    text-align:center;
-    color:#8a9891;
-    font-size:8px;
-}
-.logout-btn{
-    border:1px solid var(--line);
-    background:#fff;
-    color:#b33a45;
-    border-radius:7px;
-    padding:5px 8px;
-    font-size:8px;
-    font-weight:800;
-    margin-left:8px;
-}
-.logout-btn:hover{background:#fff5f5}
-.authenticated-only{display:none}
-body.authenticated .authenticated-only{display:block}
-
+/* FIX FORMULARIO: modales propios, sin bloqueo de teclado/punteros */
+.jac-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(15,23,42,.55);z-index:5000;pointer-events:auto}
+.jac-modal.show{display:flex}
+.jac-modal-dialog{width:min(920px,100%);height:min(900px,calc(100dvh - 24px));max-height:calc(100dvh - 24px);display:flex;flex-direction:column;min-height:0}
+.jac-modal-dialog.sm{width:min(430px,100%)}
+.jac-modal-card{background:#fff;border-radius:20px;box-shadow:0 30px 90px rgba(15,23,42,.30);overflow:hidden;display:flex;flex-direction:column;height:100%;max-height:100%;min-height:0;pointer-events:auto}.jac-modal-card form{display:flex;flex-direction:column;min-height:0;flex:1 1 auto}
+.jac-modal-head,.jac-modal-foot{flex:0 0 auto}
+.jac-modal-body{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-bottom:28px;overscroll-behavior:contain}
+.jac-modal input,.jac-modal select,.jac-modal textarea,.jac-modal button{pointer-events:auto;position:relative;z-index:2}
+body.jac-modal-open{overflow:hidden}
+@media(max-width:600px){.jac-modal{padding:0}.jac-modal-dialog{width:100%;height:100vh;max-height:100vh}.jac-modal-card{border-radius:0}.jac-modal-head{padding:16px}.jac-modal-body{padding:18px 16px 30px}.jac-modal-foot{padding:12px 16px}}
 </style>
+
+<style id="afiliado-photo-enhancement">
+.af-photo-wrap{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;padding:18px 20px;margin:0 0 4px;border-bottom:1px solid #e8ecef;background:linear-gradient(135deg,#fbfdfc,#f5f9f7)}
+.af-photo-preview{width:108px;height:108px;border-radius:50%;object-fit:cover;border:5px solid #fff;box-shadow:0 8px 25px rgba(15,23,42,.14);background:#eaf2ee;display:flex;align-items:center;justify-content:center;overflow:hidden;flex:0 0 108px}
+.af-photo-preview img{width:100%;height:100%;object-fit:cover;display:block}.af-photo-avatar{font-weight:900;font-size:30px;color:#166534}
+.af-photo-title{font-size:15px;font-weight:900;color:#1f2937}.af-photo-help{font-size:12px;color:#64748b;margin:4px 0 10px}.af-photo-actions{display:flex;gap:8px;flex-wrap:wrap}.af-photo-actions button{border:0;border-radius:10px;padding:9px 13px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:7px}.af-photo-add{background:#166534;color:#fff}.af-photo-add:hover{background:#0f5a2d}.af-photo-remove{background:#eef2f7;color:#475569}.af-photo-cell{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.12)}.af-photo-cell-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#e8f1ec;color:#166534;font-weight:900;font-size:13px}.history-pdf{color:#166534!important}.history-pdf:hover{background:#eaf7f0!important}.pdf-note{font-size:11px;color:#64748b}
+@media(max-width:600px){.af-photo-wrap{grid-template-columns:1fr;text-align:center}.af-photo-preview{margin:auto}.af-photo-actions{justify-content:center}}
+</style>
+
+
+<script id="afiliados-drive-api">
+(function(){
+  const AF_CFG=window.AFILIADOS_CONFIG||{};
+  const API_URL="https://script.google.com/macros/s/AKfycby_s71nWYP7kswOuTHPZfQ8uHUIV5HASbOAP9qLHjTXet09c833gCD32uBNyZAY8gdN/exec";
+  const TIMEOUT=30000;
+  function jsonp(params){return new Promise((resolve,reject)=>{const callback='afiliadosJsonp_'+Date.now()+'_'+Math.random().toString(36).slice(2);const script=document.createElement('script');let done=false;const cleanup=()=>{try{delete window[callback]}catch(e){}try{script.remove()}catch(e){}};const timer=setTimeout(()=>{if(done)return;done=true;cleanup();reject(new Error('Tiempo de espera agotado al contactar Apps Script.'))},TIMEOUT);window[callback]=(data)=>{if(done)return;done=true;clearTimeout(timer);cleanup();if(!data||data.ok===false)reject(new Error(data?.error||'Apps Script rechazó la operación.'));else resolve(data)};const q=new URLSearchParams(Object.assign({},params,{callback}));script.onerror=()=>{if(done)return;done=true;clearTimeout(timer);cleanup();reject(new Error('No fue posible comunicarse con Google Apps Script.'))};script.src=API_URL+'?'+q.toString();document.head.appendChild(script);});}
+  function payload64(obj){const bytes=new TextEncoder().encode(JSON.stringify(obj));let bin='';for(let i=0;i<bytes.length;i+=0x8000)bin+=String.fromCharCode(...bytes.subarray(i,i+0x8000));return btoa(bin)}
+  async function uploadPhoto(dataUrl,filename,mime){if(!dataUrl)return{ok:true,fileId:''};const parts=String(dataUrl).split(',');const b64=parts.length>1?parts[1]:parts[0];const tx='PF-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,9);const size=1200,total=Math.ceil(b64.length/size);if(total>120)throw new Error('La fotografía sigue siendo demasiado grande.');for(let i=0;i<total;i+=8){const jobs=[];for(let j=i;j<Math.min(i+8,total);j++)jobs.push(jsonp({action:'photoChunk',tx,index:j,total,data:b64.slice(j*size,(j+1)*size)}));await Promise.all(jobs)}return jsonp({action:'photoCommit',tx,filename:filename||'foto_afiliado.jpg',mime:mime||'image/jpeg'})}
+  window.afiliadosDriveAPI={list:()=>jsonp({action:'list'}),create:data=>jsonp({action:'write',payload:payload64({action:'create',data})}),update:(id,data)=>jsonp({action:'write',payload:payload64({action:'update',id,data})}),inactivate:id=>jsonp({action:'write',payload:payload64({action:'inactivate',id})}),uploadPhoto,getPhoto:fileId=>jsonp({action:'photoGet',fileId})};
+})();
+</script>
+
 </head>
 
-<body class="auth-locked">
-
-<!-- =========================================================
-     ACCESO AL cPANEL
-========================================================= -->
-<div id="authScreen" class="auth-screen">
-    <div class="auth-card">
-        <div class="auth-brand">
-            <img src="assets/logo.png" alt="Logo JAC Vereda Santa Bárbara">
-            <div>
-                <b>JAC VEREDA<br>SANTA BÁRBARA</b>
-                <small>cPanel Administrativo</small>
-            </div>
-        </div>
-
-        <h2>Acceso administrativo</h2>
-        <p class="auth-subtitle">
-            Ingresa tus credenciales para acceder al panel central
-            y administrar los módulos conectados.
-        </p>
-
-        <div class="auth-alert">
-            <span>🔐</span>
-            <span>Área restringida. Solo personal autorizado.</span>
-        </div>
-
-        <form id="loginForm" autocomplete="off">
-            <div class="auth-group">
-                <label for="loginUsuario">USUARIO</label>
-                <input
-                    id="loginUsuario"
-                    type="text"
-                    autocomplete="username"
-                    autocapitalize="none"
-                    spellcheck="false"
-                    placeholder="Usuario"
-                    required
-                >
-            </div>
-
-            <div class="auth-group">
-                <label for="loginClave">CONTRASEÑA</label>
-                <input
-                    id="loginClave"
-                    type="password"
-                    autocomplete="current-password"
-                    placeholder="Contraseña"
-                    required
-                >
-            </div>
-
-            <button id="loginButton" class="auth-submit" type="submit">
-                Ingresar al sistema
-            </button>
-
-            <div id="loginError" class="auth-error" aria-live="polite"></div>
-        </form>
-
-        <div class="auth-foot">
-            Junta de Acción Comunal Vereda Santa Bárbara · El Bagre, Antioquia
-        </div>
-    </div>
-</div>
-
+<body>
 <div class="app">
 
-<aside class="side">
-    <div class="logo">
-        <img src="assets/logo.png" alt="Logo">
-        <div><b>JAC VEREDA<br>SANTA BÁRBARA</b><small>Panel Administrativo</small></div>
+<header class="topbar">
+  <div class="brand">
+    <img src="assets/logo.png" class="logo" onerror="this.onerror=null;this.src='assents/logo.png';this.onerror=function(){this.src='logo.png'};" alt="JAC Santa Bárbara">
+    <div>
+      <h1>Base de Datos de Afiliados</h1>
+      <p>Junta de Acción Comunal Vereda Santa Bárbara · El Bagre, Antioquia</p>
     </div>
-
-    <nav>
-        <div class="navtitle">Principal</div>
-        <button class="nav active" onclick="section('Dashboard',this)">
-            <i class="bi bi-house-fill"></i><span>Dashboard</span>
-        </button>
-
-        <div class="navtitle">Gestión de contenido</div>
-
-        <button class="nav" onclick="abrirModulo('Documentos',URLS.documentos,this)">
-            <i class="bi bi-file-earmark-text"></i><span>Documentos</span><em>›</em>
-        </button>
-
-        <button class="nav" onclick="abrirModulo('Actas',URLS.documentos,this)">
-            <i class="bi bi-journal-text"></i><span>Actas</span><em>›</em>
-        </button>
-
-        <button class="nav" onclick="abrirModulo('Noticias',URLS.noticias,this)">
-            <i class="bi bi-newspaper"></i><span>Noticias</span><em>›</em>
-        </button>
-
-        <button class="nav" onclick="abrirModulo('Agenda',URLS.agenda,this)">
-            <i class="bi bi-calendar-event"></i><span>Agenda</span><em>›</em>
-        </button>
-
-        <button class="nav" onclick="abrirModulo('Certificados',URLS.certificadosAdmin,this)">
-            <i class="bi bi-award"></i><span>Certificados</span><em>›</em>
-        </button>
-
-        <div class="navtitle">Usuarios y comunidad</div>
-
-        <button class="nav" onclick="abrirModulo('Afiliados',URLS.afiliados,this)">
-            <i class="bi bi-people"></i><span>Afiliados</span><em>›</em>
-        </button>
-
-        <button class="nav" onclick="abrirModulo('PQRS',URLS.pqrs,this)">
-            <i class="bi bi-chat-dots"></i><span>PQRS</span><em>›</em>
-        </button>
-
-        <div class="navtitle">Administración</div>
-
-        <button class="nav" onclick="section('Usuarios',this)">
-            <i class="bi bi-person-gear"></i><span>Usuarios</span><em>›</em>
-        </button>
-
-        <button class="nav" onclick="section('Configuración',this)">
-            <i class="bi bi-gear"></i><span>Configuración</span><em>›</em>
-        </button>
-
-        <button class="nav" onclick="section('Información General',this)">
-            <i class="bi bi-info-circle"></i><span>Información General</span><em>›</em>
-        </button>
-    </nav>
-
-    <div class="store">
-        <b><span>Almacenamiento</span><span>23%</span></b>
-        <span>3.45 GB utilizado de 15 GB</span>
-        <div class="bar"><i></i></div>
-    </div>
-
-    <a class="site" href="../index.html">
-        <i class="bi bi-globe2"></i>Ver Mi Sitio Web
-        <i class="bi bi-chevron-right" style="margin-left:auto"></i>
-    </a>
-</aside>
-
-<main class="main">
-
-<header class="top">
-    <button class="toggle" onclick="document.body.classList.toggle('open')">
-        <i class="bi bi-list"></i>
-    </button>
-
-    <div class="title">
-        <h1 id="title">Dashboard</h1>
-        <p id="subtitle">Bienvenido al panel de administración</p>
-    </div>
-
-    <div class="search">
-        <i class="bi bi-search"></i>
-        <input id="search" placeholder="Buscar en el panel..." oninput="filterTable(this.value)">
-    </div>
-
-    <button class="bell" onclick="alert('Centro de notificaciones del panel')">
-        <i class="bi bi-bell"></i><i>5</i>
-    </button>
-
-    <div class="user">
-        <div class="avatar"><i class="bi bi-person"></i></div>
-        <div><b id="loggedUserName">Administrador</b><small>Super Administrador</small></div>
-        <button class="logout-btn" type="button" onclick="cerrarSesion()" title="Cerrar sesión">
-            <i class="bi bi-box-arrow-right"></i>
-        </button>
-    </div>
+  </div>
+  <div class="actions">
+    <span class="sync" id="syncStatus"><span class="dot"></span><span id="syncText">Conectando...</span></span>
+    <button class="btn-jac btn-light-jac" onclick="cargarAfiliados()"><i class="bi bi-arrow-clockwise"></i> Actualizar</button>
+    <button class="btn-jac btn-primary-jac" onclick="abrirNuevo()"><i class="bi bi-person-plus"></i> Nuevo afiliado</button>
+  </div>
 </header>
 
-<section class="content">
-
-<div class="kpis">
-    <div class="kpi"><div class="ki"><i class="bi bi-file-earmark-text"></i></div><div><strong>24</strong><label>Documentos</label><span class="up">Gestión activa</span></div></div>
-    <div class="kpi"><div class="ki"><i class="bi bi-people"></i></div><div><strong>153</strong><label>Afiliados</label><span class="up">Registro comunitario</span></div></div>
-    <div class="kpi"><div class="ki"><i class="bi bi-newspaper"></i></div><div><strong>8</strong><label>Noticias</label><span class="up">Publicaciones</span></div></div>
-    <div class="kpi"><div class="ki"><i class="bi bi-chat-dots"></i></div><div><strong>15</strong><label>PQRS</label><span class="up">Solicitudes</span></div></div>
-    <div class="kpi"><div class="ki"><i class="bi bi-calendar-plus"></i></div><div><strong>5</strong><label>Eventos</label><span class="up">Agenda</span></div></div>
-</div>
-
-<div class="module-note">
-    <strong>Panel central conectado:</strong>
-    los módulos conservan sus propios HTML y Apps Script. Este cPanel funciona como punto de entrada,
-    sin reemplazar ni modificar la programación existente.
-</div>
-
-<div class="rows">
-
-<div class="panel">
-    <div class="head">
-        <h2>Actividad Reciente</h2>
-        <button onclick="abrirModulo('Documentos',URLS.documentos)">Documentos</button>
-    </div>
-
-    <div class="activity">
-        <div class="act"><div class="ai"><i class="bi bi-file-earmark-plus"></i></div><div><strong>Administración de documentos</strong><small>Cargar, editar, bloquear y eliminar documentos</small></div><span class="tag">Documentos</span><span class="time">Activo</span></div>
-        <div class="act"><div class="ai" style="background:#f0e9fb;color:#7650c9"><i class="bi bi-newspaper"></i></div><div><strong>Administración de noticias</strong><small>Publicar noticias, videos y contenidos</small></div><span class="tag">Noticias</span><span class="time">Activo</span></div>
-        <div class="act"><div class="ai" style="background:#e8f1fc;color:#1770c9"><i class="bi bi-award"></i></div><div><strong>Certificados</strong><small>Revisar y gestionar solicitudes de certificados</small></div><span class="tag">Certificados</span><span class="time">Activo</span></div>
-        <div class="act"><div class="ai" style="background:#fff0e5;color:#ed7622"><i class="bi bi-chat-dots"></i></div><div><strong>PQRS</strong><small>Gestionar peticiones, quejas, reclamos y solicitudes</small></div><span class="tag">PQRS</span><span class="time">Activo</span></div>
-        <div class="act"><div class="ai"><i class="bi bi-calendar-event"></i></div><div><strong>Agenda y Eventos</strong><small>Administrador de eventos, reuniones, anuncios e historial</small></div><span class="tag">Agenda</span><span class="time">Módulo</span></div>
-    </div>
-</div>
-
-<div class="panel">
-    <div class="head">
-        <h2>Accesos principales</h2>
-        <button onclick="abrirModulo('Noticias',URLS.noticias)">Abrir módulo</button>
-    </div>
-
-    <div class="quick">
-        <button onclick="abrirModulo('Documentos',URLS.documentos)"><i class="bi bi-file-earmark-plus"></i>Administrar Documentos</button>
-        <button onclick="abrirModulo('Noticias',URLS.noticias)"><i class="bi bi-newspaper"></i>Administrar Noticias</button>
-        <button onclick="abrirModulo('Certificados',URLS.certificadosAdmin)"><i class="bi bi-award"></i>Administrar Certificados</button>
-        <button onclick="abrirModulo('PQRS',URLS.pqrs)"><i class="bi bi-chat-dots"></i>Gestionar PQRS</button>
-        <button onclick="abrirModulo('Afiliados',URLS.afiliados)"><i class="bi bi-person-plus"></i>Afiliados</button>
-        <button onclick="abrirModulo('Agenda',URLS.agenda)"><i class="bi bi-calendar-plus"></i>Agenda</button>
-    </div>
-</div>
-
-</div>
-
-<div class="lower">
-
-<div class="panel">
-    <div class="head">
-        <h2>Módulos administrativos</h2>
-        <button onclick="location.reload()">Actualizar</button>
-    </div>
-
-    <div class="tablewrap">
-        <table id="table">
-            <thead>
-                <tr><th>Módulo</th><th>Administración</th><th>Backend</th><th>Acceso</th></tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="doc"><i class="bi bi-file-earmark-text pdf"></i>Documentos</td>
-                    <td>Subir / editar / bloquear / eliminar</td>
-                    <td><span class="status">Apps Script</span></td>
-                    <td class="acts"><button title="Abrir" onclick="abrirModulo('Documentos',URLS.documentos)"><i class="bi bi-box-arrow-up-right"></i></button></td>
-                </tr>
-                <tr>
-                    <td class="doc"><i class="bi bi-newspaper pdf"></i>Noticias</td>
-                    <td>Publicar noticias y videos</td>
-                    <td><span class="status">Apps Script</span></td>
-                    <td class="acts"><button title="Abrir" onclick="abrirModulo('Noticias',URLS.noticias)"><i class="bi bi-box-arrow-up-right"></i></button></td>
-                </tr>
-                <tr>
-                    <td class="doc"><i class="bi bi-award pdf"></i>Certificados</td>
-                    <td>Solicitudes y generación</td>
-                    <td><span class="status">Apps Script</span></td>
-                    <td class="acts"><button title="Abrir" onclick="abrirModulo('Certificados',URLS.certificadosAdmin)"><i class="bi bi-box-arrow-up-right"></i></button></td>
-                </tr>
-                <tr>
-                    <td class="doc"><i class="bi bi-chat-dots pdf"></i>PQRS</td>
-                    <td>Gestión y seguimiento</td>
-                    <td><span class="status">Apps Script</span></td>
-                    <td class="acts"><button title="Abrir" onclick="abrirModulo('PQRS',URLS.pqrs)"><i class="bi bi-box-arrow-up-right"></i></button></td>
-                </tr>
-                <tr>
-                    <td class="doc"><i class="bi bi-calendar-event pdf"></i>Agenda y Eventos</td>
-                    <td>Eventos / reuniones / anuncios / historial</td>
-                    <td><span class="status">Apps Script</span></td>
-                    <td class="acts"><button title="Abrir" onclick="abrirModulo('Agenda',URLS.agenda)"><i class="bi bi-box-arrow-up-right"></i></button></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<div class="stack">
-
-<div class="panel">
-    <div class="head"><h2>Estado de conexiones</h2><button onclick="probarConexiones()">Comprobar</button></div>
-    <div class="drive">
-        <div class="drive-row">
-            <div class="driveicon"><i class="bi bi-cloud-check"></i></div>
-            <div><b>Servicios administrativos</b><small>Documentos · Noticias · PQRS · Certificados</small></div>
-            <div class="pct" id="connectionPct">4/4</div>
-        </div>
-        <div class="drivebar"><i id="connectionBar" style="width:100%"></i></div>
-    </div>
-</div>
-
-<div class="panel">
-    <div class="head"><h2>Información</h2></div>
-    <div class="drive">
-        <div class="drive-row">
-            <div class="driveicon"><i class="bi bi-shield-check"></i></div>
-            <div><b>Arquitectura independiente</b><small>Cada módulo mantiene su propio HTML y Apps Script.</small></div>
-        </div>
-    </div>
-</div>
-
-</div>
-</div>
-
-<footer class="footer">
-    <span>© 2026 Junta de Acción Comunal Vereda Santa Bárbara</span>
-    <span>cPanel Administrativo · Versión 2.0 · Módulos conectados</span>
-</footer>
-
+<section class="kpis">
+  <div class="kpi"><div class="kpi-icon"><i class="bi bi-people"></i></div><div><strong id="totalAfiliados">0</strong><span>Total afiliados</span></div></div>
+  <div class="kpi"><div class="kpi-icon"><i class="bi bi-person-check"></i></div><div><strong id="totalActivos">0</strong><span>Afiliados activos</span></div></div>
+  <div class="kpi"><div class="kpi-icon"><i class="bi bi-person-x"></i></div><div><strong id="totalInactivos">0</strong><span>Afiliados inactivos</span></div></div>
+  <div class="kpi"><div class="kpi-icon"><i class="bi bi-shield-check"></i></div><div><strong id="estadoSeguridad">—</strong><span>Estado de sincronización</span></div></div>
 </section>
-</main>
+
+<section class="panel">
+  <div class="toolbar">
+    <div class="search">
+      <i class="bi bi-search"></i>
+      <input id="buscar" type="search" placeholder="Buscar por nombre, documento, teléfono o afiliación..." oninput="renderTabla()">
+    </div>
+    <div class="filters">
+      <button class="filter active" data-filter="todos" onclick="setFiltro('todos',this)">Todos</button>
+      <button class="filter" data-filter="activos" onclick="setFiltro('activos',this)">Activos</button>
+      <button class="filter" data-filter="inactivos" onclick="setFiltro('inactivos',this)">Inactivos</button>
+    </div>
+  </div>
+
+  <div id="tablaContenedor">
+    <div class="loading"><div class="spinner-ring" style="margin:0 auto 10px"></div>Consultando base de afiliados...</div>
+  </div>
+</section>
+
 </div>
-<!-- =========================================================
-     PANEL LATERAL DE MÓDULOS
-     El módulo se carga aquí mismo mediante iframe.
-========================================================= -->
-<div id="moduleOverlay" class="module-overlay" onclick="cerrarModulo(event)"></div>
-<aside id="moduleDrawer" class="module-drawer" aria-hidden="true">
-    <div class="drawer-head">
-        <div>
-            <span class="drawer-kicker">MÓDULO ADMINISTRATIVO</span>
-            <h2 id="drawerTitle">Módulo</h2>
-        </div>
-        <button class="drawer-close" type="button" onclick="cerrarModulo()" aria-label="Cerrar">
-            <i class="bi bi-x-lg"></i>
-        </button>
+
+<!-- MODAL AFILIADO -->
+<div class="jac-modal" id="modalAfiliado" aria-hidden="true">
+ <div class="jac-modal-dialog">
+  <div class="jac-modal-card">
+   <div class="modal-header jac-modal-head">
+    <div>
+      <h5 class="modal-title" id="modalTitulo"><i class="bi bi-person-plus me-2"></i>Nuevo afiliado</h5>
+      <div class="sub">Los datos se sincronizan con la base institucional.</div>
     </div>
-    <div class="drawer-status">
-        <span><i class="bi bi-circle-fill"></i> Conexión activa</span>
-        <span id="drawerPath"></span>
+    <button type="button" class="btn-close" aria-label="Cerrar" onclick="cerrarModal('modalAfiliado')"></button>
+   </div>
+   <form id="formAfiliado" onsubmit="guardarAfiliado(event)">
+<!-- FOTOGRAFÍA DEL AFILIADO -->
+<div class="af-photo-wrap" id="afFotoWrap">
+  <div class="af-photo-preview" id="afFotoPreview">
+    <span class="af-photo-avatar" id="afFotoAvatar">+</span>
+  </div>
+  <div style="min-width:0;flex:1">
+    <div class="af-photo-title"><i class="bi bi-person-bounding-box me-1"></i> Fotografía del afiliado</div>
+    <div class="af-photo-help">Imagen JPG, PNG o WEBP · se optimiza automáticamente antes de sincronizar.</div>
+    <div class="af-photo-actions" style="margin-top:9px">
+      <button type="button" class="af-photo-add" id="afBtnFoto">
+        <i class="bi bi-camera"></i> Agregar foto
+      </button>
+      <button type="button" class="af-photo-remove" id="afBtnQuitarFoto" style="display:none">
+        <i class="bi bi-trash3"></i> Quitar
+      </button>
     </div>
-    <div class="drawer-body">
-        <iframe id="moduleFrame" title="Módulo administrativo" src="about:blank"></iframe>
+    <input type="file" id="afFotoInput" accept="image/jpeg,image/png,image/webp" hidden>
+  </div>
+</div>
+
+    <div class="modal-body jac-modal-body">
+      <input type="hidden" id="afiliadoId">
+      <div class="section-title"><i class="bi bi-card-text me-1"></i> Identificación</div>
+      <div class="row g-3">
+        <div class="col-md-4"><label class="form-label">Tipo de documento</label><select id="tipoDocumento" class="form-select" required><option value="">Seleccione</option><option>CC</option><option>TI</option><option>CE</option><option>Otro</option></select></div>
+        <div class="col-md-8"><label class="form-label">Número de documento</label><input id="numeroDocumento" class="form-control" required autocomplete="off"></div>
+        <div class="col-md-6"><label class="form-label">Nombres</label><input id="nombres" class="form-control" required></div>
+        <div class="col-md-6"><label class="form-label">Apellidos</label><input id="apellidos" class="form-control" required></div>
+        <div class="col-md-4"><label class="form-label">Fecha de nacimiento</label><input id="fechaNacimiento" type="date" class="form-control"></div>
+      </div>
+      <div class="section-title mt-4"><i class="bi bi-telephone me-1"></i> Contacto</div>
+      <div class="row g-3">
+        <div class="col-md-4"><label class="form-label">Teléfono</label><input id="telefono" class="form-control"></div>
+        <div class="col-md-8"><label class="form-label">Correo electrónico</label><input id="correo" type="email" class="form-control"></div>
+      </div>
+      <div class="section-title mt-4"><i class="bi bi-diagram-3 me-1"></i> Afiliación y Junta</div>
+      <div class="row g-3">
+        <div class="col-md-4"><label class="form-label">Fecha de afiliación</label><input id="fechaAfiliacion" type="date" class="form-control"></div>
+        <div class="col-md-4"><label class="form-label">Número de afiliación</label><input id="numeroAfiliacion" class="form-control"></div>
+        <div class="col-md-4"><label class="form-label">Estado</label><select id="estado" class="form-select"><option value="Activo">Activo</option><option value="Inactivo">Inactivo</option></select></div>
+        <div class="col-md-4"><label class="form-label">Calidad del afiliado</label><select id="calidadAfiliado" class="form-select"><option value="">Seleccione</option><option>Afiliado</option><option>Directivo</option><option>Delegado</option><option>Fiscal</option><option>Conciliador</option></select></div>
+        <div class="col-md-4"><label class="form-label">Cargo / dignidad</label><input id="cargo" class="form-control" placeholder="Ej. Presidente, Fiscal..."></div>
+        <div class="col-md-4"><label class="form-label">Comité</label><input id="comite" class="form-control"></div>
+        <div class="col-md-4"><label class="form-label">Fecha de elección</label><input id="fechaEleccion" type="date" class="form-control"></div>
+        <div class="col-md-4"><label class="form-label">Periodo</label><input id="periodo" class="form-control" placeholder="Ej. 2026 - 2029"></div>
+        <div class="col-md-4"><label class="form-label">Libro / folio</label><input id="libroFolio" class="form-control" placeholder="Opcional"></div>
+        <div class="col-md-4"><label class="form-label">Lugar de nacimiento</label><input id="lugarNacimiento" class="form-control"></div>
+        <div class="col-md-4"><label class="form-label">Nivel educativo</label><select id="nivelEducativo" class="form-select"><option value="">Seleccione</option><option>Primaria</option><option>Secundaria</option><option>Técnico</option><option>Tecnólogo</option><option>Universitario</option><option>Posgrado</option><option>Otro</option></select></div>
+        <div class="col-md-4"><label class="form-label">Ocupación</label><input id="ocupacion" class="form-control"></div>
+      </div>
+      <div class="section-title mt-4"><i class="bi bi-geo-alt me-1"></i> Residencia</div>
+      <div class="row g-3">
+        <div class="col-md-5"><label class="form-label">Dirección / ubicación</label><input id="direccion" class="form-control"></div>
+        <div class="col-md-3"><label class="form-label">Sector / Vereda</label><input id="sector" class="form-control"></div>
+        <div class="col-md-2"><label class="form-label">Municipio</label><input id="municipio" class="form-control" value="El Bagre"></div>
+        <div class="col-md-2"><label class="form-label">Departamento</label><input id="departamento" class="form-control" value="Antioquia"></div>
+      </div>
+      <div class="section-title mt-4"><i class="bi bi-person-lines-fill me-1"></i> Contacto de emergencia</div>
+      <div class="row g-3">
+        <div class="col-md-5"><label class="form-label">Nombre de contacto</label><input id="contactoEmergencia" class="form-control"></div>
+        <div class="col-md-3"><label class="form-label">Parentesco</label><input id="parentescoEmergencia" class="form-control"></div>
+        <div class="col-md-4"><label class="form-label">Teléfono de emergencia</label><input id="telefonoEmergencia" class="form-control"></div>
+      </div>
+      <div class="section-title mt-4"><i class="bi bi-chat-left-text me-1"></i> Observaciones</div>
+      <div class="row g-3">
+        <div class="col-12"><label class="form-label">Observaciones generales</label><textarea id="observaciones" class="form-control" rows="3" placeholder="Información adicional relevante para la Junta..."></textarea></div>
+      </div>
+      <div class="security mt-4"><i class="bi bi-lock-fill me-1"></i> Los datos personales se gestionan mediante el backend de Apps Script.</div>
     </div>
-</aside>
+    <div class="modal-footer jac-modal-foot">
+      <button type="button" class="btn-jac btn-light-jac" onclick="cerrarModal('modalAfiliado')">Cancelar</button>
+      <button type="submit" class="btn-jac btn-primary-jac" id="btnGuardar"><i class="bi bi-cloud-arrow-up"></i> Guardar y sincronizar</button>
+    </div>
+   </form>
+  </div>
+ </div>
+</div>
+
+<!-- MODAL CONFIRMACIÓN -->
+<div class="jac-modal" id="modalConfirmar" aria-hidden="true">
+ <div class="jac-modal-dialog sm"><div class="jac-modal-card"><div class="modal-body text-center p-4">
+  <div class="confirm-icon mb-3"><i class="bi bi-exclamation-triangle"></i></div>
+  <h5 class="fw-bold" id="confirmTitulo">Confirmar acción</h5>
+  <p class="text-secondary small mb-4" id="confirmTexto">¿Desea continuar?</p>
+  <div class="d-flex gap-2 justify-content-center">
+   <button class="btn-jac btn-light-jac" onclick="cerrarModal('modalConfirmar')">Cancelar</button>
+   <button class="btn-jac btn-danger-jac" id="btnConfirmar"><i class="bi bi-person-x"></i> Confirmar</button>
+  </div>
+ </div></div></div>
+</div>
+
+<!-- MODAL CLAVE -->
+<div class="jac-modal" id="modalClave" aria-hidden="true">
+ <div class="jac-modal-dialog sm"><div class="jac-modal-card">
+  <div class="modal-header"><h5 class="modal-title"><i class="bi bi-shield-lock me-2"></i>Seguridad de la base</h5><button type="button" class="btn-close" onclick="cerrarModal('modalClave')"></button></div>
+  <div class="modal-body p-4">
+   <p class="small text-secondary">Ingrese la clave de cifrado para trabajar con los datos protegidos.</p>
+   <label class="form-label">Clave de cifrado</label><input id="claveCifrado" type="password" class="form-control" autocomplete="new-password">
+   <div class="security mt-3"><i class="bi bi-info-circle me-1"></i> La clave se mantiene solamente durante esta sesión.</div>
+  </div>
+  <div class="modal-footer"><button class="btn-jac btn-light-jac" onclick="cerrarModal('modalClave')">Cancelar</button><button class="btn-jac btn-primary-jac" onclick="establecerClave()"><i class="bi bi-unlock"></i> Continuar</button></div>
+ </div></div>
+</div>
+
+<div class="toast-container position-fixed top-0 end-0 p-3">
+ <div id="jacToast" class="toast jac-toast" role="alert">
+  <div class="d-flex align-items-center p-3 gap-3">
+   <div class="toast-icon"><i id="toastIcon" class="bi bi-check-lg"></i></div>
+   <div class="flex-grow-1">
+    <strong id="toastTitulo">Listo</strong>
+    <div id="toastTexto" class="small text-secondary"></div>
+   </div>
+   <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+  </div>
+ </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 
 <script>
 /* =========================================================
-   RUTAS REALES DE LOS MÓDULOS
-   =========================================================
-   Si los HTML están en la misma carpeta:
-   - admin_documentos.html
-   - panel_adminnoticias.html
-   - gestion-pqrs.html
-   - admincertificado.html
+   CONFIGURACIÓN
+   Se conservan los valores que ya existían en el archivo.
+========================================================= */
+const CONFIG = {
+  API_URL: "https://script.google.com/macros/s/AKfycby_s71nWYP7kswOuTHPZfQ8uHUIV5HASbOAP9qLHjTXet09c833gCD32uBNyZAY8gdN/exec",
 
-   Si alguna página tiene otro nombre, solo cambia esa ruta.
-*/
-const URLS = {
-    documentos: "admin_documentos.html",
-    noticias: "panel_adminnoticias.html",
-    pqrs: "gestion-pqrs.html",
-    certificadosAdmin: "admincertificado.html",
-
-    // Módulos que aún no tienen un panel específico confirmado:
-    agenda: "admin.agenda.html",
-    afiliados: "afiliados.html"
 };
 
-const subtitles = {
-    Dashboard:"Bienvenido al panel de administración",
-    Documentos:"Administración de documentos institucionales",
-    Actas:"Administración de actas y reuniones",
-    Noticias:"Publicación y administración de noticias",
-    Agenda:"Eventos y actividades de la comunidad",
-    Certificados:"Emisión y validación de certificados",
-    Afiliados:"Gestión del registro de afiliados",
-    PQRS:"Peticiones, quejas, reclamos y solicitudes",
-    Usuarios:"Administración de usuarios",
-    Configuración:"Configuración general del sistema",
-    "Información General":"Datos institucionales de la JAC"
-};
+let afiliados = [];
+let filtroActual = "todos";
+let editandoId = null;
+let accionConfirmada = null;
+let claveCifrado = sessionStorage.getItem("jac_afiliados_clave") || "";
 
-function actualizarCabecera(nombre){
-    document.getElementById("title").textContent=nombre;
-    document.getElementById("subtitle").textContent=subtitles[nombre] || "Módulo administrativo";
+function abrirModal(id){ const el=document.getElementById(id); if(!el)return; el.classList.add("show"); el.setAttribute("aria-hidden","false"); document.body.classList.add("jac-modal-open"); }
+function cerrarModal(id){ const el=document.getElementById(id); if(!el)return; el.classList.remove("show"); el.setAttribute("aria-hidden","true"); if(!document.querySelector(".jac-modal.show")) document.body.classList.remove("jac-modal-open"); }
+
+function escapeHtml(v) {
+  return String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
 }
 
-function section(name,el){
-    actualizarCabecera(name);
-    document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
-    if(el) el.classList.add("active");
-    document.body.classList.remove("open");
-
-    // Usuarios, Configuración e Información General permanecen dentro del cPanel.
-    // Los módulos externos se abren en la ventana lateral, sin redireccionar.
-    if(name === "Dashboard") cerrarModulo();
+function setSync(texto, ok=true) {
+  document.getElementById("syncText").textContent = texto;
+  document.getElementById("syncStatus").classList.toggle("off", !ok);
+  document.getElementById("estadoSeguridad").textContent = ok ? "Conectado" : "Sin conexión";
 }
 
-function abrirModulo(nombre,url,el){
-    document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
-    if(el) el.classList.add("active");
-    actualizarCabecera(nombre);
-    document.body.classList.remove("open");
-
-    if(!url){
-        alert("El módulo " + nombre + " todavía no tiene una página administrativa configurada.");
-        return;
-    }
-
-    const drawer=document.getElementById("moduleDrawer");
-    const frame=document.getElementById("moduleFrame");
-    document.getElementById("drawerTitle").textContent=nombre;
-    document.getElementById("drawerPath").textContent=url;
-
-    // Primero mostramos la ventana y luego cargamos el HTML para evitar saltos visuales.
-    drawer.setAttribute("aria-hidden","false");
-    document.body.classList.add("module-open");
-
-    if(frame.src !== new URL(url, window.location.href).href){
-        frame.src=url;
-    }else{
-        try{ frame.contentWindow.location.reload(); }catch(e){}
-    }
+function toast(titulo, texto, tipo="ok") {
+  document.getElementById("toastTitulo").textContent = titulo;
+  document.getElementById("toastTexto").textContent = texto;
+  const icon = document.getElementById("toastIcon");
+  icon.className = tipo === "error" ? "bi bi-x-lg" : tipo === "warn" ? "bi bi-exclamation-lg" : "bi bi-check-lg";
+  bootstrap.Toast.getOrCreateInstance(document.getElementById("jacToast"), {delay:4200}).show();
 }
 
-function cerrarModulo(event){
-    if(event && event.target !== event.currentTarget) return;
-    const drawer=document.getElementById("moduleDrawer");
-    const frame=document.getElementById("moduleFrame");
-    document.body.classList.remove("module-open");
-    drawer.setAttribute("aria-hidden","true");
-    // No destruimos el módulo inmediatamente: al cerrar y volver a abrir conserva su estado.
+function setFiltro(filtro, btn) {
+  filtroActual = filtro;
+  document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  renderTabla();
 }
 
-function filterTable(q){
-    q=q.toLowerCase().trim();
-    document.querySelectorAll("#table tbody tr").forEach(r=>{
-        r.style.display=!q || r.textContent.toLowerCase().includes(q) ? "" : "none";
-    });
+function actualizarKpis() {
+  const activos = afiliados.filter(a => String(a.estado || "").toLowerCase() === "activo").length;
+  document.getElementById("totalAfiliados").textContent = afiliados.length;
+  document.getElementById("totalActivos").textContent = activos;
+  document.getElementById("totalInactivos").textContent = afiliados.length - activos;
 }
 
-function probarConexiones(){
-    const urls=[
-        URLS.documentos,
-        URLS.noticias,
-        URLS.pqrs,
-        URLS.certificadosAdmin,
-        URLS.agenda
-    ];
+function renderTabla() {
+  const q = document.getElementById("buscar").value.trim().toLowerCase();
+  let rows = afiliados.filter(a => {
+    const estado = String(a.estado || "").toLowerCase();
+    const coincideFiltro =
+      filtroActual === "todos" ||
+      (filtroActual === "activos" && estado === "activo") ||
+      (filtroActual === "inactivos" && estado !== "activo");
 
-    const disponibles=urls.filter(Boolean).length;
-    document.getElementById("connectionPct").textContent =
-        disponibles + "/5";
+    const texto = [
+      a.nombres,a.apellidos,a.numeroDocumento,a.telefono,
+      a.correo,a.numeroAfiliacion,a.cargo,a.sector
+    ].join(" ").toLowerCase();
 
-    document.getElementById("connectionBar").style.width =
-        (disponibles/5*100) + "%";
+    return coincideFiltro && (!q || texto.includes(q));
+  });
 
-    alert(
-        "Rutas administrativas configuradas:\\n\\n" +
-        "✓ Documentos\\n" +
-        "✓ Noticias\\n" +
-        "✓ PQRS\\n" +
-        "✓ Certificados\n" +
-         "✓ Agenda y Eventos"
-    );
+  if (!rows.length) {
+    document.getElementById("tablaContenedor").innerHTML =
+      '<div class="empty"><i class="bi bi-people"></i><h5 class="mt-3 fw-bold">No hay afiliados para mostrar</h5><p class="small">Prueba otro filtro o registra un nuevo afiliado.</p></div>';
+    return;
+  }
+
+  document.getElementById("tablaContenedor").innerHTML = `
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>Afiliado</th><th>Documento</th><th>Contacto</th>
+          <th>Afiliación</th><th>Estado</th><th class="text-end">Acciones</th>
+        </tr></thead>
+        <tbody>
+          ${rows.map(a => {
+            const nombre = `${a.nombres || ""} ${a.apellidos || ""}`.trim() || "Sin nombre";
+            const inicial = nombre.charAt(0).toUpperCase();
+            const activo = String(a.estado || "").toLowerCase() === "activo";
+            const foto = a.foto ? `<img class="af-photo-cell" src="${escapeHtml(a.foto)}" alt="" loading="lazy">` : `<div class="af-photo-cell-avatar">${escapeHtml(inicial)}</div>`;
+            return `<tr>
+              <td><div class="person">${foto}<div><div class="name">${escapeHtml(nombre)}</div><div class="sub">${escapeHtml(a.cargo || a.calidadAfiliado || "Afiliado")}</div></div></div></td>
+              <td><strong>${escapeHtml(a.tipoDocumento || "")} ${escapeHtml(a.numeroDocumento || "—")}</strong></td>
+              <td><div>${escapeHtml(a.telefono || "—")}</div><div class="sub">${escapeHtml(a.correo || "")}</div></td>
+              <td><div>${escapeHtml(a.numeroAfiliacion || "—")}</div><div class="sub">${escapeHtml(a.fechaAfiliacion || "")}</div></td>
+              <td><span class="badge-state ${activo ? "badge-active" : "badge-inactive"}">${activo ? "Activo" : "Inactivo"}</span></td>
+              <td><div class="row-actions justify-content-end">
+                <button class="icon-btn edit" title="Modificar" onclick="editarAfiliado('${escapeHtml(a.id)}')"><i class="bi bi-pencil-square"></i></button>
+                <button class="icon-btn history-pdf" title="Descargar ficha PDF" onclick="descargarFichaPDF('${escapeHtml(a.id)}')"><i class="bi bi-file-earmark-pdf"></i></button>
+                ${activo ? `<button class="icon-btn off" title="Inactivar" onclick="confirmarInactivar('${escapeHtml(a.id)}')"><i class="bi bi-person-x"></i></button>` : ""}
+              </div></td>
+            </tr>`;
+          }).join("")}
+        </tbody>
+      </table>
+    </div>`;
 }
 
-
-/* =========================================================
-   AUTENTICACIÓN LOCAL DEL cPANEL
-   ---------------------------------------------------------
-   Usuario: admin
-   La contraseña "admin router" NO se guarda en texto plano.
-   El valor almacenado aquí es su hash SHA-256.
-   ========================================================= */
-
-const AUTH_CONFIG = {
-    username: "admin",
-    passwordSha256: "d9d232bc0bfd2dc409c8ea3bafed73af2f701a62494f08cc4207280aeedf2809",
-    sessionKey: "JAC_CPANEL_AUTH_V1"
-};
-
-async function sha256(text){
-    const data = new TextEncoder().encode(text);
-    const hash = await crypto.subtle.digest("SHA-256", data);
-    return Array.from(new Uint8Array(hash))
-        .map(b => b.toString(16).padStart(2,"0"))
-        .join("");
+function abrirNuevo() {
+  editandoId = null;
+  document.getElementById("formAfiliado").reset();
+  document.getElementById("afiliadoId").value = "";
+  document.getElementById("estado").value = "Activo";
+  if (window.afiliadoFoto) afiliadoFoto.clear();
+  window.__afCurrentData = {};
+  document.getElementById("modalTitulo").innerHTML = '<i class="bi bi-person-plus me-2"></i>Nuevo afiliado';
+  abrirModal("modalAfiliado");
 }
 
-function mostrarPanel(){
-    document.body.classList.remove("auth-locked");
-    document.body.classList.add("authenticated");
+async function editarAfiliado(id) {
+  const a = afiliados.find(x => String(x.id) === String(id));
+  if (!a) return;
 
-    const screen = document.getElementById("authScreen");
-    if(screen) screen.style.display = "none";
+  editandoId = id;
+  document.getElementById("modalTitulo").innerHTML = '<i class="bi bi-pencil-square me-2"></i>Modificar afiliado';
 
-    const usuario = sessionStorage.getItem(AUTH_CONFIG.sessionKey) || AUTH_CONFIG.username;
-    const userName = document.getElementById("loggedUserName");
-    if(userName) userName.textContent = usuario;
-}
-
-function mostrarLogin(){
-    document.body.classList.remove("authenticated");
-    document.body.classList.add("auth-locked");
-
-    const screen = document.getElementById("authScreen");
-    if(screen) screen.style.display = "flex";
-
-    const form = document.getElementById("loginForm");
-    const user = document.getElementById("loginUsuario");
-    const pass = document.getElementById("loginClave");
-    const error = document.getElementById("loginError");
-
-    if(form) form.reset();
-    if(error) error.textContent = "";
-    if(user) setTimeout(() => user.focus(), 50);
-    if(pass) pass.value = "";
-}
-
-async function iniciarSesion(event){
-    event.preventDefault();
-
-    const user = document.getElementById("loginUsuario").value.trim().toLowerCase();
-    const pass = document.getElementById("loginClave").value;
-    const button = document.getElementById("loginButton");
-    const error = document.getElementById("loginError");
-
-    error.textContent = "";
-
-    if(user !== AUTH_CONFIG.username){
-        error.textContent = "Usuario o contraseña incorrectos.";
-        return;
-    }
-
-    button.disabled = true;
-    button.textContent = "Verificando...";
-
+  const campos = ["tipoDocumento","numeroDocumento","nombres","apellidos","fechaNacimiento","telefono","correo","fechaAfiliacion","numeroAfiliacion","estado","calidadAfiliado","cargo","comite","fechaEleccion","periodo","libroFolio","lugarNacimiento","nivelEducativo","ocupacion","direccion","sector","municipio","departamento","contactoEmergencia","parentescoEmergencia","telefonoEmergencia","observaciones"];
+  campos.forEach(c => {
+    const el = document.getElementById(c);
+    if (el) el.value = a[c] || "";
+  });
+  document.getElementById("afiliadoId").value = id;
+  window.__afCurrentData = a;
+  if (window.afiliadoFoto) afiliadoFoto.set(a.foto || "", a);
+  if(a.fotoId && !a.foto){
+    const btn=document.getElementById("btnGuardar");
     try{
-        const passwordHash = await sha256(pass);
+      const foto=await obtenerFotoAfiliado_(a);
+      if(foto){a.foto=foto;window.__afCurrentData=a;afiliadoFoto.set(foto,a);renderTabla();}
+    }catch(e){console.warn("No se pudo cargar la foto para edición",e);}
+  }
+  abrirModal("modalAfiliado");
+}
 
-        if(passwordHash !== AUTH_CONFIG.passwordSha256){
-            error.textContent = "Usuario o contraseña incorrectos.";
-            return;
-        }
+function confirmarInactivar(id) {
+  const a = afiliados.find(x => String(x.id) === String(id));
+  if (!a) return;
+  const nombre = `${a.nombres || ""} ${a.apellidos || ""}`.trim();
 
-        sessionStorage.setItem(AUTH_CONFIG.sessionKey, AUTH_CONFIG.username);
-        mostrarPanel();
+  document.getElementById("confirmTitulo").textContent = "Inactivar afiliado";
+  document.getElementById("confirmTexto").textContent =
+    `¿Desea inactivar a ${nombre}? La acción quedará registrada en la auditoría.`;
 
-    }catch(err){
-        console.error(err);
-        error.textContent = "No fue posible validar el acceso.";
-    }finally{
-        button.disabled = false;
-        button.textContent = "Ingresar al sistema";
+  accionConfirmada = () => inactivarAfiliado(id);
+  document.getElementById("btnConfirmar").onclick = async () => {
+    cerrarModal("modalConfirmar");
+    await accionConfirmada();
+  };
+  abrirModal("modalConfirmar");
+}
+
+function payloadDesdeFormulario() {
+  const campos = ["tipoDocumento","numeroDocumento","nombres","apellidos","fechaNacimiento","telefono","correo","fechaAfiliacion","numeroAfiliacion","estado","calidadAfiliado","cargo","comite","fechaEleccion","periodo","libroFolio","lugarNacimiento","nivelEducativo","ocupacion","direccion","sector","municipio","departamento","contactoEmergencia","parentescoEmergencia","telefonoEmergencia","observaciones"];
+  const data = {};
+  campos.forEach(c => data[c] = (document.getElementById(c)?.value || "").trim());
+  data.foto = window.afiliadoFoto ? afiliadoFoto.get() : "";
+  if (editandoId) data.id = editandoId;
+  return data;
+}
+
+/* =========================
+   CIFRADO AES-GCM / PBKDF2
+   ========================= */
+function bytesToB64(bytes){
+  let binary="";
+  const chunk=0x8000;
+  for(let i=0;i<bytes.length;i+=chunk) binary+=String.fromCharCode(...bytes.subarray(i,i+chunk));
+  return btoa(binary);
+}
+function b64ToBytes(str){
+  const binary=atob(str); const out=new Uint8Array(binary.length);
+  for(let i=0;i<binary.length;i++) out[i]=binary.charCodeAt(i);
+  return out;
+}
+async function deriveKey(password,salt){
+  const material=await crypto.subtle.importKey("raw",new TextEncoder().encode(password),"PBKDF2",false,["deriveKey"]);
+  return crypto.subtle.deriveKey({name:"PBKDF2",salt,iterations:250000,hash:"SHA-256"},material,{name:"AES-GCM",length:256},false,["encrypt","decrypt"]);
+}
+async function cifrarObjeto(objeto){
+  if(!claveCifrado) throw new Error("Debe establecer la clave de cifrado.");
+  const salt=crypto.getRandomValues(new Uint8Array(16));
+  const iv=crypto.getRandomValues(new Uint8Array(12));
+  const key=await deriveKey(claveCifrado,salt);
+  const data=new TextEncoder().encode(JSON.stringify(objeto));
+  const cipher=await crypto.subtle.encrypt({name:"AES-GCM",iv},key,data);
+  return JSON.stringify({v:1,alg:"AES-GCM",kdf:"PBKDF2-SHA256",iter:250000,salt:bytesToB64(salt),iv:bytesToB64(iv),ciphertext:bytesToB64(new Uint8Array(cipher))});
+}
+async function descifrarObjeto(encrypted){
+  if(!claveCifrado) throw new Error("Debe establecer la clave de cifrado.");
+  const pack=typeof encrypted==="string"?JSON.parse(encrypted):encrypted;
+  const salt=b64ToBytes(pack.salt), iv=b64ToBytes(pack.iv), ciphertext=b64ToBytes(pack.ciphertext);
+  const key=await deriveKey(claveCifrado,salt);
+  const plain=await crypto.subtle.decrypt({name:"AES-GCM",iv},key,ciphertext);
+  return JSON.parse(new TextDecoder().decode(plain));
+}
+
+function apiGet(action,params={}){if(action==='list')return afiliadosDriveAPI.list();if(action==='photoGet')return afiliadosDriveAPI.getPhoto(params.fileId);return Promise.reject(new Error('Acción no soportada: '+action));}
+async function api(action,data={},extra={}){if(action==='create')return afiliadosDriveAPI.create(data);if(action==='update')return afiliadosDriveAPI.update(extra.id||data.id,data);if(action==='inactivate')return afiliadosDriveAPI.inactivate(extra.id||data.id);if(action==='list')return afiliadosDriveAPI.list();throw new Error('Acción no válida: '+action);}
+
+
+async function obtenerFotoAfiliado_(data){
+  if(!data || !data.fotoId) return "";
+  try{
+    const r = await afiliadosDriveAPI.getPhoto(data.fotoId);
+    if(!r || r.ok===false) return "";
+    // Accept the common response shapes used by the Apps Script photoGet endpoint.
+    const value = r.dataUrl || r.data || r.photo || r.foto || r.url || "";
+    if(!value) return "";
+    if(String(value).startsWith("data:")) return String(value);
+    if(r.base64){
+      return "data:"+(r.mime||r.contentType||"image/jpeg")+";base64,"+r.base64;
     }
+    if(/^[A-Za-z0-9+/=\s]+$/.test(String(value)) && String(value).length>100){
+      return "data:"+(r.mime||r.contentType||"image/jpeg")+";base64,"+String(value).replace(/\s/g,"");
+    }
+    return String(value);
+  }catch(err){
+    console.warn("No se pudo cargar fotografía",data.id,err);
+    return "";
+  }
 }
 
-function cerrarSesion(){
-    sessionStorage.removeItem(AUTH_CONFIG.sessionKey);
-    cerrarModulo();
-    mostrarLogin();
+async function hidratarFotosAfiliados_(){
+  const pendientes = afiliados.filter(a=>a.fotoId && !a.foto);
+  if(!pendientes.length) return;
+  // Load in small groups so many affiliates do not create a burst of requests.
+  for(let i=0;i<pendientes.length;i+=4){
+    const grupo=pendientes.slice(i,i+4);
+    await Promise.all(grupo.map(async a=>{
+      const foto=await obtenerFotoAfiliado_(a);
+      if(foto) a.foto=foto;
+    }));
+    renderTabla();
+  }
 }
 
-function verificarSesion(){
-    const sesion = sessionStorage.getItem(AUTH_CONFIG.sessionKey);
+async function cargarAfiliados(){
+  setSync("Consultando...",true);
+  document.getElementById("tablaContenedor").innerHTML='<div class="loading"><div class="spinner-ring" style="margin:0 auto 10px"></div>Sincronizando afiliados...</div>';
+  try{
+    if(!claveCifrado){
+      abrirModal("modalClave");
+      document.getElementById("tablaContenedor").innerHTML='<div class="empty"><i class="bi bi-shield-lock"></i><h5 class="mt-3 fw-bold">Base protegida</h5><p class="small">Ingresa la clave de cifrado para consultar los afiliados.</p></div>';
+      setSync("Bloqueado",false);
+      return;
+    }
 
-    if(sesion === AUTH_CONFIG.username){
-        mostrarPanel();
+    const res=await api("list");
+    const raw=Array.isArray(res.afiliados)?res.afiliados:[];
+    const decoded=[];
+
+    for(const row of raw){
+      try{
+        const data=await descifrarObjeto(row.encrypted);
+        decoded.push({...data,id:row.id,estado:row.estado||data.estado||"ACTIVO",fechaRegistro:row.fechaRegistro,ultimaActualizacion:row.ultimaActualizacion,usuario:row.usuario});
+      }catch(err){
+        console.warn("No se pudo descifrar",row.id,err);
+        decoded.push({id:row.id,estado:row.estado||"INACTIVO",_errorCifrado:true});
+      }
+    }
+
+    afiliados=decoded;
+    actualizarKpis();
+    renderTabla();
+    setSync("Sincronizado",true);
+    hidratarFotosAfiliados_();
+  }catch(e){
+    console.error(e);
+    setSync("Error",false);
+    toast("No fue posible sincronizar",e.message||"Verifica Apps Script y la clave de cifrado.","error");
+    document.getElementById("tablaContenedor").innerHTML='<div class="empty"><i class="bi bi-cloud-slash"></i><h5 class="mt-3 fw-bold">No se pudo conectar</h5><p class="small">'+escapeHtml(e.message||"Revisa la configuración de Apps Script.")+'</p></div>';
+  }
+}
+
+async function guardarAfiliado(event){
+  event.preventDefault();
+  if(!claveCifrado){abrirModal("modalClave");return;}
+  const btn=document.getElementById("btnGuardar"),original=btn.innerHTML;btn.disabled=true;btn.innerHTML='<span class="spinner-ring"></span> Guardando...';
+  try{
+    const data=payloadDesdeFormulario();const meta=window.afiliadoFoto&&window.afiliadoFoto.getMeta?window.afiliadoFoto.getMeta():{photo:data.foto||'',removed:false};const current=window.__afCurrentData||{};
+    if(meta.photo){const pr=await afiliadosDriveAPI.uploadPhoto(meta.photo,((data.nombres||'afiliado').trim().replace(/\s+/g,'_').toLowerCase()+'_foto.jpg'),'image/jpeg');data.fotoId=pr.fileId||'';data.foto='';}
+    else if(editandoId&&!meta.removed){data.fotoId=current.fotoId||'';data.foto='';}
+    else{data.fotoId='';data.foto='';}
+    const encrypted=await cifrarObjeto(data);const action=editandoId?'update':'create';const res=editandoId?await api(action,{encrypted,estado:data.estado},{id:editandoId}):await api(action,{encrypted,estado:data.estado});
+    const fueEdicion=!!editandoId;cerrarModal('modalAfiliado');toast(fueEdicion?'Afiliado actualizado':'Afiliado registrado',res.message||'La información fue sincronizada correctamente.');editandoId=null;window.__afCurrentData={};if(window.afiliadoFoto)afiliadoFoto.clear();await cargarAfiliados();
+  }catch(e){console.error(e);toast('No se pudo guardar',e.message||'Verifica la conexión.','error')}finally{btn.disabled=false;btn.innerHTML=original}
+}
+
+async function inactivarAfiliado(id){
+  try{
+    const res=await api("inactivate",{}, {id});
+    toast("Afiliado inactivado",res.message||"La modificación quedó registrada.");
+    await cargarAfiliados();
+  }catch(e){
+    toast("No se pudo inactivar",e.message||"Verifica la conexión.","error");
+  }
+}
+
+async function descargarFichaPDF(id){
+  const a = afiliados.find(x => String(x.id) === String(id));
+  if(!a) return;
+  if(!window.jspdf || !window.jspdf.jsPDF){
+    toast("PDF no disponible","No se cargó el módulo PDF. Revisa la conexión a internet.","error");
+    return;
+  }
+
+  try{
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({unit:"mm", format:"letter", compress:true});
+
+    const W=216, H=279, M=16, CW=W-(M*2);
+    const C={
+      verde:[7,105,61],
+      verde2:[17,125,75],
+      verdeClaro:[235,247,240],
+      tinta:[28,39,51],
+      gris:[91,105,120],
+      grisClaro:[236,240,243],
+      blanco:[255,255,255],
+      dorado:[180,143,62]
+    };
+
+    const nombre = `${a.nombres||""} ${a.apellidos||""}`.trim() || "Afiliado";
+    const safeName = nombre.normalize ? nombre.normalize("NFD").replace(/[\\u0300-\\u036f]/g,"") : nombre;
+    const fecha = new Date().toLocaleDateString("es-CO",{day:"2-digit",month:"long",year:"numeric"});
+
+    function txt(text,x,y,size=9,color=C.tinta,style="normal"){
+      doc.setFont("helvetica",style); doc.setFontSize(size); doc.setTextColor(...color);
+      doc.text(String(text ?? "—"),x,y);
+    }
+    function line(x1,y1,x2,y2,color=C.grisClaro,width=.35){
+      doc.setDrawColor(...color); doc.setLineWidth(width); doc.line(x1,y1,x2,y2);
+    }
+    function roundedBox(x,y,w,h,fill=C.blanco,stroke=C.grisClaro,r=2){
+      doc.setFillColor(...fill); doc.setDrawColor(...stroke); doc.setLineWidth(.35);
+      doc.roundedRect(x,y,w,h,r,r,"FD");
+    }
+
+    async function imageToDataURL(url){
+      try{
+        const r=await fetch(url,{cache:"no-store"});
+        if(!r.ok) return null;
+        const blob=await r.blob();
+        return await new Promise((resolve,reject)=>{
+          const fr=new FileReader(); fr.onload=()=>resolve(fr.result); fr.onerror=reject; fr.readAsDataURL(blob);
+        });
+      }catch(e){ return null; }
+    }
+
+    // Encabezado institucional elegante.
+    doc.setFillColor(...C.verde); doc.rect(0,0,W,7,"F");
+    doc.setFillColor(...C.dorado); doc.rect(0,7,W,1.1,"F");
+
+    let logo=await imageToDataURL("assets/logo.png");
+    if(!logo) logo=await imageToDataURL("assents/logo.png");
+    if(!logo) logo=await imageToDataURL("logo.png");
+    if(logo){
+      try{ doc.addImage(logo,"PNG",M,13,22,22); }catch(e){}
     }else{
-        mostrarLogin();
+      doc.setFillColor(...C.verdeClaro); doc.roundedRect(M,13,22,22,3,3,"F");
+      txt("JAC",M+6.2,26,10,C.verde,"bold");
     }
+
+    txt("JUNTA DE ACCIÓN COMUNAL",44,19,14,C.tinta,"bold");
+    txt("VEREDA SANTA BÁRBARA",44,26,11,C.verde,"bold");
+    txt("El Bagre · Antioquia",44,31,8.5,C.gris,"normal");
+
+    // Identificador documental.
+    roundedBox(151,14,49,22,C.verdeClaro,C.verdeClaro,3);
+    txt("FICHA DE AFILIADO",155,22,7.2,C.verde,"bold");
+    txt("Registro institucional",155,27,7,C.gris,"normal");
+    txt(`No. ${a.id||"—"}`,155,32,7,C.tinta,"bold");
+
+    line(M,40,W-M,40,C.dorado,.55);
+
+    // Bloque principal del afiliado.
+    roundedBox(M,45,CW,47,[250,252,251],C.grisClaro,4);
+
+    if(a.foto){
+      try{
+        const fotoFmt = String(a.foto).startsWith("data:image/png") ? "PNG" : "JPEG";
+        doc.addImage(a.foto,fotoFmt,M+5,50,35,35);
+        doc.setDrawColor(...C.blanco); doc.setLineWidth(1.2); doc.rect(M+5,50,35,35);
+      }catch(e){
+        doc.setFillColor(...C.verdeClaro); doc.circle(M+22.5,67.5,17.5,"F");
+      }
+    }else{
+      doc.setFillColor(...C.verdeClaro); doc.circle(M+22.5,67.5,17.5,"F");
+      const ini=((a.nombres||"").charAt(0)+(a.apellidos||"").charAt(0)).toUpperCase()||"A";
+      txt(ini,M+16.2,71,14,C.verde,"bold");
+    }
+
+    const ix=M+46;
+    txt("AFILIADO",ix,55,7,C.verde,"bold");
+    txt(nombre,ix,64,14,C.tinta,"bold");
+    txt(`${a.tipoDocumento||"Documento"}: ${a.numeroDocumento||"—"}`,ix,71,8.5,C.gris,"normal");
+    txt(`Número de afiliación: ${a.numeroAfiliacion||"—"}`,ix,77,8.5,C.gris,"normal");
+
+    // Estado.
+    const activo=String(a.estado||"ACTIVO").toUpperCase()==="ACTIVO";
+    doc.setFillColor(...(activo?[226,246,235]:[250,235,235]));
+    doc.roundedRect(166,73,29,10,4,4,"F");
+    txt(activo?"ACTIVO":"INACTIVO",172,80,7,activo?C.verde:[165,45,45],"bold");
+
+    let y=101;
+    let pageNo=1;
+
+    function footer(){
+      line(M,H-16,W-M,H-16,C.grisClaro,.35);
+      txt("Junta de Acción Comunal Vereda Santa Bárbara",M,H-10,7,C.gris,"bold");
+      txt(`Página ${pageNo}`,W-M-20,H-10,7,C.gris,"normal");
+      txt(`Generado el ${fecha}`,M,H-6,6.5,C.gris,"normal");
+    }
+
+    function newPage(){
+      footer(); doc.addPage(); pageNo++; y=20;
+      doc.setFillColor(...C.verde); doc.rect(0,0,W,5,"F");
+      txt("JAC SANTA BÁRBARA · FICHA DE AFILIADO",M,14,8,C.verde,"bold");
+      line(M,18,W-M,18,C.grisClaro,.35); y=27;
+    }
+
+    function ensure(h=12){ if(y+h>H-23) newPage(); }
+
+    function section(title,sub){
+      ensure(18);
+      doc.setFillColor(...C.verdeClaro); doc.roundedRect(M,y,CW,10,2,2,"F");
+      doc.setFillColor(...C.verde); doc.roundedRect(M,y,3.5,10,2,2,"F");
+      txt(title,M+9,y+6.5,9,C.verde,"bold");
+      if(sub) txt(sub,M+92,y+6.5,6.8,C.gris,"normal");
+      y+=16;
+    }
+
+    function field(label,value,x,w){
+      ensure(13);
+      txt(label.toUpperCase(),x,y,6.3,C.gris,"bold");
+      const val=String(value||"—");
+      const lines=doc.splitTextToSize(val,w);
+      txt(lines[0],x,y+5,8.5,C.tinta,"normal");
+      return Math.max(10,lines.length*4.3+6);
+    }
+
+    function row2(l1,v1,l2,v2){
+      ensure(14);
+      const gap=8, col=(CW-gap)/2;
+      const h1=field(l1,v1,M,col), h2=field(l2,v2,M+col+gap,col);
+      y+=Math.max(h1,h2);
+      line(M,y-3,W-M,y-3,C.grisClaro,.25);
+    }
+
+    function row3(l1,v1,l2,v2,l3,v3){
+      ensure(14);
+      const gap=6, col=(CW-gap*2)/3;
+      const h1=field(l1,v1,M,col), h2=field(l2,v2,M+col+gap,col), h3=field(l3,v3,M+(col+gap)*2,col);
+      y+=Math.max(h1,h2,h3);
+      line(M,y-3,W-M,y-3,C.grisClaro,.25);
+    }
+
+    section("01 · IDENTIFICACIÓN","Datos personales");
+    row2("Fecha de nacimiento",a.fechaNacimiento,"Lugar de nacimiento",a.lugarNacimiento);
+    row2("Nivel educativo",a.nivelEducativo,"Ocupación",a.ocupacion);
+
+    section("02 · CONTACTO Y RESIDENCIA","Información de ubicación");
+    row2("Teléfono",a.telefono,"Correo electrónico",a.correo);
+    row2("Dirección",a.direccion,"Sector / Vereda",a.sector);
+    row2("Municipio",a.municipio,"Departamento",a.departamento);
+
+    section("03 · AFILIACIÓN Y JUNTA","Registro comunitario");
+    row3("Fecha de afiliación",a.fechaAfiliacion,"Calidad",a.calidadAfiliado,"Libro / folio",a.libroFolio);
+    row2("Cargo / dignidad",a.cargo,"Comité",a.comite);
+    row2("Fecha de elección",a.fechaEleccion,"Periodo",a.periodo);
+
+    section("04 · CONTACTO DE EMERGENCIA","Persona de referencia");
+    row3("Nombre",a.contactoEmergencia,"Parentesco",a.parentescoEmergencia,"Teléfono",a.telefonoEmergencia);
+
+    section("05 · OBSERVACIONES","Información adicional");
+    ensure(24);
+    const obs=String(a.observaciones||"Sin observaciones.");
+    const obsLines=doc.splitTextToSize(obs,CW-12);
+    const boxH=Math.min(48,Math.max(20,obsLines.length*4.5+10));
+    roundedBox(M,y,CW,boxH,[252,253,253],C.grisClaro,2);
+    txt(obsLines.slice(0,8),M+6,y+8,8.2,C.tinta,"normal");
+    y+=boxH+12;
+
+    // Cierre institucional.
+    ensure(35);
+    line(M,y,W-M,y,C.dorado,.45); y+=8;
+    txt("CONSTANCIA ADMINISTRATIVA",M,y,7,C.verde,"bold");
+    y+=5;
+    const cierre="La presente ficha corresponde al registro administrativo del afiliado en la Base de Afiliados de la Junta de Acción Comunal Vereda Santa Bárbara. Los datos aquí contenidos hacen parte de la gestión institucional y deben ser tratados conforme a las políticas aplicables de protección de datos personales.";
+    const cierreLines=doc.splitTextToSize(cierre,CW-4);
+    txt(cierreLines,M,y,7.2,C.gris,"normal");
+    y+=cierreLines.length*3.8+14;
+
+    // Espacio de firma y validación.
+    ensure(28);
+    const sw=70;
+    line(M,y+12,M+sw,y+12,C.gris,.4);
+    line(W-M-sw,y+12,W-M,y+12,C.gris,.4);
+    txt("Firma / validación",M,y+17,6.8,C.gris,"normal");
+    txt("Responsable de la Junta",W-M-sw,y+17,6.8,C.gris,"normal");
+
+    footer();
+    doc.save(`Ficha_Afiliado_${safeName.trim().replace(/\\s+/g,"_")||a.id}.pdf`);
+    toast("PDF generado","La ficha institucional fue descargada correctamente.");
+  }catch(e){
+    console.error(e);
+    toast("No se pudo generar el PDF",e.message||"Error inesperado","error");
+  }
 }
 
-document.getElementById("loginForm").addEventListener("submit", iniciarSesion);
+function establecerClave(){
+  const clave=document.getElementById("claveCifrado").value;
+  if(!clave||clave.length<8){toast("Clave no válida","Utiliza una clave de al menos 8 caracteres.","warn");return;}
+  claveCifrado=clave;
+  sessionStorage.setItem("jac_afiliados_clave",clave);
+  cerrarModal("modalClave");
+  toast("Seguridad habilitada","La clave permanecerá solo durante esta sesión.");
+  cargarAfiliados();
+}
 
-document.addEventListener("keydown", function(e){
-    if(e.key === "Enter" && document.body.classList.contains("auth-locked")){
-        const active = document.activeElement;
-        if(active && (active.id === "loginUsuario" || active.id === "loginClave")){
-            e.preventDefault();
-            document.getElementById("loginForm").requestSubmit();
-        }
+document.addEventListener("DOMContentLoaded", () => { cargarAfiliados(); });
+</script>
+
+<script id="afiliado-photo-js">
+(function(){
+  let afPhotoData = '';
+  let afPhotoRemoved = false;
+
+  function initialsFromData(data){
+    const n = ((data && (data.nombres || data.nombre)) || '').trim();
+    const a = ((data && (data.apellidos || data.apellido)) || '').trim();
+    return ((n.charAt(0) || '') + (a.charAt(0) || '')).toUpperCase() || '+';
+  }
+
+  function renderPhoto(data, photo){
+    const preview = document.getElementById('afFotoPreview');
+    const avatar = document.getElementById('afFotoAvatar');
+    const remove = document.getElementById('afBtnQuitarFoto');
+    if(!preview) return;
+
+    preview.innerHTML = '';
+    if(photo){
+      const img = document.createElement('img');
+      img.src = photo;
+      img.alt = 'Fotografía del afiliado';
+      preview.appendChild(img);
+      if(remove) remove.style.display = 'inline-flex';
+    }else{
+      const span = document.createElement('span');
+      span.className = 'af-photo-avatar';
+      span.textContent = initialsFromData(data);
+      preview.appendChild(span);
+      if(remove) remove.style.display = 'none';
     }
-});
+  }
 
-verificarSesion();
+  function compressImage(file){
+    return new Promise((resolve,reject)=>{
+      const reader = new FileReader();
+      reader.onload = function(){
+        const img = new Image();
+        img.onload = function(){
+          const max = 480;
+          const scale = Math.min(1, max / Math.max(img.width,img.height));
+          const canvas = document.createElement('canvas');
+          canvas.width = Math.max(1, Math.round(img.width*scale));
+          canvas.height = Math.max(1, Math.round(img.height*scale));
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img,0,0,canvas.width,canvas.height);
+          resolve(canvas.toDataURL('image/jpeg',0.58));
+        };
+        img.onerror = reject;
+        img.src = reader.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
 
+  function init(){
+    const input = document.getElementById('afFotoInput');
+    const btn = document.getElementById('afBtnFoto');
+    const remove = document.getElementById('afBtnQuitarFoto');
 
-/* Atajos de teclado */
-document.addEventListener("keydown",e=>{
-    if(e.key==="Escape"){
-        document.body.classList.remove("open");
-        if(document.body.classList.contains("module-open")){
-            cerrarModulo();
+    if(btn && input){
+      btn.addEventListener('click', ()=>input.click());
+      input.addEventListener('change', async ()=>{
+        const file = input.files && input.files[0];
+        if(!file) return;
+        if(file.size > 8*1024*1024){
+          alert('La fotografía no debe superar 8 MB.');
+          input.value='';
+          return;
         }
+        try{
+          afPhotoData = await compressImage(file);
+          renderPhoto(window.__afCurrentData || {}, afPhotoData);
+        }catch(e){
+          alert('No fue posible procesar la fotografía.');
+        }
+      });
     }
-});
+    if(remove){
+      remove.addEventListener('click', ()=>{
+        afPhotoData = '';
+        afPhotoRemoved = true;
+        if(input) input.value='';
+        renderPhoto(window.__afCurrentData || {}, '');
+      });
+    }
+    renderPhoto({}, '');
+  }
+
+  window.afiliadoFoto = {
+    get: ()=>afPhotoData,
+    getMeta: ()=>({photo:afPhotoData, removed:afPhotoRemoved}),
+    set: (photo,data)=>{
+      afPhotoData = photo || '';
+      afPhotoRemoved = false;
+      window.__afCurrentData = data || {};
+      renderPhoto(window.__afCurrentData, afPhotoData);
+    },
+    clear: ()=>{
+      afPhotoData='';
+      afPhotoRemoved=true;
+      const input=document.getElementById('afFotoInput');
+      if(input) input.value='';
+      renderPhoto({},'');
+    },
+    init: init
+  };
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  }else{
+    init();
+  }
+})();
+</script>
+
+
+<script id="afiliados-save-drive">
+(function(){
+  function getValue(id){const e=document.getElementById(id);return e?e.value:'';}
+  function getPhoto(){
+    try{return window.afiliadoFoto && window.afiliadoFoto.get ? window.afiliadoFoto.get() : '';}catch(e){return '';}
+  }
+  function fileName(){
+    const n=(getValue('af_nombres')||getValue('nombres')||'afiliado').trim().replace(/\s+/g,'_');
+    return n.toLowerCase()+'_foto.jpg';
+  }
+  async function prepararDatos(base){
+    base=Object.assign({},base);
+    const photo=getPhoto();
+    if(photo){
+      const r=await window.afiliadosDriveAPI.uploadPhoto(photo,fileName(),'image/jpeg');
+      base.fotoId=r.fileId||'';
+      base.fotoNombre=fileName();
+      base.fotoMime='image/jpeg';
+    }else if(base.fotoId===undefined){
+      base.fotoId='';
+    }
+    return base;
+  }
+
+  // Public helper: call this from the existing guardarAfiliado/editar flow.
+  window.guardarAfiliadoConFotoDrive=async function(id,data){
+    const prepared=await prepararDatos(data||{});
+    if(id){
+      return window.afiliadosDriveAPI.update(id,prepared);
+    }
+    return window.afiliadosDriveAPI.create(prepared);
+  };
+})();
+</script>
+
+
+<script id="afiliados-photo-reset-hook">
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    const nuevo=document.querySelector('[data-action="nuevo"], #btnNuevoAfiliado, .btn-nuevo-afiliado');
+    if(nuevo){
+      nuevo.addEventListener('click',function(){
+        try{window.afiliadoFoto && window.afiliadoFoto.clear && window.afiliadoFoto.clear();}catch(e){}
+      });
+    }
+  });
+})();
 </script>
 
 </body>

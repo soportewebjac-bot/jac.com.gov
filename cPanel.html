@@ -126,412 +126,15 @@ body.module-open .module-drawer{transform:translateX(0)}
 .drawer-close:hover{background:#f2f6f3;color:var(--g)}
 .drawer-status{height:35px;flex:0 0 35px;background:#f7faf8;border-bottom:1px solid var(--line);padding:0 20px;display:flex;align-items:center;justify-content:space-between;font-size:8px;color:var(--muted)}
 .drawer-status span:first-child{color:#087442;font-weight:700}.drawer-status i{font-size:6px;margin-right:5px}
-.drawer-body{flex:1;min-height:0;background:#fff}.drawer-body iframe{width:100%;height:100%;display:block;border:0;background:#fff}
+.drawer-body{flex:1;min-height:0;background:#fff;overflow:hidden}.drawer-body iframe{width:100%;height:100%;display:block;border:0;background:#fff}
+.drawer-body:before{content:"";display:none}
+body.module-open .module-drawer .drawer-body{padding:0}
+@media(max-width:700px){.drawer-head h2{font-size:16px}}
 @media(max-width:700px){.module-drawer{width:100vw}.drawer-head{padding-left:15px}.drawer-status{padding:0 15px}.drawer-status span:last-child{max-width:50%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
-
-/* =========================================================
-   ACCESO SEGURO DEL cPANEL
-   Usuario: admin
-   La contraseña no se guarda en texto plano: se compara
-   mediante SHA-256 en el navegador.
-========================================================= */
-body.auth-locked .app{
-    visibility:hidden;
-}
-.auth-screen{
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:24px;
-    background:
-        radial-gradient(circle at 20% 20%,rgba(8,123,70,.18),transparent 32%),
-        radial-gradient(circle at 80% 80%,rgba(16,47,85,.18),transparent 35%),
-        linear-gradient(135deg,#f2f7f4,#eaf1ee);
-}
-.auth-card{
-    width:min(430px,100%);
-    background:#fff;
-    border:1px solid #dfe9e3;
-    border-radius:18px;
-    padding:30px;
-    box-shadow:0 24px 70px rgba(6,59,43,.18);
-}
-.auth-brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-bottom:24px;
-}
-.auth-brand img{
-    width:58px;
-    height:58px;
-    object-fit:contain;
-    background:#fff;
-    border-radius:50%;
-    border:1px solid #e5ece8;
-}
-.auth-brand b{
-    display:block;
-    font:800 14px Montserrat,Arial;
-    line-height:1.25;
-    color:#102f55;
-}
-.auth-brand small{
-    display:block;
-    margin-top:4px;
-    color:#0b6940;
-    font-size:9px;
-    font-weight:800;
-    letter-spacing:.08em;
-}
-.auth-card h2{
-    margin:0;
-    font:800 21px Montserrat,Arial;
-    color:#102f55;
-}
-.auth-card .auth-subtitle{
-    margin:7px 0 20px;
-    color:#708078;
-    font-size:11px;
-    line-height:1.5;
-}
-.auth-alert{
-    display:flex;
-    gap:9px;
-    align-items:flex-start;
-    padding:11px 12px;
-    margin-bottom:18px;
-    background:#eaf6ef;
-    border:1px solid #cfe8d8;
-    border-radius:10px;
-    color:#087442;
-    font-size:9px;
-    font-weight:700;
-}
-.auth-group{margin-bottom:14px}
-.auth-group label{
-    display:block;
-    margin-bottom:6px;
-    color:#52635b;
-    font-size:9px;
-    font-weight:800;
-    letter-spacing:.06em;
-}
-.auth-group input{
-    width:100%;
-    height:44px;
-    border:1px solid #dfe9e3;
-    border-radius:9px;
-    outline:none;
-    padding:0 12px;
-    font-size:11px;
-    color:#17231e;
-    background:#fbfdfc;
-}
-.auth-group input:focus{
-    border-color:#0b6940;
-    box-shadow:0 0 0 3px rgba(11,105,64,.10);
-}
-.auth-submit{
-    width:100%;
-    height:44px;
-    border:0;
-    border-radius:9px;
-    background:#0b6940;
-    color:#fff;
-    font-size:11px;
-    font-weight:800;
-    box-shadow:0 8px 18px rgba(11,105,64,.18);
-}
-.auth-submit:hover{background:#087442}
-.auth-submit:disabled{opacity:.65;cursor:wait}
-.auth-error{
-    min-height:18px;
-    margin-top:10px;
-    text-align:center;
-    color:#c63745;
-    font-size:9px;
-    font-weight:700;
-}
-.auth-foot{
-    margin-top:20px;
-    padding-top:14px;
-    border-top:1px solid #edf1ef;
-    text-align:center;
-    color:#8a9891;
-    font-size:8px;
-}
-.logout-btn{
-    border:1px solid var(--line);
-    background:#fff;
-    color:#b33a45;
-    border-radius:7px;
-    padding:5px 8px;
-    font-size:8px;
-    font-weight:800;
-    margin-left:8px;
-}
-.logout-btn:hover{background:#fff5f5}
-.authenticated-only{display:none}
-body.authenticated .authenticated-only{display:block}
-
-
-/* LOGIN PROFESIONAL */
-#loginScreen{position:fixed;inset:0;z-index:999999;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(circle at 15% 15%,rgba(37,99,235,.18),transparent 34%),radial-gradient(circle at 85% 85%,rgba(14,165,233,.13),transparent 34%),linear-gradient(135deg,#07111f,#0b1730 55%,#101b35);font-family:Inter,system-ui,sans-serif}
-#loginScreen .login-shell{width:min(430px,100%)}
-#loginScreen .login-card{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.13);border-radius:24px;padding:34px;background:rgba(15,27,48,.9);box-shadow:0 30px 90px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.03);backdrop-filter:blur(18px)}
-#loginScreen .login-card:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,#2563eb,#38bdf8,#2563eb)}
-#loginScreen .login-brand{text-align:center;margin-bottom:27px}
-#loginScreen .login-logo{width:68px;height:68px;margin:0 auto 17px;display:flex;align-items:center;justify-content:center;border-radius:19px;background:linear-gradient(145deg,#2563eb,#0ea5e9);box-shadow:0 15px 35px rgba(37,99,235,.34);color:#fff;font-size:25px;font-weight:900;letter-spacing:-1px}
-#loginScreen .login-title{margin:0;color:#fff;font-size:25px;font-weight:800}
-#loginScreen .login-subtitle{margin:8px 0 0;color:#94a3b8;font-size:13px}
-#loginScreen .login-field{margin-bottom:17px}
-#loginScreen .login-label{display:block;margin-bottom:8px;color:#cbd5e1;font-size:12px;font-weight:700}
-#loginScreen .login-input-wrap{position:relative}
-#loginScreen .login-input-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#64748b;pointer-events:none}
-#loginScreen input{box-sizing:border-box;width:100%;height:49px;border:1px solid #263b5a;border-radius:11px;outline:none;padding:0 43px;color:#f8fafc;background:#0a1629;font-size:14px}
-#loginScreen input:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.14)}
-#loginScreen .login-password-toggle{position:absolute;right:9px;top:50%;transform:translateY(-50%);width:32px;height:32px;border:0;border-radius:8px;background:transparent;color:#64748b;cursor:pointer}
-#loginScreen .login-password-toggle:hover{background:#16243b;color:#cbd5e1}
-#loginScreen .login-button{width:100%;height:50px;margin-top:5px;border:0;border-radius:11px;color:#fff;background:linear-gradient(135deg,#2563eb,#1d4ed8);font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 12px 25px rgba(37,99,235,.24);transition:.2s}
-#loginScreen .login-button:hover{transform:translateY(-1px);box-shadow:0 16px 30px rgba(37,99,235,.31)}
-#loginScreen .login-footer{margin-top:22px;padding-top:17px;border-top:1px solid rgba(148,163,184,.12);text-align:center;color:#64748b;font-size:11px}
-#loginScreen .login-status:before{content:"";display:inline-block;width:7px;height:7px;margin-right:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 9px rgba(34,197,94,.55)}
-
-
-/* ===== LOGIN: MISMO LENGUAJE VISUAL DEL CPANEL ===== */
-#loginScreen{
-  position:fixed;inset:0;z-index:999999;
-  display:flex;align-items:center;justify-content:center;
-  padding:24px;overflow:auto;
-  background:#f4f7fb;
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-}
-#loginScreen .login-shell{width:min(420px,100%)}
-#loginScreen .login-card{
-  position:relative;background:#fff;border:1px solid #e5eaf1;
-  border-radius:16px;padding:34px;
-  box-shadow:0 18px 45px rgba(15,23,42,.12);
-}
-#loginScreen .login-card:before{
-  content:"";position:absolute;left:0;right:0;top:0;height:4px;
-  border-radius:16px 16px 0 0;background:#0d2c54;
-}
-#loginScreen .login-brand{text-align:center;margin-bottom:28px}
-#loginScreen .login-logo{
-  width:64px;height:64px;margin:0 auto 15px;border-radius:14px;
-  display:flex;align-items:center;justify-content:center;
-  background:#0d2c54;color:#fff;font-size:22px;font-weight:800;
-  box-shadow:0 8px 20px rgba(13,44,84,.18);
-}
-#loginScreen .login-title{
-  margin:0;color:#172033;font-size:23px;font-weight:800;letter-spacing:-.3px
-}
-#loginScreen .login-subtitle{margin:7px 0 0;color:#718096;font-size:12px}
-#loginScreen .login-field{margin-bottom:17px}
-#loginScreen .login-label{
-  display:block;margin-bottom:7px;color:#344054;font-size:12px;font-weight:700
-}
-#loginScreen .login-input-wrap{position:relative}
-#loginScreen .login-input-icon{
-  position:absolute;left:13px;top:50%;transform:translateY(-50%);
-  color:#98a2b3;pointer-events:none
-}
-#loginScreen input{
-  box-sizing:border-box;width:100%;height:47px;
-  border:1px solid #d8dee8;border-radius:9px;outline:none;
-  padding:0 42px;color:#172033;background:#fff;font-size:13px;
-  transition:.18s ease
-}
-#loginScreen input::placeholder{color:#a0a8b5}
-#loginScreen input:focus{
-  border-color:#2f6fed;box-shadow:0 0 0 3px rgba(47,111,237,.10)
-}
-#loginScreen .login-password-toggle{
-  position:absolute;right:8px;top:50%;transform:translateY(-50%);
-  width:31px;height:31px;border:0;border-radius:7px;
-  background:transparent;color:#8b95a5;cursor:pointer
-}
-#loginScreen .login-password-toggle:hover{background:#f1f4f8;color:#344054}
-#loginScreen .login-button{
-  width:100%;height:47px;margin-top:3px;border:0;border-radius:9px;
-  color:#fff;background:#0d2c54;font-size:13px;font-weight:800;
-  cursor:pointer;transition:.18s ease
-}
-#loginScreen .login-button:hover{
-  background:#123a6c;transform:translateY(-1px);
-  box-shadow:0 8px 18px rgba(13,44,84,.18)
-}
-#loginScreen .login-footer{
-  margin-top:22px;padding-top:16px;border-top:1px solid #edf0f4;
-  text-align:center;color:#98a2b3;font-size:10px
-}
-#loginScreen .login-status:before{
-  content:"";display:inline-block;width:6px;height:6px;margin-right:6px;
-  border-radius:50%;background:#12b76a
-}
-@media(max-width:480px){
- #loginScreen{padding:15px}
- #loginScreen .login-card{padding:28px 21px}
-}
-
-
-/* ===== MODAL DE CARGA DEL CPANEL ===== */
-#cpLoadingOverlay{
-  position:fixed;inset:0;z-index:1000000;
-  display:none;align-items:center;justify-content:center;
-  background:rgba(244,247,251,.88);
-  backdrop-filter:blur(5px);
-  -webkit-backdrop-filter:blur(5px);
-}
-#cpLoadingOverlay.show{display:flex}
-#cpLoadingOverlay .cp-loading-card{
-  width:min(340px,calc(100% - 36px));
-  box-sizing:border-box;
-  padding:28px 26px 24px;
-  background:#fff;
-  border:1px solid #e4e9f0;
-  border-radius:16px;
-  box-shadow:0 18px 50px rgba(15,23,42,.15);
-  text-align:center;
-}
-#cpLoadingOverlay .cp-loading-logo{
-  width:112px;height:72px;
-  margin:0 auto 18px;
-  border-radius:12px;
-  overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
-  background:#f1f4f8;
-  border:1px solid #e1e7ef;
-}
-#cpLoadingOverlay .cp-loading-logo img{
-  width:100%;height:100%;
-  object-fit:contain;
-  display:block;
-}
-#cpLoadingOverlay .cp-loading-fallback{
-  font-size:28px;color:#0d2c54;font-weight:800;
-}
-#cpLoadingOverlay .cp-spinner{
-  width:28px;height:28px;margin:0 auto 14px;
-  border:3px solid #dce4ef;
-  border-top-color:#0d2c54;
-  border-radius:50%;
-  animation:cpSpin .75s linear infinite;
-}
-@keyframes cpSpin{to{transform:rotate(360deg)}}
-#cpLoadingOverlay .cp-loading-title{
-  margin:0;color:#172033;font-size:15px;font-weight:800;
-}
-#cpLoadingOverlay .cp-loading-text{
-  margin:6px 0 0;color:#7b8798;font-size:11px;
-}
-#cpLoadingOverlay .cp-loading-dots::after{
-  content:"";animation:cpDots 1.4s steps(4,end) infinite;
-}
-@keyframes cpDots{
-  0%{content:""}
-  25%{content:"."}
-  50%{content:".."}
-  75%,100%{content:"..."}
-}
-
-
-/* Logo del cargador: reutiliza el mismo logo del login y conserva proporción */
-.cp-loading-logo img,
-.loading-logo img,
-.loader-logo img {
-  width: auto !important;
-  height: 72px !important;
-  max-width: 190px !important;
-  object-fit: contain !important;
-  object-position: center !important;
-  border-radius: 0 !important;
-}
-
 </style>
 </head>
 
-<body class="auth-locked">
-
-<!-- MODAL DE CARGA -->
-<div id="cpLoadingOverlay" aria-hidden="true">
-  <div class="cp-loading-card" role="status" aria-live="polite">
-    <div class="cp-loading-logo" id="cpLoadingLogo">
-      <span class="cp-loading-fallback">JAC</span>
-    </div>
-    <div class="cp-spinner"></div>
-    <h3 class="cp-loading-title">Cargando panel</h3>
-    <p class="cp-loading-text">Preparando el sistema<span class="cp-loading-dots"></span></p>
-  </div>
-</div>
-
-
-<!-- =========================================================
-     ACCESO AL cPANEL
-========================================================= -->
-<div id="authScreen" class="auth-screen">
-    <div class="auth-card">
-        <div class="auth-brand">
-            <img src="assets/logo.png" alt="Logo JAC Vereda Santa Bárbara">
-            <div>
-                <b>JAC VEREDA<br>SANTA BÁRBARA</b>
-                <small>cPanel Administrativo</small>
-            </div>
-        </div>
-
-        <h2>Acceso administrativo</h2>
-        <p class="auth-subtitle">
-            Ingresa tus credenciales para acceder al panel central
-            y administrar los módulos conectados.
-        </p>
-
-        <div class="auth-alert">
-            <span>🔐</span>
-            <span>Área restringida. Solo personal autorizado.</span>
-        </div>
-
-        <form id="loginForm" autocomplete="off">
-            <div class="auth-group">
-                <label for="loginUsuario">USUARIO</label>
-                <input
-                    id="loginUsuario"
-                    type="text"
-                    autocomplete="username"
-                    autocapitalize="none"
-                    spellcheck="false"
-                    placeholder="Usuario"
-                    required
-                >
-            </div>
-
-            <div class="auth-group">
-                <label for="loginClave">CONTRASEÑA</label>
-                <input
-                    id="loginClave"
-                    type="password"
-                    autocomplete="current-password"
-                    placeholder="Contraseña"
-                    required
-                >
-            </div>
-
-            <button id="loginButton" class="auth-submit" type="submit">
-                Ingresar al sistema
-            </button>
-
-            <div id="loginError" class="auth-error" aria-live="polite"></div>
-        </form>
-
-        <div class="auth-foot">
-            Junta de Acción Comunal · Santa Bárbara Vereda Santa Bárbara · El Bagre, Antioquia
-        </div>
-    </div>
-</div>
-
+<body>
 <div class="app">
 
 <aside class="side">
@@ -628,27 +231,41 @@ body.authenticated .authenticated-only{display:block}
 
     <div class="user">
         <div class="avatar"><i class="bi bi-person"></i></div>
-        <div><b id="loggedUserName">Administrador</b><small>Super Administrador</small></div>
-        <button class="logout-btn" type="button" onclick="cerrarSesion()" title="Cerrar sesión">
-            <i class="bi bi-box-arrow-right"></i>
-        </button>
+        <div><b>Administrador</b><small>Super Administrador</small></div>
+        <i class="bi bi-chevron-down"></i>
     </div>
 </header>
 
 <section class="content">
 
-<div class="kpis">
-    <div class="kpi"><div class="ki"><i class="bi bi-file-earmark-text"></i></div><div><strong>24</strong><label>Documentos</label><span class="up">Gestión activa</span></div></div>
-    <div class="kpi"><div class="ki"><i class="bi bi-people"></i></div><div><strong>153</strong><label>Afiliados</label><span class="up">Registro comunitario</span></div></div>
-    <div class="kpi"><div class="ki"><i class="bi bi-newspaper"></i></div><div><strong>8</strong><label>Noticias</label><span class="up">Publicaciones</span></div></div>
-    <div class="kpi"><div class="ki"><i class="bi bi-chat-dots"></i></div><div><strong>15</strong><label>PQRS</label><span class="up">Solicitudes</span></div></div>
-    <div class="kpi"><div class="ki"><i class="bi bi-calendar-plus"></i></div><div><strong>5</strong><label>Eventos</label><span class="up">Agenda</span></div></div>
+<div class="kpis" id="dashboardKpis">
+    <div class="kpi">
+        <div class="ki"><i class="bi bi-file-earmark-text"></i></div>
+        <div><strong id="kpiDocumentos">—</strong><label>Documentos</label><span class="up" id="kpiDocumentosEstado">Consultando sistema</span></div>
+    </div>
+    <div class="kpi">
+        <div class="ki"><i class="bi bi-people"></i></div>
+        <div><strong id="kpiAfiliados">—</strong><label>Afiliados</label><span class="up" id="kpiAfiliadosEstado">Consultando registro</span></div>
+    </div>
+    <div class="kpi">
+        <div class="ki"><i class="bi bi-newspaper"></i></div>
+        <div><strong id="kpiNoticias">—</strong><label>Noticias</label><span class="up" id="kpiNoticiasEstado">Consultando publicaciones</span></div>
+    </div>
+    <div class="kpi">
+        <div class="ki"><i class="bi bi-chat-dots"></i></div>
+        <div><strong id="kpiPqrs">—</strong><label>PQRS</label><span class="up" id="kpiPqrsEstado">Consultando solicitudes</span></div>
+    </div>
+    <div class="kpi">
+        <div class="ki"><i class="bi bi-calendar-plus"></i></div>
+        <div><strong id="kpiEventos">—</strong><label>Eventos</label><span class="up" id="kpiEventosEstado">Consultando agenda</span></div>
+    </div>
 </div>
 
 <div class="module-note">
     <strong>Panel central conectado:</strong>
     los módulos conservan sus propios HTML y Apps Script. Este cPanel funciona como punto de entrada,
     sin reemplazar ni modificar la programación existente.
+    <span id="dashboardLastUpdate" style="float:right;color:#087442;font-weight:700;">Consultando estadísticas...</span>
 </div>
 
 <div class="rows">
@@ -664,7 +281,7 @@ body.authenticated .authenticated-only{display:block}
         <div class="act"><div class="ai" style="background:#f0e9fb;color:#7650c9"><i class="bi bi-newspaper"></i></div><div><strong>Administración de noticias</strong><small>Publicar noticias, videos y contenidos</small></div><span class="tag">Noticias</span><span class="time">Activo</span></div>
         <div class="act"><div class="ai" style="background:#e8f1fc;color:#1770c9"><i class="bi bi-award"></i></div><div><strong>Certificados</strong><small>Revisar y gestionar solicitudes de certificados</small></div><span class="tag">Certificados</span><span class="time">Activo</span></div>
         <div class="act"><div class="ai" style="background:#fff0e5;color:#ed7622"><i class="bi bi-chat-dots"></i></div><div><strong>PQRS</strong><small>Gestionar peticiones, quejas, reclamos y solicitudes</small></div><span class="tag">PQRS</span><span class="time">Activo</span></div>
-        <div class="act"><div class="ai"><i class="bi bi-calendar-event"></i></div><div><strong>Agenda y Eventos</strong><small>Administrador de eventos, reuniones, anuncios e historial</small></div><span class="tag">Agenda</span><span class="time">Módulo</span></div>
+        <div class="act"><div class="ai"><i class="bi bi-calendar-event"></i></div><div><strong>Agenda</strong><small>Administración de eventos y actividades</small></div><span class="tag">Agenda</span><span class="time">Módulo</span></div>
     </div>
 </div>
 
@@ -691,7 +308,7 @@ body.authenticated .authenticated-only{display:block}
 <div class="panel">
     <div class="head">
         <h2>Módulos administrativos</h2>
-        <button onclick="location.reload()">Actualizar</button>
+        <button onclick="actualizarDashboard(true)">Actualizar</button>
     </div>
 
     <div class="tablewrap">
@@ -723,12 +340,6 @@ body.authenticated .authenticated-only{display:block}
                     <td>Gestión y seguimiento</td>
                     <td><span class="status">Apps Script</span></td>
                     <td class="acts"><button title="Abrir" onclick="abrirModulo('PQRS',URLS.pqrs)"><i class="bi bi-box-arrow-up-right"></i></button></td>
-                </tr>
-                <tr>
-                    <td class="doc"><i class="bi bi-calendar-event pdf"></i>Agenda y Eventos</td>
-                    <td>Eventos / reuniones / anuncios / historial</td>
-                    <td><span class="status">Apps Script</span></td>
-                    <td class="acts"><button title="Abrir" onclick="abrirModulo('Agenda',URLS.agenda)"><i class="bi bi-box-arrow-up-right"></i></button></td>
                 </tr>
             </tbody>
         </table>
@@ -762,11 +373,6 @@ body.authenticated .authenticated-only{display:block}
 </div>
 </div>
 
-<footer class="footer">
-    <span>© 2026 Junta de Acción Comunal · Santa Bárbara Vereda Santa Bárbara</span>
-    <span>cPanel Administrativo · Versión 2.0 · Módulos conectados</span>
-</footer>
-
 </section>
 </main>
 </div>
@@ -787,7 +393,7 @@ body.authenticated .authenticated-only{display:block}
     </div>
     <div class="drawer-status">
         <span><i class="bi bi-circle-fill"></i> Conexión activa</span>
-        <span id="drawerPath"></span>
+        <span id="drawerPath">Contenido integrado</span>
     </div>
     <div class="drawer-body">
         <iframe id="moduleFrame" title="Módulo administrativo" src="about:blank"></iframe>
@@ -813,9 +419,25 @@ const URLS = {
     certificadosAdmin: "admincertificado.html",
 
     // Módulos que aún no tienen un panel específico confirmado:
-    agenda: "admin.agenda.html",
-    afiliados: "afiliados.html"
+    agenda: "agenda.html",
+    afiliados: "admin.afiliados.html"
 };
+
+/*
+ * Los módulos se abren en modo "contenido".
+ * El parámetro embed=1 permite que cada HTML administrativo
+ * oculte su propio menú/footer cuando lo implementemos allí.
+ */
+function urlContenido(url){
+    if(!url) return "";
+    try{
+        const u = new URL(url, window.location.href);
+        u.searchParams.set("embed","1");
+        return u.href;
+    }catch(e){
+        return url + (url.includes("?") ? "&" : "?") + "embed=1";
+    }
+}
 
 const subtitles = {
     Dashboard:"Bienvenido al panel de administración",
@@ -861,14 +483,15 @@ function abrirModulo(nombre,url,el){
     const drawer=document.getElementById("moduleDrawer");
     const frame=document.getElementById("moduleFrame");
     document.getElementById("drawerTitle").textContent=nombre;
-    document.getElementById("drawerPath").textContent=url;
+    const contenidoUrl = urlContenido(url);
+    document.getElementById("drawerPath").textContent="Contenido integrado";
 
     // Primero mostramos la ventana y luego cargamos el HTML para evitar saltos visuales.
     drawer.setAttribute("aria-hidden","false");
     document.body.classList.add("module-open");
 
-    if(frame.src !== new URL(url, window.location.href).href){
-        frame.src=url;
+    if(frame.src !== contenidoUrl){
+        frame.src=contenidoUrl;
     }else{
         try{ frame.contentWindow.location.reload(); }catch(e){}
     }
@@ -895,332 +518,466 @@ function probarConexiones(){
         URLS.documentos,
         URLS.noticias,
         URLS.pqrs,
-        URLS.certificadosAdmin,
-        URLS.agenda
+        URLS.certificadosAdmin
     ];
 
     const disponibles=urls.filter(Boolean).length;
     document.getElementById("connectionPct").textContent =
-        disponibles + "/5";
+        disponibles + "/4";
 
     document.getElementById("connectionBar").style.width =
-        (disponibles/5*100) + "%";
+        (disponibles/4*100) + "%";
 
     alert(
         "Rutas administrativas configuradas:\\n\\n" +
         "✓ Documentos\\n" +
         "✓ Noticias\\n" +
         "✓ PQRS\\n" +
-        "✓ Certificados\n" +
-         "✓ Agenda y Eventos"
+        "✓ Certificados"
     );
 }
 
-
 /* =========================================================
-   AUTENTICACIÓN LOCAL DEL cPANEL
+   ESTADÍSTICAS REALES DEL DASHBOARD
    ---------------------------------------------------------
-   Usuario: admin
-   La contraseña "admin router" NO se guarda en texto plano.
-   El valor almacenado aquí es su hash SHA-256.
-   ========================================================= */
+   IMPORTANTE:
+   - No se reemplaza la lógica de los módulos.
+   - Documentos usa su Apps Script actual mediante JSONP.
+   - Noticias usa su Apps Script actual mediante GET.
+   - PQRS usa su Apps Script actual y conserva la sesión existente.
+   - Afiliados y Agenda se consultan desde sus propios HTML cuando
+     esos módulos exponen sus estadísticas.
+   - Si un módulo no responde o no está configurado, se muestra "—"
+     y NO se inventa un número.
+========================================================= */
 
-const AUTH_CONFIG = {
-    username: "admin",
-    passwordSha256: "d9d232bc0bfd2dc409c8ea3bafed73af2f701a62494f08cc4207280aeedf2809",
-    sessionKey: "JAC_CPANEL_AUTH_V1"
+const KPI_CONFIG = {
+    documentos: {
+        value: "kpiDocumentos",
+        state: "kpiDocumentosEstado"
+    },
+    afiliados: {
+        value: "kpiAfiliados",
+        state: "kpiAfiliadosEstado"
+    },
+    noticias: {
+        value: "kpiNoticias",
+        state: "kpiNoticiasEstado"
+    },
+    pqrs: {
+        value: "kpiPqrs",
+        state: "kpiPqrsEstado"
+    },
+    eventos: {
+        value: "kpiEventos",
+        state: "kpiEventosEstado"
+    }
 };
 
-async function sha256(text){
-    /*
-     * Primero intentamos Web Crypto.
-     * En algunos entornos (por ejemplo ciertos archivos locales,
-     * iframes o contextos restringidos) crypto.subtle puede no existir.
-     * En ese caso usamos el SHA-256 incluido abajo como respaldo.
-     */
-    try{
-        if(window.crypto && window.crypto.subtle && window.TextEncoder){
-            const data = new TextEncoder().encode(text);
-            const hash = await window.crypto.subtle.digest("SHA-256", data);
-            return Array.from(new Uint8Array(hash))
-                .map(b => b.toString(16).padStart(2,"0"))
-                .join("");
-        }
-    }catch(e){
-        console.warn("Web Crypto no disponible; usando SHA-256 de respaldo.", e);
-    }
+function ponerKpi(nombre, valor, estado, correcto = true) {
+    const cfg = KPI_CONFIG[nombre];
+    if (!cfg) return;
 
-    return sha256Fallback(text);
+    const valueEl = document.getElementById(cfg.value);
+    const stateEl = document.getElementById(cfg.state);
+
+    if (valueEl) valueEl.textContent = valor === null || valor === undefined ? "—" : valor;
+    if (stateEl) {
+        stateEl.textContent = estado || "";
+        stateEl.style.color = correcto ? "#07944c" : "#b42318";
+    }
 }
 
-/* SHA-256 de respaldo, sin depender de crypto.subtle */
-function sha256Fallback(ascii){
-    function rightRotate(value, amount){
-        return (value >>> amount) | (value << (32 - amount));
-    }
+function contarTextoNumerico(texto) {
+    if (texto === null || texto === undefined) return null;
+    const limpio = String(texto).replace(/[^\d]/g, "");
+    return limpio ? Number(limpio) : null;
+}
 
-    var mathPow = Math.pow;
-    var maxWord = mathPow(2, 32);
-    var lengthProperty = "length";
-    var words = [];
-    var asciiBitLength = ascii[lengthProperty] * 8;
-    var hash = sha256Fallback.h = sha256Fallback.h || [];
-    var k = sha256Fallback.k = sha256Fallback.k || [];
-    var primeCounter = k[lengthProperty];
+/* ---------------------------------------------------------
+   DOCUMENTOS
+   El módulo actual ya utiliza JSONP con ?action=listar.
+--------------------------------------------------------- */
+function consultarDocumentosKpi() {
+    return new Promise((resolve) => {
+        const callbackName = "jacDashboardDocuments_" + Date.now() + "_" + Math.random().toString(36).slice(2);
+        let terminado = false;
 
-    var isComposite = {};
-    for(var candidate = 2; primeCounter < 64; candidate++){
-        if(!isComposite[candidate]){
-            for(var i = 0; i < 313; i += candidate){
-                isComposite[i] = candidate;
+        const finalizar = (valor, estado, correcto) => {
+            if (terminado) return;
+            terminado = true;
+
+            const script = document.getElementById(callbackName);
+            if (script) script.remove();
+
+            try { delete window[callbackName]; } catch (e) {}
+            resolve({ valor, estado, correcto });
+        };
+
+        window[callbackName] = function (response) {
+            if (response && response.ok && Array.isArray(response.documents)) {
+                finalizar(
+                    response.documents.length,
+                    "Actualizado",
+                    true
+                );
+            } else {
+                finalizar(
+                    null,
+                    "No disponible",
+                    false
+                );
             }
-            hash[primeCounter] =
-                (mathPow(candidate, 0.5) * maxWord) | 0;
-            k[primeCounter++] =
-                (mathPow(candidate, 1 / 3) * maxWord) | 0;
-        }
-    }
+        };
 
-    ascii += "\x80";
-    while(ascii[lengthProperty] % 64 - 56) ascii += "\x00";
+        const script = document.createElement("script");
+        script.id = callbackName;
+        script.src =
+            "https://script.google.com/macros/s/AKfycbz3cGBMfWsqwBQaM8jDx-upHFtBZh20qoDs2MhsDtFQ6EnTK52OeEIeY6J8kDIS3tws/exec" +
+            "?action=listar&callback=" +
+            encodeURIComponent(callbackName) +
+            "&t=" + Date.now();
 
-    for(var i = 0; i < ascii[lengthProperty]; i++){
-        var j = ascii.charCodeAt(i);
-        if(j > 255) throw new Error("SHA-256 fallback: texto no soportado.");
-        words[i >> 2] |= j << ((3 - i) % 4) * 8;
-    }
+        script.onerror = function () {
+            finalizar(null, "Sin conexión", false);
+        };
 
-    words[words[lengthProperty]] = ((asciiBitLength / maxWord) | 0);
-    words[words[lengthProperty]] = asciiBitLength;
+        document.head.appendChild(script);
 
-    for(var j = 0; j < words[lengthProperty];){
-        var w = words.slice(j, j += 16);
-        var oldHash = hash.slice(0);
-
-        for(var i = 0; i < 64; i++){
-            var w15 = w[i - 15];
-            var w2 = w[i - 2];
-
-            var a = hash[0];
-            var e = hash[4];
-
-            var temp1 =
-                hash[7] +
-                (rightRotate(e, 6) ^
-                 rightRotate(e, 11) ^
-                 rightRotate(e, 25)) +
-                ((e & hash[5]) ^ ((~e) & hash[6])) +
-                k[i] +
-                (w[i] = i < 16 ? w[i] :
-                    (w[i - 16] +
-                     (rightRotate(w15, 7) ^
-                      rightRotate(w15, 18) ^
-                      (w15 >>> 3)) +
-                     w[i - 7] +
-                     (rightRotate(w2, 17) ^
-                      rightRotate(w2, 19) ^
-                      (w2 >>> 10))) | 0);
-
-            var temp2 =
-                (rightRotate(a, 2) ^
-                 rightRotate(a, 13) ^
-                 rightRotate(a, 22)) +
-                ((a & hash[1]) ^
-                 (a & hash[2]) ^
-                 (hash[1] & hash[2]));
-
-            hash = [
-                (temp1 + temp2) | 0,
-                a,
-                hash[1],
-                hash[2],
-                (hash[3] + temp1) | 0,
-                hash[4],
-                hash[5],
-                hash[6]
-            ];
-        }
-
-        for(var i = 0; i < 8; i++){
-            hash[i] = (hash[i] + oldHash[i]) | 0;
-        }
-    }
-
-    var result = "";
-    for(var i = 0; i < 8; i++){
-        result += ("00000000" + (hash[i] >>> 0).toString(16)).slice(-8);
-    }
-    return result;
+        setTimeout(function () {
+            finalizar(null, "Tiempo de espera", false);
+        }, 12000);
+    });
 }
 
-function mostrarPanel(){
-    // Mostrar el panel
-    document.body.classList.remove("auth-locked");
-    document.body.classList.add("authenticated");
+/* ---------------------------------------------------------
+   NOTICIAS
+   El panel actual consulta getAllVideos y devuelve data.videos.
+--------------------------------------------------------- */
+async function consultarNoticiasKpi() {
+    try {
+        const api =
+            "https://script.google.com/macros/s/AKfycbySJS8Da3m60tOG3tM0Y7m7Hcv5XQ2sKO2P1x_PCikFmYGys_tjgdvKWe851oDdu5Y/exec";
 
-    const screen = document.getElementById("authScreen");
-    if(screen) screen.style.display = "none";
+        const response = await fetch(
+            api + "?action=getAllVideos&t=" + Date.now(),
+            {
+                method: "GET",
+                cache: "no-store"
+            }
+        );
 
-    const usuario = sessionStorage.getItem(AUTH_CONFIG.sessionKey) || AUTH_CONFIG.username;
-    const userName = document.getElementById("loggedUserName");
-    if(userName) userName.textContent = usuario;
+        if (!response.ok) throw new Error("HTTP " + response.status);
 
-    // Mostrar SIEMPRE el modal de carga al entrar al cPanel,
-    // incluso si ya existe una sesión guardada.
-    const overlay = document.getElementById("cpLoadingOverlay");
-    if(overlay){
-        const msg = overlay.querySelector(".cp-loading-text");
-        if(msg) msg.innerHTML = 'Preparando el panel<span class="cp-loading-dots"></span>';
+        const data = await response.json();
+        if (!data || !data.ok || !Array.isArray(data.videos)) {
+            throw new Error("Respuesta no válida");
+        }
 
-        overlay.classList.add("show");
-        overlay.setAttribute("aria-hidden","false");
-
-        // Tiempo suficiente para que se vea claramente la animación.
-        setTimeout(function(){
-            overlay.classList.remove("show");
-            overlay.setAttribute("aria-hidden","true");
-        }, 1400);
+        return {
+            valor: data.videos.length,
+            estado: "Actualizado",
+            correcto: true
+        };
+    } catch (error) {
+        return {
+            valor: null,
+            estado: "No disponible",
+            correcto: false
+        };
     }
 }
 
-function mostrarLogin(){
-    document.body.classList.remove("authenticated");
-    document.body.classList.add("auth-locked");
+/* ---------------------------------------------------------
+   PQRS
+   Se conserva la clave de sesión que ya utiliza gestion-pqrs.html.
+--------------------------------------------------------- */
+async function consultarPqrsKpi() {
+    try {
+        const api =
+            "https://script.google.com/macros/s/AKfycbxUECd5ng7DgmX-x89AkgxT6nlDxrPwi1lRSzGizdUZrOaAwB7rrsqYZpks3dXjbiGH/exec";
 
-    const screen = document.getElementById("authScreen");
-    if(screen) screen.style.display = "flex";
+        const params = new URLSearchParams();
+        params.set("accion", "listarPQRS");
+        params.set("t", Date.now());
 
-    const form = document.getElementById("loginForm");
-    const user = document.getElementById("loginUsuario");
-    const pass = document.getElementById("loginClave");
-    const error = document.getElementById("loginError");
+        const adminClave = sessionStorage.getItem("jac_pqrs_admin_clave");
+        if (adminClave) {
+            params.set("adminClave", adminClave);
+        }
 
-    if(form) form.reset();
-    if(error) error.textContent = "";
-    if(user) setTimeout(() => user.focus(), 50);
-    if(pass) pass.value = "";
+        const response = await fetch(
+            api + "?" + params.toString(),
+            {
+                method: "GET",
+                cache: "no-store"
+            }
+        );
+
+        if (!response.ok) throw new Error("HTTP " + response.status);
+
+        const data = await response.json();
+
+        const filas =
+            Array.isArray(data.pqrs) ? data.pqrs :
+            Array.isArray(data.solicitudes) ? data.solicitudes :
+            Array.isArray(data.data) ? data.data :
+            Array.isArray(data.rows) ? data.rows :
+            null;
+
+        if (!filas) {
+            throw new Error("Respuesta no válida");
+        }
+
+        return {
+            valor: filas.length,
+            estado: "Actualizado",
+            correcto: true
+        };
+    } catch (error) {
+        return {
+            valor: null,
+            estado: "Requiere sesión",
+            correcto: false
+        };
+    }
 }
 
-async function iniciarSesion(event){
-    event.preventDefault();
-
-    const user = document.getElementById("loginUsuario").value.trim().toLowerCase();
-    const pass = document.getElementById("loginClave").value;
-    const button = document.getElementById("loginButton");
-    const error = document.getElementById("loginError");
-
-    error.textContent = "";
-
-    if(user !== AUTH_CONFIG.username){
-        error.textContent = "Usuario o contraseña incorrectos.";
-        return;
-    }
-
-    button.disabled = true;
-    button.textContent = "Verificando...";
-
-    try{
-        const passwordHash = await sha256(pass);
-
-        if(passwordHash !== AUTH_CONFIG.passwordSha256){
-            error.textContent = "Usuario o contraseña incorrectos.";
+/* ---------------------------------------------------------
+   LECTURA DE UN MÓDULO EN IFRAME OCULTO.
+   Sirve para módulos que mantienen su información dentro de su HTML.
+--------------------------------------------------------- */
+function consultarModuloDom(url, candidatos, fallbackSelectores = []) {
+    return new Promise((resolve) => {
+        if (!url) {
+            resolve({ valor: null, estado: "Módulo no configurado", correcto: false });
             return;
         }
 
-        sessionStorage.setItem(AUTH_CONFIG.sessionKey, AUTH_CONFIG.username);
-        mostrarPanel();
+        const frame = document.createElement("iframe");
+        frame.setAttribute("aria-hidden", "true");
+        frame.style.cssText =
+            "position:fixed;width:1px;height:1px;left:-10000px;top:-10000px;border:0;opacity:0;pointer-events:none;";
+        frame.src = urlContenido(url);
 
-        // Confirmación visual de acceso correcto.
-        if(window.cpShowLoading){
-            cpShowLoading("Ingresando al panel");
-            setTimeout(function(){
-                if(window.cpHideLoading) cpHideLoading();
-            }, 900);
+        let terminado = false;
+
+        const limpiar = () => {
+            if (frame.parentNode) frame.parentNode.removeChild(frame);
+        };
+
+        const finalizar = (resultado) => {
+            if (terminado) return;
+            terminado = true;
+            limpiar();
+            resolve(resultado);
+        };
+
+        frame.onload = function () {
+            setTimeout(function () {
+                try {
+                    const doc = frame.contentDocument || frame.contentWindow.document;
+
+                    let valor = null;
+
+                    for (const selector of candidatos) {
+                        const el = doc.querySelector(selector);
+                        if (el) {
+                            valor = contarTextoNumerico(el.textContent);
+                            if (valor !== null) break;
+                        }
+                    }
+
+                    if (valor === null) {
+                        for (const selector of fallbackSelectores) {
+                            const encontrados = doc.querySelectorAll(selector);
+                            if (encontrados.length) {
+                                valor = encontrados.length;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (valor !== null) {
+                        finalizar({
+                            valor,
+                            estado: "Actualizado",
+                            correcto: true
+                        });
+                    } else {
+                        finalizar({
+                            valor: null,
+                            estado: "No disponible",
+                            correcto: false
+                        });
+                    }
+                } catch (error) {
+                    finalizar({
+                        valor: null,
+                        estado: "No disponible",
+                        correcto: false
+                    });
+                }
+            }, 1200);
+        };
+
+        frame.onerror = function () {
+            finalizar({
+                valor: null,
+                estado: "Sin conexión",
+                correcto: false
+            });
+        };
+
+        document.body.appendChild(frame);
+
+        setTimeout(function () {
+            finalizar({
+                valor: null,
+                estado: "Tiempo de espera",
+                correcto: false
+            });
+        }, 10000);
+    });
+}
+
+/* ---------------------------------------------------------
+   AFILIADOS
+   El HTML actual expone "Total afiliados" como #totalAfiliados.
+--------------------------------------------------------- */
+async function consultarAfiliadosKpi() {
+    return consultarModuloDom(
+        URLS.afiliados,
+        ["#totalAfiliados"],
+        []
+    );
+}
+
+/* ---------------------------------------------------------
+   EVENTOS
+   Se intenta leer el contador real del módulo si existe.
+   Si el archivo/ruta no existe o no expone contador, no se inventa.
+--------------------------------------------------------- */
+async function consultarEventosKpi() {
+    return new Promise((resolve) => {
+        const callbackName = "jacDashboardAgenda_" + Date.now() + "_" + Math.random().toString(36).slice(2);
+        const script = document.createElement("script");
+        let terminado = false;
+
+        const finalizar = (resultado) => {
+            if (terminado) return;
+            terminado = true;
+            try { delete window[callbackName]; } catch (e) {}
+            script.remove();
+            resolve(resultado);
+        };
+
+        window[callbackName] = function(data) {
+            if (!data || data.ok === false) {
+                finalizar({ valor: null, estado: "No disponible", correcto: false });
+                return;
+            }
+
+            // La Agenda real devuelve { events, announcements } mediante getAgenda.
+            // El contador debe ser exactamente el número de eventos que entrega el servidor.
+            if (Array.isArray(data.events)) {
+                finalizar({
+                    valor: data.events.length,
+                    estado: "Actualizado",
+                    correcto: true
+                });
+            } else {
+                finalizar({ valor: null, estado: "Respuesta sin eventos", correcto: false });
+            }
+        };
+
+        script.src =
+            "https://script.google.com/macros/s/AKfycbzvVsnblAF3SVBlZ_qHdhTkvnSqEnvWCTGxE47d6Df_a0x_162HLTejfyFV6hzNFPRM/exec" +
+            "?action=getAgenda&callback=" + encodeURIComponent(callbackName) +
+            "&t=" + Date.now();
+
+        script.onerror = function() {
+            finalizar({ valor: null, estado: "Sin conexión", correcto: false });
+        };
+
+        document.head.appendChild(script);
+
+        setTimeout(function() {
+            finalizar({ valor: null, estado: "Tiempo de espera", correcto: false });
+        }, 15000);
+    });
+}
+
+async function actualizarDashboard(mostrarMensaje = false) {
+    ponerKpi("documentos", "…", "Consultando", true);
+    ponerKpi("afiliados", "…", "Consultando", true);
+    ponerKpi("noticias", "…", "Consultando", true);
+    ponerKpi("pqrs", "…", "Consultando", true);
+    ponerKpi("eventos", "…", "Consultando", true);
+
+    const estadoGeneral = document.getElementById("dashboardLastUpdate");
+    if (estadoGeneral) {
+        estadoGeneral.textContent = "Actualizando estadísticas...";
+        estadoGeneral.style.color = "#708078";
+    }
+
+    const resultados = await Promise.allSettled([
+        consultarDocumentosKpi(),
+        consultarAfiliadosKpi(),
+        consultarNoticiasKpi(),
+        consultarPqrsKpi(),
+        consultarEventosKpi()
+    ]);
+
+    const nombres = ["documentos", "afiliados", "noticias", "pqrs", "eventos"];
+
+    resultados.forEach((resultado, index) => {
+        const nombre = nombres[index];
+
+        if (resultado.status === "fulfilled" && resultado.value) {
+            ponerKpi(
+                nombre,
+                resultado.value.valor,
+                resultado.value.estado,
+                resultado.value.correcto
+            );
+        } else {
+            ponerKpi(nombre, null, "No disponible", false);
         }
+    });
 
-    }catch(err){
-        console.error("Error de autenticación:", err);
-        error.textContent = "No fue posible validar el acceso. Intenta nuevamente.";
-    }finally{
-        button.disabled = false;
-        button.textContent = "Ingresar al sistema";
+    const fecha = new Date().toLocaleString("es-CO");
+
+    if (estadoGeneral) {
+        estadoGeneral.textContent = "Actualizado: " + fecha;
+        estadoGeneral.style.color = "#087442";
+    }
+
+    if (mostrarMensaje) {
+        const disponibles = resultados.filter(
+            r => r.status === "fulfilled" && r.value && r.value.correcto
+        ).length;
+
+        alert(
+            "Estadísticas actualizadas.\n\n" +
+            "Módulos con dato disponible: " + disponibles + "/5.\n" +
+            "Los módulos sin dato muestran '—' y no utilizan valores inventados."
+        );
     }
 }
 
-function cerrarSesion(){
-    sessionStorage.removeItem(AUTH_CONFIG.sessionKey);
-    cerrarModulo();
-    mostrarLogin();
-}
-
-function verificarSesion(){
-    const sesion = sessionStorage.getItem(AUTH_CONFIG.sessionKey);
-
-    if(sesion === AUTH_CONFIG.username){
-        mostrarPanel();
-    }else{
-        mostrarLogin();
-    }
-}
-
-document.getElementById("loginForm").addEventListener("submit", iniciarSesion);
-
-document.addEventListener("keydown", function(e){
-    if(e.key === "Enter" && document.body.classList.contains("auth-locked")){
-        const active = document.activeElement;
-        if(active && (active.id === "loginUsuario" || active.id === "loginClave")){
-            e.preventDefault();
-            document.getElementById("loginForm").requestSubmit();
-        }
-    }
+/* Cargar estadísticas al abrir el dashboard. */
+document.addEventListener("DOMContentLoaded", function () {
+    actualizarDashboard(false);
 });
-
-verificarSesion();
-
 
 /* Atajos de teclado */
 document.addEventListener("keydown",e=>{
     if(e.key==="Escape"){
         document.body.classList.remove("open");
-        if(document.body.classList.contains("module-open")){
-            cerrarModulo();
-        }
     }
 });
 </script>
 
-<script>
-document.addEventListener("DOMContentLoaded",function(){
- const b=document.getElementById("togglePassword"),p=document.getElementById("loginPass");
- if(b&&p)b.onclick=function(){p.type=p.type==="password"?"text":"password";b.textContent=p.type==="password"?"◉":"◌";};
-});
-</script>
-
-<script>
-
-/* ===== CONTROL DEL MODAL DE CARGA ===== */
-(function(){
-  function cpShowLoading(message){
-    var overlay=document.getElementById("cpLoadingOverlay");
-    if(!overlay) return;
-    var msg=overlay.querySelector(".cp-loading-text");
-    if(msg && message) msg.innerHTML=message+'<span class="cp-loading-dots"></span>';
-    overlay.classList.add("show");
-    overlay.setAttribute("aria-hidden","false");
-  }
-  function cpHideLoading(){
-    var overlay=document.getElementById("cpLoadingOverlay");
-    if(!overlay) return;
-    overlay.classList.remove("show");
-    overlay.setAttribute("aria-hidden","true");
-  }
-  window.cpShowLoading=cpShowLoading;
-  window.cpHideLoading=cpHideLoading;
-
-  // La carga principal ahora se controla desde mostrarPanel(),
-  // para que también funcione cuando la sesión ya estaba iniciada.
-})();
-
-</script>
 </body>
 </html>
